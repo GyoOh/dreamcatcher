@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/create.css">
+  <title> JEDDIT </title>
+</head>
+<header>
+  <nav id="nav-header">
+    <a href="/subs/list"> LIST </a>
+    <a href="/">
+      <p> JEDDIT </p>
+    </a>
+    <% if (user) { %>
+      <form action="/authentication/logout" method="POST">
+        <button type="submit">Log out</button>
+      </form>
+      <% } else { %>
+        <a href="/authentication/login"> LOGIN </a>
+        <% } %>
+  </nav>
+</header>
+
+<body>
+  <h1>Create your post</h1>
+  <form action="/posts/create" method="POST">
+    <ul>
+      <li>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" minlength="3">
+      </li>
+      <li>
+        <label for="link">Link:</label>
+        <input type="url" id="link" name="link">
+      </li>
+      <li>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" minlength="10"></textarea>
+      </li>
+      <li>
+        <label for="subgroup">Subgroup:</label>
+        <input type="inputbox" name="subgroup">
+      </li>
+    </ul>
+    <button type="submit"> CREATE </button>
+  </form>
+</body>
+
+</html>

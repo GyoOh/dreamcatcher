@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(182, 194, 201);
+}
+
+#nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+a {
+    text-decoration: none;
+}
+
+.red {
+    color: red;
+}
