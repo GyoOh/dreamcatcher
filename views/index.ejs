@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/index.css">
+  <title>Foodie</title>
+</head>
+<header>
+  <nav id="nav-header">
+    <a href="/subs/list"> LIST </a>
+    <p> Foodie </p>
+    <% if (user) { %>
+      <a href="/posts/create"> CREATE </a>
+      <form action="/authentication/logout" method="POST">
+        <button type="submit">Log out</button>
+      </form>
+      <% } else { %>
+        <a href="/authentication/login"> LOGIN </a>
+        <% } %>
+  </nav>
+</header>
+
+<body>
+  <div>
+    <% posts.forEach(post=> { %>
+      <div>
+        <div>
+          <span>
+            <big>Creator:
+              <%= post.creatorName %>
+            </big>
+          </span> <br />
+          Title:
+          <a href="/posts/show/<%= post.id %>">
+            <%= post.title %>
+          </a>
+          <br />
+        </div>
+        <small>
+          <a href=<%=post.link %>>
+            <%= post.link %>
+          </a>
+        </small>
+      </div>
+    <% }) %>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/comment.css">
+    <title>Foodie</title>
+</head>
+<header>
+    <nav id="nav-header">
+        <a href="/subs/list"> LIST </a>
+        <a href="/">
+            <p> Foodie </p>
+        </a>
+        <% if (user) { %>
+            <a href="/posts/create"> CREATE </a>
+            <form action="/authentication/logout" method="POST">
+                <button type="submit">Log out</button>
+            </form>
+            <% } else { %>
+                <a href="/authentication/login"> LOGIN </a>
+                <% } %>
+    </nav>
+</header>
+
+<body>
+    <big>Comment info:</big>
+    <br>
+    <%= comment.description %>
+</body>
+
+</html>
