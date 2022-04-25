@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    background: var(--light-back);
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    background: var(--mid-accent);
+  }
