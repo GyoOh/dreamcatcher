@@ -3,9 +3,7 @@
     padding: 0px;
   }
   
-  body {
-    background-color: #eee;
-  }
+  
   
   #wrapper {
     width: 500px;
@@ -25,10 +23,6 @@
     padding: 40px 50px;
   }
   
-  .header {
-    border: 0px solid #000;
-    margin-bottom: 5px;
-  }
   
   .header img {
     height: 50px;
