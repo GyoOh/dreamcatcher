@@ -23,6 +23,13 @@
     padding: 40px 50px;
   }
   
+  body {
+    background-color: #eee;
+  }
+  .header {
+    border: 0px solid #000;
+    margin-bottom: 5px;
+  }
   
   .header img {
     height: 50px;
