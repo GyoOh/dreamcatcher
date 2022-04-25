@@ -1,5 +1,0 @@
-https://expressjs.com/en/guide/routing.html
-https://expressjs.com/en/starter/static-files.html
-https://stackoverflow.com/questions/18629327/adding-css-file-to-ejs
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
-https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form
