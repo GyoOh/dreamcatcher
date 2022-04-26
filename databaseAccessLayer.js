@@ -14,12 +14,13 @@ function getAllfoodie_user(callback) {
         }
     });
 }
+
 async function getUser(email, cb) {
     let query = `SELECT * FROM foodie_user WHERE email = :email`;
     let params = { email: email }
     const users = await database.query(query, params)
     return users
-}
+
 // need to make async later
 function addUser(postData, callback) {
     let sqlInsertSalt = "INSERT INTO foodie_user (email, password_salt) VALUES (:email, sha2(UUID(),512));";
