@@ -5,6 +5,7 @@ body {
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     box-sizing: border-box;
   }
+<<<<<<< HEAD
   
   a {
     text-decoration: none;
@@ -269,3 +270,15 @@ body {
       background-color: yellow;
   }
   */
+=======
+
+  #nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+a {
+    text-decoration: none;
+}
+>>>>>>> master
