@@ -29,7 +29,18 @@ app.use("/comments", comments);
 
 app.get("/", (req, res) => {
 
-  res.render("index", {});
+
+  let allUsers = database.getAllUsers
+  console.log(allUsers)
+  // let posts = db.getPosts();
+  // let user = db.getUserByUsername(req.session.whoami);
+  // for (const post of posts) {
+  //   let user = db.getUser(post.creator);
+  //   post.creatorName = user.uname;
+  // }
+
+  res.render("index", { posts });
+
 })
 // app.get("/login", (req, res) => {
 //   console.log("page hit");
