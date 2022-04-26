@@ -19,6 +19,10 @@
         <div class="box">
             <div class="heading"></div>
 
+            <img src="foodieshare_logo.jpg" alt="logo pic"/>
+
+
+            
             <?xml version="1.0" encoding="utf-8"?>
             <!-- Generator: Adobe Illustrator 26.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +92,7 @@
                     <text transform="matrix(1 0 0 1 66.3745 408.0893)" class="st0 st4 st5">FoodieShare</text>
                 </g>
             </svg>
-
+            <% if (!user) {%> 
             <!-- <img src="foodieshare_logo-01.svg" width="100" height="100"> -->
             <form class="login-form" action="/" method="POST">
 
@@ -140,8 +144,13 @@
                             height="10px" width="10px"> Sign Up with Apple</button>
                     <br>
                 </form>
+                <% } %>
+                <% if (user) {%>  
+                 Hello <%= user.first_name %> ! 
+                <% } %> 
             </div>
         </div>
+
 </body>
 
 </html>
