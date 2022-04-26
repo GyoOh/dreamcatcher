@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
   //   post.creatorName = user.uname;
   // }
 
-  res.render("index", { posts, user });
+  res.render("index", { posts });
 })
 
 module.exports = app;
