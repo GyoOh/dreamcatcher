@@ -1,22 +1,10 @@
 const database = require('./databaseConnection');
-
 const passwordPepper = "SeCretPeppa4MySal+";
 
-function getAllfoodie_user(callback) {
-    let sqlQuery = "SELECT user_id, email FROM foodie_user";
-    database.query(sqlQuery, (err, results, fields) => {
-        if (err) {
-            callback(err, null);
-        }
-        else {
-            console.log(results);
-            callback(null, results);
-        }
-    });
-}
 async function getUser(email, cb) {
     let query = `SELECT * FROM foodie_user WHERE email = :email`;
     let params = { email: email }
+
     const users = await database.query(query, params)
     return users
 }
@@ -72,4 +60,4 @@ function deleteUser(webUserId, callback) {
     });
 }
 
-module.exports = { getAllfoodie_user, getUser, addUser, deleteUser }
+module.exports = { getUser, addUser, deleteUser }

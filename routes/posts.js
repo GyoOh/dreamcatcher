@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../fake-db");
 
-
 router.get("/show/:postid", (req, res) => {
     let postId = req.params.postid;
     let userVoteScore = null;
@@ -10,8 +9,8 @@ router.get("/show/:postid", (req, res) => {
     let user = db.getUserByUsername(req.session.whoami);
     let voteScore = db.getVotesForPost(Number(postId));
     let postThatWeVoted = voteScore
-    .filter(vote => vote.post_id === postId)
-    .find(vote => vote.user_id === user.id);
+        .filter(vote => vote.post_id === postId)
+        .find(vote => vote.user_id === user.id);
     if (!postThatWeVoted) {
         userVoteScore = 0;
     } else {
