@@ -1,4 +1,4 @@
-const database = include('/databaseConnection');
+const database = require('./databaseConnection');
 
 const passwordPepper = "SeCretPeppa4MySal+";
 
