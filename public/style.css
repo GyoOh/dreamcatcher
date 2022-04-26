@@ -30,6 +30,7 @@ a {
   margin-top: 3rem;
   font-size: 14px;
 }
+
 .box {
   max-width: 350px;
   width: 100%;
@@ -44,6 +45,7 @@ a {
   padding: 10px 0;
   flex-grow: 1;
 }
+
 .heading {
   margin: 22px auto 12px;
   /* background-image: url(foodieshare_logo-01.svg); */
