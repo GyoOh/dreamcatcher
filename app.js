@@ -5,8 +5,6 @@ const cookieSession = require("cookie-session");
 const app = express();
 const authentication = require("./routes/authentication");
 const posts = require("./routes/posts");
-const subs = require("./routes/subs");
-const comments = require("./routes/comments");
 
 const db = require("./fake-db");
 const dbModel = require("./databaseAccessLayer")
@@ -24,8 +22,6 @@ app.use(cookieSession({
 
 app.use("/authentication", authentication);
 app.use("/posts", posts);
-app.use("/subs", subs);
-app.use("/comments", comments);
 
 app.get("/", (req, res) => {
 
