@@ -19,7 +19,20 @@ svg#Layer_1 {
 a {
   text-decoration: none;
 }
-
+.box {
+  max-width: 350px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 1px;
+  margin: 0 0 10px;
+  padding: 10px 0;
+  flex-grow: 1;
+}
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -33,7 +46,7 @@ a {
 
 .heading {
   margin: 22px auto 12px;
-  /* background-image: url(foodieshare_logo-01.svg); */
+  background-image: url(foodieshare_logo.jpg);
   background-position: -98px 0;
   height: 51px;
   width: 177px;
