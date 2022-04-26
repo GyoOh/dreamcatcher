@@ -15,6 +15,10 @@ function getAllfoodie_user(callback) {
     });
 }
 
+
+
+
+
 // function getUser(userId, callback) {
 //     let sqlUser = `SELECT * FROM foodie_user WHERE user_id = :userId`;
 //     let params = { userId: userId }

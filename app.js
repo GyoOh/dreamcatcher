@@ -56,7 +56,7 @@ app.get("/:id", (req, res) => {
   dbModel.getUser(id, (error, user) => {
     if (error) {
       console.error(error);
-      res.status(500), send({ error });
+      res.status(500).send({ error });
       return;
     }
     if (!user) {

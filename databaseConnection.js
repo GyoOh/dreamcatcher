@@ -13,8 +13,8 @@ const dbConfigHeroku = {
 
 const dbConfigLocal = {
     host: "localhost",
-    user: "IDSP_Dreamcatcher_user",
-    password: "password",
+    user: "root",
+    password: "insert_password",
     database: "IDSP_Dreamcatcher",
     multipleStatements: false,
     namedPlaceholders: true
