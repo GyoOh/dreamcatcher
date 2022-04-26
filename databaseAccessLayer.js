@@ -27,21 +27,16 @@ function getAllfoodie_user(callback) {
 //         }
 //     });
 // }
-function getUser(id, cb) {
-    let query = `SELECT * FROM foodie_user WHERE user_id = ?`;
-    database.query(query, [id], (error, users) => {
-        if (error) {
-            cb(error);
-            return;
-        }
-        cb(null, users[0]);
-    });
+async function getUser(email, cb) {
+    let query = `SELECT * FROM foodie_user WHERE email = :email`;
+    let params = { email: email }
+    const users = await database.query(query, params)
+    return users
 }
 
 function addUser(postData, callback) {
     let sqlInsertSalt = "INSERT INTO foodie_user (email, password_salt) VALUES (:email, sha2(UUID(),512));";
     let params = {
-
         email: postData.email
     };
     console.log(sqlInsertSalt);
