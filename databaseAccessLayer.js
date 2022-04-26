@@ -14,7 +14,7 @@ function getAllUsers(callback) {
         }
     });
 }
-async function getUser(id) {
+function getUser(id) {
     let query = `SELECT * FROM users WHERE uesrs_id = ?`;
     const [rows] = database.query(query, [id]);
     const user = rows[0];
@@ -75,4 +75,4 @@ function deleteUser(webUserId, callback) {
     });
 }
 
-module.exports = { getAllUsers, addUser, deleteUser }
+module.exports = { getAllUsers, getUser, addUser, deleteUser }
