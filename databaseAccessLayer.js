@@ -2,8 +2,8 @@ const database = require('./databaseConnection');
 
 const passwordPepper = "SeCretPeppa4MySal+";
 
-function getAllUsers(callback) {
-    let sqlQuery = "SELECT users_id, first_name, last_name, email FROM users";
+function getAllfoodie_user(callback) {
+    let sqlQuery = "SELECT user_id, email FROM foodie_user";
     database.query(sqlQuery, (err, results, fields) => {
         if (err) {
             callback(err, null);
@@ -14,19 +14,34 @@ function getAllUsers(callback) {
         }
     });
 }
-function getUser(id) {
-    let query = `SELECT * FROM users WHERE uesrs_id = ?`;
-    const [rows] = database.query(query, [id]);
-    const user = rows[0];
-    console.log(user);
-    return user;
+
+// function getUser(userId, callback) {
+//     let sqlUser = `SELECT * FROM foodie_user WHERE user_id = :userId`;
+//     let params = { userId: userId }
+//     database.query(sqlUser, params, (err, results, fields) => {
+//         if (err) {
+//             callback(err, null);
+//         } else {
+//             console.log(results);
+//             callback(null, results);
+//         }
+//     });
+// }
+function getUser(id, cb) {
+    let query = `SELECT * FROM foodie_user WHERE user_id = ?`;
+    database.query(query, [id], (error, users) => {
+        if (error) {
+            cb(error);
+            return;
+        }
+        cb(null, users[0]);
+    });
 }
 
 function addUser(postData, callback) {
-    let sqlInsertSalt = "INSERT INTO users (first_name, last_name, email, password_salt) VALUES (:first_name, :last_name, :email, sha2(UUID(),512));";
+    let sqlInsertSalt = "INSERT INTO foodie_user (email, password_salt) VALUES (:email, sha2(UUID(),512));";
     let params = {
-        first_name: postData.first_name,
-        last_name: postData.last_name,
+
         email: postData.email
     };
     console.log(sqlInsertSalt);
@@ -37,7 +52,7 @@ function addUser(postData, callback) {
         }
         else {
             let insertedID = results.insertId;
-            let updatePasswordHash = "UPDATE users SET password_hash = sha2(concat(:password,:pepper,password_salt),512) WHERE users_id = :userId;"
+            let updatePasswordHash = "UPDATE foodie_user SET password_hash = sha2(concat(:password,:pepper,password_salt),512) WHERE user_id = :userId;"
             let params2 = {
                 password: postData.password,
                 pepper: passwordPepper,
@@ -59,7 +74,7 @@ function addUser(postData, callback) {
 }
 
 function deleteUser(webUserId, callback) {
-    let sqlDeleteUser = "DELETE FROM users WHERE users_id = :userID";
+    let sqlDeleteUser = "DELETE FROM foodie_user WHERE user_id = :userID";
     let params = {
         userID: webUserId
     };
@@ -75,4 +90,4 @@ function deleteUser(webUserId, callback) {
     });
 }
 
-module.exports = { getAllUsers, getUser, addUser, deleteUser }
+module.exports = { getAllfoodie_user, getUser, addUser, deleteUser }
