@@ -3,17 +3,17 @@ const mysql = require('mysql2');
 const is_heroku = process.env.IS_HEROKU || false;
 
 const dbConfigHeroku = {
-    host: "m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "bylxu7g4xvplzyyy",
-    password: "reeyuldx9xt1mum9",
-    database: "qfm722hlij5ju2wj",
+    host: "bv2rebwf6zzsv341.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "qb6s5t82mu083vug",
+    password: "yt4pw6o1qf1rgw6l",
+    database: "vqezxpumr5ni82we",
     multipleStatements: false,
     namedPlaceholders: true
 };
 
 const dbConfigLocal = {
     host: "localhost",
-    user: "IDSP",
+    user: "IDSP_Dreamcatcher_user",
     password: "password",
     database: "IDSP_Dreamcatcher",
     multipleStatements: false,
