@@ -21,10 +21,10 @@ const dbConfigLocal = {
 };
 
 if (is_heroku) {
-    var database = mysql.createPool(dbConfigHeroku);
+    var database = mysql.createPool(dbConfigHeroku).promise();
 }
 else {
-    var database = mysql.createPool(dbConfigLocal);
+    var database = mysql.createPool(dbConfigLocal).promise();
 }
 
 module.exports = database;
