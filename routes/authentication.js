@@ -8,17 +8,25 @@ router.post("/login", async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
   let foundUser = await dbModel.getUser(email)
-  console.log(foundUser)
-  if (foundUser && foundUser.password === givenPassword) {
-    req.session.whoami = givenUsername;
+  let user = foundUser[0][0]
+  console.log(user)
+
+  // Use bcrypt for the password
+  if (user && user.password === password) {
+    // succesfully logged in
+    // set the cookie to be the user's email
+    req.session.whoami = email;
     res.redirect("/");
   } else {
     res.redirect("login");
   }
 })
 
-router.get("/login", (req, res) => {
-  let user = dbModel.getUser();
+
+router.get("/login", async (req, res) => {
+  let user = await dbModel.getUser();
+  console.log("Cookies: ", req.cookies);
+  console.log("Signed Cookies: ", req.signedCookies);
   res.render("login", { user });
 })
 
