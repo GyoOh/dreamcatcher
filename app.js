@@ -9,7 +9,8 @@ const subs = require("./routes/subs");
 const comments = require("./routes/comments");
 
 const db = require("./fake-db");
-const database = require("./databaseAccessLayer")
+const dbModel = require("./databaseAccessLayer")
+const database = require("./databaseConnection");
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,7 +37,32 @@ app.get("/", (req, res) => {
   //   post.creatorName = user.uname;
   // }
 
-  res.render("index", { posts, user });
-})
+  //   res.render("index", { Allusers: results });
+  // })
+  console.log("page hit");
+  database.getConnection(function (err, dbConnection) {
+    if (err) {
+      res.render('error', { message: 'Error connecting to MySQL' });
+      console.log("Error connecting to mysql");
+      console.log(err);
+    }
+    else {
+
+      dbModel.getAllUsers((err, result) => {
+        if (err) {
+          res.render('error', { message: 'Error reading from MySQL' });
+          console.log("Error reading from mysql");
+          console.log(err);
+        }
+        else { //success
+          res.render('index', { allUsers: result });
+          //Output the results of the query to the Heroku Logs
+          console.log(result);
+        }
+      });
+      dbConnection.release();
+    }
+  });
+});
 
 module.exports = app;
