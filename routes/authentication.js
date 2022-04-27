@@ -1,27 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../fake-db");
-const dbModel = require("../databaseAccessLayer")
-const database = require("../databaseConnection");
+const dbModel = require("../databaseAccessLayer");
+const { getConnection } = require("../databaseConnection");
+const db = require("../databaseConnection");
 
 router.post("/login", async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
-  let foundUser = await dbModel.getUser(email)
-  let user = foundUser[0][0]
-  console.log(user)
+  try {
+    let connection = await db.getConnection()
 
-  // Use bcrypt for the password
-  if (user && user.password === password) {
-    // succesfully logged in
-    // set the cookie to be the user's email
-    req.session.whoami = email;
-    res.redirect("/");
-  } else {
-    res.redirect("login");
+    let foundUser = await dbModel.getUser(email)
+    let user = foundUser[0][0]
+    // Use bcrypt for the password
+    if (user && user.password === password) {
+      req.session.whoami = email;
+      res.redirect("/");
+      connection.release()
+    } else {
+      res.redirect("login");
+    }
+  } catch (error) {
+    console.error(error)
   }
 })
-
 
 router.get("/login", async (req, res) => {
   let user = await dbModel.getUser();

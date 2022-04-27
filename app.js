@@ -25,9 +25,18 @@ app.use("/posts", posts);
 
 app.get("/", async (req, res) => {
   let email = req.session.whoami
-  let getUser = await dbModel.getUser(email)
-  let user = getUser[0][0]
-  res.render("index", { user });
+  try {
+    let connection = await database.getConnection()
+
+    let getUser = await dbModel.getUser(email)
+    let user = getUser[0][0]
+
+    res.render("index", { user });
+    connection.release()
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error })
+  }
 })
 
 module.exports = app;
