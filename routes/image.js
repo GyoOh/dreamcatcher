@@ -7,8 +7,8 @@ const imageController= require('../controllers/image-controller');
 
 
 
-router.get('/store-image',imageController.imageUploadForm);
+router.get('/store-image', imageController.imageUploadForm);
 
-router.post('/store-image',imageController.storeImage);
+router.post('/store-image', imageController.storeImage);
 
 module.exports = router;

@@ -1,10 +1,8 @@
-let multer = require('multer');
-
-
+var multer = require('multer');
 
 module.exports.image = {
     storage:function(){
-        let storage = multer.diskStorage({
+        var storage = multer.diskStorage({
         destination: function (req, file, cb) {
           cb(null, 'public/images/')
         },
@@ -14,7 +12,6 @@ module.exports.image = {
       })
       return storage;
 },
-
 allowedImage:function(req, file, cb) {
     // Accept images only
     if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
