@@ -10,6 +10,7 @@ const db = require("./fake-db");
 const dbModel = require("./databaseAccessLayer")
 const database = require("./databaseConnection");
 
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
@@ -22,6 +23,7 @@ app.use(cookieSession({
 
 app.use("/authentication", authentication);
 app.use("/posts", posts);
+app.use("/", image);
 
 app.get("/", (req, res) => {
 
