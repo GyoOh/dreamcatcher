@@ -3,16 +3,16 @@ const router = express.Router();
 const dbModel = require("../databaseAccessLayer");
 const { getConnection } = require("../databaseConnection");
 const db = require("../databaseConnection");
+const bcrypt = require("bcrypt")
 
 router.post("/login", async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
   try {
     let connection = await db.getConnection()
-
     let foundUser = await dbModel.getUser(email)
     let user = foundUser[0][0]
-    // Use bcrypt for the password
+
     if (user && user.password === password) {
       req.session.whoami = email;
       res.redirect("/");
@@ -27,8 +27,6 @@ router.post("/login", async (req, res) => {
 
 router.get("/login", async (req, res) => {
   let user = await dbModel.getUser();
-  console.log("Cookies: ", req.cookies);
-  console.log("Signed Cookies: ", req.signedCookies);
   res.render("login", { user });
 })
 

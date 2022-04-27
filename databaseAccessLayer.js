@@ -1,12 +1,12 @@
 const database = require('./databaseConnection');
 const passwordPepper = "SeCretPeppa4MySal+";
-async function getUser(email) {
 
+async function getUser(email) {
     let query = `SELECT * FROM foodie_user WHERE email = :email`;
     let params = { email: email }
     const users = await database.query(query, params)
     return users
-
+}
 // need to make async later
 function addUser(postData, callback) {
     let sqlInsertSalt = "INSERT INTO foodie_user (email, password_salt) VALUES (:email, sha2(UUID(),512));";
@@ -32,8 +32,7 @@ function addUser(postData, callback) {
                 if (err) {
                     console.log(err);
                     callback(err, null);
-                }
-                else {
+                } else {
                     console.log(results);
                     callback(null, results);
                 }
@@ -51,8 +50,7 @@ function deleteUser(webUserId, callback) {
     database.query(sqlDeleteUser, params, (err, results, fields) => {
         if (err) {
             callback(err, null);
-        }
-        else {
+        } else {
             console.log(results);
             callback(null, results);
         }
