@@ -1,10 +1,9 @@
 const database = require('./databaseConnection');
 const passwordPepper = "SeCretPeppa4MySal+";
 
-async function getUser(email, cb) {
+async function getUser(email) {
     let query = `SELECT * FROM foodie_user WHERE email = :email`;
     let params = { email: email }
-
     const users = await database.query(query, params)
     return users
 }
