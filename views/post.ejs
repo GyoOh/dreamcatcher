@@ -9,88 +9,17 @@
   <title>Foodie Share</title>
 </head>
 <header>
-  <nav id="nav-header">
-    <a href="/subs/list"> LIST </a>
-    <a href="/">
-      <p> Foodie Share </p>
-    </a>
-    <% if (user) { %>
-      <a href="/posts/create"> CREATE </a>
-      <form action="/authentication/logout" method="POST">
-        <button type="submit">Log out</button>
-      </form>
-      <% } else { %>
-        <a href="/authentication/login"> LOGIN </a>
-        <% } %>
-  </nav>
+  
 </header>
 
+
 <body>
-  <div>
-    <div>
-      <div>
-        
-          <form action="/posts/vote/<%= post.id %>" method="post">
-              <input type="hidden" value="+1" name="setvoteto">
-          <button class=<%= userVoteScore == +1? "red": "" %> type="submit">+</button>
-          </form>
-        Total: <%= netTotal %>
-        <form action="/posts/vote/<%= post.id %>" method="post">
-          <input type="hidden" value="-1" name="setvoteto">
-      <button class=<%= userVoteScore == -1? 'red': "" %> type="submit">-</button>
-      </form>
-        <label for="title">Title:</label>
-        <a href=<%=post.link %>>
-          <%= post.title %>
-        </a>
-        <br />
-        <label for="timestamp">Timestamp:</label>
-        <span>
-          <%= post.timestamp %>
-        </span>
-        <br />
-        <label for="creator">Creator:</label>
-        <span>
-          <%= post.creator.uname %>
-        </span>
-        <br />
-        <label for="description">Description:</label>
-        <span>
-          <%= post.description %>
-        </span>
-        <br />
-        <span>
-          <label for="comments">Comments:</label>
-          <% post.comments.forEach(comment=> { %>
-            <div>
-              <a href="/comments/show/<%= comment.id %>"><%= comment.description %></a>
-              <a href="/comments/deleteconfirm/<%= comment.id%>?postid=<%= post.id%>">Delete</a>
-            </div>
-            <% }) %>
-        </span>
-      </div>
+  <div class="modal_overlay">
+    <div class="modal_window">
     </div>
   </div>
 
-  <% if (user) { %>
-    <div>
-      <form action="/posts/comment-create/<%= post.id %>" method="POST">
-        <label for="comment">Comment:</label>
-        <input type="text" name="comment" placeholder="Leave a comment">
-        <button type="submit"> SAVE </button>
-      </form>
-    </div>
-    <div>
-      <form action="/posts/deleteconfirm/<%= post.id %>" method="GET">
-        <button type="submit"> DELETE </button>
-      </form>
-    </div>
-    <div>
-      <form action="/posts/edit/<%= post.id %>" method="GET">
-        <button type="submit"> EDIT </button>
-      </form>
-      <% } %>
-    </div>
+   
 </body>
 
 </html>

@@ -5,7 +5,6 @@ const cookieSession = require("cookie-session");
 const app = express();
 const authentication = require("./routes/authentication");
 const posts = require("./routes/posts");
-const image = require('./routes/image');
 const database = require("./databaseConnection");
 const dbModel = require("./databaseAccessLayer")
 
@@ -22,7 +21,7 @@ app.use(cookieSession({
 
 app.use("/authentication", authentication);
 app.use("/posts", posts);
-app.use("/", image);
+
 
 app.get("/", async (req, res) => {
   let email = req.session.whoami
