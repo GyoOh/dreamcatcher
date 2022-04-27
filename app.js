@@ -5,10 +5,10 @@ const cookieSession = require("cookie-session");
 const app = express();
 const authentication = require("./routes/authentication");
 const posts = require("./routes/posts");
-
-const db = require("./fake-db");
-const dbModel = require("./databaseAccessLayer")
+const image = require('./routes/image');
 const database = require("./databaseConnection");
+const dbModel = require("./databaseAccessLayer")
+
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,6 +22,7 @@ app.use(cookieSession({
 
 app.use("/authentication", authentication);
 app.use("/posts", posts);
+app.use("/", image);
 
 app.get("/", async (req, res) => {
   let email = req.session.whoami
