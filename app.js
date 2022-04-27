@@ -26,7 +26,7 @@ app.use("/posts", posts);
 app.get("/", async (req, res) => {
   let email = req.session.whoami
   try {
-    let connection = database.getConnection()
+    let connection = await database.getConnection()
     console.log(connection)
     let getUser = await dbModel.getUser(email)
     let user = getUser[0][0]

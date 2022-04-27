@@ -8,7 +8,7 @@ router.post("/login", async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
   try {
-    let connection = database.getConnection()
+    let connection = await database.getConnection()
     console.log(connection)
     let foundUser = await dbModel.getUser(email)
     let user = foundUser[0][0]
