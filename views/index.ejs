@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <% if (user) {%> 
     <a href="/posts/create"> CREATE </a>
 
     <section id="container">
@@ -265,7 +266,7 @@
                                     <img src="">
                                 </div>
                                 <div class="user_name">
-                                    <div class="nick_name m_text">Samantha_Rogers</div>
+                                    <div class="nick_name m_text"><%= user.first_name %> </div>
                                     <div class="country s_text">@On The Run Cafe</div>
                                 </div>
 
@@ -494,7 +495,7 @@
         </section>
 
     </section>
-
+<% } %> 
 </body>
 
 </html>
