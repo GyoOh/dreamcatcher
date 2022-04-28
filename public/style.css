@@ -137,8 +137,8 @@ body {
   position: relative;
 }
 
-.contents_box {
-}
+/* .contents_box {
+} */
 
 .contents {
   max-width: 614px;
@@ -257,10 +257,12 @@ body {
 
 .nick_name {
   color: #1A5E63;
+  font-size: 100%;
 }
 
 .place{
   color:#00BFB2 ;
+  font-size: smaller;
 }
 
 .userid {
@@ -314,8 +316,8 @@ body {
 
 .side_box {
   width: 293px;
-  /*height: 300px;*/
-  /*background: rgba(255, 0, 0, 0.16);*/
+  /* height: 300px;
+  background: rgba(255, 0, 0, 0.16); */
   position: absolute;
   right: 0;
   top: 0;

@@ -11,9 +11,9 @@ body {
   background: url("../imgs/background01.png") no-repeat -53px -235px;
   width: 22px;
   height: 22px;
-} */
+} 
 
-/* .sprite_write_logo {
+.sprite_write_logo {
   display: inline-block;
   background: url("../imgs/background01.png") no-repeat -94px -72px;
   width: 103px;
