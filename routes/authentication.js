@@ -30,6 +30,11 @@ router.get("/login", async (req, res) => {
   res.render("login", { user });
 })
 
+router.get("/signup", async (req, res) => {
+  let user = await dbModel.getUser();
+  res.render("signup", { user });
+})
+
 router.post("/logout", (req, res) => {
   res.clearCookie("whoami");
   res.clearCookie("whoami.sig");
