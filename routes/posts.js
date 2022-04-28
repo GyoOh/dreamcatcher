@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 router.get("/create", (req, res) => {
     let id = req.session.whoami;
     let user = db.getUserByUsername(id);
-    res.render("create", { user });
+    res.render("newpost", { user });
 })
 
 router.post("/create", (req, res) => {
