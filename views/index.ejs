@@ -44,9 +44,10 @@
                         home
                     </span>
                     <a href="/posts/create">
-                    <span class="material-symbols-outlined">
-                        photo_camera
-                    </span></a>
+                        <span class="material-symbols-outlined">
+                            photo_camera
+                        </span>
+                    </a>
                     <span class="material-symbols-outlined">
                         favorite
                     </span>
@@ -57,9 +58,9 @@
                         send
                     </span>
                     <a href="/authentication/login">
-                    <span class="material-symbols-outlined">
-                        person
-                    </span>
+                        <span class="material-symbols-outlined">
+                            person
+                        </span>
                     </a>
 
 
@@ -85,37 +86,39 @@
         <div class="hidden_menu">
             <div class="scroll_inner">
                 <div class="user">
-                    <div class="thumb_img"><img src=""></div>
-                    <div class="id">Samantha_Rogersrr</div>
+
+                    
+                    <div class="thumb_img"><img src="https://ww2.kqed.org/app/uploads/sites/27/2016/09/iStock_75977769_LARGE-1440x972.jpg"></div>
+                    <div class="userid">Samantha</div>
                 </div>
 
                 <div class="user">
                     <div class="thumb_img"><img src=""></div>
-                    <div class="id">Samantha_Rogersrr</div>
+                    <div class="userid">Samantha</div>
                 </div>
                 <div class="user">
                     <div class="thumb_img"><img src=""></div>
-                    <div class="id">Samantha_Rogersrr</div>
+                    <div class="userid">Samantha</div>
                 </div>
                 <div class="user">
                     <div class="thumb_img"><img src=""></div>
-                    <div class="id">Samantha_Rogersrr</div>
+                    <div class="userid">Samantha</div>
                 </div>
                 <div class="user">
                     <div class="thumb_img"><img src=""></div>
-                    <div class="id">Samantha_Rogersrr</div>
+                    <div class="userid">Samantha</div>
                 </div>
                 <div class="user">
                     <div class="thumb_img"><img src=""></div>
-                    <div class="id">Samantha_Rogersrr</div>
+                    <div class="userid">Samantha</div>
                 </div>
                 <div class="user">
                     <div class="thumb_img"><img src=""></div>
-                    <div class="id">Samantha_Rogersrr</div>
+                    <div class="userid">Samantha</div>
                 </div>
                 <div class="user">
                     <div class="thumb_img"><img src=""></div>
-                    <div class="id">Samantha_Rogersrr</div>
+                    <div class="userid">Samantha</div>
                 </div>
             </div>
         </div>
@@ -133,7 +136,7 @@
                                 </div>
                                 <div class="user_name">
                                     <div class="nick_name m_text">Samantha_Rogers</div>
-                                    <div class="country s_text">@On The Run Cafe</div>
+                                    <div class="place">@On The Run Cafe</div>
                                 </div>
                             </div>
 
@@ -167,12 +170,19 @@
                                 <div class="sprite_bookmark_outline" data-name="bookmark"></div>
                             </div>
                         </div>
-
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <span class="material-symbols-outlined">
+                            chat_bubble
+                            </span>
+                            <span class="material-symbols-outlined">
+                                send
+                                </span>
                         <div class="likes m_text">
                             <span id="like-count-39">2,346</span>
                             <span id="bookmark-count-39"></span>
                             likes
-
                         </div>
 
                         <div class="comment_container">
@@ -202,7 +212,7 @@
                                 </div>
                                 <div class="user_name">
                                     <div class="nick_name m_text">Samantha_Rogers</div>
-                                    <div class="country s_text">@On The Run Cafe</div>
+                                    <div class="place">@On The Run Cafe</div>
                                 </div>
 
                             </div>
@@ -218,7 +228,7 @@
 
                         <div class="img_section">
                             <div class="trans_inner">
-                                <div><img src="" alt="visual01"></div>
+                                <div><img src="https://img.freepik.com/free-photo/delicious-vietnamese-food-including-pho-ga-noodles-spring-rolls-white-table_181624-34062.jpg?w=1060&t=st=1651134042~exp=1651134642~hmac=97685a3d4c89b76542233ef87373567863e194926735d48f5826b7d53fbdc36a" ></div>
                             </div>
                         </div>
 
@@ -234,7 +244,15 @@
                                 <div class="sprite_bookmark_outline" data-name="bookmark"></div>
                             </div>
                         </div>
-
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <span class="material-symbols-outlined">
+                            chat_bubble
+                            </span>
+                            <span class="material-symbols-outlined">
+                                send
+                                </span>
                         <div class="likes m_text">
                             <span id="like-count-39">2,346</span>
                             likes
@@ -266,12 +284,14 @@
                                 <div class="profile_img">
                                     <img src="">
                                 </div>
-                                <% if(user) {%> 
-                                <div class="user_name">
-                                    <div class="nick_name m_text"><%= user.first_name %> </div>
-                                    <div class="country s_text">@On The Run Cafe</div>
-                                </div>
-                                <% } %> 
+                                <% if(user) {%>
+                                    <div class="user_name">
+                                        <div class="nick_name m_text">
+                                            <%= user.first_name %>
+                                        </div>
+                                        <div class="place">@On The Run Cafe</div>
+                                    </div>
+                                    <% } %>
 
                             </div>
 
@@ -302,7 +322,15 @@
                                 <div class="sprite_bookmark_outline" data-name="bookmark"></div>
                             </div>
                         </div>
-
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <span class="material-symbols-outlined">
+                            chat_bubble
+                            </span>
+                            <span class="material-symbols-outlined">
+                                send
+                                </span>
                         <div class="likes m_text">
                             <span id="like-count-39">2,346</span>
                             likes
@@ -336,7 +364,7 @@
                                 </div>
                                 <div class="user_name">
                                     <div class="nick_name m_text">Samantha_Rogers</div>
-                                    <div class="country s_text">@On The Run Cafe</div>
+                                    <div class="place">@On The Run Cafe</div>
                                 </div>
 
                             </div>
@@ -368,7 +396,15 @@
                                 <div class="sprite_bookmark_outline" data-name="bookmark"></div>
                             </div>
                         </div>
-
+                        <span class="material-symbols-outlined">
+                            favorite
+                        </span>
+                        <span class="material-symbols-outlined">
+                            chat_bubble
+                            </span>
+                            <span class="material-symbols-outlined">
+                                send
+                                </span>
                         <div class="likes m_text">
                             <span id="like-count-39">2,346</span>
                             likes
@@ -406,7 +442,7 @@
                             <img src="">
                         </div>
                         <div class="detail">
-                            <div class="id m_text">Samantha_Roge</div>
+                            <div class="id_m_text">Samantha_Roge</div>
                             <div class="ko_name">Samantha Roge</div>
                         </div>
                     </div>
@@ -423,7 +459,7 @@
                                     <img src="">
                                 </div>
                                 <div class="detail">
-                                    <div class="id">sujikang_0930</div>
+                                    <div class="userid">sujikang_0930</div>
                                     <div class="time">1DAY AGO</div>
                                 </div>
                             </div>
@@ -432,7 +468,7 @@
                                     <img src="">
                                 </div>
                                 <div class="detail">
-                                    <div class="id">sujikang_0930</div>
+                                    <div class="userid">sujikang_0930</div>
                                     <div class="time">1DAY AGO</div>
                                 </div>
                             </div>
@@ -441,7 +477,7 @@
                                     <img src="">
                                 </div>
                                 <div class="detail">
-                                    <div class="id">sujikang_0930</div>
+                                    <div class="userid">sujikang_0930</div>
                                     <div class="time">1DAY AGO</div>
                                 </div>
                             </div>
@@ -450,7 +486,7 @@
                                     <img src="">
                                 </div>
                                 <div class="detail">
-                                    <div class="id">sujikang_0930</div>
+                                    <div class="userid">sujikang_0930</div>
                                     <div class="time">1DAY AGO</div>
                                 </div>
                             </div>
@@ -459,7 +495,7 @@
                                     <img src="">
                                 </div>
                                 <div class="detail">
-                                    <div class="id">sujikang_0930</div>
+                                    <div class="userid">sujikang_0930</div>
                                     <div class="time">1DAY AGO</div>
                                 </div>
                             </div>
@@ -477,7 +513,7 @@
                                 <img src="">
                             </div>
                             <div class="detail">
-                                <div class="id">sujikang_0930</div>
+                                <div class="userid">sujikang_0930</div>
                                 <div class="time">1DAY AGO</div>
                             </div>
                         </div>
@@ -486,7 +522,7 @@
                                 <img src="">
                             </div>
                             <div class="detail">
-                                <div class="id">sujikang_0930</div>
+                                <div class="userid">sujikang_0930</div>
                                 <div class="time">1DAY AGO</div>
                             </div>
                         </div>

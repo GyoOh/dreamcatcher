@@ -255,10 +255,29 @@ body {
   margin-right: 10px;
 }
 
+.nick_name {
+  color: #1A5E63;
+}
+
+.place{
+  color:#00BFB2 ;
+}
+
+.userid {
+  color: #1A5E63;
+}
+
+.material-symbols-outlined{
+  color:#00BFB2 ;
+}
+
+.id_m_text{
+  color: #1A5E63;
+}
 .contents .timer {
   font-size: 10px;
   letter-spacing: 0.2px;
-  color: #999;
+  color: #00BFB2;
   border-bottom: 1px solid rgba(0, 0, 0, 0.09);
   padding: 10px 20px;
 }
@@ -283,7 +302,7 @@ body {
 }
 
 .contents .comment_field .upload_btn {
-  color: #3897f0;
+  color: #00BFB2;
   position: absolute;
   right: 20px;
   top: 50%;
@@ -373,7 +392,7 @@ body {
 .thumb_user .time {
   font-size: 10px;
   letter-spacing: 0.2px;
-  color: #999;
+  color: #00BFB2;
 }
 
 .side_box .scroll_inner {
