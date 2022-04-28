@@ -12,6 +12,16 @@ async function getUser(email) {
     const users = await database.query(query, params)
     return users
 }
+async function addImg() {
+    let query = "INSERT INTO productv2 (product_name, price, imgPATH) VALUES(:product_name, :price, :imgPATH)"
+    const img = await database.query(query)
+    return img
+}
+async function getImg() {
+    const [img] = await database.query(`SELECT * FROM productv2`)
+    return img
+
+}
 // need to make async later
 function addUser(postData, callback) {
     let sqlInsertSalt = "INSERT INTO foodie_user (email, password_salt) VALUES (:email, sha2(UUID(),512));";
@@ -62,4 +72,4 @@ function deleteUser(webUserId, callback) {
     });
 }
 
-module.exports = { getUsers, getUser, addUser, deleteUser }
+module.exports = { getUsers, getUser, addUser, deleteUser, addImg, getImg }
