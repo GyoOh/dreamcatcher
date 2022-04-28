@@ -27,11 +27,12 @@ app.get("/", async (req, res) => {
   let email = req.session.whoami
   try {
     let connection = await database.getConnection()
-
+    let getUsers = await dbModel.getUsers()
     let getUser = await dbModel.getUser(email)
     let user = getUser[0][0]
+    console.log(getUsers)
 
-    res.render("index", { user });
+    res.render("index", { user, getUsers });
     connection.release()
   } catch (error) {
     console.error(error)

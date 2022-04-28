@@ -1,6 +1,11 @@
 const database = require('./databaseConnection');
 const passwordPepper = "SeCretPeppa4MySal+";
 
+async function getUsers() {
+    const [users] = await database.query("SELECT * FROM foodie_user");
+    return users;
+}
+
 async function getUser(email) {
     let query = `SELECT * FROM foodie_user WHERE email = :email`;
     let params = { email: email }
@@ -57,4 +62,4 @@ function deleteUser(webUserId, callback) {
     });
 }
 
-module.exports = { getUser, addUser, deleteUser }
+module.exports = { getUsers, getUser, addUser, deleteUser }
