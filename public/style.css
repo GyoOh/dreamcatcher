@@ -146,8 +146,8 @@ body {
   justify-content: center;
   /* align-items: center; */
   border-radius: 0%;
-
 }
+
 .bottom_tab_bar_wrap{
   display: flex;
   justify-content: space-between;
