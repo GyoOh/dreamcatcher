@@ -88,16 +88,19 @@
             </g>
         </svg>
       
-    <form class="login-form" action="/authentication/login" method="POST">
+    <form class="login-form" action="/authentication/signup" method="POST">
+        <div class="field">
+            <input id="first_name" name="first_name" placeholder="first_name">
+        </div>
       <div class="field">
-        <input id="email" name="email" placeholder="email">
+        <input id="last_name" name="last_name" placeholder="last_name">
 	
                 </div>
                 <div class="field">
-                    <input id="uesrname" name="username" placeholder="Username">
+                    <input id="email" name="email" placeholder="email">
                 </div>
                 <div class="field">
-                    <input id="newpassword" name="newpassword" placeholder="Set Password">
+                    <input id="password" type="password" name="password" placeholder="password">
                 </div>
                 <button class="login-button" type="submit">Sign Up</button>
             </form>
