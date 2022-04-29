@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>instagram</title>
+    <title>Foodie Share</title>
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/common.css">
-    <link rel="stylesheet" href="/style.css">
+    <!-- <link rel="stylesheet" href="/style.css"> -->
     <link rel="stylesheet" href="/new_post.css">
     <link rel="shortcut icon" href="imgs/instagram.png">
     <link rel="stylesheet"
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <div class="right_icons">
+                <!-- <div class="right_icons">
                     <a href="/">
                         <span class="material-symbols-outlined">
                             home
@@ -59,7 +59,7 @@
                         <span class="material-symbols-outlined">
                             person
                         </span>
-                    </a>
+                    </a> -->
             </section>
         </header>
 
@@ -67,7 +67,7 @@
 
         <div id="main_container">
             <div class="post_form_container">
-                <form action="#" class="post_form">
+                <form action="/posts/create" method="POST" class="post_form">
                     <div class="title">
                         NEW POST
                     </div>
@@ -85,23 +85,48 @@
                         </div>
                     </div>
                     <p>
-                        <input type="file" name="photo" id="id_photo" required="required">
+                        <input type="url" name="url" placeholder="url" name="url" id="id_photo">
                     </p>
+                      <p>
+                          <input type="file" name="image_url" placeholder="image_url" name="image_url" id="id_photo">
+                      </p>
                     <p>
-                        <textarea name="content" id="text_field" cols="50" rows="5"
-                            placeholder="Write a caption"></textarea>
-
+                        <textarea type="text" name="description" id="text_field" cols="50" rows="5"
+                        placeholder="description"required="required" ></textarea>
                     </p>
                     <input class="submit_btn" type="submit" value="Post">
                 </form>
-            </div>
+
+                <div class="bottom_tab_bar">
+                    <div class="bottom_tab_bar_wrap">
+                        <a href="/">
+                            <span class="material-symbols-outlined">
+                                home
+                            </span>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                find_replace
+                            </span>
+                        </a>
+                        <a href="/posts/create">
+                            <span class="material-symbols-outlined">
+                                photo_camera
+                            </span>
+                        </a>
+                        <span class="material-symbols-outlined">
+                            send
+                        </span>
+                        <a href="/authentication/login">
+                            <span class="material-symbols-outlined">
+                                person
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                 
         </div>
-
-
     </section>
-
-    <script src="js/insta.js"></script>
-
     <script>
         var fileInput = document.querySelector("#id_photo"),
             button = document.querySelector(".input-file-trigger"),

@@ -7,7 +7,7 @@ const authentication = require("./routes/authentication");
 const posts = require("./routes/posts");
 const database = require("./databaseConnection");
 const dbModel = require("./databaseAccessLayer")
-
+const bcrypt = require("bcrypt")
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,20 +24,20 @@ app.use("/posts", posts);
 
 
 app.get("/", async (req, res) => {
-  let email = req.session.whoami
-  try {
-    let connection = await database.getConnection()
-    let getUsers = await dbModel.getUsers()
-    let getUser = await dbModel.getUser(email)
-    let user = getUser[0][0]
-    console.log(getUsers)
-
-    res.render("index", { user, getUsers });
-    connection.release()
-  } catch (error) {
-    console.error(error)
-    res.status(500).send({ error })
-  }
+  const email = req.session.whoami
+  const connection = await database.getConnection()
+  const getUsers = await dbModel.getUsers()
+  const user = await dbModel.getUser(email)
+  res.render("index", { user, getUsers });
+  connection.release()
 })
+
+app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
+  console.error(err);
+  res.status(500).send({ error: "something bad happened" });
+});
 
 module.exports = app;
