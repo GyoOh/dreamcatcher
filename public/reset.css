@@ -84,7 +84,7 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
+  margin: 1px;
   padding: 0;
   border: 0;
   font-size: 100%;
