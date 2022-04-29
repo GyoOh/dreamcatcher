@@ -90,4 +90,11 @@ router.post("/vote/:postid", (req, res) => {
     res.redirect(`/posts/show/${postId}`)
 })
 
+
+
+
+
+
+
 module.exports = router;
+
