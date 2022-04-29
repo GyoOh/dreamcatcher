@@ -12,16 +12,23 @@ async function getUser(email) {
     const users = await database.query(query, params)
     return users
 }
-async function addImg() {
-    let query = "INSERT INTO productv2 (product_name, price, imgPATH) VALUES(:product_name, :price, :imgPATH)"
-    const img = await database.query(query)
+async function getImgs() {
+    const [rows] = await database.query("SELECT * FROM posts");
+    return rows;
+}
+async function getImg(id) {
+    const query = `SELECT * FROM posts WHERE post_id = ?`
+    const [rows] = await database.query(query, [id])
+    const img = rows[0]
     return img
 }
-async function getImg() {
-    const [img] = await database.query(`SELECT * FROM productv2`)
-    return img
+async function addImg(description, image_url, url) {
+    let query = "INSERT INTO posts (description, image_url, url) VALUES(?, ?, ?)"
+    const params = [description, image_url, url]
+    const [result] = await database.query(query, params)
+    return result
+}
 
-}
 // need to make async later
 function addUser(postData, callback) {
     let sqlInsertSalt = "INSERT INTO foodie_user (email, password_salt) VALUES (:email, sha2(UUID(),512));";
@@ -72,4 +79,4 @@ function deleteUser(webUserId, callback) {
     });
 }
 
-module.exports = { getUsers, getUser, addUser, deleteUser, addImg, getImg }
+module.exports = { getUsers, getUser, addUser, deleteUser, addImg, getImg, getImgs }
