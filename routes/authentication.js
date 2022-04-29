@@ -10,16 +10,15 @@ router.post("/login", async (req, res) => {
   let email = req.body.email;
   const password = req.body.password;
   const hash = await bcrypt.hash(password, 10)
-  const foundUser = await dbModel.getUser(email)
-  const user = foundUser[0][0]
+  const user = await dbModel.getUser(email)
   const verified = bcrypt.compareSync(password, hash);
   if (verified) {
     req.session.whoami = email;
     res.redirect("/");
-    connection.release()
   } else {
-    res.redirect("login");
+    res.redirect("/authentication/login");
   }
+  connection.release()
 })
 router.get("/login", async (req, res) => {
   const email = req.session.whoami
@@ -32,7 +31,7 @@ router.post("/signup", async (req, res) => {
   const last_name = req.body.last_name
   const email = req.body.email
   const password = req.body.password
-  const hash = await bcrypt.hash(password, 8)
+  const hash = await bcrypt.hash(password, 10)
   const adduser = await dbModel.addUser(first_name, last_name, email, hash)
   res.redirect("/");
 })
