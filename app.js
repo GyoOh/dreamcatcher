@@ -35,6 +35,10 @@ app.post("/", async (req, res) => {
   adduser = await dbModel.addUser(first_name, last_name, email, hash)
   res.redirect("/authentication/login");
 })
+app.get("/home", async (req, res) => {
+  const user = await dbModel.getUser();
+  res.render("index", { user });
+})
 
 app.use((err, req, res, next) => {
   if (res.headersSent) {
