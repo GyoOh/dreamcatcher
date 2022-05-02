@@ -28,7 +28,7 @@
             </p> -->
 
 
-            <% Imgs.forEach(img=> {%>
+            <% posts.forEach(post=> {%>
                 <div class="card card-body">
                     <div class="profile-header d-flex flex-row">
                         <div class="profile-img">
@@ -55,7 +55,7 @@
 
                     <div class="d-flex flex-column w-100 align-items-center">
                         <div class="content-img">
-                            <img class="img-fluid" src=<%=img.url%> class="img">
+                            <img class="img-fluid" src=<%=post.image_url%> class="img">
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
 
                         <p>
                             <%=user.first_name%>
-                                <%=img.description%>
+                                <%=post.description%>
                         </p>
 
 
