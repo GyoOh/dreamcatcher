@@ -13,7 +13,7 @@ router.post("/login", async (req, res) => {
   const verified = bcrypt.compareSync(password, user.password);
   if (verified) {
     req.session.whoami = email;
-    res.redirect("/posts");
+    res.redirect("/home");
   } else {
     res.redirect("/authentication/login");
   }
