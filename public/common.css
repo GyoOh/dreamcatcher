@@ -166,8 +166,8 @@ div.right_icons span {
   opacity: 0;
 }
 
-#header .h_inner .logo {
-}
+/* #header .h_inner .logo {
+} */
 
 #header .h_inner .logo div {
   position: relative;
@@ -198,8 +198,8 @@ div.right_icons span {
   align-items: center;
 }
 
-#header .search_field {
-}
+/* #header .search_field {
+} */
 
 #header .search_field input {
   width: 185px;
@@ -266,9 +266,9 @@ div.right_icons span {
 }
 
 @media screen and (max-width: 1100px) {
-  #main_container {
+  /* #main_container { */
     /* padding-top: 220px; */
-  }
+  /* } */
 
   #header .h_inner {
     padding: 0 20px;
