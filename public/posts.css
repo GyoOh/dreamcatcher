@@ -1,0 +1,95 @@
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+.test{
+  background-color: blue;
+}
+
+
+.profile-header{
+  height: 14vh;
+}
+
+.profile-img{
+  width: 85px;
+  height: auto;
+  object-fit: scale-down;
+  border-radius: 50%;
+}
+
+.primary-color{
+  color: #1A5E63;
+  font-size: medium;
+}
+
+.second-color{
+  color: #00BFB2;
+}
+
+.content-img{
+  /* width: 25em;
+  height: 25em;
+  object-fit: cover;
+  margin-top: 10%; */
+  overflow: hidden;
+}
+
+.comment_field {
+  /* min-height: 56px; */
+  padding: 0 20px;
+}
+.comment_field input {
+  height: 40px;
+  border: none;
+  /* background: transparent; */
+}
+
+.comment_field .upload_btn {
+  color: #00BFB2;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.7;
+}
+
+.m_text {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card{
+  margin: 5%;
+  
+}
+
+/* nav a {
+  text-decoration: none;
+  color:black;
+  margin: 1em;
+  font-size: 2em;
+} */
+
+/* nav{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+} */
+
+.horizontal-underline{
+  /* position: absolute; */
+  left:0;
+  height: 4px;
+  width: 0;
+  border-radius: 3px;
+  transition: 0.5s;
+  background-color: pink;
+  top:0;
+
+}
