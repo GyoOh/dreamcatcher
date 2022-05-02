@@ -13,7 +13,7 @@ router.post("/login", async (req, res) => {
   const verified = bcrypt.compareSync(password, user.password);
   if (verified) {
     req.session.whoami = email;
-    res.redirect("/");
+    res.redirect("/posts");
   } else {
     res.redirect("/authentication/login");
   }
@@ -25,24 +25,24 @@ router.get("/login", async (req, res) => {
   console.log(user)
   res.render("login", { user });
 })
-router.post("/signup", async (req, res) => {
-  const first_name = req.body.first_name
-  const last_name = req.body.last_name
-  const email = req.body.email
-  const password = req.body.password
-  const hash = await bcrypt.hash(password, 10)
-  adduser = await dbModel.addUser(first_name, last_name, email, hash)
-  res.redirect("/");
-})
-router.get("/signup", async (req, res) => {
-  const user = await dbModel.getUser();
-  res.render("signup", { user });
-})
+// router.post("/signup", async (req, res) => {
+//   const first_name = req.body.first_name
+//   const last_name = req.body.last_name
+//   const email = req.body.email
+//   const password = req.body.password
+//   const hash = await bcrypt.hash(password, 10)
+//   adduser = await dbModel.addUser(first_name, last_name, email, hash)
+//   res.redirect("/");
+// })
+// router.get("/signup", async (req, res) => {
+//   const user = await dbModel.getUser();
+//   res.render("signup", { user });
+// })
 
 router.post("/logout", (req, res) => {
   res.clearCookie("whoami");
   res.clearCookie("whoami.sig");
-  res.redirect("/");
+  res.redirect("/authentication/login");
 })
 router.use((err, req, res, next) => {
   if (res.headersSent) {
