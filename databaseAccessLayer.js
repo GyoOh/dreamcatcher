@@ -14,6 +14,7 @@ async function getPosts() {
     const [imgs] = await database.query("SELECT * FROM posts");
     return imgs;
 }
+
 async function getPost(id) {
     const query = `SELECT * FROM posts WHERE post_id = ?`
     const [rows] = await database.query(query, [id])

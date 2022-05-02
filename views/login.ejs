@@ -10,7 +10,7 @@
 </head>
 <header>
     <nav id="nav-header">
-        <a href="/"><p> Foodie Share </p></a>
+        <a href="/posts"><p> Foodie Share </p></a>
     </nav>
 </header>
 
@@ -132,6 +132,9 @@
           <% } %> 
           <% if (user) {%>  
             Hello <%= user.first_name %> ! 
+            <form class="login-form" action="/authentication/logout" method="POST">   
+                  <button class="login-button" type="submit">Log Out</button>
+              </form>
           <%  } %> 
 </body>
 
