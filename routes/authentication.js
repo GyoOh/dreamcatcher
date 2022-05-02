@@ -9,9 +9,8 @@ router.post("/login", async (req, res) => {
   const connection = await database.getConnection()
   let email = req.body.email;
   const password = req.body.password;
-  const hash = await bcrypt.hash(password, 10)
   const user = await dbModel.getUser(email)
-  const verified = bcrypt.compareSync(password, hash);
+  const verified = bcrypt.compareSync(password, user.password);
   if (verified) {
     req.session.whoami = email;
     res.redirect("/");
@@ -32,7 +31,7 @@ router.post("/signup", async (req, res) => {
   const email = req.body.email
   const password = req.body.password
   const hash = await bcrypt.hash(password, 10)
-  const adduser = await dbModel.addUser(first_name, last_name, email, hash)
+  adduser = await dbModel.addUser(first_name, last_name, email, hash)
   res.redirect("/");
 })
 router.get("/signup", async (req, res) => {
