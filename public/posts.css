@@ -4,13 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
-
-.test{
-  background-color: blue;
-}
-
 
 .profile-header{
   height: 14vh;
@@ -38,6 +32,7 @@
   object-fit: cover;
   margin-top: 10%; */
   overflow: hidden;
+  transition: 0.5s;
 }
 
 .comment_field {
@@ -66,7 +61,7 @@
 
 .card{
   margin: 5%;
-  
+  /* transition: 0.5s; */
 }
 
 /* nav a {
@@ -76,7 +71,7 @@
   font-size: 2em;
 } */
 
-/* nav{
+/* nav {
   display: flex;
   justify-content: center;
   margin-bottom: 2em;
@@ -89,7 +84,6 @@
   width: 0;
   border-radius: 3px;
   transition: 0.5s;
-  background-color: pink;
-  top:0;
-
+  background-color: #1A5E63;
+  /* top:0; */
 }
