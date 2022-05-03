@@ -9,13 +9,9 @@
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/style.css">
-    <!-- <link rel="stylesheet"
-        href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
-
-    <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>             -->
 
 </head>
 
@@ -42,12 +38,11 @@
                         <header class="top">
                             <div class="user_container">
                                 <div class="profile_img">
-                                    <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7_Z2XN_X198kUx_ZR-d6W-UloNVtRFlAFkQ&usqp=CAU">
+                                    <img class="user" src="/images/smantha.svg">
                                 </div>
                                 <div class="user_name">
-                                    <div class="nick_name m_text">Moonlight90</div>
-                                    <div class="place">@ Monaco Vancouver </div>
+                                    <div class="nick_name">Samantha_Rogers</div>
+                                    <div class="place">@DreamCatchers Cafe </div>
                                 </div>
 
                             </div>
@@ -64,8 +59,7 @@
                         <div class="img_section">
                             <div class="trans_inner">
                                 <div>
-                                    <img
-                                        src="https://www.johnwilsonmedia.com/images/FOOD/Sunshine_Coast_food_/900px/Food_photography_Sunshine_Coast_05.jpg">
+                                    <img src="/images/pizza.svg">
                                 </div>
                             </div>
                         </div>
@@ -73,42 +67,37 @@
                         <div class="bottom_icons">
                             <div class="left_icons">
                                 <div class="heart_btn">
-                                    <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat">
-                                        <span class="material-icons favorite">
-                                            favorite_border
-                                        </span>
-                                    </div>
+                                    <img src="/images/heart.svg" class="favorite">
                                 </div>
-                                <div class="sprite_bubble_icon">
-                                    <span class="material-icons">
-                                        chat_bubble_outline
-                                    </span>
+                                <div class="sprite_bubble_icon message">
+                                    <img src="/images/message.svg">
                                 </div>
                                 <div class="sprite_share_icon" data-name="share">
-                                    <span class="material-icons-outlined">
-                                        send
-                                    </span>
+                                    <img src="/images/share.svg">
                                 </div>
                             </div>
                             <div class="right_icon">
                                 <div class="sprite_bookmark_outline" data-name="bookmark">
-                                    <span class="material-icons bookmark">
-                                        bookmark_border
-                                    </span>
+                                    <img src="/images/save.svg" class="bookmark">
                                 </div>
                             </div>
                         </div>
-                        <div class="likes m_text">
+                        <!-- <div class="likes">
                             <span id="like-count-39">22,346</span>
                             likes
 
-                        </div>
+                        </div> -->
 
                         <div class="comment_container">
                             <div class="comment" id="comment-list-ajax-post37">
                                 <div class="comment-detail">
-                                    <div class="nick_name m_text">Terry_Williams</div>
-                                    <div>do they do delivery?</div>
+                                    <div class="profile_img">
+                                        <img class="user" src="/images/smantha.svg">
+                                    </div>
+                                    <div class="nick_name">Samantha_Rogers</div>
+                                    <div class="comment">Pizza #pizza<br>#food #foodieshare
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="small_heart">
@@ -116,11 +105,11 @@
                             </div>
                         </div>
 
-                        <div class="timer">1 DAY AGO</div>
+                        <!-- <div class="timer">1 DAY AGO</div> -->
 
-                        <div class="comment_field" id="add-comment-post37">
-                            <input type="text" placeholder="Add a Comment...">
-                            <div class="upload_btn m_text" data-name="comment">POST</div>
+                        <div class="comment_field">
+                            <input class="add_comment" type="text" placeholder="Add a Comment...">
+                            <!-- <div class="upload_btn" data-name="comment">POST</div> -->
                         </div>
                     </article>
 
@@ -129,15 +118,13 @@
                         <header class="top">
                             <div class="user_container">
                                 <div class="profile_img">
-                                    <img
-                                        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEA8QDxIVFRUVFRUVFRcVFRAVFRYVFREWFhUXFhYYHSggGB0lGxcXITEiJikrLi4uFx80OTQtOCgtLisBCgoKDg0OGhAQGi0lICUtLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABgECBAUHAwj/xABEEAABAwIBBwkGAwQKAwAAAAABAAIDBBEFBgcSITFBURMiUmFxgZGhsSMyQnLB0RRigiSSorIzNENTY3OjwuHwFSXS/8QAGgEBAAIDAQAAAAAAAAAAAAAAAAQFAQIDBv/EADYRAAICAQEFBQcEAAcBAAAAAAABAgMEEQUSITFBEyJRkbEUMmFxodHwgcHh8SQzNEJDUnIj/9oADAMBAAIRAxEAPwDuKIiAIiIAiIgCIiAIipdAVRebngC5IA6zYLUVmVdFESH1Edxua4PPg262hCU3pBN/Jag3aKGVGciib7vKP7GW9VhuzowboJfFg+qlx2dlP/jZjeRP0UAbnRg3wS+Mf3WXBnIo3e8JWdrQfQo9nZS51saomiLQ0eV9FJYNqGAnc86B/ist1HK1wu0gjiCCok4Tg9JJr5poyeiKl1VagIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCoVi19dHDG6SV4Y0bSfpxK5llNnDkk0o6T2bNYLz77h1dEealYuHbkvStcPHp5/sayko8yfY3lJTUo9tINLcxvOef0/dQLGM5Uz7tpWCIdJ1nP8PdHmo7g2TlXWu0o2HRJ50shs3xOtx7F0LBc3NNFZ05M7uB1RjsaNveVaOnBw+Fj35+HTy5ef0NNZSObSVlXWOsXSzu3gaTgO4agtpRZv6+TWY2Rj/EfY+DQV110tPTM1mOJg+VgUfrs4dDGSGPdKfyMdb951gi2rk2d3Gr0XwWv2RlVLqRymzWSn+lqWDqYxx8yQs9mayL4qmQnqawLwqc6X91Sk/O8DyAKwn50Kn4YIR2mQ/ULOm1bOunkjZRiuhtH5rYrc2okB62sKwajNbIP6OpafnYR5g/ReDM59VvghPYZB9Vm0+dE/wBrS/uPv5ELDW1IcddfJmyiaGszf18esMZIP8N+vwcAtOJqqjda8sDuvSaD2biuo0OcWifYSOfEfzsJH7zbhSCGpp6lnNdHKw7Rdrx4LV7Tya+GRXqvlp/H0N+K5o5phGceojsKhombxFmv8tR8lPcEyqpqqwjfZ/QfZru7j3LU4zm7pZbugvA/8uth7Wn6WXPscyZqqQ6UrLsGyVmturYTvb3+K13MLK9zuS+n8/obpQkd0CquQ5N5ezQWZUe1j4/2jew/EOo+K6fhmKRVEYkgeHNPDaDwI2gquycS3HffXDxXI1nXKHMz0RFGOYREQBERAEREAREQBERAUJWnyiygio49OU3cfcYDznHq4DrVMpcejo4TI/W43DGDa5324lcekkqcQqt8kr9g2Na0ejQrHAwO31ssekFz+P54/ojWUtORdi+M1NfM3S0nEm0cTLkDsG88Sptkrm8azRlrbPdqIi+BvzdM+Xat9knkrFRMvqfKRz5D2bG8GrUZXZeNhLoKSz5RcOfqLIz/ALndWxSrcyy9+z4i0iv0/pfUxGHVklxXGaajjBme1g2NYLaRtuawLnmN5xp5btpWiFvSNnSHr4N81D6upfK8yTPL3naXHX/wOpeNlNxdk01d6zvP6fnzNuLPSqnfK4vme57jve5zj57F5WVUVsmktEjaMCirZNILKiw6d2tkMp7I3/ZaytjH3n5nRQMVAsqbD5mC74ZWjiY3geNljNIOxaKxS5M7Rgii9aeV0btKN7mO4scWnxC87KoWG01ozqoImOB5xKiIhtQOXZx92Qd+xy6Jg+PU1Yw8k9rjbnMdbSF9zmncuFL0gmcx7XxuLHA3DmmxCqsnZtVneh3X9P4MSxlLlwOl5UZv2SXlorRv2mPZG7s6B8lA8Pr6iinJbpRvabPY64BHBzd461OcksvQ8tgrbNfsbLqDHdTuifJSHKnJiKtj182Vo5kg2jqPEKFDJsofY5C1j+fQ0jZKp7li4FclspoqxmrmyNA02Ei46xxHWt/dcGkiqKGps67JYzcEbHC+0cWldYyTyjbWRdGVvvt/3DqKj5WKq+/XxizF+PuLfjxiSJERQSIEREAREQBERAFh4nXMgifNKbNYLn6AdZOpZi5LnJx/lZfw0Z9nEedY6nSb+4eqk4mM8i1Q6dfkDQYziU1fVB1iXPdoRMG4E6h9SV1XJDJtlFDr1yvF5H/7R+ULS5tcnOTZ+MmHPkHswR7kZ39rvSypnDypMQNJA60jh7RwOtjSPdHBx8grDKteRYsWjhFcPL9l6mFEwMu8sy4vpaN3N2SyDaTvYw+pXPg1XAcFcrjGohjw3Yfq+rOyr1LLJZXAJZdt86qoNYSQ1oJJNgBrJJ2ABdAyczdaQbJXEi+sRMIH77voF7Zs8nxo/jZRcm4hBGwC4Lx1nYD1da6LZUOdtGe84VvTTmzlOWnBGBh+DwQC0MLGdjRfx2rPCqipm2+ZyKWUdyhySp6prrsDJPhkYAHA9fSHapGqWW0ZSg96L0ZlNrkcMxLJSsg0jJA4tF+ewteLDfZpuO8LShfRhCgGX+SbXMdV0zQ17dcjWjU9ttZsPiHmrnG2o5NRsXPqv3JlWQm0pHM7KoCuVVauRZKBboqb5D5YmItpql14zqY83JZwa49Hr3XUJVbKLfXG2O7L+jM6I2R3WdoypyfjrYbahI0ExP4EjYeLSuUUdRPRVN7aMkbiHA7CN4PEEWUyzd5TE2oqh2sD2LidoHwHrA2f8LPzh5O8tH+JhHtYxzgBrewbR1kbR3qpqsdE3VZyfkQaJOix028n+eXiSXBcUZUwsmj2HaN7SNoK2IXH8hMd/Dz6Lj7KUgO16g74XegK7ACot9XZz06dCNlY7os06PkVREXEjBERAERUKA0eV+L/AIWlfIDzzzI/mds8NvcuWZI4OayrYx+tjfaSk7wDqHaXfVbfOdivKVIgB5sI1/O4AnwFvNSvNxhPIUYkcOfMeUPU21mDw196t4S9lxN5e9P0/rX8RvppHU2mUuLNo6V8thcDRjbxfazR2DaeoFcSmlc97pJDdziXOJ3kqUZxsX5er5Jp5kF29rz757rW8VFVI2fUqq95836Emmp6alLKtlWyWUx2EqNQsjYy4ho2uIaO0mwVbLOwSMGqpQd80f8AOFyndpFnR16RbO3YXSCGGKJosGMa0fpaAstUCqvMlKEREAREQBWPaCCDvV6IDgeNUPIVM8I2MeQ35Trb5ELCAUjy+YBiNRbeGHxYFH7L0NVrdcWz0tC3q4yfgW2VQFWyWWXMkqBVriC1zTZzSHNI2gg3BHeuz5JY0KumbIffbzJBwcN/YRr71xeykmQmLfh6pocbMmsx3U6/MPjq71By4KcdeqImfi9pU5LmvTqeWWmDfhap2iLRyc9nAa+c3uPkV0DIPF/xFKGuN3xWY7iRbmnvHoq5eYVy9G8tF3xe0b3e8O9t/JQTILEuRq42k82WzHdpI0T46u9R97tauPNEZL2vDf8A2h+enP5HYUVquUMpQiIgC8aqYMY97tjWlx7ALleyjuXlVydBPba8Bg/WbHyutoR3pKPiZitWkcphidWVjWm95pdfUCbn+G67LjNY2mpZZdQEbOaNmu1mgd9gub5saPTrnSHZFET+pxDR5aSkedOr0aaKEf2jwT2M53rZWOY1ZdGtcl+ehJnDesUDmLiSS5xuXEuJ4km5PiUsrgFdZTJWot4UlgCrZXJZcZXHdVFtll4S/RqKZ3CWM/xhY9lTSIs4bWkEdxuuUrdVobunWLXwZ9AhVWNQTB8Ubxscxrh3tBWSqs8oEREAREQBEVCbIDi+XEuliFSeBa3waFollYhU8rNNL03ucOwnV5WXgrauWkUj19FTjXFfBehRFVFlzJCgFQjhqPHh2K5Fq5G6idrycrvxNJDKbXc2zvmGp3mFyTGKQ01ZNGNWhJpM+Uu0m+Xoprmrq7xTwE+68Pb2PbY+bT4rVZz6TRqYZQP6SMg9rHfZwUKvuzaKPBXYZ0qej1+50TCawTQQyj42A99tfms5RLNvVaVHoH+ze5vcecPVS1cZLR6FPkVdlbKHgwiItTiFCM6c1qeFnSk/lafupsue51X66Rv+Yf5F2x/8xEjFjvWxRdmogsyqk4ua3ua2/wBVrs6M96qGPoRaXe95Ho1b/NeB+EeeMrr9zWhRbOGb4hJ1RxjyJ+q6Of8A9nImY8d7Mf6kZAV1lUBXaKTvL+NRYAmivQNVdFR5XnZVnnZVDCbAC5JsBxJNgr9FZOHODZ4HO2CRhPZphc+3Mzi4wbXxOu5NUj4aSnilILmMa026hqHcNS2qtCuWx4Ztt6sIiIYCIiALAxiF74JmREB7mODSdgJFlnIUB8+ujLbscLFpIIO0EGxCWWyyheHVdU5uwyut3OsfMFa9S1Zqe6r1nBSfVJ+ZbZVRFnfO26ERVTeNlElmbOfRrHM6cR8WuB9Ct5nTgvBTydGW3c9v3AUVyDfbEKbrEg/0yfopvnIbehceEkZ81xk++medy1ubSg/HT7GpzVTf1iP5HfRdCXMM1r/2mdvGInwe37rp60s94hbXhu5cvjo/oERFoVhRc8zpN59Id1pB5sXRFB86EN4qd/B5H7zf+FvCW69SZgf6iJ75sf6m/wDzX/ytUVy9b/7CX5I/5VI818nsahnCQHxYPstRnGgtWsd0oW+LXuHoQuc56d4n4sd3aEov4kUDVcGr0DF6NjUGeQekUUjwDFdoLIEauEajSvNjGDFUx6llcmnJrm7gdByTyjZMyOGQ2ma2xB+PRHvBSYLkWEz8jUQS7mvF/lOp3kV1xpuBZWeNd2sePQ8htPEjj293k+P1L0RFJK0IiIChUcyqymjpWOYDeYjmtG697OdwCkTlxrKqs5asqJBs0tBvYwaPqCtZS3Sx2ZiRybtJcktWacjibneeJ3qhCuIVEjM9nultksq2RdVM20KIhRb6mdDe5CNviNN1cof9JynWcc/sD/nj9VEM28OlXaW5kbz46IHqpPnPmtSRs6Urf4WuP0WjfePNZvf2lXH/AM+rZoc1w/apj/gnzkj+y6guc5q4edUP/K1vnddGWJ8yDtmSeXL5L0CIi1KsKN5d0+nRvPQLXeG31UkWLiFMJYpYz8bHN8RZYfI60WdnZGfg0yA5tp9GpmjPxx6Q7WOA9HLY5yKS7aeXg5zD2OFx5hRnBJjBVxPdq0X6LuwnRK6NlPQ8tSzMG22k35mnSHpbvUWEu0qa6lxmPsM6FvR6emjOVtYvVsa9YmXAK9mxqlnaeh39DHEauEayRGrxGuLmc3YY/JpySy+TTk1jfNe0MJ0SneSGKcpEInn2kYtrOtzdzvoogY1mYEy1XTn8xHdonUpeFe4WpePAgbRrjdS9ea4o6OiIvQnlgqXVVRAR/LDGRTwODT7SQFrBvF9Rd2BcoIUny4F6yTqYy3VqKjrmquuu1np4Hstj48aqFLrLizHIVtl6uarSFvCZbFllar1YpEZGdCiIqE2F12TM6E/zVUv9Zm62xjuGkfULyzqVN5KWLgHvPaTot9HKT5FYfyFFC0iznc93a/X6WXOcsa7lq6Zw1hp5Jv6DY/xXWyfE8vh/4nacrFyWv2RM82VPo0z39N5t2Na0et1M1qsm6PkaSCPeGAn5nc4+ZW1WGU2Zb2uROa6thERYIwVCqqhQHNsrsN0KmQ25snPHafe8/VTPJyt5amY4nnDmu+Zv31HvXhlVh/Kw6QHOYbjiRvH/AHgtFkpW8lNoOPNk1dQeBqPfs8FWqXY5O6+Ui4sftOGn/uh6f0YOM4fyNRIwe646bOxx1juOrwWO2NTXKXDuViD2jnx3I4kfE3yUTjbcXVdnU9lZ8HxRMwsrtKknzXBnkI1eI17tjV4YoOpJdhjiNV0FkhiaCxqadoYxjWTg0f7VB8xPg0q1+pbzJ7Ci13LyCxsQxp2i+1x4FS8KqU7VpyT1I2XkKFbT5taeZJERF6c88FRVVLIDm2WbP22T5GehUfexdByuwR0ujNELvaLObve3bq6xr8VBXt2i1iNRBFiDwI3KkyYyha2+TPX7LyYzojFc0tGYLmrxcFmvasd7VmuZcJmMVYV6uCtIU2EjojzW0yZwv8TVRxW5o58nyNI9TYd61ZXU8gcE/DwcrILSS6zq1tb8Lfr3qTDiVu1cv2eh6Pi+C/d+Rtso8RFNTSy7w2zRxcdTR4lcryVoDUVcLTrGlpvPU12kfE+q3mcjGOUmbTMPNj5zut52DuHqtxm3wnQhdUPHOksG33MFreJ9F0KfGXsez5XP3p8F5cPpxJqAqqllVDzwREQBERAWlQbGsN5KQgamnnNPDXs7QVO1g4lRCVhadu0HgVEzMftq9FzXIk4mR2M9ej5mPgWI8tHZ3vtsHderU7vWnxzDeSeZGj2bzr/K4/QrGiL4JQ4DnN1OHSG8KVwyMnjuNbXCxB8wVFrlHLq7OfCS/Nfudpp41m/D3WRBrVfoLJraF0LtGxc0nmEaz8p61mUmCvdrlOiOiLaXedyrY4V0puGnLyJksutR3tTUki9tp3Aays2mwiV+sgMHF23wUipaKOMcxoHXvPaVlKyp2XCPGb19CFZnSfu8DV0ODxxkOtpO6TvoNgWzAVUVlCEYLSK0IUpOT1bCIi3MBERAUK0+L5Pw1HOc3Rf026nd+4963KLWUVJaNG0Zyg96L0ZzjE8kqhlzHaVvVqf+7sPcVGZ4y1xa4FrhucCD4FdtWFiGGxTt0ZmNcN1xrHYdyiTwo84PQuMbbdsOFq3l5M4u4LycFOsbyFcLvpHF3+G8i/6XfdaLAMmZZ5ix7XRsYfaEix+Vt9/WtY1zi9Gegr2pjSrdily5rr5HvkTk+aiUTSj2UZBAPxvB2dg3qc5UY02kgL/jPNjbxdb0G1Zkj4aSnubMjjb5AbBxJXJ8dxOStqC6x6MbBuG7vO1S9dxFHTCzamT2k+EI+Xy/Xr8CmAYa+rqWtJJu4vkceF7knt+q7JTQtY1rGiwaAAOAAsFpcksBFJDZ2uR+t59GjqC34W65EXauasm3SHuR4L939vgVREWSrCIiAIiIAqWVUQGsxXD9MaTfeHmtLRzuheSBq+Juy/X2qWFa+vw8P5zdTvIqtysWW921PCXqSqblpuT5ehk087ZGhzDceY6jwK9wFF4XPiddmo/E07D2/dbyir2yatjt7Tt7uK7Y2XG5aPhLwOdtLhxXIzURFMOIREQBERAEREAREQBUKqqFAFi1lXHCx0krg1o1kn/u1YuM43FTNvIbk+60WLj3fVc0xrFpquQaWy9mRt1gf/RXGy5Q4dSwwdnTypa8o9X9iuU+UD6uQAXETTzGdI7nOHHgNylORGTHJAVEw9oRzGke4OPafJVyTySEejPUgF+otbuZ1nifRTSyzXF+9Il52dXCv2XG4R6vx/j1FlVEXUpAiIgCIiAIiIAiIgCIiAxaqka8a9R4rTVVE5p1jZscPXqUisqEX1FQ8jDhbxXB+J1rulDh0NLTYk9uqQaQ4j3u8b1tKeqY/wBxwPr4LwqMOB1t1ei1s9E5puQe0fcKN22RRwmt5eJ03K58noyQItDHVyt2O0vm+6yY8W6cZ/SQfspMM6mXXT5mkqJo2yLAGLRbyR2tcFd/5SH+8b3mykK6t8pLzObjJdDNRYZxOH+8b4rxdjMI2Ensa5Yd1a5yXmFCT6GxKLST4+PgjcfmIaPqtXV4xO7Y4MH5Rr8So9mfRDrr8vzQ714ls+SJLWVscTdKR4aOvb3DaVFsWyrcbtp26I6bhr/S3d3rDjw6WU3DXOPSdf1K3NBkq24dOdL8o2d53rgr77/8uOi8SZCnGo71r3n4IiFNhk1VIS0FxJ5z3HV3n6KcYBk3FTc735N7ju6mjctxDC1gDWAADYAAAvWymU4yr4t6s5ZW0rLo7ke7HwX7gKqIpBXhERAEREAREQBERAEREAREQBERAUVLK5EBjyUrHbR9Fjvw0biR5rYIuE8aqfOKN1OS5M1DsMduI815Owx/AeK3iKO9nUPkmv1OiybPE0X/AIp/Bvigwd+9zR4reoi2bR4PzM+1WGnZgbficT2allQYZE3WGAnidfqs5F3rxaa/dijSV1kuci2yqFVFIOQREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAf//Z">
+                                    <img class="user" src="/images/tiffany.svg">
                                 </div>
                                 <div class="user_name">
-                                    <div class="nick_name m_text">Samantha_Rogers</div>
-                                    <div class="place">@ On The Run Cafe</div>
+                                    <div class="nick_name">TiffanyEats_</div>
+                                    <div class="place">@East Side Bar</div>
                                 </div>
                             </div>
-
 
                             <div class="sprite_more_icon" data-name="more">
                                 <ul class="toggle_box">
@@ -150,51 +137,42 @@
 
                         <div class="img_section">
                             <div class="trans_inner">
-                                <div><img
-                                        src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/10/breakfast-avocado-egg-1200x628-facebook.jpg?w=1575">
-                                </div>
+                                <img src="/images/firefox_hGsKceppKb 1.svg">
                             </div>
                         </div>
 
                         <div class="bottom_icons">
                             <div class="left_icons">
                                 <div class="heart_btn">
-                                    <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat">
-                                        <span class="material-icons favorite1">
-                                            favorite_border
-                                        </span>
-                                    </div>
+                                    <img src="/images/heart.svg" class="favorite">
                                 </div>
-                                <div class="sprite_bubble_icon">
-                                    <span class="material-icons">
-                                        chat_bubble_outline
-                                    </span>
+                                <div class="sprite_bubble_icon message">
+                                    <img src="/images/message.svg">
                                 </div>
                                 <div class="sprite_share_icon" data-name="share">
-                                    <span class="material-icons-outlined">
-                                        send
-                                    </span>
+                                    <img src="/images/share.svg">
                                 </div>
                             </div>
                             <div class="right_icon">
                                 <div class="sprite_bookmark_outline" data-name="bookmark">
-                                    <span class="material-icons bookmark1">
-                                        bookmark_border
-                                    </span>
+                                    <img src="/images/save.svg" class="bookmark">
                                 </div>
                             </div>
                         </div>
-                        <div class="likes m_text">
+                        <!-- <div class="likes">
                             <span id="like-count-39">1,346</span>
                             <span id="bookmark-count-39"></span>
                             likes
-                        </div>
+                        </div> -->
 
                         <div class="comment_container">
                             <div class="comment" id="comment-list-ajax-post37">
                                 <div class="comment-detail">
-                                    <div class="nick_name m_text">Geeks&Geeeeeks</div>
-                                    <div>How was it? Was it good?</div>
+                                    <div class="profile_img">
+                                        <img class="user" src="/images/tiffany.svg">
+                                    </div>
+                                    <div class="nick_name">TiffanyEats_</div>
+                                    <div class="comment">girls night out!<br> long time no see, jessica!</div>
                                 </div>
                             </div>
                             <div class="small_heart">
@@ -202,25 +180,25 @@
                             </div>
                         </div>
 
-                        <div class="timer">3 DAYS AGO</div>
+                        <!-- <div class="timer">3 DAYS AGO</div> -->
 
-                        <div class="comment_field" id="add-comment-post37">
-                            <input type="text" placeholder="Add a Comment...">
-                            <div class="upload_btn m_text" data-name="comment">POST</div>
+                        <div class="comment_field">
+                            <input class="add_comment" type="text" placeholder="Add a Comment...">
+                            <!-- <div class="upload_btn" data-name="comment">POST</div> -->
                         </div>
                     </article>
 
                     <!-- third post -->
+                    
                     <article class="contents">
                         <header class="top">
                             <div class="user_container">
                                 <div class="profile_img">
-                                    <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTobAbRIJuNuz216fD45TgafovP6llad-x0hQ&usqp=CAU">
+                                    <img class="user" src="/images/andy.svg">
                                 </div>
                                 <div class="user_name">
-                                    <div class="nick_name m_text">Rose</div>
-                                    <div class="place">@ Sweet Revenge </div>
+                                    <div class="nick_name">andysadventure</div>
+                                    <div class="place">@McDonalds</div>
                                 </div>
 
                             </div>
@@ -235,65 +213,54 @@
                         </header>
 
                         <div class="img_section">
-                            <div class="trans_inner">
-                                <div><img
-                                        src="https://img.fixthephoto.com/blog/UserFiles/Image/222/best-camera-for-food-photography_640x640.jpg">
-                                </div>
-                            </div>
+                            <img class="img_post" src="/images/img.svg">
                         </div>
 
                         <div class="bottom_icons">
                             <div class="left_icons">
                                 <div class="heart_btn">
-                                    <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat">
-                                        <span class="material-icons favorite2">
-                                            favorite_border
-                                        </span>
-                                    </div>
+                                    <img src="/images/heart.svg" class="favorite">
                                 </div>
-                                <div class="sprite_bubble_icon">
-                                    <span class="material-icons">
-                                        chat_bubble_outline
-                                    </span>
+                                <div class="sprite_bubble_icon message">
+                                    <img src="/images/message.svg">
                                 </div>
                                 <div class="sprite_share_icon" data-name="share">
-                                    <span class="material-icons-outlined">
-                                        send
-                                    </span>
+                                    <img src="/images/share.svg">
                                 </div>
                             </div>
                             <div class="right_icon">
                                 <div class="sprite_bookmark_outline" data-name="bookmark">
-                                    <span class="material-icons bookmark2">
-                                        bookmark_border
-                                    </span>
+                                    <img src="/images/save.svg" class="bookmark">
                                 </div>
                             </div>
                         </div>
-                        <div class="likes m_text">
-                            <span id="like-count-39">4,464</span>
+                        <!-- <div class="likes">
+                            <span id="like-count-39">998</span>
                             likes
 
-                        </div>
+                        </div> -->
 
                         <div class="comment_container">
                             <div class="comment" id="comment-list-ajax-post37">
                                 <div class="comment-detail">
-                                    <div class="nick_name m_text">Suji_Kang</div>
-                                    <div>OMGGGGGG!! Love it! I would like to try it!!!! <3 </div>
+                                    <div class="profile_img">
+                                        <img class="user" src="/images/andy.svg">
                                     </div>
-                                </div>
-                                <div class="small_heart">
-                                    <div class="sprite_small_heart_icon_outline"></div>
+                                    <div class="nick_name">andysadventure</div>
+                                    <div class="comment">Got a feast for<br> the family today!</div>
                                 </div>
                             </div>
-
-                            <div class="timer">1 DAY AGO</div>
-
-                            <div class="comment_field" id="add-comment-post37">
-                                <input type="text" placeholder="Add a Comment...">
-                                <div class="upload_btn m_text" data-name="comment">POST</div>
+                            <div class="small_heart">
+                                <div class="sprite_small_heart_icon_outline"></div>
                             </div>
+                        </div>
+
+                        <!-- <div class="timer">7 DAYS AGO</div> -->
+
+                        <div class="comment_field">
+                            <input class="add_comment" type="text" placeholder="Add a Comment...">
+                            <!-- <div class="upload_btn" data-name="comment">POST</div> -->
+                        </div>
                     </article>
 
 
@@ -306,12 +273,11 @@
                         <header class="top">
                             <div class="user_container">
                                 <div class="profile_img">
-                                    <img
-                                        src="data:image/jpeg;base64,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0hFyfErLbc01zeSsMNh3kSQrinkdHV/bE9A1XeGwTGgbn/6XeFwU27ya9U/sSV8fFLsr2Zo1Wg6Y0mTsIufIKZh8jI8eIcKdO1j7ZIvZv0ei3Y0hwseYAla/m+SOc7U0ufPMyR08ldeF6vP+L53Zsip9IdY+F9nv1flfJe5TY7OgG91h293TvqP23kxeeH57eSoatPVa0H3K5flz5gNcSN7Kdh8jqDxFsQZALZsOvBRpTm8zQhWo0F2fvm/HmVuTitTMUQype7SCQTFjfTJABIvAnqt+wbfA3wBhgS0R4TxFrKuynAlrtTgRExubHgrpaFKHCjFx+IVWVkl+/wAe1+8IiKUoBERAEREAREQBERAEREAREQBERAEREAREQBQca08JI+anIuJw41Y6jLhdyDg8LHiPuU0heokIKCshKTk7sLHVZIIkiQRI3E8R1WRF2chERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQH//2Q==">
+                                    <img class="user" src="/images/cindy.svg">
                                 </div>
                                 <div class="user_name">
-                                    <div class="nick_name m_text">Strawberry</div>
-                                    <div class="place">@ Thai 24/7 </div>
+                                    <div class="nick_name">cindyyyyy</div>
+                                    <div class="place">@DreamCatchers Cafe </div>
                                 </div>
 
                             </div>
@@ -326,49 +292,41 @@
                         </header>
 
                         <div class="img_section">
-                            <img class="img_post"
-                                src="https://img.freepik.com/free-photo/delicious-vietnamese-food-including-pho-ga-noodles-spring-rolls-white-table_181624-34062.jpg?w=1060&t=st=1651134042~exp=1651134642~hmac=97685a3d4c89b76542233ef87373567863e194926735d48f5826b7d53fbdc36a">
+                            <img class="img_post" src="/images/img (1).svg">
                         </div>
 
                         <div class="bottom_icons">
                             <div class="left_icons">
                                 <div class="heart_btn">
-                                    <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat">
-                                        <span class="material-icons favorite3">
-                                            favorite_border
-                                        </span>
-                                    </div>
+                                    <img src="/images/heart.svg" class="favorite">
                                 </div>
-                                <div class="sprite_bubble_icon">
-                                    <span class="material-icons">
-                                        chat_bubble_outline
-                                    </span>
+                                <div class="sprite_bubble_icon message">
+                                    <img src="/images/message.svg">
                                 </div>
                                 <div class="sprite_share_icon" data-name="share">
-                                    <span class="material-icons-outlined">
-                                        send
-                                    </span>
+                                    <img src="/images/share.svg">
                                 </div>
                             </div>
                             <div class="right_icon">
                                 <div class="sprite_bookmark_outline" data-name="bookmark">
-                                    <span class="material-icons bookmark3">
-                                        bookmark_border
-                                    </span>
+                                    <img src="/images/save.svg" class="bookmark">
                                 </div>
                             </div>
                         </div>
-                        <div class="likes m_text">
+                        <!-- <div class="likes">
                             <span id="like-count-39">998</span>
                             likes
 
-                        </div>
+                        </div> -->
 
                         <div class="comment_container">
                             <div class="comment" id="comment-list-ajax-post37">
                                 <div class="comment-detail">
-                                    <div class="nick_name m_text">Lee_Kyo</div>
-                                    <div>Looks Awesomeeeee</div>
+                                    <div class="profile_img">
+                                        <img class="user" src="/images/cindy.svg">
+                                    </div>
+                                    <div class="nick_name">cindyyyyy</div>
+                                    <div class="comment">Breakfast of champions<br>from the DreamCatchers Cafe.</div>
                                 </div>
                             </div>
                             <div class="small_heart">
@@ -376,11 +334,11 @@
                             </div>
                         </div>
 
-                        <div class="timer">7 DAYS AGO</div>
+                        <!-- <div class="timer">7 DAYS AGO</div> -->
 
-                        <div class="comment_field" id="add-comment-post37">
-                            <input type="text" placeholder="Add a Comment...">
-                            <div class="upload_btn m_text" data-name="comment">POST</div>
+                        <div class="comment_field">
+                            <input class="add_comment" type="text" placeholder="Add a Comment...">
+                            <!-- <div class="upload_btn" data-name="comment">POST</div> -->
                         </div>
                     </article>
                 </div>
@@ -388,33 +346,22 @@
                 <div class="bottom_tab_bar">
                     <div class="bottom_tab_bar_wrap">
                         <a href="/posts">
-                            <span class="material-icons-outlined">
-                                home
-                            </span>
+                            <img src="/images/home.svg">
                         </a>
                         <a href="#">
-                            <span class="material-icons-outlined">
-                                explore
-                            </span>
+                            <img src="/images/explore.svg">
                         </a>
                         <a href="/posts/create">
-                            <span class="material-icons">
-                                control_point
-                            </span>
+                            <img src="/images/post-new.svg">
                         </a>
-                        <span class="material-icons-outlined">
-                            send
-                        </span>
+                        <a href="#">
+                            <img src="/images/txt.svg">
+                        </a>
                         <a href="/authentication/login">
-                            <span class="material-icons">
-                                person_outline
-                            </span>
+                            <img src="/images/profile.svg">
                         </a>
                     </div>
                 </div>
-
-
-
 
             </div>
         </section>
@@ -424,111 +371,31 @@
 
     <script>
 
-        // const fvBtnNav = document.querySelector('.favoriteNavbar');
-        // fvBtnNav.addEventListener('click', event => {
-        //     if (fvBtnNav.innerText === 'favorite_border') {
-        //         fvBtnNav.innerText = 'favorite'
-        //     } else {
-        //         fvBtnNav.innerText = 'favorite_border';   
-        //     }
-        // });
+        //make this into function
+        const contents = document.querySelector('div.contents_box')
+        contents.addEventListener('click', (event) => {
+            if (event.target.classList.contains("favorite")) {
+                if (event.target.classList.contains("liked")) {
+                    event.target.classList.remove('liked');
+                    event.target.src = "/images/heart.svg"
 
-        const fvBtn = document.querySelector('.favorite');
-        fvBtn.addEventListener('click', event => {
-            if (fvBtn.innerText === 'favorite_border') {
-                fvBtn.innerText = 'favorite'
-                fvBtn.style.color = 'red'
-            } else {
-                fvBtn.style.color = '#00BFB2'
-                fvBtn.innerText = 'favorite_border';
-
+                } else {
+                    event.target.classList.add('liked')
+                    event.target.src = "/images/like.svg"
+                }
             }
-        });
 
-        const fvBtn1 = document.querySelector('.favorite1');
-        fvBtn1.addEventListener('click', event => {
-            if (fvBtn1.innerText === 'favorite_border') {
-                fvBtn1.innerText = 'favorite'
-                fvBtn1.style.color = 'red'
-            } else {
-                fvBtn1.style.color = '#00BFB2'
-                fvBtn1.innerText = 'favorite_border';
+            if (event.target.classList.contains("bookmark")) {
+                if (event.target.classList.contains("saved")) {
+                    event.target.classList.remove('saved');
+                    event.target.src = "/images/save.svg"
+                } else {
+                    event.target.classList.add('saved');
+                    event.target.src = "/images/saved.svg"
+                }
             }
-        });
 
-        const fvBtn2 = document.querySelector('.favorite2');
-        fvBtn2.addEventListener('click', event => {
-            if (fvBtn2.innerText === 'favorite_border') {
-                fvBtn2.innerText = 'favorite'
-                fvBtn2.style.color = 'red'
-            } else {
-                fvBtn2.style.color = '#00BFB2'
-                fvBtn2.innerText = 'favorite_border';
-            }
-        });
-
-        const fvBtn3 = document.querySelector('.favorite3');
-        fvBtn3.addEventListener('click', event => {
-            if (fvBtn3.innerText === 'favorite_border') {
-                fvBtn3.innerText = 'favorite'
-                fvBtn3.style.color = 'red'
-            } else {
-                fvBtn3.style.color = '#00BFB2'
-                fvBtn3.innerText = 'favorite_border';
-            }
-        });
-
-
-        // const contents = document.querySelector('div.contents_box')
-        // const fvBtns = document.querySelectorAll('.favorite');
-        // contents.addEventListener('click', (event) => {
-        // if (event.target.innerText === 'favorite_border') {
-        //     fvBtns.forEach(fvBtn => {
-        //         fvBtn.innerText = 'favorite';
-        //     })
-        // } else if (event.target.innerText === 'favorite') {
-        //     fvBtns.forEach(fvBtn => {
-        //         fvBtn.innerText ='favorite_border'
-        //     })
-        // }
-        // })
-
-        const bookmark = document.querySelector('.bookmark');
-        bookmark.addEventListener('click', event => {
-            if (bookmark.innerText === 'bookmark_border') {
-                bookmark.innerText = 'bookmark'
-            } else {
-                bookmark.innerText = 'bookmark_border';
-            }
-        });
-
-        const bookmark1 = document.querySelector('.bookmark1');
-        bookmark1.addEventListener('click', event => {
-            if (bookmark1.innerText === 'bookmark_border') {
-                bookmark1.innerText = 'bookmark'
-            } else {
-                bookmark1.innerText = 'bookmark_border';
-            }
-        });
-
-        const bookmark2 = document.querySelector('.bookmark2');
-        bookmark2.addEventListener('click', event => {
-            if (bookmark2.innerText === 'bookmark_border') {
-                bookmark2.innerText = 'bookmark'
-            } else {
-                bookmark2.innerText = 'bookmark_border';
-            }
-        });
-
-        const bookmark3 = document.querySelector('.bookmark3');
-        bookmark3.addEventListener('click', event => {
-            if (bookmark3.innerText === 'bookmark_border') {
-                bookmark3.innerText = 'bookmark'
-            } else {
-                bookmark3.innerText = 'bookmark_border';
-            }
-        });
-
+        })
 
     </script>
 
