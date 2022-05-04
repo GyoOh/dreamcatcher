@@ -68,6 +68,7 @@ router.get("/", async (req, res) => {
         return res.redirect("/authentication/403");
     }
     const posts = await dbModel.getPosts(user.user_id)
+    console.log(posts)
     res.render("post", { posts, user });
 })
 
