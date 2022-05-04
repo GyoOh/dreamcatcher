@@ -5,72 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Foodie Share</title>
+    <title>FoodieShare</title>
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/new_post.css">
-    <link rel="shortcut icon" href="imgs/instagram.png">
-    <link
-        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-        rel="stylesheet">
 </head>
 
 <body>
     <section id="container">
         <header id="header">
             <section class="h_inner">
-                <h1 class="logo">
 
-                    <div class="sprite_insta_icon"></div>
-                    <div>
-                        <div class="sprite_write_logo"></div>
-                    </div>
-                    </a>
+                <h1 class="logo">
+                    <img class="logoImg" src='https://ifh.cc/g/9qtKfn.png' border='0'>
                 </h1>
 
-
             </section>
+
         </header>
-        <g id="logo_burger">
-            <g>
-                <circle id="bg" class="st0" cx="252.3" cy="206.4" r="51.8" />
-                <g id="burger">
-                    <g id="top_bun">
-                        <path class="st1" d="M386.8,180.3H296l-1.5-2.2c-9.6-13.9-25.5-22.2-42.3-22.2c-16.9,0-32.7,8.3-42.3,22.2l-1.5,2.2h-90.6
-  l-0.5-0.1c-10.1-1.9-13.3-11.5-13.6-16.3v-0.3c0-35.7,16.3-65.6,47.1-86.6c26.9-18.3,62.9-28.3,101.5-28.3S327,58.8,353.8,77
-  c30.8,21,47.1,50.9,47.1,86.6v0.3c-0.3,4.8-3.5,14.4-13.6,16.3L386.8,180.3z" />
-                    </g>
-                    <g id="camera_shine">
-                        <path class="st2" d="M233,206.4c-2.4,0-4.3-1.9-4.3-4.3c0-10.4,8.4-18.8,18.8-18.8c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3,4.3
-  c-5.6,0-10.1,4.5-10.1,10.1C237.3,204.4,235.4,206.4,233,206.4z" />
-                    </g>
-                    <g id="camera_lens">
-                        <path class="st2" d="M252.3,176.3c16.7,0,30.3,13.6,30.3,30.3s-13.6,30.3-30.3,30.3S222,223.3,222,206.6
-  S235.6,176.3,252.3,176.3 M252.3,166.1c-22.4,0-40.5,18.1-40.5,40.5s18.1,40.5,40.5,40.5s40.5-18.1,40.5-40.5
-  S274.7,166.1,252.3,166.1L252.3,166.1z" />
-                    </g>
-                    <g id="camera_light">
-                        <circle class="st2" cx="328.1" cy="122.4" r="7.5" />
-                    </g>
-                    <g id="bottom_bun">
-                        <path class="st1" d="M387,237.2c5.6,0,10.5,3.8,11.9,9.3c2.5,10,2.4,26.4-6.5,39.6c-7.2,10.8-18.6,17.5-33.9,19.7
-  c-33.4,4.9-70.4,7.4-107.2,7.4c-36.7,0-73.2-2.5-105.3-7.4c-15.3-2.4-26.7-9.1-33.9-19.9c-8.7-13.2-8.9-29.5-6.4-39.4
-  c1.4-5.5,6.3-9.3,11.9-9.3h93.1l1.5,1.9c9.8,12.1,24.4,19,39.9,19c15.7,0,30.9-7.1,40.6-19l1.5-1.9" />
-                    </g>
-                    <g id="left_patty">
-                        <path class="st3" d="M202.3,206.6c0-3.7,0.4-7.4,1.3-11l0.9-4v-0.1h-68.6c-10.4,0-18.2,7.1-18.3,16.6
-  c-0.1,9.3,7.9,16.9,17.2,16.9h70.9c0,0,0.1,0,0-0.1l-1.3-4.2C203,216.2,202.3,211.4,202.3,206.6z" />
-                    </g>
-                    <g id="right_patty">
-                        <path class="st3" d="M371.6,191.5h-71.5l0.9,4c0.9,3.6,1.3,7.4,1.3,11c0,4.8-0.7,9.6-2.1,14.2l-1.3,4.2h72.7
-  c9.2,0,16.8-7.5,16.8-16.8S380.8,191.5,371.6,191.5z" />
-                    </g>
-                </g>
-            </g>
-            <text transform="matrix(1 0 0 1 66.3745 408.0893)" class="st0 st4 st5">FoodieShare</text>
-        </g>
-        </svg>
+
+
         <% if(!user) {%>
             <form class="login-form" action="/authentication/login" method="POST">
                 <div class="field">
@@ -119,94 +74,174 @@
             <% } %>
 
                 <% if(user) {%>
-                    <div id="main_container">
-                        <div class="post_form_container">
 
-                            <form method="POST" action="/posts/create" enctype="multipart/form-data" id="imageForm"
-                                class="post_form">
-                                <div class="title">
-                                    NEW POST
-                                </div>
-                                <div class="preview">
-                                    <div class="upload">
-                                        <div class="post_btn">
-                                            <div class="plus_icon">
-                                                <span></span>
-                                                <span></span>
+
+                    <section id="main_container">
+                        <div class="inner">
+                            <div class="contents_box">
+                                <article class="contents">
+
+                                    <form method="POST" action="/posts/create" enctype="multipart/form-data"
+                                        id="imageForm" class="post_form">
+                                        <div class="title">
+                                            <img class="backbtn" src="/icons/back button.svg">
+                                            <p class="newpost">Preview Post</p>
+                                        </div>
+                                        <header class="top">
+                                            <div class="user_container">
+                                                <div class="profile_img">
+                                                    <img class="user" src="/icons/smantha.svg">
+                                                </div>
+                                                <div class="user_name">
+                                                    <div class="nick_name">Samantha_Rogers</div>
+                                                    <div class="place">@DreamCatchers Cafe </div>
+                                                </div>
+
                                             </div>
-                                            <p>Add Img</p>
-                                            <canvas id="imageCanvas"></canvas>
+                                        </header>
 
+                                        <div class="preview">
+                                            <div class="upload">
+                                                <div class="post_btn">
+                                                    <!-- <div class="plus_icon"> -->
+                                                    <input type="file" name="image" placeholder="image" id="id_photo"
+                                                        accept="image/*">
+                                                    <!-- </div> -->
+                                                    <canvas id="imageCanvas"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <textarea type="text" name="description" id="text_field" cols="50" rows="5"
+                                            placeholder="description" required="required"></textarea> -->
+
+
+                                        <% } %>
+
+                                            <div class="bottom_icons">
+                                                <div class="left_icons">
+                                                    <div class="heart_btn">
+                                                        <img src="/icons/heart.svg" class="favorite">
+                                                    </div>
+                                                    <div class="sprite_bubble_icon message">
+                                                        <img src="/icons/message.svg">
+                                                    </div>
+                                                    <div class="sprite_share_icon" data-name="share">
+                                                        <img src="/icons/share.svg">
+                                                    </div>
+                                                </div>
+                                                <div class="right_icon">
+                                                    <div class="sprite_bookmark_outline" data-name="bookmark">
+                                                        <img src="/icons/save.svg" class="bookmark">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="likes">
+                                        <span id="like-count-39">22,346</span>
+                                        likes
+            
+                                    </div> -->
+
+                                            <div class="comment_container">
+                                                <div class="comment" id="comment-list-ajax-post37">
+                                                    <div class="comment-detail">
+                                                        <div class="profile_img">
+                                                            <img class="user" src="/icons/smantha.svg">
+                                                        </div>
+                                                        <div class="nick_name">Samantha_Rogers</div>
+                                                        <div class="comment">(No cation...)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="timer">1 DAY AGO</div> -->
+
+                                            <!-- <div class="comment_field">
+                                        <input class="add_comment" type="text" placeholder="Add a Comment..."> -->
+                                            <!-- <div class="upload_btn" data-name="comment">POST</div> -->
+                                            <!-- </div> -->
+                                            <div class="input_div">
+                                                <input class="submit_btn" type="submit" value="Post">
+                                            </div>
+
+                                    </form>
+                                </article>
+                                <!--  -->
+                                <!-- 
+ -->
+                                <div class="post_form_container">
+                                    <div class="bottom_tab_bar">
+                                        <div class="bottom_tab_bar_wrap">
+                                            <a href="/posts">
+                                                <img src="/icons/home.svg">
+                                            </a>
+                                            <a href="#">
+                                                <img src="/icons/explore.svg">
+                                            </a>
+                                            <a href="/posts/create">
+                                                <img src="/icons/post-new.svg">
+                                            </a>
+                                            <a href="#">
+                                                <img src="/icons/txt.svg">
+                                            </a>
+                                            <a href="/authentication/login">
+                                                <img src="/icons/profile.svg">
+                                            </a>
                                         </div>
                                     </div>
-                                </div>
+                    </section>
+                    <script>
+                        const contents = document.querySelector('div.contents_box')
+                        contents.addEventListener('click', (event) => {
+                            if (event.target.classList.contains("favorite")) {
+                                if (event.target.classList.contains("liked")) {
+                                    event.target.classList.remove('liked');
+                                    event.target.src = "/icons/heart.svg"
 
-                                <p>
-                                    <input type="file" name="image" placeholder="image" id="id_photo" accept="image/*">
-                                </p>
-                                <p>
-                                    <textarea type="text" name="description" id="text_field" cols="50" rows="5"
-                                        placeholder="description" required="required"></textarea>
-                                </p>
-                                <input class="submit_btn" type="submit" value="Post">
-                            </form>
-                            <% } %>
+                                } else {
+                                    event.target.classList.add('liked')
+                                    event.target.src = "/icons/like.svg"
+                                }
+                            }
 
-                                <div class="bottom_tab_bar">
-                                    <div class="bottom_tab_bar_wrap">
-                                        <a href="/posts">
-                                            <span class="material-icons-outlined">
-                                                home
-                                            </span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="material-icons-outlined">
-                                                explore
-                                            </span>
-                                        </a>
-                                        <a href="/posts/create">
-                                            <span class="material-icons">
-                                                control_point
-                                            </span>
-                                        </a>
-                                        <span class="material-icons-outlined">
-                                            send
-                                        </span>
-                                        <a href="/authentication/login">
-                                            <span class="material-icons">
-                                                person_outline
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                        </div>
-    </section>
-    <script>
+                            if (event.target.classList.contains("bookmark")) {
+                                if (event.target.classList.contains("saved")) {
+                                    event.target.classList.remove('saved');
+                                    event.target.src = "/icons/save.svg"
+                                } else {
+                                    event.target.classList.add('saved');
+                                    event.target.src = "/icons/saved.svg"
+                                }
+                            }
 
-        var fileInput = document.querySelector("#id_photo"),
-            button = document.querySelector(".input-file-trigger"),
-            the_return = document.querySelector(".file-return");
-        // Show image
-        fileInput.addEventListener('change', handleImage, false);
-        var canvas = document.getElementById('imageCanvas');
-        var ctx = canvas.getContext('2d');
-        function handleImage(e) {
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                var img = new Image();
-                // var imgWidth =
-                img.onload = function () {
-                    canvas.width = 300;
-                    canvas.height = 300;
-                    ctx.drawImage(img, 0, 0, 300, 300);
-                };
-                img.src = event.target.result;
-                // img.width = img.width*0.5
-                // canvas.height = img.height;
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    </script>
+                        })
+
+
+                        let fileInput = document.querySelector("#id_photo"),
+                            button = document.querySelector(".input-file-trigger"),
+                            the_return = document.querySelector(".file-return");
+                        // Show image
+                        fileInput.addEventListener('change', handleImage, false);
+                        let canvas = document.getElementById('imageCanvas');
+                        let ctx = canvas.getContext('2d');
+                        function handleImage(e) {
+                            let reader = new FileReader();
+                            reader.onload = function (event) {
+                                let img = new Image();
+                                // let imgWidth =
+                                img.onload = function () {
+                                    canvas.width = 377;
+                                    canvas.height = 377;
+                                    ctx.drawImage(img, -50, -2, 377, 377);
+                                };
+                                img.src = event.target.result;
+                                // img.width = img.width*0.5
+                                // canvas.height = img.height;
+                            };
+                            reader.readAsDataURL(e.target.files[0]);
+                        }
+                    </script>
 </body>
 
 </html>
