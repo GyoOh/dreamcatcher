@@ -43,6 +43,7 @@
 
 
                 <% posts.forEach(post=> {%>
+                 
                     <div class="inner">
                         <div class="contents_box">
                             <article class="contents">
@@ -60,14 +61,14 @@
 
                                     </div>
 
-                                    <div class="sprite_more_icon" data-name="more">
+                                    <!-- <div class="sprite_more_icon" data-name="more">
                                         <ul class="toggle_box">
                                             <li><input type="submit" class="follow" value="follow" data-name="follow">
                                             </li>
                                             <li>edit</li>
                                             <li>delete</li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </header>
 
                                 <div class="img_section">
@@ -123,7 +124,7 @@
 
                                 <div class="comment_field">
                                     <input class="add_comment" type="text" placeholder="Add a Comment...">
-                                    <!-- <div class="upload_btn" data-name="comment">POST</div> -->
+                                    <div class="upload_btn" data-name="comment">POST</div>
                                 </div>
                             </article>
 
@@ -132,35 +133,35 @@
                         <% }) %>
                             <% } %>
                                 <nav>
+                                    
+                                    <a href="/posts">
+                                        <img src="/images/home.svg">
+                                    </a>
+                                    
+                                    <a href="#">
+                                        <img src="/images/explore.svg">
+                                    </a>
+                                    
+                                    <a href="/posts/create">
+                                        <img src="/images/post-new.svg">
+                                    </a>
+                                    
+                                    <a href="#">
+                                        <img src="/images/txt.svg">
+                                    </a>
+                                    
+                                    <a href="/authentication/login">
+                                        <img src="/images/profile.svg">
+                                    </a>
+                                    
                                     <div class="horizontal-underline"></div>
                                     
-                                        <a  href="/posts">
-                                            <img src="/images/home.svg">
-                                        </a>
-                                       
-                                        <a  href="#">
-                                            <img src="/images/explore.svg">
-                                        </a>
-
-                                        <a href="/posts/create">
-                                            <img src="/images/post-new.svg">
-                                        </a>
-
-                                        <a  href="#">
-                                            <img src="/images/txt.svg">
-                                        </a>
-
-                                        <a href="/authentication/login">
-                                            <img src="/images/profile.svg">
-                                        </a>
-                                        
-                                    </div>
                                 </nav>    
                     </div>
-
                    
+                   
+               
         </section>
-
 
     </section>
 
