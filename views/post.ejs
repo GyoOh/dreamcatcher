@@ -43,6 +43,7 @@
 
 
                 <% posts.forEach(post=> {%>
+                 
                     <div class="inner">
                         <div class="contents_box">
                             <article class="contents">
@@ -60,14 +61,14 @@
 
                                     </div>
 
-                                    <div class="sprite_more_icon" data-name="more">
+                                    <!-- <div class="sprite_more_icon" data-name="more">
                                         <ul class="toggle_box">
                                             <li><input type="submit" class="follow" value="follow" data-name="follow">
                                             </li>
                                             <li>edit</li>
                                             <li>delete</li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </header>
 
                                 <div class="img_section">
@@ -122,6 +123,7 @@
                                 </div>
                                 <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                 <div class="comment_field">
+
                                     <input class="add_comment" name="comments" type="text" placeholder="Add a Comment...">
                                     <div class="heart_btn">
                                        <input type="text"> <img src="/icons/heart.svg" class="favorite">
@@ -136,8 +138,7 @@
                         <% }) %>
                             <% } %>
                                 <nav>
-                                    <div class="horizontal-underline"></div>
-                                    
+                                 
                                         <a  href="/posts">
                                             <img src="/icons/home.svg">
                                         </a>
@@ -159,12 +160,13 @@
                                         </a>
                                         
                                     </div>
+
                                 </nav>    
                     </div>
-
                    
+                   
+               
         </section>
-
 
     </section>
 
