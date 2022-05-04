@@ -4,7 +4,9 @@ const database = require("../databaseConnection")
 const dbModel = require("../databaseAccessLayer")
 const multer = require("multer")
 const s3 = require("../s3")
-const path = require('path')
+const path = require('path');
+const { CodeBuild } = require("aws-sdk");
+const { Console } = require("console");
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images')
@@ -60,13 +62,9 @@ router.post("/", async (req, res) => {
 })
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
-    const post = await dbModel.getPost(user.user_id)
-    const likes = await dbModel.getPostLikesUsers(user.user_id)
-    const comments = await dbModel.getPostComments(post[0].post_id)
-    console.log("likes", likes)
-    console.log("post", post)
-    console.log("comments", comments)
-
+    const post = await dbModel.getPostByUserId((user.user_id))
+    const comment = await dbModel.getPostComments(post[0].post_id)
+    console.log(comment)
     if (!user) {
         return res.redirect("/authentication/403");
     }

@@ -23,15 +23,7 @@ async function getPosts() {
     return imgs;
 }
 
-async function getPost(user_id) {
-    const query = "SELECT * FROM posts WHERE user_id = :user_id"
-    const params = { user_id: user_id }
-    const [rows] = await database.query(query, params)
-    const img = rows
-    return img
-}
-
-async function addPost(user_id, image_url) {
+async function addPost(user_id, image_url, description) {
     let query = "INSERT INTO posts (user_id, description, image_url) VALUES(?, ?, ?)"
     const params = [user_id, description, image_url]
     const [result] = await database.query(query, params)
@@ -121,9 +113,9 @@ async function addCommentsLikes(user_id, comment_id, likes) {
     return result
 }
 
-async function getPostLikesUsers(user_id) {
+async function getPostByUserId(user_id) {
     const query =
-        "SELECT user_id, post_id, likes, (SELECT COUNT(*) FROM post_likes WHERE user_id = :user_id) AS `totallikes` FROM post_likes WHERE user_id = :user_id";
+        "select distinct posts.*, if (post_likes.like_id is not null, 1, 0) as liked_by_current_user from posts left join post_likes on post_likes.post_id = posts.post_id AND post_likes.user_id = :user_id";
     const params = { user_id: user_id }
     const [rows] = await database.query(query, params)
     const likes = rows
@@ -183,7 +175,7 @@ async function deleteRestaurant(restaurant_id) {
 
 module.exports = {
     getUsers, getUser, addUser, deleteUser, deletePost, deleteRestaurant, deletePostLikes, deleteCommentLikes, deletecomment,
-    addPost, getPost, getPosts, addcomment, getPostComments, getuserComments, addPostLikes, addCommentsLikes, getPostLikesUsers,
+    addPost, getPosts, addcomment, getPostComments, getuserComments, addPostLikes, addCommentsLikes, getPostByUserId,
     getLikesPosts, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
     getLikesComments, getCommentLikesUsers
 }
