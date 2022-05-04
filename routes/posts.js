@@ -4,7 +4,9 @@ const database = require("../databaseConnection")
 const dbModel = require("../databaseAccessLayer")
 const multer = require("multer")
 const s3 = require("../s3")
-const path = require('path')
+const path = require('path');
+const { CodeBuild } = require("aws-sdk");
+const { Console } = require("console");
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images')
@@ -25,10 +27,10 @@ router.post("/create", upload.single("image"), async (req, res) => {
     const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
     await dbModel.addPost(user.user_id, description, image_url)
     if (user) {
-        let posts = await dbModel.getPost(user.user_id)
+        let posts = await dbModel.getPostByUserId(user.user_id)
         let comments = req.body.comments
         let likes = req.body.likes
-        await dbModel.getPost(user.user_id)
+        await dbModel.getPostByUserId(user.user_id)
         await dbModel.addcomment(user.user_id, posts[0].post_id, comments)
         await dbModel.addPostLikes(user.user_id, posts[0].post_id, likes)
     }
@@ -51,8 +53,7 @@ router.post("/", async (req, res) => {
     if (user) {
         let comments = req.body.comments
         console.log(comments)
-        let post = await dbModel.getPost(user.user_id)
-        await dbModel.addcomment(user.user_id, post[0].post_id, comments)
+
         // await dbModel.addLikes(user.user_id, post[0].post_id, req.body.likes)
     }
     res.redirect("/posts")
@@ -60,13 +61,9 @@ router.post("/", async (req, res) => {
 })
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
-    const post = await dbModel.getPost(user.user_id)
-    const likes = await dbModel.getPostLikesUsers(user.user_id)
-    const comments = await dbModel.getPostComments(post[0].post_id)
-    console.log("likes", likes)
-    console.log("post", post)
-    console.log("comments", comments)
-
+    const post = await dbModel.getPostByUserId((user.user_id))
+    const comment = await dbModel.getPostComments(post[0].post_id)
+    console.log(comment)
     if (!user) {
         return res.redirect("/authentication/403");
     }
