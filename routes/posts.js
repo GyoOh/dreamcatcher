@@ -27,10 +27,10 @@ router.post("/create", upload.single("image"), async (req, res) => {
     const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
     await dbModel.addPost(user.user_id, description, image_url)
     if (user) {
-        let posts = await dbModel.getPost(user.user_id)
+        let posts = await dbModel.getPostByUserId(user.user_id)
         let comments = req.body.comments
         let likes = req.body.likes
-        await dbModel.getPost(user.user_id)
+        await dbModel.getPostByUserId(user.user_id)
         await dbModel.addcomment(user.user_id, posts[0].post_id, comments)
         await dbModel.addPostLikes(user.user_id, posts[0].post_id, likes)
     }
@@ -53,8 +53,7 @@ router.post("/", async (req, res) => {
     if (user) {
         let comments = req.body.comments
         console.log(comments)
-        let post = await dbModel.getPost(user.user_id)
-        await dbModel.addcomment(user.user_id, post[0].post_id, comments)
+
         // await dbModel.addLikes(user.user_id, post[0].post_id, req.body.likes)
     }
     res.redirect("/posts")
