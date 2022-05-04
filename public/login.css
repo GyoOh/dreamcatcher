@@ -45,11 +45,22 @@ body {
     font-size: 14px;
   }
   
+img.logo_burger {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+  .form-container {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
   .heading {
     margin: 22px auto 12px;
     background-image: url(../foodieshare_logo.png);
     background-position: -98px 0;
-    height: 51px;
     width: 177px;
     overflow: hidden;
   }
