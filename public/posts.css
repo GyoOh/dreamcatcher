@@ -81,12 +81,20 @@ nav a {
 } */
 
 .horizontal-underline{
-  /* position: absolute; */
+  position: absolute;
   left:0;
   height: 4px;
-  width: 0;
+  width: 0px;
   border-radius: 3px;
   transition: 0.5s;
   background-color: #1A5E63;
   /* top:0; */
+
+  /* top:50px;
+left: 30px;
+height: 4px;
+width: 100; */
+
+
+
 }
