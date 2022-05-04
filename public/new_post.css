@@ -42,6 +42,14 @@
     gap: 18%;
 }
 
+.description {
+    border: 1px solid lightgrey;
+    height: 8em;
+    width: 20em;
+    font: 14px 'Nunito', sans-serif;    
+}
+
+
 .newpost {
     font: 24px 'Nunito', sans-serif;
     font-weight: bolder;
@@ -76,13 +84,13 @@
 
 
 .post_form textarea {
-    width: 100%;
+    /* width: 100%; */
     background: 0 0;
     border: 1px solid #efefef;
     border-radius: 3px;
     box-sizing: border-box;
     color: #262626;
-    font-size: 14px;
+    font: 16px 'Nunito', sans-serif;    
     padding: 7px 8px 7px;
 }
 
