@@ -74,7 +74,7 @@ router.post("/comment", async (req, res) => {
     const email = req.session.whoami
     const user = await dbModel.getUser(email)
     if (user) {
-        let post = await dbModel.getPost(user.user_id)
+        let post = await dbModel.getPostByUserId(user.user_id)
         await dbModel.addcomment(user.user_id, post[0].post_id, comments)
         await dbModel.addPostLikes(user.user_id, post[0].post_id, req.body.likes)
     }
