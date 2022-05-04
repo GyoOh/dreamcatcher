@@ -20,9 +20,10 @@ router.post("/create", upload.single("image"), async (req, res) => {
     const connection = await database.getConnection()
     const user = await dbModel.getUser(req.session.whoami)
     const { filename, path } = req.file
+    const description = req.params.description;
     const url = await s3.uploadFile(req.file)
     const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
-    await dbModel.addPost(user.user_id, image_url)
+    await dbModel.addPost(user.user_id, description, image_url)
     res.redirect("/posts")
     connection.release()
 })
