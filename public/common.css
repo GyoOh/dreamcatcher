@@ -12,7 +12,10 @@ div.right_icons span {
   margin: 2px;
 }
 
-
+.logoImg {
+  width: 80%;
+  margin-left: 10%;
+}
 
 #container {
   display: flex;
