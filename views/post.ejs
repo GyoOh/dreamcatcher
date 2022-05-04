@@ -50,7 +50,7 @@
                                 <header class="top">
                                     <div class="user_container">
                                         <div class="profile_img">
-                                            <img class="user" src="/images/smantha.svg">
+                                            <img class="user" src="/icons/smantha.svg">
                                         </div>
                                         <div class="user_name">
                                             <div class="nick_name">
@@ -61,6 +61,10 @@
 
                                     </div>
 
+                                    <a href="/"> <span class="material-symbols-outlined">
+                                        more_vert
+                                    </span>
+                                    </a>
                                     <!-- <div class="sprite_more_icon" data-name="more">
                                         <ul class="toggle_box">
                                             <li><input type="submit" class="follow" value="follow" data-name="follow">
@@ -69,6 +73,7 @@
                                             <li>delete</li>
                                         </ul>
                                     </div> -->
+
                                 </header>
 
                                 <div class="img_section">
@@ -82,18 +87,18 @@
                                 <div class="bottom_icons">
                                     <div class="left_icons">
                                         <div class="heart_btn">
-                                            <img src="/images/heart.svg" class="favorite">
+                                            <img src="/icons/heart.svg" class="favorite">
                                         </div>
                                         <div class="sprite_bubble_icon message">
-                                            <img src="/images/message.svg">
+                                            <img src="/icons/message.svg">
                                         </div>
                                         <div class="sprite_share_icon" data-name="share">
-                                            <img src="/images/share.svg">
+                                            <img src="/icons/share.svg">
                                         </div>
                                     </div>
                                     <div class="right_icon">
                                         <div class="sprite_bookmark_outline" data-name="bookmark">
-                                            <img src="/images/save.svg" class="bookmark">
+                                            <img src="/icons/save.svg" class="bookmark">
                                         </div>
                                     </div>
                                 </div>
@@ -107,12 +112,12 @@
                                     <div class="comment" id="comment-list-ajax-post37">
                                         <div class="comment-detail">
                                             <div class="profile_img">
-                                                <img class="user" src="/images/smantha.svg">
+                                                <img class="user" src="/icons/smantha.svg">
                                             </div>
                                             <div class="nick_name">
                                                 <%=user.first_name%>
                                             </div>
-                                            <div class="comment"> <%=post.description%>
+                                            <div class="comment"> <img src=<%=post.image_url%> >
                                             </div>
 
                                         </div>
@@ -121,41 +126,46 @@
                                         <div class="sprite_small_heart_icon_outline"></div>
                                     </div>
                                 </div>
-
+                                <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                 <div class="comment_field">
-                                    <input class="add_comment" type="text" placeholder="Add a Comment...">
-                                    <div class="upload_btn" data-name="comment">POST</div>
-                                </div>
-                            </article>
 
+                                    <input class="add_comment" name="comments" type="text" placeholder="Add a Comment...">
+                                    <div class="heart_btn">
+                                       <input type="text"> <img src="/icons/heart.svg" class="favorite">
+                                    </div>
+                                      <div class="input_div">
+                                                <input class="submit_btn" type="submit">
+                                            </div>
+                            </form>
+                            </article>
 
                         </div>
                         <% }) %>
                             <% } %>
                                 <nav>
-                                    
-                                    <a href="/posts">
-                                        <img src="/images/home.svg">
-                                    </a>
-                                    
-                                    <a href="#">
-                                        <img src="/images/explore.svg">
-                                    </a>
-                                    
-                                    <a href="/posts/create">
-                                        <img src="/images/post-new.svg">
-                                    </a>
-                                    
-                                    <a href="#">
-                                        <img src="/images/txt.svg">
-                                    </a>
-                                    
-                                    <a href="/authentication/login">
-                                        <img src="/images/profile.svg">
-                                    </a>
-                                    
-                                    <div class="horizontal-underline"></div>
-                                    
+                                 
+                                        <a  href="/posts">
+                                            <img src="/icons/home.svg">
+                                        </a>
+                                       
+                                        <a  href="#">
+                                            <img src="/icons/explore.svg">
+                                        </a>
+
+                                        <a href="/posts/create">
+                                            <img src="/icons/post-new.svg">
+                                        </a>
+
+                                        <a  href="#">
+                                            <img src="/icons/txt.svg">
+                                        </a>
+
+                                        <a href="/authentication/login">
+                                            <img src="/icons/profile.svg">
+                                        </a>
+                                        
+                                    </div>
+
                                 </nav>    
                     </div>
                    
@@ -173,20 +183,20 @@
             if (event.target.classList.contains("favorite")) {
                 if (event.target.classList.contains("liked")) {
                     event.target.classList.remove('liked');
-                    event.target.src = "/images/heart.svg"
+                    event.target.src = "/icons/heart.svg"
                 } else {
                     event.target.classList.add('liked')
-                    event.target.src = "/images/like.svg"
+                    event.target.src = "/icons/like.svg"
                 }
             }
 
             if (event.target.classList.contains("bookmark")) {
                 if (event.target.classList.contains("saved")) {
                     event.target.classList.remove('saved');
-                    event.target.src = "/images/save.svg"
+                    event.target.src = "/icons/save.svg"
                 } else {
                     event.target.classList.add('saved');
-                    event.target.src = "/images/saved.svg"
+                    event.target.src = "/icons/saved.svg"
                 }
             }
 
