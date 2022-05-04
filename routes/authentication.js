@@ -19,31 +19,23 @@ router.post("/login", async (req, res) => {
   }
   connection.release()
 })
+
 router.get("/login", async (req, res) => {
   const email = req.session.whoami
   const user = await dbModel.getUser(email);
-  console.log(user)
   res.render("login", { user });
 })
-// router.post("/signup", async (req, res) => {
-//   const first_name = req.body.first_name
-//   const last_name = req.body.last_name
-//   const email = req.body.email
-//   const password = req.body.password
-//   const hash = await bcrypt.hash(password, 10)
-//   adduser = await dbModel.addUser(first_name, last_name, email, hash)
-//   res.redirect("/");
-// })
-// router.get("/signup", async (req, res) => {
-//   const user = await dbModel.getUser();
-//   res.render("signup", { user });
-// })
 
 router.post("/logout", (req, res) => {
   res.clearCookie("whoami");
   res.clearCookie("whoami.sig");
   res.redirect("/authentication/login");
 })
+
+router.get("/403", (req, res) => {
+  res.render("403");
+});
+
 router.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err);

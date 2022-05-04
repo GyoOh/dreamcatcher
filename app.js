@@ -23,20 +23,25 @@ app.use("/authentication", authentication);
 app.use("/posts", posts);
 
 app.get("/", async (req, res) => {
-  const user = await dbModel.getUser();
+  const email = req.session.whoami
+  const user = await dbModel.getUser(email);
   res.render("signup", { user });
 })
+
 app.post("/", async (req, res) => {
   const first_name = req.body.first_name
   const last_name = req.body.last_name
   const email = req.body.email
   const password = req.body.password
   const hash = await bcrypt.hash(password, 10)
+  const users = await dbModel.getUsers()
   adduser = await dbModel.addUser(first_name, last_name, email, hash)
   res.redirect("/authentication/login");
 })
+
 app.get("/home", async (req, res) => {
-  const user = await dbModel.getUser();
+  const email = req.session.whoami
+  const user = await dbModel.getUser(email);
   res.render("index", { user });
 })
 
