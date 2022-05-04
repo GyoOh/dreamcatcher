@@ -31,7 +31,7 @@ async function getPost(user_id) {
     return img
 }
 
-async function addPost(user_id, image_url) {
+async function addPost(user_id, description, image_url) {
     let query = "INSERT INTO posts (user_id, description, image_url) VALUES(?, ?, ?)"
     const params = [user_id, description, image_url]
     const [result] = await database.query(query, params)
