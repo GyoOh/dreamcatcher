@@ -142,7 +142,7 @@ div.right_icons span {
 }
 
 #main_container {
-  /* height: 100vh; */
+  height: 100vh;
   padding-top: 100px;
   display: flex;
   justify-content: center;

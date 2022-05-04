@@ -140,12 +140,8 @@
                                             <div class="comment_container">
                                                 <div class="comment" id="comment-list-ajax-post37">
                                                     <div class="comment-detail">
-                                                        <!-- <div class="profile_img"> -->
-                                                            <!-- <img class="user" src="/icons/smantha.svg"> -->
-                                                        <!-- </div> -->
-                                                        <textarea class="description" name="description" placeholder="description..."type="text" rows="8" maxlength="200"></textarea> 
-                                        
                                                         </div>
+                                                        <textarea class="description" type="text" placeholder="description..." rows="8" maxlength="200"></textarea> 
 
                                                     </div>
                                                 </div>
@@ -229,7 +225,8 @@
                                 img.onload = function () {
                                     canvas.width = 377;
                                     canvas.height = 377;
-                                    ctx.drawImage(img, 0, -2, 377, 377);
+                                    ctx.drawImage(img, -10, 0, 377, 377);
+
                                 };
                                 img.src = event.target.result;
                                 // img.width = img.width*0.5
