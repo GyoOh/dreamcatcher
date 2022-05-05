@@ -54,26 +54,21 @@
                                         <div class="place">@DreamCatchers Cafe </div>
                                     </div>
                                 </div>
-                               
-                                <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>more</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select> -->
-
-                                <!-- <a href="/"> <span class="material-symbols-outlined">
-                                    more_vert
-                                </span>
-                                </a> -->
-                                <!-- <div class="sprite_more_icon" data-name="more">
-                                    <ul class="toggle_box">
-                                        <li><input type="submit" class="follow" value="follow" data-name="follow">
-                                        </li>
-                                        <li>edit</li>
-                                        <li>delete</li>
-                                    </ul>
-                                </div> -->
+         
+                                <form class="newPicture formNoDefault displayNone">
+                                    <!-- <a href="#">  -->
+                                 <div class = "btn">     
+                                    <div class="moreBtn">
+                                        <img class="user" src="/icons/png.png">
+                                    </div>
+                                    
+                                        <!-- <div>
+                                        <button class="editBtn">edit</button>
+                                        <button class="deleteBtn">delete</button>
+                                        </div> -->
+                                    </div>
+                                </form>
+           
                             </header>
                             <div class="img_section">
                                 <div class="trans_inner">
@@ -118,6 +113,7 @@
                                                     <% } %> 
                                                 <% }) %> 
                                         </div>
+
                                         <div>
                                             <%=posts[i].description %> 
                                         </div>
@@ -135,6 +131,7 @@
                             <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                 <div class="comment_field">
                                     <div class="comment_field">
+
                                         <input id="<%=posts[i].post_id%>" class="add_comment" name="comments" type="text" placeholder="Add a Comment...">
                                        
                                         <div class="upload_btn" data-name="comment">
@@ -152,6 +149,7 @@
                                             <% } %>  
                                           <% } %>
                                 </div>
+
                             </form>
                         </div>
                    
