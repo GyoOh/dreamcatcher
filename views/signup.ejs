@@ -12,27 +12,25 @@
 <header id="header">
     <section class="inner">
        <% if(user) {%> 
+       
     <nav id="nav-header">
-        <a href="/home"><p> Foodie Share </p></a>
+        <a class="center"href="/home"> <li> Go home </li></a> 
     </nav>
         <% } %> 
-        <% if(!user) {%> 
+       
     <nav id="nav-header">
-        <p> FoodieShare </p>
+       
     </nav>
    </section>
   </header>
-  
-
 <body>
-    
     <div class="container">
         <div class="box">
             <div class="heading">
                 <img class="logo_burger" src="/icons/logo_burger.svg">
                 <img class="wordmark" src="/icons/wordmark.svg">
             </div>
-
+            <% if(!user) {%> 
             <div class="form-container">
                 <form class="login-form" action="/" method="POST">
                     <div class="field">
@@ -88,8 +86,10 @@
         </div>
         <% } %> 
         <% if (user) {%>  
+            
             Hello <%= user.first_name %> ! 
-            <form class="login-form" action="/authentication/logout" method="POST">   
+            <form class="login-form" action="/authentication/logout" method="POST">  
+                
                   <button class="login-button" type="submit">Log Out</button>
               </form>
           <%  } %> 
