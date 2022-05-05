@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .logo-wrap{
   display: flex;
   justify-content: center;
@@ -106,8 +107,6 @@ left: 30px;
 height: 4px;
 width: 100; */
 
-
-
 }
 
 .bottom-nav{
@@ -119,5 +118,18 @@ width: 100; */
   margin: 0!important;
 }
 
+/* .moreBtn {
+
+position: absolute;
+left: 100%;
+right: -69.57%;
+top: 0%;
+bottom: -43.75%;
+} */
+
+
+/* .displayNone {
+  display: none;
+} */
 
 
