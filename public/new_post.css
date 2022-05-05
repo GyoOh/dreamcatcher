@@ -22,6 +22,7 @@
 
 .input_div {
     padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 
@@ -48,6 +49,14 @@
     width: 20em;
     font: 14px 'Nunito', sans-serif;    
 }
+
+.description {
+    border: 1px solid lightgrey;
+    height: 8em;
+    width: 20em;
+    font: 14px 'Nunito', sans-serif;    
+}
+
 
 .newpost {
     font: 24px 'Nunito', sans-serif;

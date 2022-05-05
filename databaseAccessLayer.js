@@ -79,7 +79,7 @@ async function getCommentsFromComment(comment_id) {
     return comments
 }
 
-async function getuserComments(user_id) {
+async function getCommentByUser(user_id) {
     const query =
         "SELECT comment_id, user_id, post_id, comments, (SELECT COUNT(*) FROM comments WHERE user_id = :user_id) AS `totalcomments` FROM comments WHERE user_id = :user_id";
     const params = { user_id: user_id }
@@ -175,7 +175,7 @@ async function deleteRestaurant(restaurant_id) {
 
 module.exports = {
     getUsers, getUser, addUser, deleteUser, deletePost, deleteRestaurant, deletePostLikes, deleteCommentLikes, deletecomment,
-    addPost, getPosts, addcomment, getPostComments, getuserComments, addPostLikes, addCommentsLikes, getPostByUserId,
+    addPost, getPosts, addcomment, getPostComments, getCommentByUser, addPostLikes, addCommentsLikes, getPostByUserId,
     getLikesPosts, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
     getLikesComments, getCommentLikesUsers
 }

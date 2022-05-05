@@ -25,6 +25,7 @@ app.use("/posts", posts);
 app.get("/", async (req, res) => {
   const email = req.session.whoami
   const user = await dbModel.getUser(email);
+  console.log(user)
   res.render("signup", { user });
 })
 

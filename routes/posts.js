@@ -31,8 +31,8 @@ router.post("/create", upload.single("image"), async (req, res) => {
         let comments = req.body.comments
         let likes = req.body.likes
         await dbModel.getPostByUserId(user.user_id)
-        await dbModel.addcomment(user.user_id, posts[0].post_id, comments)
-        await dbModel.addPostLikes(user.user_id, posts[0].post_id, likes)
+        // await dbModel.addcomment(user.user_id, posts[0].post_id, comments)
+        // await dbModel.addPostLikes(user.user_id, posts[0].post_id, likes)
     }
     res.redirect("/posts")
     connection.release()
@@ -62,13 +62,10 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const post = await dbModel.getPostByUserId((user.user_id))
-    const comment = await dbModel.getPostComments(post[0].post_id)
-    console.log(comment)
     if (!user) {
         return res.redirect("/authentication/403");
     }
     const posts = await dbModel.getPosts(user.user_id)
-    console.log(posts)
     res.render("post", { posts, user });
 })
 
@@ -77,7 +74,7 @@ router.post("/comment", async (req, res) => {
     const email = req.session.whoami
     const user = await dbModel.getUser(email)
     if (user) {
-        let post = await dbModel.getPost(user.user_id)
+        let post = await dbModel.getPostByUserId(user.user_id)
         await dbModel.addcomment(user.user_id, post[0].post_id, comments)
         await dbModel.addPostLikes(user.user_id, post[0].post_id, req.body.likes)
     }
