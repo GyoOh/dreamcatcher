@@ -20,168 +20,165 @@
 
 
 <body>
+    <header>
+        <div class="logo-wrap">
+          <a href="/posts">  <img src='https://ifh.cc/g/9qtKfn.png' border='0'></a>
+        </div>
+    </header>
 
     <section id="container">
-        <header id="header">
-            <section class="inner">
 
-                <h1 class="logo">
-                    <img src='https://ifh.cc/g/9qtKfn.png' border='0'>
-                </h1>
-
-            </section>
-
-        </header>
-
-
-        <section id="main_container">
+        <section id="main_container d-flex flex-column">
             <% if (user) {%>
                 <!-- <p>
                 <h2>Hello <%=user.first_name%>
                 </h2>
                 </p> -->
-
-
+                <!-- Start Loop -->
+                <div class="posts-container">
                 <% posts.forEach(post=> {%>
+                        <div class="contents flex-column">
+                            <header class="top">
+                                <div class="user_container">
+                                    <div class="profile_img">
+                                        <img class="user" src="/icons/smantha.svg">
+                                    </div>
+                                    <div class="user_name">
+                                        <div class="nick_name">
+                                            <%=user.first_name%>
+                                        </div>
+                                        <div class="place">@DreamCatchers Cafe </div>
+                                    </div>
 
-                    <div class="inner">
-                        <div class="contents_box">
-                            <article class="contents">
-                                <header class="top">
-                                    <div class="user_container">
+                                </div>
+                               
+
+                                <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected>more</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select> -->
+
+                                
+
+                                <!-- <a href="/"> <span class="material-symbols-outlined">
+                                    more_vert
+                                </span>
+                                </a> -->
+
+
+                                <!-- <div class="sprite_more_icon" data-name="more">
+                                    <ul class="toggle_box">
+                                        <li><input type="submit" class="follow" value="follow" data-name="follow">
+                                        </li>
+                                        <li>edit</li>
+                                        <li>delete</li>
+                                    </ul>
+                                </div> -->
+
+                            </header>
+
+                            <div class="img_section">
+                                <div class="trans_inner">
+                                    <div>
+                                        <img src=<%=post.image_url%> >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bottom_icons">
+                                <div class="left_icons">
+                                    <div class="heart_btn">
+                                        <img src="/icons/heart.svg" class="favorite">
+                                    </div>
+                                    <div name="likes" class="sprite_bubble_icon message">
+                                        <img src="/icons/message.svg">
+                                    </div>
+                                    <div class="sprite_share_icon" data-name="share">
+                                        <img src="/icons/share.svg">
+                                    </div>
+                                </div>
+                                <div class="right_icon">
+                                    <div class="sprite_bookmark_outline" data-name="bookmark">
+                                        <img src="/icons/save.svg" class="bookmark">
+                                    </div>
+                                </div>
+                            </div>
+                                        <!-- <div class="likes">
+                                    <span id="like-count-39">22,346</span>
+                                    likes
+
+                                </div> -->
+
+                            <div class="comment_container">
+                                <div class="comment" id="comment-list-ajax-post37">
+                                    <div class="comment-detail">
                                         <div class="profile_img">
                                             <img class="user" src="/icons/smantha.svg">
                                         </div>
-                                        <div class="user_name">
-                                            <div class="nick_name">
-                                                <%=user.first_name%>
-                                            </div>
-                                            <div class="place">@DreamCatchers Cafe </div>
+                                        <div class="nick_name">
+                                            <%=user.first_name%>
                                         </div>
+                                        <!-- TODO -->
+                                        <!-- Loop over comments -->
+                                        <!-- Need comments in post object -->
+                                        <div class="comment"> 
 
-                                    </div>
-                                    <td>
-
-                                        <span class="icon is-small">
-                                            <i class="fas fa-trash"></i>
-                                        </span></a>
-                                    </td>
-
-                                    <!-- <a href="/"> <span class="material-symbols-outlined">
-                                        more_vert
-                                    </span>
-                                    </a> -->
-
-
-                                    <!-- <div class="sprite_more_icon" data-name="more">
-                                        <ul class="toggle_box">
-                                            <li><input type="submit" class="follow" value="follow" data-name="follow">
-                                            </li>
-                                            <li>edit</li>
-                                            <li>delete</li>
-                                        </ul>
-                                    </div> -->
-
-                                </header>
-
-                                <div class="img_section">
-                                    <div class="trans_inner">
-                                        <div>
-                                            <img src=<%=post.image_url%> >
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="bottom_icons">
-                                    <div class="left_icons">
-                                        <div class="heart_btn">
-                                            <img src="/icons/heart.svg" class="favorite">
-                                        </div>
-                                        <div class="sprite_bubble_icon message">
-                                            <img src="/icons/message.svg">
-                                        </div>
-                                        <div class="sprite_share_icon" data-name="share">
-                                            <img src="/icons/share.svg">
-                                        </div>
-                                    </div>
-                                    <div class="right_icon">
-                                        <div class="sprite_bookmark_outline" data-name="bookmark">
-                                            <img src="/icons/save.svg" class="bookmark">
-                                        </div>
-                                    </div>
+                                <div class="small_heart">
+                                    <div class="sprite_small_heart_icon_outline"></div>
                                 </div>
-                                            <!-- <div class="likes">
-                                        <span id="like-count-39">22,346</span>
-                                        likes
+                            </div>
+                            <form method="POST" action="/posts" id="commentForm" class="comment_form">
+                                <div class="comment_field">
 
-                                    </div> -->
-
-                                <div class="comment_container">
-                                    <div class="comment" id="comment-list-ajax-post37">
-                                        <div class="comment-detail">
-                                            <div class="profile_img">
-                                                <img class="user" src="/icons/smantha.svg">
-                                            </div>
-                                            <div class="nick_name">
-                                                <%=user.first_name%>
-                                            </div>
-                                            <div class="comment"> <img src=<%=post.image_url%> >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="small_heart">
-                                        <div class="sprite_small_heart_icon_outline"></div>
-                                    </div>
-                                </div>
-                                <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                     <div class="comment_field">
-
-                                        <input class="add_comment" name="comments" type="text"
-                                            placeholder="Add a Comment...">
-                                        <div class="heart_btn">
-                                            <input type="text"> <img src="/icons/heart.svg" class="favorite">
-                                        </div>
-                                        <div class="input_div">
-                                            <input class="upload_btn" type="submit">
-                                        </div>
-                                </form>
-                            </article>
-
-
-                            <input type="number" name="likes" placeholder="likes">
+                                        <input class="add_comment" type="comments" placeholder="Add a Comment...">
+                                        <div class="upload_btn" data-name="comment">POST</div>
+                                    </div>
+                             
+                                    <!-- <div class="input_div">
+                                        <input class="upload_btn" type="submit">
+                                    </div> -->
+                            </form>
                         </div>
-                        <% }) %>
-                            <% } %>
-                                <nav>
+                   
+                 
+                <% }) %>
+                </div>
+                <!-- End Loop -->
+            <% } %> 
+            <!-- End IF -->
+            <nav class="bottom-nav">
 
-                                    <a href="/posts">
-                                        <img src="/icons/home.svg">
-                                    </a>
+                <a class="nav-btn" href="/posts">
+                    <img src="/icons/home.svg">
+                </a>
 
-                                    <a href="#">
-                                        <img src="/icons/explore.svg">
-                                    </a>
+                <a class="nav-btn" href="#">
+                    <img src="/icons/explore.svg">
+                </a>
 
-                                    <a href="/posts/create">
-                                        <img src="/icons/post-new.svg">
-                                    </a>
+                <a class="nav-btn" href="/posts/create">
+                    <img src="/icons/post-new.svg">
+                </a>
 
-                                    <a href="#">
-                                        <img src="/icons/txt.svg">
-                                    </a>
+                <a class="nav-btn" href="#">
+                    <img src="/icons/txt.svg">
+                </a>
 
-                                    <a href="/authentication/login">
-                                        <img src="/icons/profile.svg">
-                                    </a>
+                <a class="nav-btn" href="/authentication/login">
+                    <img src="/icons/profile.svg">
+                </a>
 
-                                    <div class="horizontal-underline"></div>
+                <div class="horizontal-underline"></div>
 
-                                </nav>
-                    </div>
-
-
-
+            </nav>
         </section>
+        <!-- End of Main Container -->
 
     </section>
 
