@@ -26,7 +26,12 @@ async function deleteUser(email) {
 }
 
 async function getPosts() {
-    let query = "select posts.*, comments.comments as comments from posts left join comments on comments.post_id = posts.post_id order by comments.comment_id asc;"
+    let query = `
+    select posts.*, comments.comments as comments 
+    from posts 
+    left join comments on comments.post_id = posts.post_id 
+    order by comments.comment_id asc;
+    `
     const [posts] = await database.query(query);
     return posts;
 }
