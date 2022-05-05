@@ -36,7 +36,7 @@
                 </p> -->
                 <!-- Start Loop -->
                 <div class="posts-container">
-                <% posts.forEach(post=> {%>
+                    <% for (let i = 0; i < posts.length; i++) { %> 
                         <div class="contents flex-column">
                             <header class="top">
                                 <div class="user_container">
@@ -46,7 +46,7 @@
                                     <div class="user_name">
                                         <div class="nick_name">
                                             <% users.forEach(oneUser => {%> 
-                                            <% if(post.user_id === oneUser.user_id) {%> 
+                                            <% if(posts[i].user_id === oneUser.user_id) {%> 
                                             <%= oneUser.first_name%> <%= oneUser.last_name%>
                                                 <% } %> 
                                             <% }) %> 
@@ -78,13 +78,13 @@
                             <div class="img_section">
                                 <div class="trans_inner">
                                     <div>
-                                        <img src=<%=post.image_url%> >
+                                        <img src=<%=posts[i].image_url%>>
                                     </div>
                                 </div>
                             </div>
                             <div class="bottom_icons">
                                 <div class="left_icons">
-                                    <div class="heart_btn">
+                                    <div class="heart_btn" onclick="likePost(<%=posts[i].post_id%>)">
                                         <img src="/icons/heart.svg" class="favorite">
                                     </div>
                                     <div name="likes" class="sprite_bubble_icon message">
@@ -112,10 +112,14 @@
                                             <img class="user" src="/icons/smantha.svg">
                                         </div>
                                         <div class="nick_name">
-                                            <%=user.first_name%> <%=user.last_name%>
+                                            <% users.forEach(oneUser => {%> 
+                                                <% if(posts[i].user_id === oneUser.user_id) {%> 
+                                                <%= oneUser.first_name%> <%= oneUser.last_name%>
+                                                    <% } %> 
+                                                <% }) %> 
                                         </div>
                                         <div>
-                                            <%= post.description %> 
+                                            <%=posts[i].description %> 
                                         </div>
                                         <!-- TODO -->
                                         <!-- Loop over comments -->
@@ -131,17 +135,28 @@
                             <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                 <div class="comment_field">
                                     <div class="comment_field">
-                                        <input id="feed<%=post.post_id%>" class="add_comment" name="comments" type="text" placeholder="Add a Comment...">
-                                    
-                                        <div class="upload_btn" data-name="comment">POST </div>
+                                        <input id="<%=posts[i].post_id%>" class="add_comment" name="comments" type="text" placeholder="Add a Comment...">
+                                       
+                                        <div class="upload_btn" data-name="comment">
+                                            <input type="submit" name="comment">
+                                            <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
+                                        </div>
                                     </div>
-                             
-        
+                                    <div> <% for (let j = 0; j < posts.length; j++) { %>
+                                            <% if(posts[i].post_id == posts[j].post_id) {%>
+                                                <% users.forEach(oneUser => {%> 
+                                                    <% if(posts[j].user_id === oneUser.user_id) {%> 
+                                                        <%= oneUser.first_name%> <%= oneUser.last_name%> <div> <%= posts[j].comments %> </div>
+                                                    <% } %> 
+                                                <% }) %> 
+                                            <% } %>  
+                                          <% } %>
+                                </div>
                             </form>
                         </div>
                    
                  
-                <% }) %>
+                <% } %>
                 </div>
                 <!-- End Loop -->
             <% } %> 
