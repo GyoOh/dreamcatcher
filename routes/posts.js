@@ -31,8 +31,8 @@ router.post("/create", upload.single("image"), async (req, res) => {
         let comments = req.body.comments
         let likes = req.body.likes
         await dbModel.getPostByUserId(user.user_id)
-        await dbModel.addcomment(user.user_id, posts[0].post_id, comments)
-        await dbModel.addPostLikes(user.user_id, posts[0].post_id, likes)
+        // await dbModel.addcomment(user.user_id, posts[0].post_id, comments)
+        // await dbModel.addPostLikes(user.user_id, posts[0].post_id, likes)
     }
     res.redirect("/posts")
     connection.release()
