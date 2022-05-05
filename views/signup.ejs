@@ -8,12 +8,21 @@
     <link rel="stylesheet" href="/login.css">
     <title>FoodieShare</title>
 </head>
+
 <header id="header">
     <section class="inner">
-       
-    </section>
-
-</header>
+       <% if(user) {%> 
+    <nav id="nav-header">
+        <a href="/home"><p> Foodie Share </p></a>
+    </nav>
+        <% } %> 
+        <% if(!user) {%> 
+    <nav id="nav-header">
+        <p> FoodieShare </p>
+    </nav>
+   </section>
+  </header>
+  
 
 <body>
     
@@ -77,6 +86,13 @@
 
             </div>
         </div>
+        <% } %> 
+        <% if (user) {%>  
+            Hello <%= user.first_name %> ! 
+            <form class="login-form" action="/authentication/logout" method="POST">   
+                  <button class="login-button" type="submit">Log Out</button>
+              </form>
+          <%  } %> 
 </body>
 
 </html>
