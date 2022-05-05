@@ -12,25 +12,40 @@ function horizontalIndicator(e) {
   horizontalUnderline.style.top =
     e.target.offsetTop + e.target.offsetHeight + "px";
 }
-const header = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-};
-const body = JSON.stringify({
-  comments
-});
-const request = {
-  method: "POST",
-  headers: header,
-  body: body,
-};
 
-fetch("/posts", request)
-  .then((resp) => resp.json())
-  .then((resp) => {
-    console.log(resp)
-  });
+const comments = document
+  .querySelectorAll(".add_comment")
+comments.forEach(comment => {
+  comment.addEventListener("click", e => {
+    e.preventDefault()
+    const comment = document.querySelector("input.add_comment").value
+    if (e.target.classList.contains("upload_btn")) {
+      const header = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      };
+      const body = JSON.stringify({
+        comment
+      });
+      const request = {
+        method: "GET",
+        headers: header,
+        body: body,
+      };
+      const response = fetch("/posts", request);
+      const jsonResponse = response.then((resp) => resp.json());
+      jsonResponse.then((jResp) => {
+        console.log(jResp)
 
+      });
+    }
+  })
+})
+
+// const comment = document.querySelector("#feed1")
+// comment.addEventListener("click", e => {
+//   console.log(e)
+// })
 
 
 
