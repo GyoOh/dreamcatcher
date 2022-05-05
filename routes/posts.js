@@ -38,11 +38,12 @@ router.post("/create", upload.single("image"), async (req, res) => {
 
 router.get("/create", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
+    const users = await dbModel.getUsers()
     if (!user) {
         return res.redirect("/authentication/403");
     }
     const posts = await dbModel.getPosts()
-    res.render("newpost", { posts, user });
+    res.render("newpost", { posts, user, users });
 })
 router.post("/", async (req, res) => {
     const connection = await database.getConnection()
@@ -56,7 +57,7 @@ router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     const posts = await dbModel.getPosts()
-    let comments = await dbModel.getPostComments()
+    console.log(posts)
 
     if (!user) {
         return res.redirect("/authentication/403");

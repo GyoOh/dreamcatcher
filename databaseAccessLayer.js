@@ -26,8 +26,9 @@ async function deleteUser(email) {
 }
 
 async function getPosts() {
-    const [imgs] = await database.query("SELECT * FROM posts");
-    return imgs;
+    let query = "select posts.*, comments.comments as comments from posts left join comments on comments.post_id = posts.post_id order by comments.comment_id asc;"
+    const [posts] = await database.query(query);
+    return posts;
 }
 
 async function addPost(user_id, description, image_url) {
