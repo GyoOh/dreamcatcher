@@ -1,7 +1,7 @@
 const database = require('./databaseConnection');
 
 async function getUsers() {
-    const [users] = await database.query("SELECT email FROM foodie_user");
+    const [users] = await database.query("SELECT * FROM foodie_user");
     return users;
 }
 
@@ -11,6 +11,13 @@ async function getUser(email) {
     const [user] = await database.query(query, params)
     return user[0]
 }
+async function getUserbyUserId(user_id) {
+    let query = "SELECT * FROM foodie_user WHERE user_id = :user_id";
+    let params = { user_id: user_id }
+    const [user] = await database.query(query, params)
+    return user[0]
+}
+
 async function deleteUser(email) {
     let query = "DELETE FROM foodie_user WHERE email = :email";
     let params = { email: email }
@@ -162,10 +169,12 @@ async function getRestaurant(user_id) {
     const likes = rows[0]
     return likes
 }
+
 async function getRestaurantsName() {
     const [restaurant] = await database.query("SELECT name FROM restaurant");
     return restaurant;
 }
+
 async function deleteRestaurant(restaurant_id) {
     let query = "DELETE FROM restaurant WHERE restaurant_id = :restaurant_id";
     let params = { restaurant_id: restaurant_id }
@@ -177,5 +186,5 @@ module.exports = {
     getUsers, getUser, addUser, deleteUser, deletePost, deleteRestaurant, deletePostLikes, deleteCommentLikes, deletecomment,
     addPost, getPosts, addcomment, getPostComments, getCommentByUser, addPostLikes, addCommentsLikes, getPostByUserId,
     getLikesPosts, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
-    getLikesComments, getCommentLikesUsers
+    getLikesComments, getCommentLikesUsers, getUserbyUserId
 }
