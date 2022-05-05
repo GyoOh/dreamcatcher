@@ -175,7 +175,7 @@ async function deleteRestaurant(restaurant_id) {
 
 module.exports = {
     getUsers, getUser, addUser, deleteUser, deletePost, deleteRestaurant, deletePostLikes, deleteCommentLikes, deletecomment,
-    addPost, getPosts, addcomment, getPostComments, getuserComments, addPostLikes, addCommentsLikes, getPostByUserId,
+    addPost, getPosts, addcomment, getPostComments, getCommentByUser, addPostLikes, addCommentsLikes, getPostByUserId,
     getLikesPosts, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
     getLikesComments, getCommentLikesUsers
 }
