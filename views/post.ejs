@@ -125,8 +125,6 @@
                                             <div class="nick_name">
                                                 <%=user.first_name%>
                                             </div>
-                                            <div class="comment"> <img src=<%=post.image_url%> >
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="small_heart">
@@ -135,7 +133,6 @@
                                 </div>
                                 <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                     <div class="comment_field">
-
                                         <input class="add_comment" name="comments" type="text"
                                             placeholder="Add a Comment...">
                                         <div class="heart_btn">
@@ -146,41 +143,29 @@
                                         </div>
                                 </form>
                             </article>
-
-
                             <input type="number" name="likes" placeholder="likes">
                         </div>
                         <% }) %>
                             <% } %>
                                 <nav>
-
                                     <a href="/posts">
                                         <img src="/icons/home.svg">
                                     </a>
-
                                     <a href="#">
                                         <img src="/icons/explore.svg">
                                     </a>
-
                                     <a href="/posts/create">
                                         <img src="/icons/post-new.svg">
                                     </a>
-
                                     <a href="#">
                                         <img src="/icons/txt.svg">
                                     </a>
-
                                     <a href="/authentication/login">
                                         <img src="/icons/profile.svg">
                                     </a>
-
                                     <div class="horizontal-underline"></div>
-
                                 </nav>
                     </div>
-
-
-
         </section>
 
     </section>
