@@ -113,8 +113,11 @@ width: 100; */
 .bottom-nav{
   display: flex;
   justify-content: space-evenly;
+  background-color: #F5F5F5;
 }
 .nav-btn{
   margin: 0!important;
 }
+
+
 
