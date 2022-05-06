@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/posts.css">
+    <link rel="stylesheet" href="/profile.css">
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
@@ -41,9 +42,16 @@
                         <div class="contents flex-column card">
                             <header class="top">
                                 <div class="user_container">
-                                    <div class="profile_img">
-                                        <img class="user" src="/icons/smantha.svg">
+                                    <!-- <div class="profile_img"> -->
+
+                                    <div class="profile-pic">
+                                        <label class="-label" for="file">
+                                            <input id="file" type="file" onchange="loadFile(event)" />
+                                            <img class="profile" src="/icons/smantha.svg" id="output" width="200" />
+                                        </label>
+                                    
                                     </div>
+                                    <!-- </div> -->
                                     <div class="user_name">
                                         <div class="nick_name">
                                             <% users.forEach(oneUser=> {%>
@@ -106,24 +114,20 @@
                                 <div class="comment" id="comment-list-ajax-post37">
                                     <div class="comment-detail">
                                         <div class="profile_img">
+
                                             <img class="user" src="/icons/smantha.svg">
                                         </div>
                                         <div class="nick_name">
-
                                             <% users.forEach(oneUser => {%> 
                                                 <% if(posts[i].user_id === oneUser.user_id) {%> 
                                                 <%= oneUser.first_name%> <%= oneUser.last_name%>
                                                     <% } %> 
                                                 <% }) %> <br>
                                                 <a href="#" class="total"> see all <%=posts[i].total_comments%> comments</a>
-
-
                                         </div>
 
                                         <div>
                                             <%=posts[i].description %>
-
-                                            
                                         </div>
                                         <!-- TODO -->
                                         <!-- Loop over comments -->
@@ -141,6 +145,7 @@
                                     <div class="comment_field">
                                         <input id="<%=posts[i].post_id%>" class="add_comment" name="comments"
                                             type="text" placeholder="Add a Comment...">
+
                                         <div class="upload_btn" data-name="comment">
                                             <input type="submit" name="comment">
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
@@ -173,6 +178,7 @@
 
                                     </div>
 
+
                                 </div>
 
                             </form>
@@ -184,6 +190,7 @@
                 <!-- End Loop -->
                 <% } %>
                     <!-- End IF -->
+
 
                     <nav class="bottom-nav">
 
@@ -245,6 +252,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+    <script>
+        let loadFile = function (event) {
+            let image = document.getElementById("output");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+
 
 
 </body>

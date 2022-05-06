@@ -1,0 +1,41 @@
+
+
+.profile-pic {
+    color: transparent;
+    transition: all .3s ease;
+    position: relative;
+    transition: all .3s ease;
+}
+
+#file {
+    display: none;
+}
+
+.profile {
+    position: absolute;
+    object-fit: cover;
+    width: 65px;
+    height: 65px;
+    border-radius: 100px;
+    z-index: 0;
+    margin-left: -0.5em;
+}
+
+.-label {
+    cursor: pointer;
+    height: 65px;
+    width: 65px;
+}
+
+
+
+span {
+    display: inline-flex;
+    padding: .2em;
+    height: 2em;
+}
+
+/* body {
+    height: 100vh;
+    background-color: rgb(25, 24, 21);
+} */
