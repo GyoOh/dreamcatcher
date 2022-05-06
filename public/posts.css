@@ -14,6 +14,8 @@
 .posts-container{
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-header{
@@ -132,4 +134,16 @@ bottom: -43.75%;
   display: none;
 } */
 
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: var(--lightest);
+  z-index:10;
+  
+}
 
