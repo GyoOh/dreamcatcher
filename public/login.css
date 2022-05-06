@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
 * {
   margin: 0;
 }
 
-
-#header .inner{
+#header .inner {
   height: 5em;
   /* background-color: red; */
 }
 
 body {
-  font-family: 'nunito', sans-serif;
-  background: url('/icons/background gradient.png');
+  font-family: "nunito", sans-serif;
+  background: url("/icons/background gradient.png");
   box-sizing: border-box;
 }
 
@@ -31,7 +30,6 @@ svg#Layer_1 {
   align-items: center;
   justify-content: space-evenly;
 }
-
 
 .box {
   max-width: 350px;
@@ -88,18 +86,17 @@ img.logo_burger {
 }
 
 /* .login-form ::-moz-placeholder { */
-  /* color: transparent; */
- 
+/* color: transparent; */
+
 /* } */
 .inputbox {
   width: 315px;
   height: 53px;
   border-radius: 10px;
-  border: 1px solid rgba(10, 37, 39, .75);
+  border: 1px solid rgba(10, 37, 39, 0.75);
   opacity: 75%;
-  font: 16px 'Nunito', sans-serif;
+  font: 16px "Nunito", sans-serif;
 }
-
 
 .field {
   margin: 10px 0;
@@ -115,7 +112,7 @@ img.logo_burger {
   height: 53px;
   border-radius: 10px;
   border: 1px solid transparent;
-  background-color: #1A5E63;
+  background-color: #1a5e63;
   color: #fff;
   font-weight: 500;
   font-size: 16px;
@@ -128,12 +125,11 @@ img.logo_burger {
   /* justify-content: space-between; */
   /* align-items: left; */
   color: white;
-  font: 16px 'Nunito', sans-serif;
+  font: 16px "Nunito", sans-serif;
   margin-top: 10px;
   opacity: 80%;
   position: relative;
   left: -80px;
-
 }
 
 a {
@@ -147,7 +143,7 @@ a {
   height: 1px;
   width: 40%;
   color: white;
-  font: bold 16px 'Nunito', sans-serif;
+  font: bold 16px "Nunito", sans-serif;
 }
 
 .buttons {
@@ -161,7 +157,7 @@ a {
   height: 53px;
   border-radius: 10px;
   border: 1px solid transparent;
-  background-color: #1A5E63;
+  background-color: #1a5e63;
   color: #fff;
   font-weight: 500;
   font-size: 16px;
@@ -170,7 +166,7 @@ a {
 
 .welcome {
   color: white;
-  font: bold 24px 'Nunito', sans-serif;
+  font: bold 24px "Nunito", sans-serif;
 }
 
 .reset {
@@ -196,3 +192,4 @@ a {
   width: 100%;
   margin-left: -3em;
 }
+

@@ -11,6 +11,7 @@
 
 <header id="header">
     <section class="inner">
+
         <h1 class="logo-signup">
         <% if(user) { %> 
         <a href="/home"><img class="logoImg" src='/icons/wordmark.svg' border='0'></a> 
@@ -20,10 +21,7 @@
       </h1>
     </section>
   </header>
-  
-
 <body>
-    
     <div class="container">
         <div class="box">
             <div class="heading">
@@ -87,9 +85,11 @@
         </div>
         <% } %> 
         <% if (user) {%>  
+
             <div class="welcome"> Hello <%= user.first_name %> ! </div>
             <form class="login-form" action="/authentication/logout" method="POST">   
                   <button class="logout" type="submit">Log Out</button>
+                  
               </form>
           <%  } %> 
 </body>
