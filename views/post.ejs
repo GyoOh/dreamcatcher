@@ -140,15 +140,19 @@
                                     </div>
 
 
+
                                     <div class="profile_img">
                                         <img class="user" src="/icons/profile pic.svg">
                                     </div>
                                    
-                                     <% for (let j = 0; j < posts.length; j++) { %>
-                                            <% if(posts[i].post_id == posts[j].post_id) {%>
+                                     
+
+                                     <% for (let j = 0; j < commentId.length; j++) { %>
+                                            <% if(posts[i].post_id == commentId[j].post_id) {%>
+
                                                 <% users.forEach(oneUser => {%> 
-                                                    <% if(posts[j].user_id === oneUser.user_id) {%> 
-                                                        <%= oneUser.first_name%> <%= oneUser.last_name%> <div> <%= posts[j].comments %> </div>
+                                                    <% if(commentId[j].user_id === oneUser.user_id) {%> 
+                                                        <%= oneUser.first_name%> <%= oneUser.last_name%> <div> <%= commentId[j].comments %> </div>
                                                     <% } %> 
                                                 <% }) %> 
                                             <% } %>  
