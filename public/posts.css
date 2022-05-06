@@ -128,9 +128,9 @@ top: 0%;
 bottom: -43.75%;
 } */
 
-/* .displayNone {
+.displayNone {
   display: none;
-} */
+}
 
 .card {
   display: flex;
@@ -156,6 +156,9 @@ height: 375px;
 
 .commentName {
   display: flex;
-  color: #1A5E63; 
+  color: #1a5e63;
 }
-
+.timestamp {
+  list-style: none;
+  font-size: 14px;
+}

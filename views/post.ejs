@@ -154,16 +154,17 @@
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
+                                    <li class="timestamp"><%=posts[i].timestamp%></li>
+                                    <br>
 
                                   
                                     <div class="commentDiv">
                                      <% for (let j = 0; j < commentId.length; j++) { %>
                                             <% if(posts[i].post_id == commentId[j].post_id) {%>
                                                 <div>
-                                                    <div class="profile_img">
+                                                    <div class="profile-img">
                                                         <img class="user" src="/icons/small smantha.svg">
                                                     </div>
-
                                                     <% users.forEach(oneUser=> {%>
                                                         <% if(commentId[j].user_id===oneUser.user_id) {%>
                                                             <div class="commentName">
@@ -172,6 +173,7 @@
                                                             </div>
                                                             <div class="commentId">
                                                                 <%= commentId[j].comments %>
+                                                                
                                                             </div>
                                                             <% } %>
                                                                 <% }) %>
@@ -185,9 +187,10 @@
                                 </div>
 
                             </form>
+                            
                         </div>
 
-
+                        
                         <% } %>
                 </div>
                 <!-- End Loop -->

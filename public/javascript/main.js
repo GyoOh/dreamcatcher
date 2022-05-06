@@ -57,8 +57,9 @@ let currentItem = 0;
 allComments.addEventListener("click", makeTotalComment)
 function makeTotalComment(e) {
   e.preventDefault()
-  const current = e.target
-  const isReadMore = current.className.includes('commentDiv')
+  console.log(e)
+
+  commentDiv[0].classList.remove('displayNone')
 }
 
 function likePost(post_id) {
