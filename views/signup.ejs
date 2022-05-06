@@ -11,23 +11,21 @@
 
 <header id="header">
     <section class="inner">
-       <% if(user) {%> 
-        
-    <nav id="nav-header">
-        
-    </nav>
-        <% } %> 
-       
-    <nav id="nav-header">
-       
-    </nav>
-   </section>
+
+        <h1 class="logo-signup">
+        <% if(user) { %> 
+        <a href="/home"><img class="logoImg" src='/icons/wordmark.svg' border='0'></a> 
+        <% } else { %>
+            <img class="wordlogo" src='/icons/wordmark.svg' border='0'>
+        <% } %>
+      </h1>
+    </section>
   </header>
 <body>
     <div class="container">
         <div class="box">
             <div class="heading">
-                <a href="/posts"> <img class="logo_burger" src="/icons/logo_burger.svg"></a>
+                <img class="logo_burger" src="/icons/logo_burger.svg">
                 <img class="wordmark" src="/icons/wordmark.svg">
             </div>
             <% if(!user) {%> 
@@ -38,7 +36,6 @@
                     </div>
                     <div class="field">
                         <input class="inputbox" name="last_name" placeholder="Last name">
-
                     </div>
                     <div class="field">
                         <input class="inputbox" name="email" placeholder="Email">
@@ -49,27 +46,18 @@
                     <button class="login-button" type="submit">Sign Up</button>
                 </form>
             </div>
-
-
-
-
             <div class="separator">
-
                 <div class="loginText">Already singed Up?</div>
-
                 <a href="/authentication/login">Log In</a>
                 
                 
             </div>
-
-            <br>
+            <div class="box">
             <div class="buttons">
                 <br>
-
                 <form action="#" method="get">
                     <img src="/icons/facebook.svg">
                 </form>
-
                 <form
                     action="#"
                     method="get">
@@ -80,19 +68,15 @@
                     <img src="/icons/apple.svg">
                     <br>
                 </form>
-
-
             </div>
         </div>
         <% } %> 
         <% if (user) {%>  
-            
-            Hello <%= user.first_name %> ! 
-            <form class="login-form" action="/authentication/logout" method="POST">  
-                
-                  <button class="login-button" type="submit">Log Out</button>
+            <div class="welcome"> Hello <%= user.first_name %> ! </div>
+            <form class="login-form" action="/authentication/logout" method="POST">   
+                  <button class="logout" type="submit">Log Out</button>
+                  
               </form>
           <%  } %> 
 </body>
-
 </html>

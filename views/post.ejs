@@ -34,10 +34,11 @@
                 <h2>Hello <%=user.first_name%>
                 </h2>
                 </p> -->
-                <!-- Start Loop -->
+                <!-- Start Loop --> 
+               
                 <div class="posts-container">
                     <% for (let i = 0; i < posts.length; i++) { %> 
-                        <div class="contents flex-column">
+                        <div class="contents flex-column card">
                             <header class="top">
                                 <div class="user_container">
                                     <div class="profile_img">
@@ -54,26 +55,21 @@
                                         <div class="place">@DreamCatchers Cafe </div>
                                     </div>
                                 </div>
-                               
-                                <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>more</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select> -->
-
-                                <!-- <a href="/"> <span class="material-symbols-outlined">
-                                    more_vert
-                                </span>
-                                </a> -->
-                                <!-- <div class="sprite_more_icon" data-name="more">
-                                    <ul class="toggle_box">
-                                        <li><input type="submit" class="follow" value="follow" data-name="follow">
-                                        </li>
-                                        <li>edit</li>
-                                        <li>delete</li>
-                                    </ul>
-                                </div> -->
+         
+                                <form class="newPicture formNoDefault displayNone">
+                                    <!-- <a href="#">  -->
+                                 <div class = "btn">     
+                                    <div class="moreBtn">
+                                        <img class="user" src="/icons/png.png">
+                                    </div>
+                                    
+                                        <!-- <div>
+                                        <button class="editBtn">edit</button>
+                                        <button class="deleteBtn">delete</button>
+                                        </div> -->
+                                    </div>
+                                </form>
+             
                             </header>
                             <div class="img_section">
                                 <div class="trans_inner">
@@ -118,6 +114,7 @@
                                                     <% } %> 
                                                 <% }) %> 
                                         </div>
+
                                         <div>
                                             <%=posts[i].description %> 
                                         </div>
@@ -135,6 +132,7 @@
                             <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                 <div class="comment_field">
                                     <div class="comment_field">
+
                                         <input id="<%=posts[i].post_id%>" class="add_comment" name="comments" type="text" placeholder="Add a Comment...">
                                        
                                         <div class="upload_btn" data-name="comment">
@@ -142,7 +140,7 @@
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
-                                    <div> <% for (let j = 0; j < posts.length; j++) { %>
+                                     <% for (let j = 0; j < posts.length; j++) { %>
                                             <% if(posts[i].post_id == posts[j].post_id) {%>
                                                 <% users.forEach(oneUser => {%> 
                                                     <% if(posts[j].user_id === oneUser.user_id) {%> 
@@ -152,15 +150,17 @@
                                             <% } %>  
                                           <% } %>
                                 </div>
+
                             </form>
                         </div>
                    
-                 
+                       
                 <% } %>
                 </div>
                 <!-- End Loop -->
             <% } %> 
             <!-- End IF -->
+        
             <nav class="bottom-nav">
 
                 <a class="nav-btn" href="/posts">
