@@ -48,9 +48,10 @@ router.get("/create", async (req, res) => {
 router.post("/", async (req, res) => {
     const connection = await database.getConnection()
     const user = await dbModel.getUser(req.session.whoami)
-    console.log(req.body)
-    const comments = req.body.comments
-    const comment = await dbModel.addcomment(user.user_id, req.body.post_id, comments)
+    if (user) {
+        const comments = req.body.comments
+        const comment = await dbModel.addcomment(user.user_id, req.body.post_id, comments)
+    }
     res.redirect("/posts")
     connection.release()
 })
@@ -58,11 +59,14 @@ router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     const posts = await dbModel.getPosts()
-
+    const comments = await dbModel.getpostsWithComments()
+    const commentId = await dbModel.getComments()
+    console.log(commentId)
     if (!user) {
         return res.redirect("/authentication/403");
     }
-    res.render("post", { user, users, posts });
+    res.render("post", { user, users, posts, comments, commentId });
+
 })
 
 router.post("/comment", async (req, res) => {
