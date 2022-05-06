@@ -131,17 +131,25 @@
                             </div>
                             <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                 <div class="comment_field">
-                                    <div class="comment_field">
-
-                                        <input id="<%=posts[i].post_id%>" class="add_comment" name="comments" type="text" placeholder="Add a Comment...">
-                                       
+                                    <div class="comment_field"> 
+                                        <input id="<%=posts[i].post_id%>" class="add_comment" name="comments" type="text" placeholder="Add a Comment..."> 
                                         <div class="upload_btn" data-name="comment">
                                             <input type="submit" name="comment">
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
+
+
+
+                                    <div class="profile_img">
+                                        <img class="user" src="/icons/profile pic.svg">
+                                    </div>
+                                   
+                                     
+
                                      <% for (let j = 0; j < commentId.length; j++) { %>
                                             <% if(posts[i].post_id == commentId[j].post_id) {%>
+
                                                 <% users.forEach(oneUser => {%> 
                                                     <% if(commentId[j].user_id === oneUser.user_id) {%> 
                                                         <%= oneUser.first_name%> <%= oneUser.last_name%> <div> <%= commentId[j].comments %> </div>
