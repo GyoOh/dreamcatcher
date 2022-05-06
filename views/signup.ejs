@@ -11,16 +11,14 @@
 
 <header id="header">
     <section class="inner">
-       <% if(user) {%> 
-    <nav id="nav-header">
-        <a href="/home"><p> Foodie Share </p></a>
-    </nav>
-        <% } %> 
-        <% if(!user) {%> 
-    <nav id="nav-header">
-        <p> FoodieShare </p>
-    </nav>
-   </section>
+        <h1 class="logo-signup">
+        <% if(user) { %> 
+        <a href="/home"><img class="logoImg" src='/icons/wordmark.svg' border='0'></a> 
+        <% } else { %>
+            <img class="wordlogo" src='/icons/wordmark.svg' border='0'>
+        <% } %>
+      </h1>
+    </section>
   </header>
   
 
@@ -32,7 +30,7 @@
                 <img class="logo_burger" src="/icons/logo_burger.svg">
                 <img class="wordmark" src="/icons/wordmark.svg">
             </div>
-
+            <% if(!user) {%> 
             <div class="form-container">
                 <form class="login-form" action="/" method="POST">
                     <div class="field">
@@ -46,7 +44,7 @@
                         <input class="inputbox" name="email" placeholder="Email">
                     </div>
                     <div class="field">
-                        <input class="inputbox" type="password" name="Password" placeholder="password">
+                        <input class="inputbox" type="password" name="password" placeholder="Password">
                     </div>
                     <button class="login-button" type="submit">Sign Up</button>
                 </form>
@@ -64,7 +62,8 @@
                 
             </div>
 
-            <br>
+            <div class="box">
+
             <div class="buttons">
                 <br>
 
@@ -88,9 +87,9 @@
         </div>
         <% } %> 
         <% if (user) {%>  
-            Hello <%= user.first_name %> ! 
+            <div class="welcome"> Hello <%= user.first_name %> ! </div>
             <form class="login-form" action="/authentication/logout" method="POST">   
-                  <button class="login-button" type="submit">Log Out</button>
+                  <button class="logout" type="submit">Log Out</button>
               </form>
           <%  } %> 
 </body>

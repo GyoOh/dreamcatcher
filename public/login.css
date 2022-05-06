@@ -51,7 +51,7 @@ svg#Layer_1 {
 .container {
   /* background-color: #00BFB2; */
   max-width: 600px;
-  height: 100vh;
+  /* height: 100vh; */
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -185,4 +185,14 @@ a {
   top: 1.4em;
   opacity: 100%;
   left: -5em;
+}
+
+.logo-signup {
+  margin-top: 20px;
+  margin-left: 7.1em;
+}
+
+.wordlogo {
+  width: 100%;
+  margin-left: -3em;
 }
