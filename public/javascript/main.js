@@ -42,10 +42,6 @@ comments.forEach(comment => {
   })
 })
 
-// const comment = document.querySelector("#feed1")
-// comment.addEventListener("click", e => {
-//   console.log(e)
-// })
 
 
 
@@ -55,6 +51,15 @@ comments.forEach(comment => {
 
 
 
+const allComments = document.querySelector(".total")
+const commentDiv = document.querySelectorAll(".commentDiv")
+let currentItem = 0;
+allComments.addEventListener("click", makeTotalComment)
+function makeTotalComment(e) {
+  e.preventDefault()
+  const current = e.target
+  const isReadMore = current.className.includes('commentDiv')
+}
 
 
 function likePost(post_id) {

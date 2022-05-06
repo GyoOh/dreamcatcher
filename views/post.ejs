@@ -112,11 +112,13 @@
                                                 <% if(posts[i].user_id === oneUser.user_id) {%> 
                                                 <%= oneUser.first_name%> <%= oneUser.last_name%>
                                                     <% } %> 
-                                                <% }) %> 
+                                                <% }) %> <br>
+                                                <a href="#" class="total"> see all <%=posts[i].total_comments%> comments</a>
                                         </div>
 
                                         <div>
-                                            <%=posts[i].description %> 
+                                            <%=posts[i].description %>
+                                            
                                         </div>
                                         <!-- TODO -->
                                         <!-- Loop over comments -->
@@ -140,15 +142,18 @@
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
+                                    <div class="commentDiv">
                                      <% for (let j = 0; j < commentId.length; j++) { %>
                                             <% if(posts[i].post_id == commentId[j].post_id) {%>
+                                                 
                                                 <% users.forEach(oneUser => {%> 
                                                     <% if(commentId[j].user_id === oneUser.user_id) {%> 
-                                                        <%= oneUser.first_name%> <%= oneUser.last_name%> <div> <%= commentId[j].comments %> </div>
-                                                    <% } %> 
+                                                        <div class="load-more"> <%= oneUser.first_name%> <%= oneUser.last_name%> &nbsp;<%= commentId[j].comments %> </div>
+                                                    <% } %>
                                                 <% }) %> 
                                             <% } %>  
                                           <% } %>
+                                        </div>
                                 </div>
 
                             </form>
