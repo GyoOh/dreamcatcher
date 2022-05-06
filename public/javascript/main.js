@@ -61,7 +61,6 @@ function makeTotalComment(e) {
   const isReadMore = current.className.includes('commentDiv')
 }
 
-
 function likePost(post_id) {
   console.log("like post ", post_id)
 }

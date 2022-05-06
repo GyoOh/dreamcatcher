@@ -146,3 +146,16 @@ bottom: -43.75%;
 .total {
   list-style: none;
 }
+
+/* .card{
+  position: absolute;
+width: 375px;
+height: 375px;
+
+} */
+
+.commentName {
+  display: flex;
+  color: #1A5E63; 
+}
+

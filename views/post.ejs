@@ -22,7 +22,7 @@
 <body>
     <header>
         <div class="logo-wrap">
-          <a href="/posts">  <img src='https://ifh.cc/g/9qtKfn.png' border='0'></a>
+            <a href="/posts"> <img src='https://ifh.cc/g/9qtKfn.png' border='0'></a>
         </div>
     </header>
 
@@ -34,10 +34,10 @@
                 <h2>Hello <%=user.first_name%>
                 </h2>
                 </p> -->
-                <!-- Start Loop --> 
-               
+                <!-- Start Loop -->
+
                 <div class="posts-container">
-                    <% for (let i = 0; i < posts.length; i++) { %> 
+                    <% for (let i=0; i < posts.length; i++) { %>
                         <div class="contents flex-column card">
                             <header class="top">
                                 <div class="user_container">
@@ -46,30 +46,31 @@
                                     </div>
                                     <div class="user_name">
                                         <div class="nick_name">
-                                            <% users.forEach(oneUser => {%> 
-                                            <% if(posts[i].user_id === oneUser.user_id) {%> 
-                                            <%= oneUser.first_name%> <%= oneUser.last_name%>
-                                                <% } %> 
-                                            <% }) %> 
+                                            <% users.forEach(oneUser=> {%>
+                                                <% if(posts[i].user_id===oneUser.user_id) {%>
+                                                    <%= oneUser.first_name%>
+                                                        <%= oneUser.last_name%>
+                                                            <% } %>
+                                                                <% }) %>
                                         </div>
                                         <div class="place">@DreamCatchers Cafe </div>
                                     </div>
                                 </div>
-         
+
                                 <form class="newPicture formNoDefault displayNone">
                                     <!-- <a href="#">  -->
-                                 <div class = "btn">     
-                                    <div class="moreBtn">
-                                        <img class="user" src="/icons/png.png">
-                                    </div>
-                                    
+                                    <div class="btn">
+                                        <div class="moreBtn">
+                                            <img class="user" src="/icons/png.png">
+                                        </div>
+
                                         <!-- <div>
                                         <button class="editBtn">edit</button>
                                         <button class="deleteBtn">delete</button>
                                         </div> -->
                                     </div>
                                 </form>
-             
+
                             </header>
                             <div class="img_section">
                                 <div class="trans_inner">
@@ -96,11 +97,11 @@
                                     </div>
                                 </div>
                             </div>
-                                        <!-- <div class="likes">
+                            <!-- <div class="likes">
                                     <span id="like-count-39">22,346</span>
                                     likes
                                 </div> -->
-                                
+
                             <div class="comment_container">
                                 <div class="comment" id="comment-list-ajax-post37">
                                     <div class="comment-detail">
@@ -108,22 +109,26 @@
                                             <img class="user" src="/icons/smantha.svg">
                                         </div>
                                         <div class="nick_name">
+
                                             <% users.forEach(oneUser => {%> 
                                                 <% if(posts[i].user_id === oneUser.user_id) {%> 
                                                 <%= oneUser.first_name%> <%= oneUser.last_name%>
                                                     <% } %> 
                                                 <% }) %> <br>
                                                 <a href="#" class="total"> see all <%=posts[i].total_comments%> comments</a>
+
+
                                         </div>
 
                                         <div>
                                             <%=posts[i].description %>
+
                                             
                                         </div>
                                         <!-- TODO -->
                                         <!-- Loop over comments -->
                                         <!-- Need comments in post object -->
-                                        <div class="comment"> 
+                                        <div class="comment">
                                         </div>
                                     </div>
                                 </div>
@@ -134,63 +139,77 @@
                             <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                 <div class="comment_field">
                                     <div class="comment_field">
-
-                                        <input id="<%=posts[i].post_id%>" class="add_comment" name="comments" type="text" placeholder="Add a Comment...">
-                                       
+                                        <input id="<%=posts[i].post_id%>" class="add_comment" name="comments"
+                                            type="text" placeholder="Add a Comment...">
                                         <div class="upload_btn" data-name="comment">
                                             <input type="submit" name="comment">
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
+
+                                  
                                     <div class="commentDiv">
                                      <% for (let j = 0; j < commentId.length; j++) { %>
                                             <% if(posts[i].post_id == commentId[j].post_id) {%>
-                                                 
-                                                <% users.forEach(oneUser => {%> 
-                                                    <% if(commentId[j].user_id === oneUser.user_id) {%> 
-                                                        <div class="load-more"> <%= oneUser.first_name%> <%= oneUser.last_name%> &nbsp;<%= commentId[j].comments %> </div>
+                                                <div>
+                                                    <div class="profile_img">
+                                                        <img class="user" src="/icons/small smantha.svg">
+                                                    </div>
+
+                                                    <% users.forEach(oneUser=> {%>
+                                                        <% if(commentId[j].user_id===oneUser.user_id) {%>
+                                                            <div class="commentName">
+                                                                <%= oneUser.first_name%>
+                                                                    <%= oneUser.last_name%>
+                                                            </div>
+                                                            <div class="commentId">
+                                                                <%= commentId[j].comments %>
+                                                            </div>
+                                                            <% } %>
+                                                                <% }) %>
+                                                </div>
+                                                <% } %>
                                                     <% } %>
-                                                <% }) %> 
-                                            <% } %>  
-                                          <% } %>
-                                        </div>
+
+                                    </div>
+
                                 </div>
 
                             </form>
                         </div>
-                   
-                       
-                <% } %>
+
+
+                        <% } %>
                 </div>
                 <!-- End Loop -->
-            <% } %> 
-            <!-- End IF -->
-        
-            <nav class="bottom-nav">
+                <% } %>
+                    <!-- End IF -->
 
-                <a class="nav-btn" href="/posts">
-                    <img src="/icons/home.svg">
-                </a>
+                    <nav class="bottom-nav">
 
-                <a class="nav-btn" href="#">
-                    <img src="/icons/explore.svg">
-                </a>
+                        <a class="nav-btn" href="/posts">
+                            <img src="/icons/home.svg">
+                        </a>
 
-                <a class="nav-btn" href="/posts/create">
-                    <img src="/icons/post-new.svg">
-                </a>
+                        <a class="nav-btn" href="#">
+                            <img src="/icons/explore.svg">
+                        </a>
 
-                <a class="nav-btn" href="#">
-                    <img src="/icons/txt.svg">
-                </a>
+                        <a class="nav-btn" href="/posts/create">
+                            <img src="/icons/post-new.svg">
+                        </a>
 
-                <a class="nav-btn" href="/authentication/login">
-                    <img src="/icons/profile.svg">
-                </a>
+                        <a class="nav-btn" href="#">
+                            <img src="/icons/txt.svg">
+                        </a>
 
-                <div class="horizontal-underline"></div>
+                        <a class="nav-btn" href="/authentication/login">
+                            <img src="/icons/profile.svg">
+                        </a>
 
-            </nav>
+                        <div class="horizontal-underline"></div>
+
+                    </nav>
         </section>
         <!-- End of Main Container -->
 
