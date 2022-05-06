@@ -128,9 +128,9 @@ top: 0%;
 bottom: -43.75%;
 } */
 
-.displayNone {
+/* .displayNone {
   display: none;
-}
+} */
 
 .card {
   display: flex;
