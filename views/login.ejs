@@ -8,18 +8,20 @@
     <link rel="stylesheet" href="/login.css">
     <title>FoodieShare</title>
 </head>
+
 <header id="header">
     <section class="inner">
-        <h1 class="logo-signup">
-            <% if(user) { %> 
-            <a href="/home"><img class="logoImg" src='/icons/wordmark.svg' border='0'></a> 
-            <% } else { %>
-                <img class="wordlogo" src='/icons/wordmark.svg' border='0'>
-            <% } %>
-          </h1>
-    </section>
 
-</header>
+        <h1 class="logo-signup">
+        <% if(user) { %> 
+        <a href="/posts"><img class="logoImg" src='/icons/wordmark.svg' border='0'></a> 
+        <% } else { %>
+            <img class="wordlogo" src='/icons/wordmark.svg' border='0'>
+        <% } %>
+      </h1>
+    </section>
+  </header>
+
 
 <body>
     
@@ -29,8 +31,9 @@
             
             <div class="heading">
                 
-                <a href="/posts"><img class="logo_burger" src="/icons/logo_burger.svg"></a>
+                <% if(user) {%>  <a href="/posts"><% } %><img class="logo_burger" src="/icons/logo_burger.svg"></a>
                 <img class="wordmark" src="/icons/wordmark.svg">
+                
             </div>
     <% if(!user) {%> 
     <div class="form-container">
