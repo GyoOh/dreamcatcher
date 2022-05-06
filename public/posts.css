@@ -154,3 +154,9 @@ width: 375px;
 height: 375px;
 
 } */
+
+.commentName {
+  display: flex;
+  color: #1A5E63;
+  
+}
