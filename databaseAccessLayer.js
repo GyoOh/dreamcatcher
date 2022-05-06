@@ -27,13 +27,34 @@ async function deleteUser(email) {
 
 async function getPosts() {
     let query = `
-    select posts.*, comments.comments as comments 
-    from posts 
+    select * from posts;
+    `
+    const [posts] = await database.query(query);
+    return posts;
+}
+async function getpostsWithComments() {
+    const query = `
+    select posts.*, comments.comments as comments from posts 
     left join comments on comments.post_id = posts.post_id 
     order by comments.comment_id asc;
     `
     const [posts] = await database.query(query);
     return posts;
+}
+async function getComments() {
+    let query = `
+    select * from comments;
+    `
+    const [comments] = await database.query(query);
+    return comments;
+}
+async function getCommentsByPost(post_id) {
+    let query = `
+    select * from comments where post_id = :post_id
+    `
+    let params = { post_id: post_id }
+    const [comments] = await database.query(query, params);
+    return comments;
 }
 
 async function addPost(user_id, description, image_url) {
@@ -129,6 +150,13 @@ async function getPostByUserId(user_id) {
     const likes = rows
     return likes
 }
+async function getpostComments() {
+    const query =
+        "select posts.*, json_arrayagg(comments.comments) as comments from posts left join comments on comments.post_id = posts.post_id group by posts.post_id order by comments.post_id asc;"
+    const [rows] = await database.query(query)
+    const likes = rows
+    return likes
+}
 async function getCommentLikesUsers(user_id) {
     const query =
         "SELECT user_id, comment_id, (SELECT COUNT(*) FROM comment_likes WHERE user_id = :user_id) AS `totallikes` FROM comment_likes WHERE user_id = :user_id";
@@ -185,7 +213,7 @@ async function deleteRestaurant(restaurant_id) {
 
 module.exports = {
     getUsers, getUser, addUser, deleteUser, deletePost, deleteRestaurant, deletePostLikes, deleteCommentLikes, deletecomment,
-    addPost, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getPostByUserId,
+    addPost, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getPostByUserId, getpostComments,
     getLikesPosts, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
-    getLikesComments, getCommentLikesUsers, getUserbyUserId
+    getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, getpostsWithComments
 }
