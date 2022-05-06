@@ -34,10 +34,11 @@
                 <h2>Hello <%=user.first_name%>
                 </h2>
                 </p> -->
-                <!-- Start Loop -->
+                <!-- Start Loop --> 
+               
                 <div class="posts-container">
                     <% for (let i = 0; i < posts.length; i++) { %> 
-                        <div class="contents flex-column">
+                        <div class="contents flex-column card">
                             <header class="top">
                                 <div class="user_container">
                                     <div class="profile_img">
@@ -68,7 +69,7 @@
                                         </div> -->
                                     </div>
                                 </form>
-           
+             
                             </header>
                             <div class="img_section">
                                 <div class="trans_inner">
@@ -139,7 +140,7 @@
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
-                                    <div> <% for (let j = 0; j < posts.length; j++) { %>
+                                     <% for (let j = 0; j < posts.length; j++) { %>
                                             <% if(posts[i].post_id == posts[j].post_id) {%>
                                                 <% users.forEach(oneUser => {%> 
                                                     <% if(posts[j].user_id === oneUser.user_id) {%> 
@@ -153,12 +154,13 @@
                             </form>
                         </div>
                    
-                 
+                       
                 <% } %>
                 </div>
                 <!-- End Loop -->
             <% } %> 
             <!-- End IF -->
+        
             <nav class="bottom-nav">
 
                 <a class="nav-btn" href="/posts">
