@@ -134,6 +134,7 @@ img.logo_burger {
 
 a {
   position: relative;
+  left: -80px;
   text-decoration: none;
   color: white;
 }
