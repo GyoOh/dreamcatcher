@@ -144,6 +144,13 @@ bottom: -43.75%;
   border-radius: 4px;
   background-color: var(--lightest);
   z-index:10;
+
   
 }
 
+/* .card{
+  position: absolute;
+width: 375px;
+height: 375px;
+
+} */
