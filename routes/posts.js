@@ -61,7 +61,7 @@ router.get("/", async (req, res) => {
     const posts = await dbModel.getPosts()
     const comments = await dbModel.getpostsWithComments()
     const commentId = await dbModel.getComments()
-    console.log(commentId)
+    console.log(posts)
     if (!user) {
         return res.redirect("/authentication/403");
     }
