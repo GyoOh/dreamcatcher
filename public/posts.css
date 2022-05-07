@@ -137,6 +137,7 @@ bottom: -43.75%;
   flex-direction: column;
   position: relative;
   margin: 15px;
+  width: 100%;
   border: 1px solid black;
   border-radius: 4px;
   background-color: var(--lightest);
