@@ -44,10 +44,23 @@
 
                                     <div class="profile-pic">
                                         <label class="-label" for="file">
-                                            <input id="file" type="file" onchange="loadFile(event)" />
-                                            <img class="profile" src="/icons/smantha.svg" id="output" width="200" />
+                                            <input name="file" type="file" onchange="loadFile(event)" data-id="<%=i%>"
+                                                hidden />
+                                            <img class="profile" src="/icons/smantha.svg" id="output" width="200"
+                                                onclick="selectNewImage(event)" />
+                                            <script>
+                                                function selectNewImage(event) {
+                                                    event.target.closest("label").querySelector("input").click();
+                                                }
+
+                                                function loadFile(event) {
+                                                    console.log("this", event.target)
+                                                    let image = event.target.closest("label").querySelector("img");
+                                                    console.log(image)
+                                                    image.src = URL.createObjectURL(event.target.files[0]);
+                                                };
+                                            </script>
                                         </label>
-                                    
                                     </div>
                                     <!-- </div> -->
                                     <div class="user_name">
@@ -63,14 +76,15 @@
                                         <div class="place">@DreamCatchers Cafe</div>
                                     </div>
                                 </div>
-                                    <section class="moreClick">
-                                            <img id="user" src="/icons/png.png">
-                                        <div class="options">
-                                                <button class="post-menu-btn" id="editBtn">Edit</button>
-                                                <button class="post-menu-btn" id="<%= posts[i].post_id %>" onclick="handleDeletePost(event)" id="deleteBtn">Delete</button>         
-                                                <button class="post-menu-btn" id="cancelBtn">Cancel</button>
-                                        </div>     
-                                    </section>
+                                <section class="moreClick">
+                                    <img id="user" src="/icons/png.png">
+                                    <div class="options">
+                                        <button class="post-menu-btn" id="editBtn">Edit</button>
+                                        <button class="post-menu-btn" id="<%= posts[i].post_id %>"
+                                            onclick="handleDeletePost(event)" id="deleteBtn">Delete</button>
+                                        <button class="post-menu-btn" id="cancelBtn">Cancel</button>
+                                    </div>
+                                </section>
 
                             </header>
                             <div class="img_section">
@@ -112,11 +126,12 @@
                                         <div class="d-flex flex-column">
                                             <div class="d-flex">
                                                 <div class="nick_name">
-                                                    <% users.forEach(oneUser => {%> 
-                                                        <% if(posts[i].user_id === oneUser.user_id) {%> 
-                                                        <%= oneUser.first_name%> <%= oneUser.last_name%>
-                                                            <% } %> 
-                                                        <% }) %> <br>
+                                                    <% users.forEach(oneUser=> {%>
+                                                        <% if(posts[i].user_id===oneUser.user_id) {%>
+                                                            <%= oneUser.first_name%>
+                                                                <%= oneUser.last_name%>
+                                                                    <% } %>
+                                                                        <% }) %> <br>
                                                 </div>
                                                 <div>
                                                     <%=posts[i].description %>
@@ -136,7 +151,9 @@
                                 </div>
                             </div>
 
-                            <div class="timestamp"><%=posts[i].timestamp%></div>
+                            <div class="timestamp">
+                                <%=posts[i].timestamp%>
+                            </div>
 
                             <form method="POST" action="/posts" id="commentForm" class="comment_form">
                                 <div class="d-flex flex-column ps-4">
@@ -149,12 +166,12 @@
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
-                                    
-                                   
-                                    
+
+
+
                                     <div class="commentDiv">
-                                        <% for (let j = 0; j < commentId.length; j++) { %>
-                                            <% if(posts[i].post_id == commentId[j].post_id) {%>
+                                        <% for (let j=0; j < commentId.length; j++) { %>
+                                            <% if(posts[i].post_id==commentId[j].post_id) {%>
                                                 <div>
                                                     <% users.forEach(oneUser=> {%>
                                                         <% if(commentId[j].user_id===oneUser.user_id) {%>
@@ -166,11 +183,11 @@
                                                                     <%= oneUser.first_name%>
                                                                         <%= oneUser.last_name%>
                                                                 </div>
-                                                            <!-- </div> -->
-                                                            <div class="commentId">
-                                                                <%= commentId[j].comments %>  
+                                                                <!-- </div> -->
+                                                                <div class="commentId">
+                                                                    <%= commentId[j].comments %>
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                             <% } %>
                                                                 <% }) %>
                                                 </div>
@@ -179,14 +196,14 @@
 
                                     </div>
 
-                              
+
                                 </div>
 
                             </form>
-                            
+
                         </div>
 
-                        
+
                         <% } %>
                 </div>
                 <!-- End Loop -->
@@ -201,19 +218,19 @@
                         </a>
 
                         <a class="nav-btn" href="#">
-                            <img class="nav-icon"src="/icons/explore.svg">
+                            <img class="nav-icon" src="/icons/explore.svg">
                         </a>
 
                         <a class="nav-btn" href="/posts/create">
-                            <img class="nav-icon"src="/icons/post-new.svg">
+                            <img class="nav-icon" src="/icons/post-new.svg">
                         </a>
 
                         <a class="nav-btn" href="#">
-                            <img class="nav-icon"src="/icons/txt.svg">
+                            <img class="nav-icon" src="/icons/txt.svg">
                         </a>
 
                         <a class="nav-btn" href="/authentication/login">
-                            <img class="nav-icon"src="/icons/profile.svg">
+                            <img class="nav-icon" src="/icons/profile.svg">
                         </a>
 
                         <div class="horizontal-underline"></div>
@@ -226,7 +243,7 @@
 
     <script>
         //make this into function
-        const contents = document.querySelector('div.contents')
+        const contents = document.querySelector('.posts-container')
         contents.addEventListener('click', (event) => {
             if (event.target.classList.contains("favorite")) {
                 if (event.target.classList.contains("liked")) {
