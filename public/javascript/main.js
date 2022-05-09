@@ -1,7 +1,5 @@
 let horizontalUnderline = document.getElementsByClassName("horizontal-underline")[0]
-console.log(horizontalUnderline)
 let horizontalMenus = document.querySelectorAll("nav a");
-console.log(horizontalMenus)
 
 horizontalMenus.forEach(menu => menu.addEventListener("mouseover", (e) => horizontalIndicator(e)));
 
@@ -42,15 +40,6 @@ comments.forEach(comment => {
   })
 })
 
-
-
-
-
-
-
-
-
-
 const allComments = document.querySelector(".total")
 const commentDiv = document.querySelectorAll(".commentDiv")
 let currentItem = 0;
@@ -65,3 +54,6 @@ function makeTotalComment(e) {
 function likePost(post_id) {
   console.log("like post ", post_id)
 }
+
+
+

@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font: Nunito Sans;
 }
 
 .logo-wrap {
@@ -23,7 +24,8 @@
 }
 
 .profile-img {
-  width: 85px;
+  margin: 5px;
+  width: 2em;
   height: auto;
   object-fit: scale-down;
   border-radius: 50%;
@@ -49,6 +51,20 @@
   transition: 0.5s;
 }
 
+/* .btn {
+  padding: 1em;
+  background-color: #00bfb2;
+} */
+
+.delete {
+  padding: 0.5em;
+  border:1px solid lightgray;
+}
+
+/* .editBtn .deleteBtn{
+  text-decoration: none;
+} */
+
 .comment_field {
   /* min-height: 56px; */
   padding: 0 20px;
@@ -59,13 +75,35 @@
   /* background: transparent; */
 }
 
-.comment_field .upload_btn {
-  color: #00bfb2;
-  position: absolute;
+.comment-field{
+  display: flex;
+  padding: 5px 0;
   right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
   opacity: 0.7;
+}
+
+.add-comment{
+  width: 85%;
+  border: none;
+}
+
+.add-comment::placeholder{
+  color: #028090;
+}
+
+.add-comment:focus{
+  outline: none!important;
+}
+
+.submit-btn{
+  color: #028090;
+  border: none;
+  background-color: white;
+  padding: 5px;
+}
+.commentId{
+  padding: 0.01px 20px;
+  display: flex;
 }
 
 .m_text {
@@ -75,7 +113,6 @@
 
 .card {
   margin: 5%;
-  /* transition: 0.5s; */
 }
 
 nav a {
@@ -83,16 +120,7 @@ nav a {
   color: black;
   margin: 1em;
   font-size: 2em;
-  /* display: flex;
-  justify-content: center;
-  margin-bottom: 2em; */
 }
-
-/* nav {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2em;
-} */
 
 .horizontal-underline {
   position: absolute;
@@ -102,12 +130,16 @@ nav a {
   border-radius: 3px;
   transition: 0.5s;
   background-color: #1a5e63;
-  /* top:0; */
-
+  padding: 0px;
   /* top:50px;
 left: 30px;
 height: 4px;
 width: 100; */
+}
+
+.btn{
+  display: flex;
+  background-color: firebrick;
 }
 
 .bottom-nav {
@@ -117,20 +149,49 @@ width: 100; */
 }
 .nav-btn {
   margin: 0 !important;
+  
+}
+.nav-icon:hover{
+  filter: invert(32%) sepia(14%) saturate(1786%) hue-rotate(136deg) brightness(93%) contrast(96%);
 }
 
-/* .moreBtn {
+/* .nav-icon {
+  fill: #94d31b; 
+} */
 
+.options {
 position: absolute;
-left: 100%;
-right: -69.57%;
-top: 0%;
-bottom: -43.75%;
-} */
+overflow: hidden;
+height: 100px;
+width: 100px;
+background: #FFFFFF;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+border-radius: 0.5em;
+right: 0.5em;
+padding: 0%;
+margin: 3px;
+/* display: none; */
+}
 
-/* .displayNone {
+.post-menu-btn{
+  width: 100%;
+  height: 34px;
+  border:none;
+  color: #1a5e63;
+  padding: 4px 25px;
+  margin: 0;
+  background-color: transparent;
+  display: inline-block;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-bottom: 0.5px solid lightgray;
+}
+
+.options.displayNone {
   display: none;
-} */
+}
 
 .card {
   display: flex;
@@ -138,6 +199,7 @@ bottom: -43.75%;
   position: relative;
   margin: 15px;
   width: 100%;
+  max-height: 100%;
   border: 1px solid black;
   border-radius: 4px;
   background-color: var(--lightest);
@@ -148,18 +210,19 @@ bottom: -43.75%;
   list-style: none;
 }
 
-/* .card{
-  position: absolute;
-width: 375px;
-height: 375px;
-
-} */
-
 .commentName {
   display: flex;
   color: #1a5e63;
 }
+
 .timestamp {
+  /* display: flex;
+  justify-content: flex-end; */
   list-style: none;
-  font-size: 14px;
+  font-size: 12px;
+  color: rgb(142, 142, 142);
+  padding: 0 35px;
+  margin: 5px;
+  /* border-bottom: 0.5px solid lightgray; */
 }
+

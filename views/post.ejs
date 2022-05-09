@@ -6,8 +6,6 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>FoodieShare</title>
-    <link rel="stylesheet" href="/reset.css">
-    <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/posts.css">
     <link rel="stylesheet" href="/profile.css">
@@ -61,23 +59,18 @@
                                                             <% } %>
                                                                 <% }) %>
                                         </div>
-                                        <div class="place">@DreamCatchers Cafe </div>
+
+                                        <div class="place">@DreamCatchers Cafe</div>
                                     </div>
                                 </div>
-
-                                <form class="newPicture formNoDefault displayNone">
-                                    <!-- <a href="#">  -->
-                                    <div class="btn">
-                                        <div class="moreBtn">
-                                            <img class="user" src="/icons/png.png">
-                                        </div>
-
-                                        <!-- <div>
-                                        <button class="editBtn">edit</button>
-                                        <button class="deleteBtn">delete</button>
-                                        </div> -->
-                                    </div>
-                                </form>
+                                    <section class="moreClick">
+                                            <img id="user" src="/icons/png.png">
+                                        <div class="options">
+                                                <button class="post-menu-btn" id="editBtn">Edit</button>
+                                                <button class="post-menu-btn" id="<%= posts[i].post_id %>" onclick="handleDeletePost(event)" id="deleteBtn">Delete</button>         
+                                                <button class="post-menu-btn" id="cancelBtn">Cancel</button>
+                                        </div>     
+                                    </section>
 
                             </header>
                             <div class="img_section">
@@ -114,23 +107,22 @@
                                 <div class="comment" id="comment-list-ajax-post37">
                                     <div class="comment-detail">
                                         <div class="profile_img">
-
                                             <img class="user" src="/icons/smantha.svg">
                                         </div>
-                                        <div class="nick_name">
-                                            <% users.forEach(oneUser => {%> 
-                                                <% if(posts[i].user_id === oneUser.user_id) {%> 
-                                                <%= oneUser.first_name%> <%= oneUser.last_name%>
-                                                    <% } %> 
-                                                <% }) %> <br>
-
-                                                <a href="" class="total"> see all <%=posts[i].total_comments%> comments</a>
-
-
-                                        </div>
-
-                                        <div>
-                                            <%=posts[i].description %>
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex">
+                                                <div class="nick_name">
+                                                    <% users.forEach(oneUser => {%> 
+                                                        <% if(posts[i].user_id === oneUser.user_id) {%> 
+                                                        <%= oneUser.first_name%> <%= oneUser.last_name%>
+                                                            <% } %> 
+                                                        <% }) %> <br>
+                                                </div>
+                                                <div>
+                                                    <%=posts[i].description %>
+                                                </div>
+                                            </div>
+                                            <a href="" class="total"> see all <%=posts[i].total_comments%> comments</a>
                                         </div>
                                         <!-- TODO -->
                                         <!-- Loop over comments -->
@@ -143,38 +135,42 @@
                                     <div class="sprite_small_heart_icon_outline"></div>
                                 </div>
                             </div>
+
+                            <div class="timestamp"><%=posts[i].timestamp%></div>
+
                             <form method="POST" action="/posts" id="commentForm" class="comment_form">
-                                <div class="comment_field">
-                                    <div class="comment_field">
-                                        <input id="<%=posts[i].post_id%>" class="add_comment" name="comments"
+                                <div class="d-flex flex-column ps-4">
+                                    <div class="comment-field">
+                                        <input id="<%=posts[i].post_id%>" class="add-comment" name="comments"
                                             type="text" placeholder="Add a Comment...">
 
-                                        <div class="upload_btn" data-name="comment">
-                                            <input type="submit" name="comment">
+                                        <div class="upload-btn" data-name="comment">
+                                            <input class="submit-btn" type="submit" name="comment" />
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
-                                    <li class="timestamp"><%=posts[i].timestamp%></li>
-                                    <br>
-
-                                  
+                                    
+                                   
+                                    
                                     <div class="commentDiv">
-                                     <% for (let j = 0; j < commentId.length; j++) { %>
+                                        <% for (let j = 0; j < commentId.length; j++) { %>
                                             <% if(posts[i].post_id == commentId[j].post_id) {%>
                                                 <div>
-                                                    <div class="profile-img">
-                                                        <img class="user" src="/icons/small smantha.svg">
-                                                    </div>
                                                     <% users.forEach(oneUser=> {%>
                                                         <% if(commentId[j].user_id===oneUser.user_id) {%>
-                                                            <div class="commentName">
-                                                                <%= oneUser.first_name%>
-                                                                    <%= oneUser.last_name%>
-                                                            </div>
+                                                            <div class="d-flex ps-4">
+                                                                <div class="profile-img">
+                                                                    <img class="user" src="/icons/small smantha.svg">
+                                                                </div>
+                                                                <div class="commentName">
+                                                                    <%= oneUser.first_name%>
+                                                                        <%= oneUser.last_name%>
+                                                                </div>
+                                                            <!-- </div> -->
                                                             <div class="commentId">
-                                                                <%= commentId[j].comments %>
-                                                                
+                                                                <%= commentId[j].comments %>  
                                                             </div>
+                                                        </div>
                                                             <% } %>
                                                                 <% }) %>
                                                 </div>
@@ -183,7 +179,7 @@
 
                                     </div>
 
-
+                              
                                 </div>
 
                             </form>
@@ -201,23 +197,23 @@
                     <nav class="bottom-nav">
 
                         <a class="nav-btn" href="/posts">
-                            <img src="/icons/home.svg">
+                            <img class="nav-icon" src="/icons/home.svg">
                         </a>
 
                         <a class="nav-btn" href="#">
-                            <img src="/icons/explore.svg">
+                            <img class="nav-icon"src="/icons/explore.svg">
                         </a>
 
                         <a class="nav-btn" href="/posts/create">
-                            <img src="/icons/post-new.svg">
+                            <img class="nav-icon"src="/icons/post-new.svg">
                         </a>
 
                         <a class="nav-btn" href="#">
-                            <img src="/icons/txt.svg">
+                            <img class="nav-icon"src="/icons/txt.svg">
                         </a>
 
                         <a class="nav-btn" href="/authentication/login">
-                            <img src="/icons/profile.svg">
+                            <img class="nav-icon"src="/icons/profile.svg">
                         </a>
 
                         <div class="horizontal-underline"></div>
