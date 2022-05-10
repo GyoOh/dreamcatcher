@@ -111,6 +111,27 @@ router.delete("/deletePost", async (req, res) => {
       res.status(500).send({ error: "error" })
     }
   })
+  
+  router.get("/edit/:postid", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const posts = await dbModel.getPostByPostId(req.params.postid)
+    res.render("edit", { user, posts });
+  })
+
+  router.put("/edit/:postid", async (req, res) => {
+    const posts = await dbModel.getPostByPostId(req.params.postid)
+    const user = await dbModel.getUser(req.session.whoami)
+    if (posts) {
+    const { filename, path } = req.file
+    const description = req.body.description
+    const url = await s3.uploadFile(req.file)
+    const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
+        await dbModel.updatePost(req.params.postid, description, image_url)
+        res.redirect("/posts")
+    } else {
+        
+    }
+});
 
 module.exports = router;
 
