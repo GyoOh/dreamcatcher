@@ -50,11 +50,26 @@
                                                 function selectNewImage(event) {
                                                     event.target.closest("label").querySelector("input").click();
                                                 }
+
                                                 function loadFile(event) {
                                                     console.log("this", event.target)
                                                     let image = event.target.closest("label").querySelector("img");
                                                     console.log(image)
                                                     image.src = URL.createObjectURL(event.target.files[0]);
+
+                                                    let des_photo = event.target.closest(".card").querySelector(".des_photo");
+                                                    console.log(des_photo)
+                                                    des_photo.src = image.src;
+                                                    let com_photos = event.target.closest(".card").querySelectorAll(".com_photo");
+                                                    console.log(com_photos);
+                                                    com_photos.forEach(com_photo => {
+                                                        com_photo.src = image.src;
+                                                    });
+                                                    // let photos = document.querySelectorAll('.photo');
+                                                    // console.log(photos);
+                                                    // photos.forEach(photo => {
+                                                    //     photo.src = image.src;
+                                                    // });
                                                 };
                                             </script>
                                         </label>
@@ -81,6 +96,7 @@
                                         <button class="post-menu-btn" id="cancelBtn">Cancel</button>
                                     </div>
                                 </section>
+
                             </header>
                             <div class="img_section">
                                 <div class="trans_inner">
@@ -116,7 +132,7 @@
                                 <div class="comment" id="comment-list-ajax-post37">
                                     <div class="comment-detail">
                                         <div class="profile_img">
-                                            <img class="user" src="/icons/smantha.svg">
+                                            <img class="user des_photo" src="/icons/smantha.svg">
                                         </div>
                                         <div class="d-flex flex-column">
                                             <div class="d-flex">
@@ -149,6 +165,9 @@
                                 <%=posts[i].timestamp%>
                             </div>
                             <form method="POST" action="/posts/<%=posts[i].post_id%>/comments" id="commentForm" class="comment_form">
+                            <div class="timestamp">
+                                <%=posts[i].timestamp%>
+                            </div>
                                 <div class="d-flex flex-column ps-4">
                                     <div class="comment-field">
                                         <input id="<%=posts[i].post_id%>" class="add-comment" name="comments"
@@ -166,7 +185,8 @@
                                                         <% if(commentId[j].user_id===oneUser.user_id) {%>
                                                             <div class="d-flex ps-4">
                                                                 <div class="profile-img">
-                                                                    <img class="user" src="/icons/small smantha.svg">
+                                                                    <img class="user com_photo"
+                                                                        src="/icons/small smantha.svg">
                                                                 </div>
                                                                 <div class="commentName">
                                                                     <%= oneUser.first_name%>
@@ -185,6 +205,8 @@
                                     </div>
                                 </div>
                             </form>
+
+
                         </div>
                         <% } %>
                 </div>
@@ -245,7 +267,7 @@
         //             event.target.src = "/icons/saved.svg"
         //         }
         //     }
-        // })
+        // })   
     </script>
 
 

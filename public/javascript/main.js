@@ -68,6 +68,7 @@ hearts.forEach(heart => {
   }
 })
 
+
 const bookmarks = document.querySelectorAll(".bookmark")
 bookmarks.forEach(bookmark => {
   bookmark.addEventListener("click", makeBookmark)
@@ -110,4 +111,5 @@ commentsForms.forEach(commentForm => {
       .catch(err => console.log(err))
   }
 })
+
 

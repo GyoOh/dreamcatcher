@@ -98,5 +98,19 @@ router.use((err, req, res, next) => {
     console.error(err);
     res.status(500).send({ error: "something bad happened" });
 });
+
+router.delete("/deletePost", async (req, res) => {
+    console.log("DELETE ENDPOINT")
+    const id = req.query.id
+    console.log("Id in endpoint" + id)
+    try {
+        await dbModel.deletePost(id)
+        res.end();
+    } catch (error) {
+      console.error(error)
+      res.status(500).send({ error: "error" })
+    }
+  })
+
 module.exports = router;
 

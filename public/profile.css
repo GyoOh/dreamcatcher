@@ -36,6 +36,40 @@ span {
     height: 2em;
 }
 
+
+.des_photo {
+    position: absolute;
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+    border-radius: 100px;
+    z-index: 0;
+    margin-left: -3.3em;
+}
+
+.comment-detail {
+    margin-left: 3em;
+}
+
+.com_photo {
+    margin: 5px;
+    width: 2em;
+    height: 2em;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.commentName {
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+}
+
+.commentId {
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+}
+
+
 /* body {
     height: 100vh;
     background-color: rgb(25, 24, 21);
