@@ -43,6 +43,7 @@ hearts.forEach(heart => {
         .then(resp => resp.json())
         .then((data) => { })
         .catch(err => console.log(err))
+        location.reload();
     } else {
       event.target.src = "/icons/heart.svg"
       const header = {
@@ -61,8 +62,11 @@ hearts.forEach(heart => {
         .then(resp => resp.json())
         .then((data) => { document.querySelector(".commentDiv").innerHTML(data) })
         .catch(err => console.log(err))
+        location.reload();
     }
+    
   }
+  
 })
 
 
@@ -137,5 +141,6 @@ commentsForms.forEach(commentForm => {
         // document.querySelector(".commentDiv").innerHTML(data)
       })
       .catch(err => console.log(err))
+      location.reload();
   }
 })
