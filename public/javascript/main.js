@@ -44,6 +44,7 @@ hearts.forEach(heart => {
         .then((data) => { })
         .catch(err => console.log(err))
       location.reload();
+
     } else {
       event.target.src = "/icons/heart.svg"
       const header = {
@@ -66,7 +67,6 @@ hearts.forEach(heart => {
     }
 
   }
-
 })
 
 
@@ -141,6 +141,7 @@ commentsForms.forEach(commentForm => {
         // document.querySelector(".commentDiv").innerHTML(data)
       })
       .catch(err => console.log(err))
-    location.reload();
+
+      location.reload();
   }
 })
