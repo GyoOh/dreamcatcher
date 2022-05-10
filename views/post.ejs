@@ -58,6 +58,20 @@
                                                     let image = event.target.closest("label").querySelector("img");
                                                     console.log(image)
                                                     image.src = URL.createObjectURL(event.target.files[0]);
+                                                    let des_photo = event.target.closest(".card").querySelector(".des_photo");
+                                                    console.log(des_photo)
+                                                    des_photo.src = image.src;
+                                                    let com_photos = event.target.closest(".card").querySelectorAll(".com_photo");
+                                                    console.log(com_photos);
+                                                    com_photos.forEach(com_photo => {
+                                                        com_photo.src = image.src;
+                                                    });
+                                                    // let photos = document.querySelectorAll('.photo');
+                                                    // console.log(photos);
+                                                    // photos.forEach(photo => {
+                                                    //     photo.src = image.src;
+                                                    // });
+
                                                 };
                                             </script>
                                         </label>
@@ -121,7 +135,7 @@
                                 <div class="comment" id="comment-list-ajax-post37">
                                     <div class="comment-detail">
                                         <div class="profile_img">
-                                            <img class="user" src="/icons/smantha.svg">
+                                            <img class="user des_photo" src="/icons/smantha.svg">
                                         </div>
                                         <div class="d-flex flex-column">
                                             <div class="d-flex">
@@ -177,7 +191,8 @@
                                                         <% if(commentId[j].user_id===oneUser.user_id) {%>
                                                             <div class="d-flex ps-4">
                                                                 <div class="profile-img">
-                                                                    <img class="user" src="/icons/small smantha.svg">
+                                                                    <img class="user com_photo"
+                                                                        src="/icons/small smantha.svg">
                                                                 </div>
                                                                 <div class="commentName">
                                                                     <%= oneUser.first_name%>
