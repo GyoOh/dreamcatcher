@@ -66,7 +66,10 @@
                                     <section class="moreClick">
                                             <img id="user" src="/icons/png.png">
                                         <div class="options">
-                                                <button class="post-menu-btn" id="editBtn">Edit</button>
+       
+                                                <a href="/posts/edit/<%= posts[i].post_id %>">
+                                                <button class="post-menu-btn" id="editBtn">Edit</button></a>
+                                            
                                                 <button class="post-menu-btn" id="<%= posts[i].post_id %>" onclick="handleDeletePost(event)" id="deleteBtn">Delete</button>         
                                                 <button class="post-menu-btn" id="cancelBtn">Cancel</button>
                                         </div>     

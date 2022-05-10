@@ -57,6 +57,14 @@ async function getCommentsByPost(post_id) {
     const [comments] = await database.query(query, params);
     return comments;
 }
+async function getPostByPostId(post_id) {
+    let query = `
+    select * from posts where post_id = :post_id
+    `
+    let params = { post_id: post_id }
+    const [post] = await database.query(query, params);
+    return post;
+}
 
 async function addPost(user_id, description, image_url) {
     let query = "INSERT INTO posts (user_id, description, image_url) VALUES(?, ?, ?)"
@@ -73,6 +81,12 @@ async function deletePost(post_id) {
 async function addUser(firtst_name, last_name, email, password) {
     const query = "INSERT INTO foodie_user (first_name, last_name, email, password) VALUES(?, ?, ?, ?)"
     const params = [firtst_name, last_name, email, password]
+    const [result] = await database.query(query, params)
+    return result
+}
+async function updatePost(post_id, image_url, description) {
+    let query = "UPDATE posts SET post_id = ?, image_url = ?, description = ? WHERE id = ?"
+    let params = {post_id: post_id, image_url:image_url, description: description}
     const [result] = await database.query(query, params)
     return result
 }
@@ -216,5 +230,5 @@ module.exports = {
     getUsers, getUser, addUser, deleteUser, deletePost, deleteRestaurant, deletePostLikes, deleteCommentLikes, deletecomment,
     addPost, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getPostByUserId, getpostComments,
     getLikesPosts, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
-    getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, getpostsWithComments
+    getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, getpostsWithComments, updatePost, getPostByPostId
 }
