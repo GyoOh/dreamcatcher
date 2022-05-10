@@ -105,10 +105,12 @@ commentsForms.forEach(commentForm => {
     fetch(`/posts/${post_id}/comment`, request)
       .then(resp => resp.json())
       .then((data) => {
-        document.querySelector(".commentDiv").innerHTML(data)
+        // document.querySelector(".commentDiv").innerHTML(data)
       })
       .catch(err => console.log(err))
   }
 })
+
+
 
 
