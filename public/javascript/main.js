@@ -19,8 +19,6 @@ commentTotal.forEach(comment => {
   }
 })
 
-
-
 const hearts = document.querySelectorAll(".favorite")
 hearts.forEach(heart => {
   heart.addEventListener("click", makeCount)
@@ -81,6 +79,37 @@ bookmarks.forEach(bookmark => {
   }
 })
 
+//edit mode
+const moreIcons = document.querySelectorAll('#user');
+moreIcons.forEach(icon => {
+  icon.parentNode.children[1].classList.add('displayNone');
+});
+moreIcons.forEach(a => {
+  a.addEventListener("click", btnToggle)
+  function btnToggle(e) {
+    let section = e.target.parentNode
+    let buttons = section.children[1]
+    buttons.classList.toggle('displayNone')
+  }
+});
+
+const allCancels = document.querySelectorAll('#cancelBtn');
+allCancels.forEach(cancel => {
+  cancel.addEventListener("click", cancelBtn)
+  function cancelBtn(e) {
+    let clickAll = e.target.parentNode
+    clickAll.classList.toggle('displayNone');
+  }
+})
+
+function handleDeletePost(e){
+  fetch(`http://localhost:8000/posts/deletePost?id=${e.target.id}`,
+    {
+      method:"DELETE"
+    }
+  )
+  location.reload();
+}
 
 const commentsForms = document.querySelectorAll("form.comment_form")
 commentsForms.forEach(commentForm => {
@@ -110,5 +139,6 @@ commentsForms.forEach(commentForm => {
       .catch(err => console.log(err))
   }
 })
+
 
 
