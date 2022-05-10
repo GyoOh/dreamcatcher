@@ -15,8 +15,7 @@ const commentTotal = document.querySelectorAll("li.total")
 commentTotal.forEach(comment => {
   comment.addEventListener(('click'), makeTotalComment)
   function makeTotalComment(event) {
-    console.log(event.path[5].childNodes[11].childNodes[1].childNodes[3])
-    event.path[5].childNodes[11].childNodes[1].childNodes[3].classList.toggle("commentDiv")
+    event.path[5].childNodes[9].childNodes[3].childNodes[3].classList.toggle("commentDiv")
   }
 })
 
@@ -88,8 +87,8 @@ commentsForms.forEach(commentForm => {
   commentForm.addEventListener("submit", makeComment)
   function makeComment(event) {
     event.preventDefault()
-    let comments = event.path[0].childNodes[1].childNodes[1].children[0].value
-    let post_id = event.path[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value
+    let comments = event.path[0].childNodes[3].childNodes[1].childNodes[1].value
+    let post_id = event.path[0].childNodes[3].childNodes[1].childNodes[3].childNodes[3].value
     const header = {
       Accept: "application/json",
       "Content-Type": "application/json"
