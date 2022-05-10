@@ -11,49 +11,105 @@ function horizontalIndicator(e) {
     e.target.offsetTop + e.target.offsetHeight + "px";
 }
 
-const comments = document
-  .querySelectorAll(".add_comment")
-comments.forEach(comment => {
-  comment.addEventListener("click", e => {
-    e.preventDefault()
-    const comment = document.querySelector("input.add_comment").value
-    if (e.target.classList.contains("upload_btn")) {
+const commentTotal = document.querySelectorAll("li.total")
+commentTotal.forEach(comment => {
+  comment.addEventListener(('click'), makeTotalComment)
+  function makeTotalComment(event) {
+    console.log(event.path[5].childNodes[11].childNodes[1].childNodes[3])
+    event.path[5].childNodes[11].childNodes[1].childNodes[3].classList.toggle("commentDiv")
+  }
+})
+
+
+
+const hearts = document.querySelectorAll(".favorite")
+hearts.forEach(heart => {
+  heart.addEventListener("click", makeCount)
+  function makeCount(event) {
+    event.path[0].classList.toggle("liked")
+    let post_id = event.path[1].childNodes[1].value
+    if (heart.classList.contains("liked")) {
+      event.target.src = "/icons/like.svg"
       const header = {
         Accept: "application/json",
         "Content-Type": "application/json",
-      };
-      const body = JSON.stringify({
-        comment
+      }
+      let body = JSON.stringify({
+        post_id
       });
       const request = {
-        method: "GET",
+        method: "POST",
         headers: header,
         body: body,
-      };
-      const response = fetch("/posts", request);
-      const jsonResponse = response.then((resp) => resp.json());
-      jsonResponse.then((jResp) => {
-        console.log(jResp)
-
+      }
+      fetch(`/posts/${post_id}/like`, request)
+        .then(resp => resp.json())
+        .then((data) => { })
+        .catch(err => console.log(err))
+    } else {
+      event.target.src = "/icons/heart.svg"
+      const header = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }
+      let body = JSON.stringify({
+        post_id
       });
+      const request = {
+        method: "POST",
+        headers: header,
+        body: body,
+      }
+      fetch(`/posts/${post_id}/dislike`, request)
+        .then(resp => resp.json())
+        .then((data) => { document.querySelector(".commentDiv").innerHTML(data) })
+        .catch(err => console.log(err))
     }
-  })
+  }
 })
 
-const allComments = document.querySelector(".total")
-const commentDiv = document.querySelectorAll(".commentDiv")
-let currentItem = 0;
-allComments.addEventListener("click", makeTotalComment)
-function makeTotalComment(e) {
-  e.preventDefault()
-  console.log(e)
 
-  commentDiv[0].classList.remove('displayNone')
-}
+const bookmarks = document.querySelectorAll(".bookmark")
+bookmarks.forEach(bookmark => {
+  bookmark.addEventListener("click", makeBookmark)
+  function makeBookmark(event) {
+    event.path[0].classList.toggle("saved")
+    if (bookmark.classList.contains("saved")) {
+      event.target.src = "/icons/saved.svg"
+    } else {
+      event.target.src = "/icons/save.svg"
+    }
+  }
+})
 
-function likePost(post_id) {
-  console.log("like post ", post_id)
-}
 
+const commentsForms = document.querySelectorAll("form.comment_form")
+commentsForms.forEach(commentForm => {
+  commentForm.addEventListener("submit", makeComment)
+  function makeComment(event) {
+    event.preventDefault()
+    let comments = event.path[0].childNodes[1].childNodes[1].children[0].value
+    let post_id = event.path[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value
+    const header = {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+    const body = JSON.stringify({
+      comments,
+      post_id
+    });
+    const request = {
+      method: "POST",
+      headers: header,
+      body: body,
+    }
+    fetch(`/posts/${post_id}/comment`, request)
+      .then(resp => resp.json())
+      .then((data) => {
+        document.querySelector(".commentDiv").innerHTML(data)
+      })
+      .catch(err => console.log(err))
+  }
+})
 
 

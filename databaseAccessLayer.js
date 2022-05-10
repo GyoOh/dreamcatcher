@@ -18,13 +18,6 @@ async function getUserbyUserId(user_id) {
     return user[0]
 }
 
-async function deleteUser(email) {
-    let query = "DELETE FROM foodie_user WHERE email = :email";
-    let params = { email: email }
-    const [user] = await database.query(query, params)
-    return user[0]
-}
-
 async function getPosts() {
     let query = `
     select post_id, user_id, image_url, description, date_format(timestamp, '%M %e, %Y')as timestamp, 
@@ -33,15 +26,7 @@ async function getPosts() {
     const [posts] = await database.query(query);
     return posts;
 }
-async function getpostsWithComments() {
-    const query = `
-    select posts.*, comments.comments as comments from posts 
-    left join comments on comments.post_id = posts.post_id 
-    order by comments.comment_id asc;
-    `
-    const [posts] = await database.query(query);
-    return posts;
-}
+
 async function getComments() {
     let query = `
     select * from comments;
@@ -84,13 +69,6 @@ async function addcomment(user_id, post_id, comments) {
     return result
 }
 
-async function deletecomment(comment_id) {
-    let query = "DELETE FROM comments WHERE comment_id = :comment_id";
-    let params = { comment_id: comment_id }
-    const [user] = await database.query(query, params)
-    return user[0]
-}
-
 async function getCommentsLikes(comment_id) {
     const query =
         "SELECT comment_id, user_id, post_id, comments, (SELECT COUNT(*) FROM likes WHERE comment_id = :comment_id) AS `totalcomments` FROM comments WHERE comment_id = :comment_id"
@@ -117,23 +95,30 @@ async function getCommentByUser(user_id) {
     return comments
 }
 
+async function getpostLikesByuser(user_id, post_id) {
+    const query =
+        "select * from post_likes where user_id = :user_id and post_id = :post_id"
+    const params = { user_id: user_id, post_id: post_id }
+    const [results] = await database.query(query, params)
+    return results
+}
 async function addPostLikes(user_id, post_id) {
-    const query = "INSERT INTO post_likes (user_id, post_id) VALUES(?, ?)"
-    const params = [user_id, post_id]
-    const [result] = await database.query(query, params)
+    let [results] = await database.query("select * from post_likes where user_id = :user_id and post_id = :post_id", { user_id: user_id, post_id: post_id })
+    if (results) {
+        let like_ids = results.map(result => result.like_id)
+        for (const like_id of like_ids) {
+            await database.query("DELETE FROM post_likes WHERE like_id = :like_id", { like_id: like_id })
+        }
+    }
+    let [result] = await database.query("INSERT INTO post_likes (user_id, post_id) VALUES(?, ?)", [user_id, post_id])
     return result
 }
+
 async function deletePostLikes(like_id) {
     let query = "DELETE FROM post_likes WHERE like_id = :like_id";
     let params = { like_id: like_id }
-    const [user] = await database.query(query, params)
-    return user[0]
-}
-async function deleteCommentLikes(like_id) {
-    let query = "DELETE FROM comment_likes WHERE like_id = :like_id";
-    let params = { like_id: like_id }
-    const [user] = await database.query(query, params)
-    return user[0]
+    await database.query(query, params)
+    return like_id
 }
 
 async function addCommentsLikes(user_id, post_id, comment_id) {
@@ -143,14 +128,6 @@ async function addCommentsLikes(user_id, post_id, comment_id) {
     return result
 }
 
-async function getPostByUserId(user_id) {
-    const query =
-        "select distinct posts.*, if (post_likes.like_id is not null, 1, 0) as liked_by_current_user from posts left join post_likes on post_likes.post_id = posts.post_id AND post_likes.user_id = :user_id";
-    const params = { user_id: user_id }
-    const [rows] = await database.query(query, params)
-    const likes = rows
-    return likes
-}
 async function getpostComments() {
     const query =
         "select posts.*, json_arrayagg(comments.comments) as comments from posts left join comments on comments.post_id = posts.post_id group by posts.post_id order by comments.post_id asc;"
@@ -166,15 +143,11 @@ async function getCommentLikesUsers(user_id) {
     const likes = rows
     return likes
 }
-
-async function getLikesPosts(post_id) {
-    const query =
-        "SELECT user_id, post_id, (SELECT COUNT(*) FROM post_likes WHERE post_id = :post_id) AS `totallikes` FROM post_likes WHERE post_id = :post_id";
-    const params = { post_id: post_id }
-    const [rows] = await database.query(query, params)
-    const likes = rows[0]
-    return likes
+async function getLikes() {
+    const [likes] = await database.query("SELECT * FROM post_likes");
+    return likes;
 }
+
 
 async function getLikesComments(comment_id) {
     const query =
@@ -213,8 +186,8 @@ async function deleteRestaurant(restaurant_id) {
 }
 
 module.exports = {
-    getUsers, getUser, addUser, deleteUser, deletePost, deleteRestaurant, deletePostLikes, deleteCommentLikes, deletecomment,
-    addPost, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getPostByUserId, getpostComments,
-    getLikesPosts, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
-    getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, getpostsWithComments
+    getUsers, getUser, getpostLikesByuser, getLikes, addUser, deletePost, deleteRestaurant, deletePostLikes,
+    addPost, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getpostComments,
+    getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
+    getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost
 }
