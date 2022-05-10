@@ -75,6 +75,7 @@
   /* background: transparent; */
 }
 
+
 .comment-field{
   display: flex;
   padding: 5px 0;
@@ -82,10 +83,12 @@
   opacity: 0.7;
 }
 
+
 .add-comment{
   width: 85%;
   border: none;
 }
+
 
 .add-comment::placeholder{
   color: #028090;
@@ -101,6 +104,7 @@
   background-color: white;
   padding: 5px;
 }
+
 .commentId{
   padding: 0.01px 20px;
   display: flex;
@@ -137,6 +141,7 @@ height: 4px;
 width: 100; */
 }
 
+
 .btn{
   display: flex;
   background-color: firebrick;
@@ -153,6 +158,10 @@ width: 100; */
 }
 .nav-icon:hover{
   filter: invert(32%) sepia(14%) saturate(1786%) hue-rotate(136deg) brightness(93%) contrast(96%);
+}
+.nav-icon:hover {
+  filter: invert(32%) sepia(14%) saturate(1786%) hue-rotate(136deg)
+    brightness(93%) contrast(96%);
 }
 
 /* .nav-icon {
@@ -224,5 +233,8 @@ margin: 3px;
   padding: 0 35px;
   margin: 5px;
   /* border-bottom: 0.5px solid lightgray; */
+}
+.commentDiv {
+  display: none;
 }
 

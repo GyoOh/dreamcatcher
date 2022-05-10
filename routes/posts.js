@@ -18,6 +18,11 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
+router.use((req, res, next) => {
+    res.header({ "Access-Control-Allow-Origin": "*" });
+    next();
+})
+
 router.post("/create", upload.single("image"), async (req, res) => {
     const connection = await database.getConnection()
     const user = await dbModel.getUser(req.session.whoami)
@@ -26,12 +31,6 @@ router.post("/create", upload.single("image"), async (req, res) => {
     const url = await s3.uploadFile(req.file)
     const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
     await dbModel.addPost(user.user_id, description, image_url)
-    if (user) {
-        let posts = await dbModel.getPostByUserId(user.user_id)
-        let comments = req.body.comments
-        let likes = req.body.likes
-        await dbModel.getPostByUserId(user.user_id)
-    }
     res.redirect("/posts")
     connection.release()
 })
@@ -46,41 +45,50 @@ router.get("/create", async (req, res) => {
     res.render("newpost", { posts, user, users });
 })
 
-router.post("/", async (req, res) => {
-    const connection = await database.getConnection()
-    const user = await dbModel.getUser(req.session.whoami)
-    if (user) {
-        const comments = req.body.comments
-        const comment = await dbModel.addcomment(user.user_id, req.body.post_id, comments)
-    }
-    res.redirect("/posts")
-    connection.release()
-})
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     const posts = await dbModel.getPosts()
-    const comments = await dbModel.getpostsWithComments()
     const commentId = await dbModel.getComments()
-    console.log(posts)
     if (!user) {
-        return res.redirect("/authentication/403");
+        res.redirect("/authentication/403");
     }
-    res.render("post", { user, users, posts, comments, commentId });
-
+    res.render("post", { user, users, posts, commentId });
 })
 
-router.post("/comment", async (req, res) => {
-    const connection = await database.getConnection()
-    const email = req.session.whoami
-    const user = await dbModel.getUser(email)
+router.post("/:post_id/comment", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    post_id = req.params.post_id
     if (user) {
-        let post = await dbModel.getPostByUserId(user.user_id)
-        await dbModel.addcomment(user.user_id, post[0].post_id, comments)
-        await dbModel.addPostLikes(user.user_id, post[0].post_id, req.body.likes)
+        const comments = req.body.comments
+        await dbModel.addcomment(user.user_id, req.body.post_id, comments)
     }
-    res.redirect("/posts")
-    connection.release()
+})
+
+router.post("/:post_id/like", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const postId = req.params.post_id
+    await dbModel.getpostLikesByuser(user.user_id, postId)
+    await dbModel.addPostLikes(user.user_id, postId)
+})
+
+router.post("/:post_id/dislike", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const postId = req.params.post_id
+    const likedByUser = await dbModel.getpostLikesByuser(user.user_id, postId)
+    if (likedByUser[0]) {
+        await dbModel.deletePostLikes(likedByUser[0].like_id)
+        res.status(200).json();
+        res.end();
+    }
+})
+router.delete("/deletePost", async (req, res) => {
+    console.log("DELETE ENDPOINT")
+    const id = req.query.id
+    console.log("Id in endpoint" + id)
+    await dbModel.deletePost(id)
+    res.end();
+
 })
 
 router.use((err, req, res, next) => {
