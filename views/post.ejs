@@ -6,8 +6,6 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>FoodieShare</title>
-    <link rel="stylesheet" href="/reset.css">
-    <link rel="stylesheet" href="/common.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/posts.css">
     <link rel="stylesheet" href="/profile.css">
@@ -36,20 +34,30 @@
                 </h2>
                 </p> -->
                 <!-- Start Loop -->
-
                 <div class="posts-container">
                     <% for (let i=0; i < posts.length; i++) { %>
                         <div class="contents flex-column card">
                             <header class="top">
                                 <div class="user_container">
                                     <!-- <div class="profile_img"> -->
-
                                     <div class="profile-pic">
                                         <label class="-label" for="file">
-                                            <input id="file" type="file" onchange="loadFile(event)" />
-                                            <img class="profile" src="/icons/smantha.svg" id="output" width="200" />
+                                            <input name="file" type="file" onchange="loadFile(event)" data-id="<%=i%>"
+                                                hidden />
+                                            <img class="profile" src="/icons/smantha.svg" id="output" width="200"
+                                                onclick="selectNewImage(event)" />
+                                            <script>
+                                                function selectNewImage(event) {
+                                                    event.target.closest("label").querySelector("input").click();
+                                                }
+                                                function loadFile(event) {
+                                                    console.log("this", event.target)
+                                                    let image = event.target.closest("label").querySelector("img");
+                                                    console.log(image)
+                                                    image.src = URL.createObjectURL(event.target.files[0]);
+                                                };
+                                            </script>
                                         </label>
-                                    
                                     </div>
                                     <!-- </div> -->
                                     <div class="user_name">
@@ -61,24 +69,18 @@
                                                             <% } %>
                                                                 <% }) %>
                                         </div>
-                                        <div class="place">@DreamCatchers Cafe </div>
+                                        <div class="place">@DreamCatchers Cafe</div>
                                     </div>
                                 </div>
-
-                                <form class="newPicture formNoDefault displayNone">
-                                    <!-- <a href="#">  -->
-                                    <div class="btn">
-                                        <div class="moreBtn">
-                                            <img class="user" src="/icons/png.png">
-                                        </div>
-
-                                        <!-- <div>
-                                        <button class="editBtn">edit</button>
-                                        <button class="deleteBtn">delete</button>
-                                        </div> -->
+                                <section class="moreClick">
+                                    <img id="user" src="/icons/png.png">
+                                    <div class="options">
+                                        <button class="post-menu-btn" id="editBtn">Edit</button>
+                                        <button class="post-menu-btn" id="<%= posts[i].post_id %>"
+                                            onclick="handleDeletePost(event)" id="deleteBtn">Delete</button>
+                                        <button class="post-menu-btn" id="cancelBtn">Cancel</button>
                                     </div>
-                                </form>
-
+                                </section>
                             </header>
                             <div class="img_section">
                                 <div class="trans_inner">
@@ -89,8 +91,12 @@
                             </div>
                             <div class="bottom_icons">
                                 <div class="left_icons">
-                                    <div class="heart_btn" onclick="likePost()">
-                                        <img src="/icons/heart.svg" class="favorite">
+                                    <div class="heart_btn" >
+                                        <form id="submitForm" method="POST" action="/posts/<%=posts[i].post_id%>/like" name="post_likes">
+                                            <input class="posts_id" type="hidden" value="<%=posts[i].post_id%>" name="post_id">
+                                          <img type="submit" data-name="post_likes" src="/icons/heart.svg" class="favorite">
+                                          <br><%=posts[i].total_likes%> 
+                                        </form>
                                     </div>
                                     <div name="likes" class="sprite_bubble_icon message">
                                         <img src="/icons/message.svg">
@@ -105,32 +111,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="likes">
-                                    <span id="like-count-39">22,346</span>
-                                    likes
-                                </div> -->
-
+                         
                             <div class="comment_container">
                                 <div class="comment" id="comment-list-ajax-post37">
                                     <div class="comment-detail">
                                         <div class="profile_img">
-
                                             <img class="user" src="/icons/smantha.svg">
                                         </div>
-                                        <div class="nick_name">
-                                            <% users.forEach(oneUser => {%> 
-                                                <% if(posts[i].user_id === oneUser.user_id) {%> 
-                                                <%= oneUser.first_name%> <%= oneUser.last_name%>
-                                                    <% } %> 
-                                                <% }) %> <br>
-
-                                                <a href="" class="total"> see all <%=posts[i].total_comments%> comments</a>
-
-
-                                        </div>
-
-                                        <div>
-                                            <%=posts[i].description %>
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex">
+                                                <div class="nick_name">
+                                                    <% users.forEach(oneUser=> {%>
+                                                        <% if(posts[i].user_id===oneUser.user_id) {%>
+                                                            <%= oneUser.first_name%>
+                                                                <%= oneUser.last_name%>
+                                                                    <% } %>
+                                                                        <% }) %> <br>
+                                                </div>
+                                                <div>
+                                                    <%=posts[i].description %>
+                                                </div>
+                                            </div>
+                                            <li class="total">  see all <%=posts[i].total_comments%> comments</li>
                                         </div>
                                         <!-- TODO -->
                                         <!-- Loop over comments -->
@@ -143,54 +145,47 @@
                                     <div class="sprite_small_heart_icon_outline"></div>
                                 </div>
                             </div>
-                            <form method="POST" action="/posts" id="commentForm" class="comment_form">
-                                <div class="comment_field">
-                                    <div class="comment_field">
-                                        <input id="<%=posts[i].post_id%>" class="add_comment" name="comments"
+                            <div class="timestamp">
+                                <%=posts[i].timestamp%>
+                            </div>
+                            <form method="POST" action="/posts/<%=posts[i].post_id%>/comments" id="commentForm" class="comment_form">
+                                <div class="d-flex flex-column ps-4">
+                                    <div class="comment-field">
+                                        <input id="<%=posts[i].post_id%>" class="add-comment" name="comments"
                                             type="text" placeholder="Add a Comment...">
-
-                                        <div class="upload_btn" data-name="comment">
-                                            <input type="submit" name="comment">
+                                        <div class="upload-btn" data-name="comment">
+                                            <input class="submit-btn" type="submit" name="comment" />
                                             <input type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                         </div>
                                     </div>
-                                    <li class="timestamp"><%=posts[i].timestamp%></li>
-                                    <br>
-
-                                  
                                     <div class="commentDiv">
-                                     <% for (let j = 0; j < commentId.length; j++) { %>
-                                            <% if(posts[i].post_id == commentId[j].post_id) {%>
+                                        <% for (let j=0; j < commentId.length; j++) { %>
+                                            <% if(posts[i].post_id==commentId[j].post_id) {%>
                                                 <div>
-                                                    <div class="profile-img">
-                                                        <img class="user" src="/icons/small smantha.svg">
-                                                    </div>
                                                     <% users.forEach(oneUser=> {%>
                                                         <% if(commentId[j].user_id===oneUser.user_id) {%>
-                                                            <div class="commentName">
-                                                                <%= oneUser.first_name%>
-                                                                    <%= oneUser.last_name%>
-                                                            </div>
-                                                            <div class="commentId">
-                                                                <%= commentId[j].comments %>
-                                                                
+                                                            <div class="d-flex ps-4">
+                                                                <div class="profile-img">
+                                                                    <img class="user" src="/icons/small smantha.svg">
+                                                                </div>
+                                                                <div class="commentName">
+                                                                    <%= oneUser.first_name%>
+                                                                        <%= oneUser.last_name%>
+                                                                </div>
+                                                                <!-- </div> -->
+                                                                <div class="commentId">
+                                                                    <%= commentId[j].comments %>
+                                                                </div>
                                                             </div>
                                                             <% } %>
                                                                 <% }) %>
                                                 </div>
                                                 <% } %>
                                                     <% } %>
-
                                     </div>
-
-
                                 </div>
-
                             </form>
-                            
                         </div>
-
-                        
                         <% } %>
                 </div>
                 <!-- End Loop -->
@@ -201,23 +196,23 @@
                     <nav class="bottom-nav">
 
                         <a class="nav-btn" href="/posts">
-                            <img src="/icons/home.svg">
+                            <img class="nav-icon" src="/icons/home.svg">
                         </a>
 
                         <a class="nav-btn" href="#">
-                            <img src="/icons/explore.svg">
+                            <img class="nav-icon" src="/icons/explore.svg">
                         </a>
 
                         <a class="nav-btn" href="/posts/create">
-                            <img src="/icons/post-new.svg">
+                            <img class="nav-icon" src="/icons/post-new.svg">
                         </a>
 
                         <a class="nav-btn" href="#">
-                            <img src="/icons/txt.svg">
+                            <img class="nav-icon" src="/icons/txt.svg">
                         </a>
 
                         <a class="nav-btn" href="/authentication/login">
-                            <img src="/icons/profile.svg">
+                            <img class="nav-icon" src="/icons/profile.svg">
                         </a>
 
                         <div class="horizontal-underline"></div>
@@ -229,28 +224,28 @@
     </section>
 
     <script>
-        //make this into function
-        const contents = document.querySelector('div.contents')
-        contents.addEventListener('click', (event) => {
-            if (event.target.classList.contains("favorite")) {
-                if (event.target.classList.contains("liked")) {
-                    event.target.classList.remove('liked');
-                    event.target.src = "/icons/heart.svg"
-                } else {
-                    event.target.classList.add('liked')
-                    event.target.src = "/icons/like.svg"
-                }
-            }
-            if (event.target.classList.contains("bookmark")) {
-                if (event.target.classList.contains("saved")) {
-                    event.target.classList.remove('saved');
-                    event.target.src = "/icons/save.svg"
-                } else {
-                    event.target.classList.add('saved');
-                    event.target.src = "/icons/saved.svg"
-                }
-            }
-        })
+        // //make this into function
+        // const contents = document.querySelector('.posts-container')
+        // contents.addEventListener('click', (event) => {
+        //     if (event.target.classList.contains("favorite")) {
+        //         if (event.target.classList.contains("liked")) {
+        //             event.target.classList.remove('liked');
+        //             event.target.src = "/icons/heart.svg"
+        //         } else {
+        //             event.target.classList.add('liked')
+        //             event.target.src = "/icons/like.svg"
+        //         }
+        //     }
+        //     if (event.target.classList.contains("bookmark")) {
+        //         if (event.target.classList.contains("saved")) {
+        //             event.target.classList.remove('saved');
+        //             event.target.src = "/icons/save.svg"
+        //         } else {
+        //             event.target.classList.add('saved');
+        //             event.target.src = "/icons/saved.svg"
+        //         }
+        //     }
+        // })
     </script>
 
 
@@ -265,9 +260,6 @@
             image.src = URL.createObjectURL(event.target.files[0]);
         };
     </script>
-
-
-
 </body>
 
 </html>
