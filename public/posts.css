@@ -235,3 +235,10 @@ width: 100; */
 .commentDiv {
   display: none;
 }
+li {
+  list-style: none;
+}
+.name-like {
+  display: flex;
+  flex-direction: column;
+}

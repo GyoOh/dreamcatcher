@@ -48,12 +48,15 @@ router.get("/create", async (req, res) => {
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
-    const posts = await dbModel.getPosts()
+    let posts = await dbModel.getPosts()
+    const userPosts = await dbModel.getUserPosts(user.user_id)
+    console.log("users", users)
+    console.log("userposts", userPosts)
     const commentId = await dbModel.getComments()
     if (!user) {
         res.redirect("/authentication/403");
     }
-    res.render("post", { user, users, posts, commentId });
+    res.render("post", { user, users, posts, userPosts, commentId });
 })
 
 router.post("/:post_id/comment", async (req, res) => {
@@ -107,31 +110,32 @@ router.delete("/deletePost", async (req, res) => {
         await dbModel.deletePost(id)
         res.end();
     } catch (error) {
-      console.error(error)
-      res.status(500).send({ error: "error" })
+        console.error(error)
+        res.status(500).send({ error: "error" })
     }
-  })
-  
-  router.get("/edit/:postid", async (req, res) => {
+})
+
+router.get("/edit/:postid", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const posts = await dbModel.getPostByPostId(req.params.postid)
     res.render("edit", { user, posts });
-  })
+})
 
-  router.put("/edit/:postid", async (req, res) => {
+router.put("/edit/:postid", async (req, res) => {
     const posts = await dbModel.getPostByPostId(req.params.postid)
     const user = await dbModel.getUser(req.session.whoami)
     if (posts) {
-    const { filename, path } = req.file
-    const description = req.body.description
-    const url = await s3.uploadFile(req.file)
-    const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
+        const { filename, path } = req.file
+        const description = req.body.description
+        const url = await s3.uploadFile(req.file)
+        const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
         await dbModel.updatePost(req.params.postid, description, image_url)
         res.redirect("/posts")
     } else {
-        
+
     }
 });
 
 module.exports = router;
+
 

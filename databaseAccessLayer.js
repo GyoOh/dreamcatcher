@@ -17,13 +17,25 @@ async function getUserbyUserId(user_id) {
     const [user] = await database.query(query, params)
     return user[0]
 }
-
 async function getPosts() {
     let query = `
     select post_id, user_id, image_url, description, date_format(timestamp, '%M %e, %Y')as timestamp, 
     total_likes, total_comments from posts;
     `
     const [posts] = await database.query(query);
+    return posts;
+}
+
+async function getUserPosts(user_id) {
+    let query = `
+    select posts.post_id, posts.user_id, posts.image_url, posts.description, date_format(posts.timestamp, '%M %e, %Y')as timestamp, 
+    posts.total_likes, posts.total_comments,  if (post_likes.like_id is not null, 1, 0) as liked_by_current_user
+    from posts
+    left join post_likes on post_likes.post_id = posts.post_id 
+    AND post_likes.user_id = :user_id;
+    `
+    let params = { user_id: user_id }
+    const [posts] = await database.query(query, params);
     return posts;
 }
 
@@ -71,7 +83,7 @@ async function addUser(firtst_name, last_name, email, password) {
 }
 async function updatePost(post_id, image_url, description) {
     let query = "UPDATE posts SET post_id = ?, image_url = ?, description = ? WHERE id = ?"
-    let params = {post_id: post_id, image_url:image_url, description: description}
+    let params = { post_id: post_id, image_url: image_url, description: description }
     const [result] = await database.query(query, params)
     return result
 }
@@ -158,8 +170,17 @@ async function getCommentLikesUsers(user_id) {
     return likes
 }
 async function getLikes() {
-    const [likes] = await database.query("SELECT * FROM post_likes");
+    const [likes] = await database.query("");
     return likes;
+}
+async function getPost_likes() {
+    const query =
+        ` select post_likes.*, foodie_user.first_name as first_name 
+    from post_likes 
+    left join foodie_user on post_likes.user_id = foodie_user.user_id 
+    order by post_likes.like_id asc`;
+    const [rows] = await database.query(query)
+    return rows
 }
 
 
@@ -201,7 +222,7 @@ async function deleteRestaurant(restaurant_id) {
 
 module.exports = {
     getUsers, getUser, getpostLikesByuser, getLikes, addUser, deletePost, deleteRestaurant, deletePostLikes,
-    addPost, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getpostComments,
+    addPost, getUserPosts, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getpostComments,
     getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
     getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, updatePost, getPostByPostId
 }
