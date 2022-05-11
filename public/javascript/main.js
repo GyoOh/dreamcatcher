@@ -25,6 +25,9 @@ hearts.forEach(heart => {
   function makeCount(event) {
     event.path[0].classList.toggle("liked")
     let post_id = event.path[1].childNodes[1].value
+    let currentLike = event.path[1].childNodes[3].value
+    console.log(currentLike)
+
     if (heart.classList.contains("liked")) {
       event.target.src = "/icons/like.svg"
       const header = {
@@ -41,7 +44,10 @@ hearts.forEach(heart => {
       }
       fetch(`/posts/${post_id}/like`, request)
         .then(resp => resp.json())
-        .then((data) => { })
+        .then((data) => {
+          console.log(data)
+
+        })
         .catch(err => console.log(err))
       location.reload();
 
@@ -141,7 +147,7 @@ commentsForms.forEach(commentForm => {
         // document.querySelector(".commentDiv").innerHTML(data)
       })
       .catch(err => console.log(err))
-
       location.reload();
   }
 })
+
