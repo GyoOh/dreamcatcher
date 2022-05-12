@@ -58,7 +58,7 @@
 
 .delete {
   padding: 0.5em;
-  border:1px solid lightgray;
+  border: 1px solid lightgray;
 }
 
 /* .editBtn .deleteBtn{
@@ -75,37 +75,34 @@
   /* background: transparent; */
 }
 
-
-.comment-field{
+.comment-field {
   display: flex;
   padding: 5px 0;
   right: 20px;
   opacity: 0.7;
 }
 
-
-.add-comment{
+.add-comment {
   width: 85%;
   border: none;
 }
 
-
-.add-comment::placeholder{
+.add-comment::placeholder {
   color: #028090;
 }
 
-.add-comment:focus{
-  outline: none!important;
+.add-comment:focus {
+  outline: none !important;
 }
 
-.submit-btn{
+.submit-btn {
   color: #028090;
   border: none;
   background-color: white;
   padding: 5px;
 }
 
-.commentId{
+.commentId {
   padding: 0.01px 20px;
   display: flex;
 }
@@ -141,8 +138,7 @@ height: 4px;
 width: 100; */
 }
 
-
-.btn{
+.btn {
   display: flex;
   background-color: firebrick;
 }
@@ -154,10 +150,10 @@ width: 100; */
 }
 .nav-btn {
   margin: 0 !important;
-  
 }
-.nav-icon:hover{
-  filter: invert(32%) sepia(14%) saturate(1786%) hue-rotate(136deg) brightness(93%) contrast(96%);
+.nav-icon:hover {
+  filter: invert(32%) sepia(14%) saturate(1786%) hue-rotate(136deg)
+    brightness(93%) contrast(96%);
 }
 .nav-icon:hover {
   filter: invert(32%) sepia(14%) saturate(1786%) hue-rotate(136deg)
@@ -169,23 +165,25 @@ width: 100; */
 } */
 
 .options {
-position: absolute;
-overflow: hidden;
-height: 100px;
-width: 100px;
-background: #FFFFFF;
-box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-border-radius: 0.5em;
-right: 0.5em;
-padding: 0%;
-margin: 3px;
-/* display: none; */
+  position: absolute;
+  overflow: hidden;
+  height: 100px;
+  width: 100px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 0.5em;
+  right: 0.5em;
+  padding: 0%;
+  margin: 3px;
+  /* display: none; */
 }
 
-.post-menu-btn{
+.post-menu-btn {
   width: 100%;
   height: 34px;
-  border:none;
+  border: none;
   color: #1a5e63;
   padding: 4px 25px;
   margin: 0;
@@ -237,4 +235,10 @@ margin: 3px;
 .commentDiv {
   display: none;
 }
-
+li {
+  list-style: none;
+}
+.name-like {
+  display: flex;
+  flex-direction: column;
+}

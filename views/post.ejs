@@ -50,13 +50,11 @@
                                                 function selectNewImage(event) {
                                                     event.target.closest("label").querySelector("input").click();
                                                 }
-
                                                 function loadFile(event) {
                                                     console.log("this", event.target)
                                                     let image = event.target.closest("label").querySelector("img");
                                                     console.log(image)
                                                     image.src = URL.createObjectURL(event.target.files[0]);
-
                                                     let des_photo = event.target.closest(".card").querySelector(".des_photo");
                                                     console.log(des_photo)
                                                     des_photo.src = image.src;
@@ -87,7 +85,7 @@
                                         <div class="place">@DreamCatchers Cafe</div>
                                     </div>
                                 </div>
-                                    
+
                                     <section class="moreClick">
                                             <img id="user" src="/icons/png.png">
                                         <div class="options">
@@ -97,7 +95,6 @@
                                                 <button class="post-menu-btn" id="cancelBtn">Cancel</button>
                                         </div>     
                                     </section>
-
                             </header>
                             <div class="img_section">
                                 <div class="trans_inner">
@@ -111,10 +108,22 @@
                                     <div class="heart_btn" >
                                         <form id="submitForm" method="POST" action="/posts/<%=posts[i].post_id%>/like" name="post_likes">
                                             <input class="posts_id" type="hidden" value="<%=posts[i].post_id%>" name="post_id">
-                                          <img type="submit" data-name="post_likes" src="/icons/heart.svg" class="favorite">
-                                          <br><%=posts[i].total_likes%> 
+                                          <% for (let k=0; k < userPosts.length; k++) { %>
+                                            <% if(posts[i].post_id == userPosts[k].post_id) {%>  
+                                               
+                                          
+                                          
+                                    <% if (userPosts[k].liked_by_current_user === 1 ) {%> 
+                                          <img type="submit" data-name="post_likes" src="/icons/like.svg" class="favorite liked">
+                                     <% } else {%> 
+                                     <img type="submit" data-name="post_likes" src="/icons/heart.svg" class="favorite">
+                                           <% } %> 
+                                        <% } %>
+                                     <% } %>  
+                                          <%=posts[i].total_likes%> 
                                         </form>
                                     </div>
+                                
                                     <div name="likes" class="sprite_bubble_icon message">
                                         <img src="/icons/message.svg">
                                     </div>
@@ -203,8 +212,6 @@
                                     </div>
                                 </div>
                             </form>
-
-
                         </div>
                         <% } %>
                 </div>

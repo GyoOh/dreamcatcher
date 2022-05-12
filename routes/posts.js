@@ -49,12 +49,15 @@ router.get("/create", async (req, res) => {
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
-    const posts = await dbModel.getPosts()
+    let posts = await dbModel.getPosts()
+    const userPosts = await dbModel.getUserPosts(user.user_id)
+    console.log("users", users)
+    console.log("userposts", userPosts)
     const commentId = await dbModel.getComments()
     if (!user) {
         res.redirect("/authentication/403");
     }
-    res.render("post", { user, users, posts, commentId });
+    res.render("post", { user, users, posts, userPosts, commentId });
 })
 
 router.post("/:post_id/comment", async (req, res) => {
@@ -140,4 +143,3 @@ router.post("/deletePost", async (req, res) => {
 })
 
 module.exports = router;
-
