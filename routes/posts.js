@@ -49,6 +49,7 @@ router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     let posts = await dbModel.getPosts()
+    console.log(posts)
     const userPosts = await dbModel.getUserPosts(user.user_id)
     console.log("users", users)
     console.log("userposts", userPosts)
