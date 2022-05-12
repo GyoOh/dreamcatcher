@@ -112,7 +112,7 @@ allCancels.forEach(cancel => {
 })
 
 function handleDeletePost(e) {
-  fetch(`/deletePost?id=${e.target.id}`,
+  fetch(`/posts/deletePost?id=${e.target.id}`,
     {
       method: "POST"
     }
