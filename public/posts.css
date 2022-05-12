@@ -215,6 +215,7 @@ width: 100; */
 
 .total {
   list-style: none;
+  cursor: pointer;
 }
 
 .commentName {
