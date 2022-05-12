@@ -81,11 +81,11 @@
                             <div class="contents_box">
                                 <article class="contents">
 
-                                    <form method="POST" action="/posts/edit/<% posts.post_id %>" enctype="multipart/form-data"
-                                        id="imageForm" class="post_form">
+                                    <form method="POST" action="/posts/edit/<%= postId %>"
+                                        enctype="multipart/form-data" id="imageForm" class="post_form">
                                         <div class="title">
                                             <a href="/posts">
-                                            <img class="backbtn" src="/icons/back button.svg"></a>
+                                                <img class="backbtn" src="/icons/back button.svg"></a>
                                             <p class="newpost">Edit Post</p>
                                         </div>
                                         <header class="top">
@@ -94,96 +94,65 @@
                                                     <img class="user" src="/icons/smantha.svg">
                                                 </div>
                                                 <div class="user_name">
-                                                    
-                                                    <div class="nick_name"><%=user.first_name%> <%=user.last_name  %>  </div>
+
+                                                    <div class="nick_name">
+                                                        <%=user.first_name%>
+                                                            <%=user.last_name %>
+                                                    </div>
                                                     <div class="place">@DreamCatchers Cafe </div>
                                                 </div>
-
                                             </div>
                                         </header>
 
                                         <div class="preview">
                                             <div class="upload">
                                                 <div class="post_btn">
-                                                    <!-- <div class="plus_icon"> -->
                                                     <input type="file" name="image" placeholder="image" id="id_photo"
-                                                        accept="image/*" required>
-                                                    <!-- </div> -->
+                                                        accept="image/*"required>
                                                     <canvas id="imageCanvas"></canvas>
                                                 </div>
+                                                <input type="hidden" name="old_image" value="<%= %> "/>
                                             </div>
-                                        </div>       
+                                        </div>
                                         <% } %>
-
-                                            <!-- <div class="bottom_icons">
-                                                <div class="left_icons">
-                                                    <div class="heart_btn">
-                                                        <img src="/icons/heart.svg" class="favorite">
-                                                    </div>
-                                                    <div class="sprite_bubble_icon message">
-                                                        <img src="/icons/message.svg">
-                                                    </div>
-                                                    <div class="sprite_share_icon" data-name="share">
-                                                        <img src="/icons/share.svg">
-                                                    </div>
-                                                </div>
-                                                <div class="right_icon">
-                                                    <div class="sprite_bookmark_outline" data-name="bookmark">
-                                                        <img src="/icons/save.svg" class="bookmark">
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                            <!-- <div class="likes">
-                                        <span id="like-count-39">22,346</span>
-                                        likes
-            
-                                        </div> -->
-
                                             <div class="comment_container">
                                                 <div class="comment" id="comment-list-ajax-post37">
                                                     <div class="comment-detail">
-                                                        </div>
-                                                        <textarea class="description" name="description" type="text" placeholder="description..." rows="8" maxlength="200" required></textarea> 
-
                                                     </div>
+                                                    <textarea class="description" name="description" type="text"
+                                                        placeholder="description..." rows="8" maxlength="200"
+                                                        required></textarea>
                                                 </div>
                                             </div>
+                            </div>
 
-                                            <!-- <div class="timer">1 DAY AGO</div> -->
+                            <div class="input_div">
+                                <input class="submit_btn" type="submit" value="Update">
+                            </div>
 
-                                            <!-- <div class="comment_field">
-                                        <input class="add_comment" type="text" placeholder="Add a Comment..."> -->
-                                            <!-- <div class="upload_btn" data-name="comment">POST</div> -->
-                                            <!-- </div> -->
-                                            <div class="input_div">
-                                                <input class="submit_btn" type="submit" value="Post">
-                                            </div>
+                            </form>
+                            </article>
 
-                                    </form>
-                                </article>
-                                <!--  -->
-                                <!-- 
- -->
-                                <div class="post_form_container">
-                                    <div class="bottom_tab_bar">
-                                        <div class="bottom_tab_bar_wrap">
-                                            <a href="/posts">
-                                                <img src="/icons/home.svg">
-                                            </a>
-                                            <a href="#">
-                                                <img src="/icons/explore.svg">
-                                            </a>
-                                            <a href="/posts/create">
-                                                <img src="/icons/post-new.svg">
-                                            </a>
-                                            <a href="#">
-                                                <img src="/icons/txt.svg">
-                                            </a>
-                                            <a href="/authentication/login">
-                                                <img src="/icons/profile.svg">
-                                            </a>
-                                        </div>
+                            <div class="post_form_container">
+                                <div class="bottom_tab_bar">
+                                    <div class="bottom_tab_bar_wrap">
+                                        <a href="/posts">
+                                            <img src="/icons/home.svg">
+                                        </a>
+                                        <a href="#">
+                                            <img src="/icons/explore.svg">
+                                        </a>
+                                        <a href="/posts/create">
+                                            <img src="/icons/post-new.svg">
+                                        </a>
+                                        <a href="#">
+                                            <img src="/icons/txt.svg">
+                                        </a>
+                                        <a href="/authentication/login">
+                                            <img src="/icons/profile.svg">
+                                        </a>
                                     </div>
+                                </div>
                     </section>
                     <script>
                         const contents = document.querySelector('div.contents_box')
