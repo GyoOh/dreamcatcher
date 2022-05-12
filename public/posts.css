@@ -242,3 +242,7 @@ li {
   display: flex;
   flex-direction: column;
 }
+.name-profile {
+  text-decoration: none;
+  color: in;
+}

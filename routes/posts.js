@@ -87,14 +87,6 @@ router.post("/:post_id/dislike", async (req, res) => {
     }
 })
 
-router.use((err, req, res, next) => {
-    if (res.headersSent) {
-        return next(err);
-    }
-    console.error(err);
-    res.status(500).send({ error: "something bad happened" });
-});
-
 router.get("/edit/:postid", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const post = await dbModel.getPostByPostId(req.params.postid)
@@ -141,5 +133,28 @@ router.post("/deletePost", async (req, res) => {
         res.redirect("/authentication/403")
     }
 })
+
+router.get("/:first_name", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const users = await dbModel.getUsers()
+    let posts = await dbModel.getPosts()
+    console.log(posts)
+    const userPosts = await dbModel.getUserPosts(user.user_id)
+    console.log("users", users)
+    console.log("userposts", userPosts)
+    const commentId = await dbModel.getComments()
+    if (!user) {
+        res.redirect("/authentication/403");
+    }
+    res.render("profile", { user, users, posts, userPosts, commentId });
+})
+
+router.use((err, req, res, next) => {
+    if (res.headersSent) {
+        return next(err);
+    }
+    console.error(err);
+    res.status(500).send({ error: "something bad happened" });
+});
 
 module.exports = router;
