@@ -147,7 +147,6 @@ commentsForms.forEach(commentForm => {
         // document.querySelector(".commentDiv").innerHTML(data)
       })
       .catch(err => console.log(err))
-      location.reload();
+    location.reload();
   }
 })
-
