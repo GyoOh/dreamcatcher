@@ -7,7 +7,6 @@ const s3 = require("../s3")
 const path = require('path');
 const { CodeBuild } = require("aws-sdk");
 const { Console } = require("console");
-const { fstat } = require("fs");
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images')
