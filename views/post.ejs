@@ -106,20 +106,18 @@
                                 <div class="left_icons">
                                     <div class="heart_btn" >
                                         <form id="submitForm" method="POST" action="/posts/<%=posts[i].post_id%>/like" name="post_likes">
-                                            <input class="posts_id" type="hidden" value="<%=posts[i].post_id%>" name="post_id">
-                                          <% for (let k=0; k < userPosts.length; k++) { %>
-                                            <% if(posts[i].post_id == userPosts[k].post_id) {%>  
+                                            <% for (let k=0; k < userPosts.length; k++) { %>
+                                              <% if(posts[i].post_id == userPosts[k].post_id) {%>  
+                                            <input id="<%=userPosts[k].liked_by_current_user%>" class="posts_id" type="hidden" value="<%=posts[i].post_id%>" name="post_id">
                                                
-                                          
-                                          
                                     <% if (userPosts[k].liked_by_current_user === 1 ) {%> 
-                                          <img type="submit" data-name="post_likes" src="/icons/like.svg" class="favorite liked">
+                                       <div><img type="submit" data-name="post_likes" src="/icons/like.svg" class="favorite liked"></div>
                                      <% } else {%> 
-                                     <img type="submit" data-name="post_likes" src="/icons/heart.svg" class="favorite">
+                                    <div><img type="submit" data-name="post_likes" src="/icons/heart.svg" class="favorite"></div> 
                                            <% } %> 
                                         <% } %>
                                      <% } %>  
-                                          <%=posts[i].total_likes%> 
+                                         <span><%=posts[i].total_likes%></span>
                                         </form>
                                     </div>
                                 

@@ -49,10 +49,7 @@ router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     let posts = await dbModel.getPosts()
-    console.log(posts)
     const userPosts = await dbModel.getUserPosts(user.user_id)
-    console.log("users", users)
-    console.log("userposts", userPosts)
     const commentId = await dbModel.getComments()
     if (!user) {
         res.redirect("/authentication/403");
@@ -114,20 +111,15 @@ router.post("/edit/:postid", upload.single("image"), async (req, res) => {
 });
 
 router.post("/deletePost", async (req, res) => {
-    const id = req.query.id
+    const id = +req.query.id
+    console.log("id", id)
     const post = await dbModel.getPostByPostId(id)
     const user = await dbModel.getUser(req.session.whoami)
     console.log("User?? " + post[0].user_id + " " + user.user_id)
     if (post[0].user_id === user.user_id) {
-        try {
-            await dbModel.deletePost(id)
-            console.log("Deleting... ")
-            res.redirect(`/posts/${post[0].post_id}`)
-        }
-        catch (error) {
-            console.error(error)
-            console.log("Delete post catch ")
-        }
+        await dbModel.deletePost(id)
+        console.log("Deleting... ")
+        res.redirect(`/posts/${post[0].post_id}`)
     } else {
         console.log("User do not match post user ")
         res.redirect("/authentication/403")

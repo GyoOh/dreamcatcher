@@ -23,13 +23,14 @@ const hearts = document.querySelectorAll(".favorite")
 hearts.forEach(heart => {
   heart.addEventListener("click", makeCount)
   function makeCount(event) {
-    event.path[0].classList.toggle("liked")
-    let post_id = event.path[1].childNodes[1].value
-    let currentLike = event.path[1].childNodes[3].value
-    console.log(currentLike)
-
+    event.target.classList.toggle("liked")
+    let post_id = event.target.parentNode.parentNode.childNodes[1].value
+    let currentLike = event.target.parentNode.parentNode.childNodes[1].id
+    let totalLike = event.target.parentNode.parentNode.childNodes[5].innerHTML
+    let span = event.target.parentNode.parentNode.childNodes[5]
     if (heart.classList.contains("liked")) {
       event.target.src = "/icons/like.svg"
+      span.innerHTML = parseInt(totalLike) + 1
       const header = {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -46,13 +47,11 @@ hearts.forEach(heart => {
         .then(resp => resp.json())
         .then((data) => {
           console.log(data)
-
         })
         .catch(err => console.log(err))
-      location.reload();
-
     } else {
       event.target.src = "/icons/heart.svg"
+      span.innerHTML = parseInt(totalLike) - 1
       const header = {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -67,9 +66,8 @@ hearts.forEach(heart => {
       }
       fetch(`/posts/${post_id}/dislike`, request)
         .then(resp => resp.json())
-        .then((data) => { document.querySelector(".commentDiv").innerHTML(data) })
+        .then((data) => { })
         .catch(err => console.log(err))
-      location.reload();
     }
   }
 })
@@ -112,9 +110,9 @@ allCancels.forEach(cancel => {
 })
 
 function handleDeletePost(e) {
-  fetch(`http://localhost:8000/posts/deletePost?id=${e.target.id}`,
+  fetch(`/posts/deletePost?id=${e.target.id}`,
     {
-      method:"POST"
+      method: "POST"
     }
   )
   location.reload();
@@ -143,7 +141,6 @@ commentsForms.forEach(commentForm => {
     fetch(`/posts/${post_id}/comment`, request)
       .then(resp => resp.json())
       .then((data) => {
-        // document.querySelector(".commentDiv").innerHTML(data)
       })
       .catch(err => console.log(err))
     location.reload();
