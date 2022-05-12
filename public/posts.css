@@ -245,4 +245,9 @@ li {
 .name-profile {
   text-decoration: none;
   color: in;
+  cursor: pointer;
+  color: #1a5e63;
+}
+#user {
+  cursor: pointer;
 }
