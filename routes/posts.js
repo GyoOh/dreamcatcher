@@ -7,6 +7,7 @@ const s3 = require("../s3")
 const path = require('path');
 const { CodeBuild } = require("aws-sdk");
 const { Console } = require("console");
+const { fstat } = require("fs");
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images')
@@ -82,14 +83,6 @@ router.post("/:post_id/dislike", async (req, res) => {
         res.end();
     }
 })
-router.delete("/deletePost", async (req, res) => {
-    console.log("DELETE ENDPOINT")
-    const id = req.query.id
-    console.log("Id in endpoint" + id)
-    await dbModel.deletePost(id)
-    res.end();
-
-})
 
 router.use((err, req, res, next) => {
     if (res.headersSent) {
@@ -99,39 +92,52 @@ router.use((err, req, res, next) => {
     res.status(500).send({ error: "something bad happened" });
 });
 
-router.delete("/deletePost", async (req, res) => {
-    console.log("DELETE ENDPOINT")
-    const id = req.query.id
-    console.log("Id in endpoint" + id)
-    try {
-        await dbModel.deletePost(id)
-        res.end();
-    } catch (error) {
-      console.error(error)
-      res.status(500).send({ error: "error" })
+router.get("/edit/:postid", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const post = await dbModel.getPostByPostId(req.params.postid)
+    const postId = req.params.postid
+    if (post[0].user_id !== user.user_id) {
+        res.redirect("/authentication/403")
     }
-  })
-  
-  router.get("/edit/:postid", async (req, res) => {
-    const user = await dbModel.getUser(req.session.whoami)
-    const posts = await dbModel.getPostByPostId(req.params.postid)
-    res.render("edit", { user, posts });
-  })
+    res.render("edit", { user, post, postId });
+})
 
-  router.put("/edit/:postid", async (req, res) => {
+router.post("/edit/:postid", upload.single("image"), async (req, res) => {
+    // let new_image = ""
     const posts = await dbModel.getPostByPostId(req.params.postid)
     const user = await dbModel.getUser(req.session.whoami)
-    if (posts) {
-    const { filename, path } = req.file
-    const description = req.body.description
-    const url = await s3.uploadFile(req.file)
-    const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
-        await dbModel.updatePost(req.params.postid, description, image_url)
+    if (posts && posts[0].user_id == user.user_id) {
+        const { filename, path } = req.file
+        const description = req.body.description
+        const url = await s3.uploadFile(req.file)
+        const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
+        await dbModel.updatePost(description, image_url, parseInt(req.params.postid))
         res.redirect("/posts")
     } else {
-        
+        // new_image = req.body.old_image
     }
 });
+
+router.post("/deletePost", async (req, res) => {
+    const id = req.query.id
+    const post = await dbModel.getPostByPostId(id)
+    const user = await dbModel.getUser(req.session.whoami)
+    console.log("User?? " + post[0].user_id + " " + user.user_id)
+    if (post[0].user_id === user.user_id) {
+        try {
+            await dbModel.deletePost(id)
+            console.log("Deleting... ")
+            res.redirect(`/posts/${post[0].post_id}`)
+        }
+        catch (error) {
+            console.error(error)
+            console.log("Delete post catch ")
+        }
+    } else {
+        console.log("User do not match post user ")
+        res.redirect("/authentication/403")
+    }
+})
 
 module.exports = router;
 

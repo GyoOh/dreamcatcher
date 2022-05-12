@@ -64,9 +64,7 @@ hearts.forEach(heart => {
         .catch(err => console.log(err))
         location.reload();
     }
-    
   }
-  
 })
 
 
@@ -109,7 +107,7 @@ allCancels.forEach(cancel => {
 function handleDeletePost(e){
   fetch(`http://localhost:8000/posts/deletePost?id=${e.target.id}`,
     {
-      method:"DELETE"
+      method:"POST"
     }
   )
   location.reload();
