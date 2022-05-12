@@ -112,9 +112,9 @@ allCancels.forEach(cancel => {
 })
 
 function handleDeletePost(e) {
-  fetch(`http://localhost:8000/posts/deletePost?id=${e.target.id}`,
+  fetch(`/deletePost?id=${e.target.id}`,
     {
-      method:"POST"
+      method: "POST"
     }
   )
   location.reload();
