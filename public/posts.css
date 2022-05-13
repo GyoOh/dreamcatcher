@@ -114,6 +114,7 @@
 
 .card {
   margin: 5%;
+  flex-wrap: wrap;
 }
 
 nav a {
