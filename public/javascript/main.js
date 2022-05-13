@@ -66,12 +66,11 @@ hearts.forEach(heart => {
       }
       fetch(`/posts/${post_id}/dislike`, request)
         .then(resp => resp.json())
-        .then((data) => { })
+        .then((data) => { console.log(data) })
         .catch(err => console.log(err))
     }
   }
 })
-
 
 const bookmarks = document.querySelectorAll(".bookmark")
 bookmarks.forEach(bookmark => {
@@ -122,14 +121,54 @@ function handleDeletePost(e) {
     location.reload();
   })
 }
-
+const commentName = document.querySelector('.name-profile').id
+const fullCommnetName = document.querySelector('.nick_name').id
 const commentsForms = document.querySelectorAll("form.comment_form")
+let numberCommnet
 commentsForms.forEach(commentForm => {
   commentForm.addEventListener("submit", makeComment)
   function makeComment(event) {
     event.preventDefault()
-    let comments = event.path[0].childNodes[3].childNodes[1].childNodes[1].value
-    let post_id = event.path[0].childNodes[3].childNodes[1].childNodes[3].childNodes[3].value
+    const totalCommentCount = event.target.parentElement.querySelector('li.total')
+    const comments = event.target.childNodes[3].childNodes[1].childNodes[1].value
+    event.target.childNodes[3].childNodes[1].childNodes[1].value = ''
+    const post_id = event.target.childNodes[3].childNodes[1].childNodes[3].childNodes[3].value
+    const commentsDiv = event.target.childNodes[3].childNodes[3]
+    // const imagePhoto = event.target.childNodes[3].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1]
+    // const name = event.target.childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[3]
+    const li = event.target.parentNode.childNodes[7].childNodes[1].childNodes[1].childNodes[3].childNodes[3]
+    let totalComment = event.target.parentNode.childNodes[7].id
+
+    li.innerHTML = `  see all ${totalComment} comments`
+    const div = document.createElement('div')
+    commentsDiv.appendChild(div);
+    const subDiv = document.createElement('div')
+    subDiv.classList.add('d-flex')
+    subDiv.classList.add('ps-4')
+    div.appendChild(subDiv)
+
+    const photoDiv = document.createElement('div')
+    photoDiv.classList.add('profile-img')
+    subDiv.appendChild(photoDiv)
+    const img = document.createElement('img')
+    img.classList.add('user')
+    img.classList.add('com_photo')
+    img.src = "/icons/small smantha.svg"
+    photoDiv.appendChild(img)
+
+    let nameDiv = document.createElement('div')
+    nameDiv.classList.add('commentName')
+    subDiv.appendChild(nameDiv)
+    let aTag = document.createElement('a')
+    aTag.classList.add('name-profile')
+    aTag.href = `/posts/${commentName}`
+    aTag.innerHTML = `${fullCommnetName}`
+    nameDiv.appendChild(aTag)
+
+    let commentDiv = document.createElement('div')
+    commentDiv.classList.add('commentId')
+    subDiv.appendChild(commentDiv)
+    commentDiv.innerHTML = comments
     const header = {
       Accept: "application/json",
       "Content-Type": "application/json"
@@ -144,10 +183,12 @@ commentsForms.forEach(commentForm => {
       body: body,
     }
     fetch(`/posts/${post_id}/comment`, request)
-      .then(resp => resp.json())
-      .then((data) => {
+      .then(resp =>
+        resp.json()
+      )
+      .then(data => {
+        totalCommentCount.innerHTML = `see all ${data.count} comments`
       })
       .catch(err => console.log(err))
-    location.reload();
   }
 })
