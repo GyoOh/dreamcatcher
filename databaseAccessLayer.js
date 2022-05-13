@@ -22,7 +22,8 @@ async function getUserbyUserId(user_id) {
 async function getPosts() {
     let query = `
     select post_id, user_id, image_url, description, date_format(timestamp, '%M %e, %Y')as timestamp, 
-    total_likes, total_comments from posts;
+    total_likes, total_comments from posts
+    order by post_id desc;
     `
     const [posts] = await database.query(query);
     return posts;
