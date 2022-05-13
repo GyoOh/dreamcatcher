@@ -66,12 +66,11 @@ hearts.forEach(heart => {
       }
       fetch(`/posts/${post_id}/dislike`, request)
         .then(resp => resp.json())
-        .then((data) => { })
+        .then((data) => { console.log(data) })
         .catch(err => console.log(err))
     }
   }
 })
-
 
 const bookmarks = document.querySelectorAll(".bookmark")
 bookmarks.forEach(bookmark => {
@@ -135,8 +134,8 @@ commentsForms.forEach(commentForm => {
     event.target.childNodes[3].childNodes[1].childNodes[1].value = ''
     const post_id = event.target.childNodes[3].childNodes[1].childNodes[3].childNodes[3].value
     const commentsDiv = event.target.childNodes[3].childNodes[3]
-    const imagePhoto = event.target.childNodes[3].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1]
-    const name = event.target.childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[3]
+    // const imagePhoto = event.target.childNodes[3].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1]
+    // const name = event.target.childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[3]
     const li = event.target.parentNode.childNodes[7].childNodes[1].childNodes[1].childNodes[3].childNodes[3]
     let totalComment = event.target.parentNode.childNodes[7].id
 

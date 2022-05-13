@@ -11,16 +11,18 @@ async function getUser(email) {
     const [user] = await database.query(query, params)
     return user[0]
 }
+
 async function getUserbyUserId(user_id) {
     let query = "SELECT * FROM foodie_user WHERE user_id = :user_id";
     let params = { user_id: user_id }
     const [user] = await database.query(query, params)
     return user[0]
 }
+
 async function getPosts() {
     let query = `
     select post_id, user_id, image_url, description, date_format(timestamp, '%M %e, %Y')as timestamp, 
-    total_likes, total_comments from posts;
+    total_likes, total_comments from posts
     `
     const [posts] = await database.query(query);
     return posts;
@@ -83,12 +85,12 @@ async function addUser(firtst_name, last_name, email, password) {
 
 }
 
-async function updatePost( description, image_url, post_id) {
+async function updatePost(description, image_url, post_id) {
     let query = "UPDATE posts SET description = :description, image_url = :image_url WHERE post_id = :post_id";
-    let params = { description: description, image_url:image_url, post_id:post_id }
+    let params = { description: description, image_url: image_url, post_id: post_id }
     const [result] = await database.query(query, params)
     return result
-} 
+}
 
 async function addcomment(user_id, post_id, comments) {
     const query = "INSERT INTO comments (user_id, post_id, comments) VALUES(?, ?, ?)"
