@@ -114,8 +114,13 @@ function handleDeletePost(e) {
     {
       method: "POST"
     }
-  )
-  location.reload();
+  ).then((res) => {
+    if (res.status === 403) {
+      location.href = "/authentication/403";
+      return;
+    }
+    location.reload();
+  })
 }
 
 const commentsForms = document.querySelectorAll("form.comment_form")
