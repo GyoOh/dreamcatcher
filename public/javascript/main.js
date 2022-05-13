@@ -112,12 +112,17 @@ allCancels.forEach(cancel => {
 })
 
 function handleDeletePost(e) {
-  fetch(`http://localhost:8000/posts/deletePost?id=${e.target.id}`,
+  fetch(`/posts/deletePost?id=${e.target.id}`,
     {
       method:"POST"
     }
-  )
-  location.reload();
+  ).then((res) => {
+    if (res.status === 403) {
+      location.href = "/authentication/403";
+      return;
+    }
+    location.reload();
+  })
 }
 
 const commentsForms = document.querySelectorAll("form.comment_form")

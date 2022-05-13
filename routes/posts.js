@@ -114,7 +114,7 @@ router.post("/edit/:postid", upload.single("image"), async (req, res) => {
 });
 
 router.post("/deletePost", async (req, res) => {
-    const id = req.query.id
+    const id = +req.query.id
     const post = await dbModel.getPostByPostId(id)
     const user = await dbModel.getUser(req.session.whoami)
     console.log("User?? " + post[0].user_id + " " + user.user_id)
@@ -130,7 +130,7 @@ router.post("/deletePost", async (req, res) => {
         }
     } else {
         console.log("User do not match post user ")
-        res.redirect("/authentication/403")
+        res.sendStatus(403);
     }
 })
 
