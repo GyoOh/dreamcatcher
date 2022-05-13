@@ -74,10 +74,10 @@
                                     </div>
                                     <!-- </div> -->
                                     <div class="user_name">
-                                        <div class="nick_name">
+                                        <div id="<%=user.first_name%> <%=user.last_name%>" class="nick_name">
                                             <% users.forEach(oneUser=> {%>
                                                 <% if(posts[i].user_id===oneUser.user_id) {%>
-                                                   <a class="name-profile" href="/posts/<%= oneUser.first_name %>"><%= oneUser.first_name%>
+                                                   <a id="<%=user.first_name%>" class="name-profile" href="/posts/<%= oneUser.first_name %>"><%= oneUser.first_name%>
                                                         <%= oneUser.last_name%></a>
                                                             <% } %>
                                                                 <% }) %>
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
                          
-                            <div class="comment_container">
+                            <div class="comment_container" id="<%=posts[i].total_comments%>" >
                                 <div class="comment" id="comment-list-ajax-post37">
                                     <div class="comment-detail">
                                         <div class="profile_img">
@@ -143,10 +143,10 @@
                                         </div>
                                         <div class="d-flex flex-column">
                                             <div class="d-flex">
+                                                <% users.forEach(oneUser=> {%>
+                                                    <% if(posts[i].user_id===oneUser.user_id) {%>
                                                 <div class="nick_name">
-                                                    <% users.forEach(oneUser=> {%>
-                                                        <% if(posts[i].user_id===oneUser.user_id) {%>
-                                                           <a class="name-profile" href="/posts/<%= oneUser.first_name %>"><%= oneUser.first_name%>
+                                                           <a class="name-profile" href="/posts/<%=oneUser.first_name%>"><%=oneUser.first_name%>
                                                                 <%= oneUser.last_name%></a>
                                                                     <% } %>
                                                                       <% }) %><br>
@@ -168,7 +168,7 @@
                                     <div class="sprite_small_heart_icon_outline"></div>
                                 </div>
                             </div>
-                            <form method="POST" action="/posts/<%=posts[i].post_id%>/comments" id="commentForm" class="comment_form">
+                            <form method="POST" action="/posts/<%=posts[i].post_id%>/comment" id="commentForm" class="comment_form">
                             <div class="timestamp">
                                 <%=posts[i].timestamp%>
                             </div>

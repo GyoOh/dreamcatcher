@@ -49,7 +49,9 @@ router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     let posts = await dbModel.getPosts()
+    console.log('one', posts)
     const userPosts = await dbModel.getUserPosts(user.user_id)
+    // console.log(userPosts)
     const commentId = await dbModel.getComments()
     if (!user) {
         res.redirect("/authentication/403");
@@ -59,10 +61,13 @@ router.get("/", async (req, res) => {
 
 router.post("/:post_id/comment", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
-    post_id = req.params.post_id
+    const post_id = +req.params.post_id
     if (user) {
         const comments = req.body.comments
         await dbModel.addcomment(user.user_id, req.body.post_id, comments)
+        let posts = await dbModel.getPosts()
+        let [thisPost] = posts.filter(post => post.post_id === post_id)
+        res.json({ count: thisPost.total_comments })
     }
 })
 
