@@ -50,13 +50,6 @@
     font: 14px 'Nunito', sans-serif;    
 }
 
-.description {
-    border: 1px solid lightgrey;
-    height: 8em;
-    width: 20em;
-    font: 14px 'Nunito', sans-serif;    
-}
-
 
 .newpost {
     font: 24px 'Nunito', sans-serif;
@@ -133,8 +126,6 @@
     justify-content: center;
     align-items: center;
     margin: 0;
-
-
 }
 
 .bottom_tab_bar_wrap {
@@ -143,6 +134,11 @@
     width: 50%;
 }
 
+
+textarea.description {
+    max-width: 20em;
+    max-height: 8em;
+}
 
 
 @media screen and (max-width: 650px) {

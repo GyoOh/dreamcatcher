@@ -156,7 +156,7 @@
                                             <!-- <div class="upload_btn" data-name="comment">POST</div> -->
                                             <!-- </div> -->
                                             <div class="input_div">
-                                                <input class="submit_btn" type="submit" value="Post">
+                                                <input class="submit_btn" type="submit" value="Post" size="20">
                                             </div>
 
                                     </form>
@@ -186,30 +186,30 @@
                                     </div>
                     </section>
                     <script>
-                        const contents = document.querySelector('div.contents_box')
-                        contents.addEventListener('click', (event) => {
-                            if (event.target.classList.contains("favorite")) {
-                                if (event.target.classList.contains("liked")) {
-                                    event.target.classList.remove('liked');
-                                    event.target.src = "/icons/heart.svg"
+                        // const contents = document.querySelector('div.contents_box')
+                        // contents.addEventListener('click', (event) => {
+                        //     if (event.target.classList.contains("favorite")) {
+                        //         if (event.target.classList.contains("liked")) {
+                        //             event.target.classList.remove('liked');
+                        //             event.target.src = "/icons/heart.svg"
 
-                                } else {
-                                    event.target.classList.add('liked')
-                                    event.target.src = "/icons/like.svg"
-                                }
-                            }
+                        //         } else {
+                        //             event.target.classList.add('liked')
+                        //             event.target.src = "/icons/like.svg"
+                        //         }
+                        //     }
 
-                            if (event.target.classList.contains("bookmark")) {
-                                if (event.target.classList.contains("saved")) {
-                                    event.target.classList.remove('saved');
-                                    event.target.src = "/icons/save.svg"
-                                } else {
-                                    event.target.classList.add('saved');
-                                    event.target.src = "/icons/saved.svg"
-                                }
-                            }
+                        //     if (event.target.classList.contains("bookmark")) {
+                        //         if (event.target.classList.contains("saved")) {
+                        //             event.target.classList.remove('saved');
+                        //             event.target.src = "/icons/save.svg"
+                        //         } else {
+                        //             event.target.classList.add('saved');
+                        //             event.target.src = "/icons/saved.svg"
+                        //         }
+                        //     }
 
-                        })
+                        // })
 
 
                         let fileInput = document.querySelector("#id_photo"),
