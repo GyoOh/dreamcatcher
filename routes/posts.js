@@ -50,6 +50,9 @@ router.get("/", async (req, res) => {
     const users = await dbModel.getUsers()
     let posts = await dbModel.getPosts()
     let userPosts
+    if (!user) {
+        return res.redirect("/authentication/403");
+    }
     if (user) {
         userPosts = await dbModel.getUserPosts(user.user_id)
     }
@@ -93,6 +96,9 @@ router.post("/:post_id/dislike", async (req, res) => {
 
 router.get("/edit/:postid", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
+    if (!user) {
+        return res.redirect("/authentication/403");
+    }
     const post = await dbModel.getPostByPostId(req.params.postid)
     const postId = req.params.postid
     if (post[0].user_id !== user.user_id) {
