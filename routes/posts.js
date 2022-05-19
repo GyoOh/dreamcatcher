@@ -49,13 +49,14 @@ router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     let posts = await dbModel.getPosts()
-    console.log('one', posts)
-    const userPosts = await dbModel.getUserPosts(user.user_id)
-    // console.log(userPosts)
-    const commentId = await dbModel.getComments()
+    let userPosts
     if (!user) {
-        res.redirect("/authentication/403");
+        return res.redirect("/authentication/403");
     }
+    if (user) {
+        userPosts = await dbModel.getUserPosts(user.user_id)
+    }
+    const commentId = await dbModel.getComments()
     res.render("post", { user, users, posts, userPosts, commentId });
 })
 
@@ -91,6 +92,9 @@ router.post("/:post_id/dislike", async (req, res) => {
 
 router.get("/edit/:postid", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
+    if (!user) {
+        return res.redirect("/authentication/403");
+    }
     const post = await dbModel.getPostByPostId(req.params.postid)
     const postId = req.params.postid
     if (post[0].user_id !== user.user_id) {
@@ -119,7 +123,6 @@ router.post("/deletePost", async (req, res) => {
     const id = +req.query.id
     const post = await dbModel.getPostByPostId(id)
     const user = await dbModel.getUser(req.session.whoami)
-    console.log("User?? " + post[0].user_id + " " + user.user_id)
     if (post[0].user_id === user.user_id) {
         await dbModel.deletePost(id)
         console.log("Deleting... ")
@@ -128,21 +131,6 @@ router.post("/deletePost", async (req, res) => {
         console.log("User do not match post user ")
         res.sendStatus(403);
     }
-})
-
-router.get("/:first_name", async (req, res) => {
-    const user = await dbModel.getUser(req.session.whoami)
-    const users = await dbModel.getUsers()
-    let posts = await dbModel.getPosts()
-    console.log(posts)
-    const userPosts = await dbModel.getUserPosts(user.user_id)
-    console.log("users", users)
-    console.log("userposts", userPosts)
-    const commentId = await dbModel.getComments()
-    if (!user) {
-        res.redirect("/authentication/403");
-    }
-    res.render("profile", { user, users, posts, userPosts, commentId });
 })
 
 router.get("/location", async (req, res) => {

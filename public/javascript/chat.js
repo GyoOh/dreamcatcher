@@ -37,11 +37,14 @@ chatForm.addEventListener('submit', (event) => {
 
 //output message to DOM
 function outputMessage(message) {
-    const div = document.createElement('div');
-    div.classList.add('message');
-    div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>
+    const span = document.createElement('span');
+    const divTwo = document.createElement('div');
+    // div.classList.add('time');
+    divTwo.classList.add('message');
+    span.innerHTML = `${message.time}`
+    divTwo.innerHTML = `<p class="meta">${message.username} </p>
     <p class="text">
         ${message.text}
     </p>`;
-    document.querySelector('.chat-messages').appendChild(div);
+    document.querySelector('.chat-messages').append(span, divTwo);
 }
