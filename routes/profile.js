@@ -81,6 +81,30 @@ router.post("/:user_id/unfollow", async (req, res) => {
     }
 })
 
+router.get("/edit/:user_id", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const users = await dbModel.getUsers()
+    let posts = await dbModel.getPosts()
+    const user_id = +req.params.user_id
+    let profileUser
+    let userPosts
+    let thisUser
+    let totalFollower
+    let isFollowing
+    if (user) {
+        thisUser = await dbModel.getPostByUserId(user_id)
+        userPosts = await dbModel.getUserPosts(user.user_id)
+        totalFollower = await dbModel.getTotalFollower(user_id)
+        profileUser = users.filter(user => user.user_id === user_id)
+        let follower = await dbModel.getfollower(user.user_id, user_id)
+        isFollowing = follower.map(already => already.follower).includes(user.user_id)
+    }
+    const commentId = await dbModel.getComments()
+    if (!user) {
+        res.redirect("/authentication/403");
+    }
+    res.render("profile", { user, user_id, users, posts, userPosts, commentId, thisUser, profileUser, totalFollower, isFollowing });
+})
 
 router.use((err, req, res, next) => {
     if (res.headersSent) {

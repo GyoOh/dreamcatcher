@@ -99,7 +99,11 @@
                 </div>
                 <div class="input">
                     <span class="submit profile"> 
-                        <input class="submit" type="submit" value="Edit profile">
+                        <% if(user.user_id === user_id) {%> 
+                        <form action="/profile/edit/<%=thisUser[0].user_id%>" method="GET">
+                            <input class="submit" type="submit" value="Edit profile">
+                        </form>
+                        <% }  %> 
                     </span>&nbsp&nbsp&nbsp
                     <span class="new follow"> 
                         <% if(user.user_id !== user_id) {%> 
