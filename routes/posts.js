@@ -56,11 +56,7 @@ router.get("/", async (req, res) => {
     if (user) {
         userPosts = await dbModel.getUserPosts(user.user_id)
     }
-
     const commentId = await dbModel.getComments()
-    if (!user) {
-        res.redirect("/authentication/403");
-    }
     res.render("post", { user, users, posts, userPosts, commentId });
 })
 
@@ -135,21 +131,6 @@ router.post("/deletePost", async (req, res) => {
         console.log("User do not match post user ")
         res.sendStatus(403);
     }
-})
-
-router.get("/:first_name", async (req, res) => {
-    const user = await dbModel.getUser(req.session.whoami)
-    const users = await dbModel.getUsers()
-    let posts = await dbModel.getPosts()
-    let userPosts
-    if (user) {
-        userPosts = await dbModel.getUserPosts(user.user_id)
-    }
-    const commentId = await dbModel.getComments()
-    if (!user) {
-        res.redirect("/authentication/403");
-    }
-    res.render("profile", { user, users, posts, userPosts, commentId });
 })
 
 router.use((err, req, res, next) => {
