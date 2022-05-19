@@ -6,6 +6,8 @@ const app = express();
 const authentication = require("./routes/authentication");
 const posts = require("./routes/posts");
 const chat = require("./routes/chat")
+const profile = require("./routes/profile")
+
 const database = require("./databaseConnection");
 const dbModel = require("./databaseAccessLayer")
 const bcrypt = require("bcrypt")
@@ -24,6 +26,7 @@ app.use(cookieSession({
 app.use("/authentication", authentication);
 app.use("/posts", posts);
 app.use("/chat", chat);
+app.use("/profile", profile)
 
 app.get("/", async (req, res) => {
   const email = req.session.whoami
