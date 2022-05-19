@@ -12,7 +12,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
-    <link rel="stylesheet" href="/myprofile.css">
+    <link rel="stylesheet" href="/editProfile.css">
     
 </head>
 
@@ -26,6 +26,7 @@
     <a class="gear" href="/authentication/login">
         <img class="gear" src="/icons/settings.svg">
     </a>
+    <h2>Edit profile</h2>
         <section id="main_container d-flex flex-column">
             <% if(!user) {%>
                 <form class="login-form" action="/authentication/login" method="POST">
@@ -92,21 +93,17 @@
                         
                         <span class="user-info bio"><%=profileUser[0].bio%></span>
                        <p>
-                        <% if(thisUser) {%> 
                         <span class="user-info"><%=thisUser.length%>Posts</span>&nbsp;&nbsp;
-                        <% } %> 
                         <span class="user-info follower"><%=totalFollower[0].total_followed%>follower</span>&nbsp;&nbsp;
                         <span class="user-info following"><%=totalFollower[0].total_follower%>following</span></p>
                         </div>
                 </div>
                 <div class="input">
                     <span class="submit profile"> 
-                        <% if(thisUser[0]) {%> 
                         <% if(user.user_id === user_id) {%> 
                         <form action="/profile/edit/<%=thisUser[0].user_id%>" method="GET">
                             <input class="submit" type="submit" value="Edit profile">
                         </form>
-                        <% } %> 
                         <% }  %> 
                     </span>&nbsp&nbsp&nbsp
                     <span class="new follow"> 
@@ -121,15 +118,10 @@
                     </span>
                 </div>
         </section>
-        <div class="each-posts">
-            <% if(thisUser) {%> 
-            <% for (let i=0; i < thisUser.length; i++) { %>
-            <img class="userPost" src=<%=thisUser[i].image_url%>> 
-            <% } %> 
-           <% } %> 
+       
                 <% } %> 
 
-        </div>
+      
             
         <nav class="bottom-nav">
 

@@ -103,7 +103,7 @@ router.get("/edit/:user_id", async (req, res) => {
     if (!user) {
         res.redirect("/authentication/403");
     }
-    res.render("profile", { user, user_id, users, posts, userPosts, commentId, thisUser, profileUser, totalFollower, isFollowing });
+    res.render("editProfile", { user, user_id, users, posts, userPosts, commentId, thisUser, profileUser, totalFollower, isFollowing });
 })
 
 router.use((err, req, res, next) => {
