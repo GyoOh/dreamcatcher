@@ -38,6 +38,7 @@ span {
     /* opacity: 10%; */
     background-color: #00BFB2;
     padding-top: 0.05em;
+    overflow-y: scroll;
 }
 
 .text {
@@ -59,3 +60,4 @@ p.text {
 .meta {
     margin-bottom: 0;
 }
+
