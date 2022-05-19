@@ -167,6 +167,7 @@ commentsForms.forEach(commentForm => {
 
     let commentDiv = document.createElement('div')
     commentDiv.classList.add('commentId')
+    event.target.childNodes[3].childNodes[3].classList.remove("commentDiv")
     subDiv.appendChild(commentDiv)
     commentDiv.innerHTML = comments
     const header = {

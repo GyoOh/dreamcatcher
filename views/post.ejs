@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/posts.css">
     <link rel="stylesheet" href="/profile.css">
-    <link rel="stylesheet" href="/myprofile.css">
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
@@ -85,44 +84,16 @@
                         <div class="contents flex-column card">
                             <header class="top">
                                 <div class="user_container">
-                                    <!-- <div class="profile_img"> -->
                                     <div class="profile-pic">
                                         <label class="-label" for="file">
-                                            <input name="file" type="file" onchange="loadFile(event)" data-id="<%=i%>"
-                                                hidden />
-                                            <img class="profile" src="/icons/smantha.svg" id="output" width="200"
-                                                onclick="selectNewImage(event)" />
-                                            <script>
-                                                function selectNewImage(event) {
-                                                    event.target.closest("label").querySelector("input").click();
-                                                }
-                                                function loadFile(event) {
-                                                    console.log("this", event.target)
-                                                    let image = event.target.closest("label").querySelector("img");
-                                                    console.log(image)
-                                                    image.src = URL.createObjectURL(event.target.files[0]);
-                                                    let des_photo = event.target.closest(".card").querySelector(".des_photo");
-                                                    console.log(des_photo)
-                                                    des_photo.src = image.src;
-                                                    let com_photos = event.target.closest(".card").querySelectorAll(".com_photo");
-                                                    console.log(com_photos);
-                                                    com_photos.forEach(com_photo => {
-                                                        com_photo.src = image.src;
-                                                    });
-                                                    // let photos = document.querySelectorAll('.photo');
-                                                    // console.log(photos);
-                                                    // photos.forEach(photo => {
-                                                    //     photo.src = image.src;
-                                                    // });
-                                                };
-                                            </script>
+                                            <% users.forEach(oneUser=> {%>
+                                                <% if(posts[i].user_id===oneUser.user_id) {%>
+                                         <a href="/profile/<%=oneUser.user_id%>"><img class="profile" src="/icons/smantha.svg" id="output" width="200"></a>
                                         </label>
                                     </div>
                                     <!-- </div> -->
                                     <div class="user_name">
                                         <div id="<%=user.first_name%> <%=user.last_name%>" class="nick_name">
-                                            <% users.forEach(oneUser=> {%>
-                                                <% if(posts[i].user_id===oneUser.user_id) {%>
                                                    <a id="<%=user.first_name%>" class="name-profile" href="/profile/<%=oneUser.user_id%>"><%= oneUser.first_name%>
                                                         <%= oneUser.last_name%></a>
                                                             <% } %>
@@ -185,12 +156,13 @@
                                 <div class="comment" id="comment-list-ajax-post37">
                                     <div class="comment-detail">
                                         <div class="profile_img">
-                                            <img class="user des_photo" src="/icons/smantha.svg">
+                                            <% users.forEach(oneUser=> {%>
+                                                <% if(posts[i].user_id===oneUser.user_id) {%>
+                                         <a href="/profile/<%=oneUser.user_id%>"><img class="user des_photo" src="/icons/smantha.svg"></a>
                                         </div>
                                         <div class="d-flex flex-column">
                                             <div class="d-flex">
-                                                <% users.forEach(oneUser=> {%>
-                                                    <% if(posts[i].user_id===oneUser.user_id) {%>
+
                                                 <div class="nick_name">
                                                            <a class="name-profile" href="/profile/<%=oneUser.user_id%>"><%=oneUser.first_name%>
                                                                 <%= oneUser.last_name%></a>
@@ -235,8 +207,8 @@
                                                         <% if(commentId[j].user_id===oneUser.user_id) {%>
                                                             <div class="d-flex ps-4">
                                                                 <div class="profile-img">
-                                                                    <img class="user com_photo"
-                                                                        src="/icons/small smantha.svg">
+                                                                   <a href="/profile/<%=oneUser.user_id%>"> <img class="user com_photo"
+                                                                        src="/icons/small smantha.svg"></a>
                                                                 </div>
                                                                 <div class="commentName">
                                                             <a class="name-profile" href="/profile/<%=oneUser.user_id%>"><%=oneUser.first_name%>
