@@ -1,0 +1,42 @@
+.title {
+    /* margin: 0 10px 10px; */
+    font-weight: 400;
+    font-size: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    font: Nunito Sans;
+}
+
+#map {
+    height: 65vh;
+    width: 100%;
+    margin: 0;
+    padding: 0px 3px;
+}
+/* .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
+    height: auto;
+} */
+
+.restaurantName{
+    font-size: 13pt;
+    color: #1A5E63;
+    font: Nunito Sans;
+}
+
+.phone{
+    font-size: 10pt;
+    color: #1A5E63;
+    font: Nunito Sans;
+}
+
+.hours{
+    font-size: 10pt;
+    color: #1A5E63;
+    font: Nunito Sans;
+}

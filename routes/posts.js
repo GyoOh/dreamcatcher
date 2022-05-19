@@ -133,6 +133,10 @@ router.post("/deletePost", async (req, res) => {
     }
 })
 
+router.get("/location", async (req, res) => {
+    res.render("location");
+})
+
 router.use((err, req, res, next) => {
     if (res.headersSent) {
         return next(err);

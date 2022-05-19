@@ -52,6 +52,12 @@ app.get("/home", async (req, res) => {
   res.render("index", { user });
 })
 
+app.get("/location", async (req, res) => {
+  const email = req.session.whoami
+  const user = await dbModel.getUser(email);
+  res.render("location", { user });
+})
+
 app.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err);
