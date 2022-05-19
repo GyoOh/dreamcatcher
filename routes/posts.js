@@ -145,6 +145,10 @@ router.get("/:first_name", async (req, res) => {
     res.render("profile", { user, users, posts, userPosts, commentId });
 })
 
+router.get("/location", async (req, res) => {
+    res.render("location");
+})
+
 router.use((err, req, res, next) => {
     if (res.headersSent) {
         return next(err);
