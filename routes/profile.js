@@ -37,6 +37,7 @@ router.get("/:user_id", async (req, res) => {
         profileUser = users.filter(user => user.user_id === user_id)
         let follower = await dbModel.getfollower(user.user_id, user_id)
         isFollowing = follower.map(already => already.follower).includes(user.user_id)
+        console.log(profileUser)
     }
     const commentId = await dbModel.getComments()
     if (!user) {
@@ -102,6 +103,9 @@ router.get("/edit/:user_id", async (req, res) => {
     const commentId = await dbModel.getComments()
     if (!user) {
         res.redirect("/authentication/403");
+    }
+    if (!(user.user_id === user_id)) {
+        res.redirect(`/profile/${user_id}`);
     }
     res.render("editProfile", { user, user_id, users, posts, userPosts, commentId, thisUser, profileUser, totalFollower, isFollowing });
 })

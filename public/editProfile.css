@@ -1,0 +1,25 @@
+img.plus-icon {
+  z-index: 2;
+}
+.title {
+  font-weight: 400;
+  font-size: 25px;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  font: Nunito Sans;
+}
+.editName {
+  width: 100%;
+}
+.editbio {
+  width: 100%;
+}
+.editEmail {
+  width: 100%;
+}
+.edit-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
