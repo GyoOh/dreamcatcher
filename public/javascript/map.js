@@ -5,7 +5,17 @@ function initMap() {
         mapId: 'd2716697ffbc4fa6'
     }
     const map = new
-        google.maps.Map(document.getElementById('map'), options);
+    google.maps.Map(document.getElementById('map'), options);
+    
+
+    const findRestaurantNearMeButton = document.getElementsByClassName("custom-map-control-button")[0]
+   
+    // map.controls[google.maps.ControlPosition.TOP_CENTER].push(findRestaurantNearMeButton)
+    
+    // const findRestaurantNearMeButton = document.createElement("button");
+    // findRestaurantNearMeButton.textContent = 'Find me';
+    // findRestaurantNearMeButton.classList.add("custom-map-control-button");
+    // map.controls[google.maps.ControlPosition.TOP_CENTER].push(findRestaurantNearMeButton)
 
     // add marker when u want to
     google.maps.event.addListener(map, 'click', (event) => {
@@ -174,7 +184,7 @@ function initMap() {
         addMarker(markers[i]);
     }
 
-//add marker 
+   //add marker 
     function addMarker(props) {
         const marker = new google.maps.Marker({
             position: props.coords,
@@ -203,53 +213,89 @@ function initMap() {
 
 
 
-    let input = document.getElementById('searchInput')
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // let input = document.getElementById('searchInput')
+    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     
-    const autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.bindTo("bounds", map);
+    // const autocomplete = new google.maps.places.Autocomplete(input);
+    // autocomplete.bindTo("bounds", map);
     
-    const infowindow = new google.maps.InfoWindow();
-    const marker = new google.maps.Marker({
-      map,
-      anchorPoint: new google.maps.Point(0, -29),
-    });
+    // const infowindow = new google.maps.InfoWindow();
+    // const marker = new google.maps.Marker({
+    //   map,
+    //   anchorPoint: new google.maps.Point(0, -29),
+    // });
     
-    autocomplete.addListener("place_changed", () => {
-      infowindow.close();
-      marker.setVisible(false);
+    // autocomplete.addListener("place_changed", () => {
+    //   infowindow.close();
+    //   marker.setVisible(false);
     
-      const place = autocomplete.getPlace();
-      if (!place.geometry) {
-        // User entered the name of a Place that was not suggested and
-        // pressed the Enter key, or the Place Details request failed.
-        window.alert("No details available for input: '" + place.name + "'");
-        return;
-      }
+    //   const place = autocomplete.getPlace();
+    //   if (!place.geometry) {
+    //     // User entered the name of a Place that was not suggested and
+    //     // pressed the Enter key, or the Place Details request failed.
+    //     window.alert("No details available for input: '" + place.name + "'");
+    //     return;
+    //   }
     
-      // If the place has a geometry, then present it on a map.
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
+    //   // If the place has a geometry, then present it on a map.
+    //   if (place.geometry.viewport) {
+    //     map.fitBounds(place.geometry.viewport);
+    //   } else {
+    //     map.setCenter(place.geometry.location);
+    //     map.setZoom(17);
+    //   }
+    //   marker.setIcon(({
+    //       url: place.icon,
+    //       size: new google.maps.Size(71,71),
+    //       origin: new google.maps.Point(0,0),
+    //       anchor: new google.maps.Point(17,34),
+    //       scaledSize: new google.maps.Size(35,35)
+    //   }));
+    //   marker.setPosition(place.geometry.location)
+    //   marker.setVisible(true);
+    // })
+// here
+
+ findRestaurantNearMeButton.addEventListener("click", () => {
+        // infoWindow2 = new google.maps.InfoWindow({
+        //     content: props.content
+        // });
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+            const myLocation = {
+                coords: { lat: position.coords.latitude, lng: position.coords.longitude },
+                map: map,  
+                animation: google.maps.Animation.DROP,
+                content: ``,
+                iconImage: {
+                    url: "/icons/logo_burger.svg",
+                    scaledSize: new google.maps.Size(43, 36)
+                }
+            }
+
+            addMarker(myLocation);
+            map.setCenter({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            });
+          }
+        );
       } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17);
+        // Browser doesn't support Geolocation
+        // handleLocationError(false, infoWindow, map.getCenter());
       }
-      marker.setIcon(({
-          url: place.icon,
-          size: new google.maps.Size(71,71),
-          origin: new google.maps.Point(0,0),
-          anchor: new google.maps.Point(17,34),
-          scaledSize: new google.maps.Size(35,35)
-      }));
-      marker.setPosition(place.geometry.location)
-      marker.setVisible(true);
-      
-    
-    })
-
-
-
-
+    });
+  }
+  
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
 }
 
 async function handleSubmit (){
