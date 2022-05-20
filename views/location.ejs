@@ -41,7 +41,44 @@
                 <div class="contents flex-column card">
 
                     <!-- <header class="top"> -->
-                        
+                        <!-- <input id="searchInput" class="controls" type="text" placeholder="Enter a location" -->
+                    <div class="col-md-6 d-flex">
+                        <form id="distance_form">
+                            <!-- my location -->
+                            <div class="row">
+                                <div class="location-label">
+                                    <label>Origin: </label>
+                                </div>
+                                <div class="location-input">
+                                    <input type="text" id="startLocation" name="origin" required=""
+                                        placeholder="Enter a start location...">
+                                </div>
+                            </div>
+                            <!-- destination  -->
+                            <div class="row">
+                                <div class="location-label">
+                                    <label>Destination: </label>
+                                </div>
+                                <div class="location-input">
+                                    <input type="text" id="destination" name="destination" required=""
+                                        placeholder="Enter a last location...">
+                                </div>
+                            </div>
+                           
+                            <!-- submit/cancel btn -->
+                            <div class="row">
+                                <button id="clear_btn"class="button" type="button" onclick="clearRoute();">Clear</button>
+                                <button id="submit_btn"class="button" type="button" onclick="handleSubmit();">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="result">
+                        <ul class="list-group">
+                            <li id="distance_output" class="">Distance is Kilo:</li>
+                            <li id="time_output"class="">IN MINUTES:</li>
+                        </ul>
+                    </div>
                 </div>
                 <div id="map"></div>
 
@@ -112,29 +149,22 @@
             </div>
             </div>
             <nav class="bottom-nav">
-
                 <a class="nav-btn" href="/posts">
                     <img class="nav-icon" src="/icons/home.svg">
                 </a>
-    
                 <a class="nav-btn" href="/location">
-                    <img class="nav-icon" src="/icons/explore.svg">
+                    <img class="nav-icon" src="/icons/locationicon.svg">
                 </a>
-    
                 <a class="nav-btn" href="/posts/create">
                     <img class="nav-icon" src="/icons/post-new.svg">
                 </a>
-    
-                <a class="nav-btn" href="/chat">
+                <a class="nav-btn" href="#">
                     <img class="nav-icon" src="/icons/txt.svg">
                 </a>
-    
-                <a class="nav-btn" href="/profile/<%=user.user_id%>">
+                <a class="nav-btn" href="/authentication/login">
                     <img class="nav-icon" src="/icons/profile.svg">
                 </a>
-    
                 <div class="horizontal-underline"></div>
-    
             </nav>
         </section>
     </section>
