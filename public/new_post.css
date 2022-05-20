@@ -50,6 +50,9 @@
     font: 14px 'Nunito', sans-serif;    
 }
 
+.previewpost {
+    margin-bottom: 0;
+}
 
 .newpost {
     font: 24px 'Nunito', sans-serif;
