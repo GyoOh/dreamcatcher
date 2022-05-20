@@ -109,6 +109,37 @@ router.get("/edit/:user_id", async (req, res) => {
     }
     res.render("editProfile", { user, user_id, users, posts, userPosts, commentId, thisUser, profileUser, totalFollower, isFollowing });
 })
+router.post("/edit/:user_id", upload.single("image"), async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const users = await dbModel.getUsers()
+    let posts = await dbModel.getPosts()
+    const user_id = +req.params.user_id
+    if (user) {
+        thisUser = await dbModel.getPostByUserId(user_id)
+        userPosts = await dbModel.getUserPosts(user.user_id)
+        totalFollower = await dbModel.getTotalFollower(user_id)
+        profileUser = users.filter(user => user.user_id === user_id)
+        let follower = await dbModel.getfollower(user.user_id, user_id)
+        isFollowing = follower.map(already => already.follower).includes(user.user_id)
+    }
+    const commentId = await dbModel.getComments()
+    if (!user) {
+        res.redirect("/authentication/403");
+    }
+    if (!(user.user_id === user_id)) {
+        res.redirect(`/profile/${user_id}`);
+    }
+    const { filename, path } = req.file
+    const first_name = req.body.first_name
+    const bio = req.body.bio
+    const email = req.body.email
+    const url = await s3.uploadFile(req.file)
+    console.log(req.body)
+    const profile = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
+    await dbModel.updateUser(first_name, bio, email, profile, user_id)
+    res.redirect(`/profile/${user_id}`)
+
+});
 
 router.use((err, req, res, next) => {
     if (res.headersSent) {

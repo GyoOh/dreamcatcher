@@ -1,9 +1,12 @@
 img.plus-icon {
-  z-index: 2;
+  position: relative;
+  top: -40px;
+  left: 150px;
 }
 .title {
   font-weight: 400;
-  font-size: 25px;
+  font-size: 22px;
+  margin-bottom: 20px;
   text-align: center;
   display: flex;
   justify-content: space-evenly;
@@ -13,12 +16,32 @@ img.plus-icon {
   width: 100%;
 }
 .editbio {
+  margin-top: 20px;
   width: 100%;
 }
 .editEmail {
+  margin-top: 20px;
   width: 100%;
 }
 .edit-profile {
+  background: #00bfb2;
+  border-color: #00bfb2;
+  color: #fff;
+  border-radius: 8px;
+  border-style: solid;
+  font-size: 14px;
+  font-weight: 600;
+  width: 215px;
+  height: 53px;
+  display: inline-block;
+  position: relative;
+}
+img.profile {
+  display: flex;
+}
+
+.submit-input {
+  padding: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -120,6 +120,13 @@ async function updatePost(description, image_url, post_id) {
     return result
 }
 
+async function updateUser(first_name, bio, email, profile, user_id) {
+    let query = "UPDATE foodie_user SET first_name = :first_name, bio = :bio, email = :email, profile = :profile WHERE user_id = :user_id";
+    let params = { first_name: first_name, bio: bio, email: email, profile: profile, user_id: user_id }
+    const [result] = await database.query(query, params)
+    return result
+}
+
 async function addcomment(user_id, post_id, comments) {
     const query = "INSERT INTO comments (user_id, post_id, comments) VALUES(?, ?, ?)"
     const params = [user_id, post_id, comments]
@@ -260,5 +267,5 @@ module.exports = {
     getUsers, getUser, getpostLikesByuser, getLikes, getPostByUserId, addUser, deletePost, deleteFollow, deleteRestaurant, deletePostLikes,
     addPost, getUserPosts, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getpostComments, getfollower,
     addfollower, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
-    getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, updatePost, getPostByPostId, getTotalFollower
+    getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, updatePost, getPostByPostId, getTotalFollower, updateUser
 }
