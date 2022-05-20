@@ -25,7 +25,7 @@
         </div>
     </header>
     <div class="title">
-        <a href="/posts">
+        <a href="/profile/<%=profileUser[0].user_id%>"">
             <img class="backbtn" src="/icons/back button.svg"></a>
         <div class="newpost">Edit profile</div>
         <a class="gear" href="/authentication/login">
@@ -85,8 +85,9 @@
                 <div class="posts-container">
                     <div class="user_container">
                         <div class="profile-pic">
+                            <!-- <form action="/profile/edit/<%=profileUser[0].user_id%>" method="POST"> -->
                             <label class="profile-label" for="file">
-                                <input name="file" type="file" onchange="loadFile(event)" hidden>
+                                <input name="image" type="file" accept="image/*" onchange="loadFile(event)" hidden>
                                 <img class="profile" src="/icons/smantha.svg" id="output" width="200" onclick="selectNewImage(event)">
                                 <img class="plus-icon" src="/icons/plus.svg">
                             </label>
@@ -96,19 +97,16 @@
                 </div>
     
                 <div class="input">
-                    <form action="/profile/edit/<%=profileUser[0].user_id%>" method="POST">
                     Name<br>
-                    <input placeholder="Name" type="text" class="editName" value="<%=profileUser[0].first_name%><%=profileUser[0].last_name%>">
+                    <input placeholder="Name" name="first_name" type="text" class="editName" value="<%=profileUser[0].first_name%><%=profileUser[0].last_name%>">
                    <br> Bio <br>
-                    <textarea class="editbio" name="bio" placeholder="bio"></textarea>
+                    <textarea class="editbio" name="bio" placeholder="bio" value="<%=profileUser[0].bio%>"></textarea>
                     <br> email<br>
-                    <input type="text" class="editEmail" placeholder="<%=profileUser[0].email%>">
+                    <input type="text" name="email" class="editEmail" value="<%=profileUser[0].email%>">
+                    <span class="submit-input">
                     <input class="edit-profile" type="submit" value="Edit profile">
+                </span>
                     </form>
-                    </span>&nbsp&nbsp&nbsp
-                   
-                      
-                       
                 </div>
         </section>
        
