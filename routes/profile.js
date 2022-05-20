@@ -92,6 +92,8 @@ router.get("/edit/:user_id", async (req, res) => {
     let thisUser
     let totalFollower
     let isFollowing
+    // let getFollowerByUserId = await dbModel.getfollowerByUserId(user_id)
+    // console.log("getUserFollow", getfollowerByUserId)
     if (user) {
         thisUser = await dbModel.getPostByUserId(user_id)
         userPosts = await dbModel.getUserPosts(user.user_id)
