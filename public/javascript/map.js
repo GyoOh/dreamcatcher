@@ -5,13 +5,11 @@ function initMap() {
         mapId: 'd2716697ffbc4fa6'
     }
     const map = new
-    google.maps.Map(document.getElementById('map'), options);
-    
+        google.maps.Map(document.getElementById('map'), options);
+
 
     const findRestaurantNearMeButton = document.getElementsByClassName("custom-map-control-button")[0]
-   
-    // map.controls[google.maps.ControlPosition.TOP_CENTER].push(findRestaurantNearMeButton)
-    
+
     // const findRestaurantNearMeButton = document.createElement("button");
     // findRestaurantNearMeButton.textContent = 'Find me';
     // findRestaurantNearMeButton.classList.add("custom-map-control-button");
@@ -21,7 +19,7 @@ function initMap() {
     google.maps.event.addListener(map, 'click', (event) => {
         addMarker({ coords: event.latLng });
     })
-    
+
     const markers = [
         {
             coords: { lat: 49.28635375404073, lng: -123.12737595976482 },
@@ -68,8 +66,8 @@ function initMap() {
             }
         },
         {
-            coords: {lat: 49.28967972730247, lng: -123.1310727569609 },
-            map: map,   
+            coords: { lat: 49.28967972730247, lng: -123.1310727569609 },
+            map: map,
             animation: google.maps.Animation.DROP,
             content: `<h1 class="restaurantName">bbq chicken</h1>
             <p class="info">1517 Robson St, Vancouver, BC V6G 1C3</p>
@@ -90,8 +88,8 @@ function initMap() {
             }
         },
         {
-            coords: {lat: 49.28730022745002, lng: -123.12807801782375 },
-            map: map,  
+            coords: { lat: 49.28730022745002, lng: -123.12807801782375 },
+            map: map,
             animation: google.maps.Animation.DROP,
             content: `<h1 class="restaurantName">Ole chicken</h1>
             <p class="info">1256 Robson St, Vancouver, BC V6E 1C1</p>
@@ -112,8 +110,8 @@ function initMap() {
             }
         },
         {
-            coords: {lat: 49.28800125737821, lng: -123.14115778468913 },
-            map: map,  
+            coords: { lat: 49.28800125737821, lng: -123.14115778468913 },
+            map: map,
             animation: google.maps.Animation.DROP,
             content: `<h1 class="restaurantName">Chicken World</h1>
             <p class="info">1181 Denman St, Vancouver, BC V6G 2N1</p>
@@ -134,8 +132,8 @@ function initMap() {
             }
         },
         {
-            coords: {lat: 49.282628563811485, lng: -123.13360696468155 },
-            map: map,  
+            coords: { lat: 49.282628563811485, lng: -123.13360696468155 },
+            map: map,
             animation: google.maps.Animation.DROP,
             content: `<h1 class="restaurantName">Nene Chicken</h1>
             <p class="info">1231 Davie St, Vancouver, BC V6E 1N4</p>
@@ -156,8 +154,8 @@ function initMap() {
             }
         },
         {
-            coords: {lat: 49.278242317612566, lng: -123.12699305164796 },
-            map: map,  
+            coords: { lat: 49.278242317612566, lng: -123.12699305164796 },
+            map: map,
             animation: google.maps.Animation.DROP,
             content: `<h1 class="restaurantName">Nando's PERi-PERi</h1>
             <p class="info">828 Davie St, Vancouver, BC V6Z 2S2</p>
@@ -184,7 +182,7 @@ function initMap() {
         addMarker(markers[i]);
     }
 
-   //add marker 
+    //add marker 
     function addMarker(props) {
         const marker = new google.maps.Marker({
             position: props.coords,
@@ -194,41 +192,42 @@ function initMap() {
             // icon: props.iconImage,
             scaledSize: props.scaledSize
         })
-    //check
-        if(props.iconImage){
-    //set icon 
-           marker.setIcon(props.iconImage) 
+        //check
+        if (props.iconImage) {
+            //set icon 
+            marker.setIcon(props.iconImage)
         }
-        
-        if(props.content){
+
+        if (props.content) {
             const infoWindow = new google.maps.InfoWindow({
                 content: props.content
             })
             marker.addListener("click", () => {
-                infoWindow.open(map, marker)                
+                infoWindow.open(map, marker)
             });
+
+        } else {
+            infoWindow.remove(map, marker)
         }
     }
 
-
-
-
+    //auto search
     // let input = document.getElementById('searchInput')
     // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    
+
     // const autocomplete = new google.maps.places.Autocomplete(input);
     // autocomplete.bindTo("bounds", map);
-    
+
     // const infowindow = new google.maps.InfoWindow();
     // const marker = new google.maps.Marker({
     //   map,
     //   anchorPoint: new google.maps.Point(0, -29),
     // });
-    
+
     // autocomplete.addListener("place_changed", () => {
     //   infowindow.close();
     //   marker.setVisible(false);
-    
+
     //   const place = autocomplete.getPlace();
     //   if (!place.geometry) {
     //     // User entered the name of a Place that was not suggested and
@@ -236,7 +235,7 @@ function initMap() {
     //     window.alert("No details available for input: '" + place.name + "'");
     //     return;
     //   }
-    
+
     //   // If the place has a geometry, then present it on a map.
     //   if (place.geometry.viewport) {
     //     map.fitBounds(place.geometry.viewport);
@@ -254,88 +253,86 @@ function initMap() {
     //   marker.setPosition(place.geometry.location)
     //   marker.setVisible(true);
     // })
-// here
 
- findRestaurantNearMeButton.addEventListener("click", () => {
+    findRestaurantNearMeButton.addEventListener("click", () => {
         // infoWindow2 = new google.maps.InfoWindow({
         //     content: props.content
         // });
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-            const myLocation = {
-                coords: { lat: position.coords.latitude, lng: position.coords.longitude },
-                map: map,  
-                animation: google.maps.Animation.DROP,
-                content: ``,
-                iconImage: {
-                    url: "/icons/logo_burger.svg",
-                    scaledSize: new google.maps.Size(43, 36)
+                    const myLocation = {
+                        coords: { lat: position.coords.latitude, lng: position.coords.longitude },
+                        map: map,
+                        animation: google.maps.Animation.DROP,
+                        content: ``,
+                        iconImage: {
+                            url: "/icons/logo_burger.svg",
+                            scaledSize: new google.maps.Size(43, 36)
+                        }
+                    }
+                    addMarker(myLocation);
+                    map.setCenter({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    });
                 }
-            }
-
-            addMarker(myLocation);
-            map.setCenter({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            });
-          }
-        );
-      } else {
-        // Browser doesn't support Geolocation
-        // handleLocationError(false, infoWindow, map.getCenter());
-      }
+            );
+        } else {
+            // Browser doesn't support Geolocation
+            // handleLocationError(false, infoWindow, map.getCenter());
+        }
     });
-  }
-  
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
 }
 
-async function handleSubmit (){
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(
+        browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation."
+    );
+    infoWindow.open(map);
+}
+
+async function handleSubmit() {
     codeAddress()
 }
 
-async function calcDistance (start, end){
+async function calcDistance(start, end) {
     const s = JSON.stringify(start);
     const e = JSON.stringify(end)
     const startObj = JSON.parse(s)
     const endObj = JSON.parse(e)
-     // calculate distance
-     let myLocation = new google.maps.LatLng(startObj.lat, startObj.lng);
-     // each marker is a destination
-     let destination = new google.maps.LatLng(endObj.lat, endObj.lng);
-     let service = new google.maps.DistanceMatrixService();
-   
-     service.getDistanceMatrix(
-       {
-         origins: [myLocation],
-         destinations: [destination],
-         travelMode: 'DRIVING',
-       }, callback)
- 
-       function callback(response, status) {
-         // See Parsing the Results for
-         // the basics of a callback function.
-         console.log("Callback Res " + JSON.stringify(response))
-         let origins = response.originAddresses;
-         let destinations = response.destinationAddresses;
-          // do something with the response
-         const [something] = response.rows
-         const element = response.rows[0].elements[0]
- 
-         let distance = element.distance.text;
-         let duration = element.duration.text;
- 
-         document.getElementById("distance_output").textContent = distance
-         document.getElementById("time_output").textContent = duration
-       }
+    // calculate distance
+    let myLocation = new google.maps.LatLng(startObj.lat, startObj.lng);
+    // each marker is a destination
+    let destination = new google.maps.LatLng(endObj.lat, endObj.lng);
+    let service = new google.maps.DistanceMatrixService();
+
+    service.getDistanceMatrix(
+        {
+            origins: [myLocation],
+            destinations: [destination],
+            travelMode: 'DRIVING',
+        }, callback)
+
+    function callback(response, status) {
+        // See Parsing the Results for
+        // the basics of a callback function.
+        console.log("Callback Res " + JSON.stringify(response))
+        let origins = response.originAddresses;
+        let destinations = response.destinationAddresses;
+        // do something with the response
+        const [something] = response.rows
+        const element = response.rows[0].elements[0]
+
+        let distance = element.distance.text;
+        let duration = element.duration.text;
+
+        document.getElementById("distance_output").textContent = distance
+        document.getElementById("time_output").textContent = duration
+    }
 }
 
 function codeAddress() {
@@ -343,28 +340,28 @@ function codeAddress() {
     let start = document.getElementById('startLocation').value;
     let end = document.getElementById('destination').value;
 
-    getAddress(geocoder, start, function(startResult){
-            console.log("startResult " + JSON.stringify(startResult))
-            getAddress(geocoder, end, function(endResult){
-                console.log("endResult " + JSON.stringify(endResult))
-                calcDistance(startResult, endResult); 
-            });
+    getAddress(geocoder, start, function (startResult) {
+        console.log("startResult " + JSON.stringify(startResult))
+        getAddress(geocoder, end, function (endResult) {
+            console.log("endResult " + JSON.stringify(endResult))
+            calcDistance(startResult, endResult);
+        });
     });
 }
 
-function getAddress(geocoder, loc_name, callback){
+function getAddress(geocoder, loc_name, callback) {
     let startLocation;
-    geocoder.geocode( { 'address': loc_name}, function(results, status) {
+    geocoder.geocode({ 'address': loc_name }, function (results, status) {
         if (status == 'OK') {
-          startLocation = results[0].geometry.location
+            startLocation = results[0].geometry.location
         } else {
-          alert('Geocode was not successful for the following reason: ' + status);
+            alert('Geocode was not successful for the following reason: ' + status);
         }
         callback(startLocation)
-      });
+    });
 }
 
-function clearRoute(){
+function clearRoute() {
     document.getElementById("clear_btn").style.display = "none";
     document.getElementById("startLocation").value = "";
     document.getElementById("destination").value = "";
@@ -372,48 +369,3 @@ function clearRoute(){
     directionsDisplay.setDirections({ routes: [] });
 
 }
-
-
-// let input = document.getElementById('searchInput')
-// map.controls[google.maps.controlPosition.TOP_LEFT].push(input)
-
-// const autocomplete = new google.maps.places.Autocomplete(input, options);
-// autocomplete.bindTo("bounds", map);
-
-// const infowindow = new google.maps.InfoWindow();
-// const marker = new google.maps.Marker({
-//   map,
-//   anchorPoint: new google.maps.Point(0, -29),
-// });
-
-// autocomplete.addListener("place_changed", () => {
-//   infowindow.close();
-//   marker.setVisible(false);
-
-//   const place = autocomplete.getPlace();
-//   if (!place.geometry) {
-//     // User entered the name of a Place that was not suggested and
-//     // pressed the Enter key, or the Place Details request failed.
-//     window.alert("No details available for input: '" + place.name + "'");
-//     return;
-//   }
-
-//   // If the place has a geometry, then present it on a map.
-//   if (place.geometry.viewport) {
-//     map.fitBounds(place.geometry.viewport);
-//   } else {
-//     map.setCenter(place.geometry.location);
-//     map.setZoom(17);
-//   }
-//   marker.setIcon(({
-//       url: place.icon,
-//       size: new google.maps.Size(71,71),
-//       origin: new google.maps.Point(0,0),
-//       anchor: new google.maps.Point(17,34),
-//       scaledSize: new google.maps.Size(35,35)
-//   }));
-//   marker.setPosition(place.geometry.location)
-//   marker.setVisible(true);
-  
-
-// })
