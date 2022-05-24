@@ -1,0 +1,49 @@
+h1.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+h4.first-h4 {
+  text-indent: 30px;
+  color: #1a5e63;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+h4 img {
+  display: flex;
+  float: right;
+  margin-right: 5px;
+}
+img.userPost {
+  width: 48%;
+  margin: 2px;
+}
+h6.star {
+  text-indent: 30px;
+  color: #1a5e63;
+  margin-top: 20px;
+  font-size: 19px;
+}
+h7 {
+  color: #1a5e63;
+  margin-right: 10px;
+  font-size: 19px;
+}
+li.restaurant-info {
+  list-style-position: inside;
+  text-indent: -85px;
+  padding-left: 85px;
+}
+div.paragraph {
+  padding-left: 30px;
+}
+p.icon-paragraph {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+div.back-div {
+  margin-left: 20px;
+}
