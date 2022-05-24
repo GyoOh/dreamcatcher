@@ -7,7 +7,6 @@ function initMap() {
     const map = new
         google.maps.Map(document.getElementById('map'), options);
 
-
     const findRestaurantNearMeButton = document.getElementsByClassName("custom-map-control-button")[0]
 
     // const findRestaurantNearMeButton = document.createElement("button");
@@ -20,6 +19,7 @@ function initMap() {
         addMarker({ coords: event.latLng });
     })
 
+    
     const markers = [
         {
             coords: { lat: 49.28635375404073, lng: -123.12737595976482 },
@@ -175,7 +175,9 @@ function initMap() {
                 scaledSize: new google.maps.Size(43, 36)
             }
         }
+        
     ];
+
 
     for (let i = 0; i < markers.length; i++) {
         console.log('test', i)
@@ -210,49 +212,6 @@ function initMap() {
             infoWindow.remove(map, marker)
         }
     }
-
-    //auto search
-    // let input = document.getElementById('searchInput')
-    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    // const autocomplete = new google.maps.places.Autocomplete(input);
-    // autocomplete.bindTo("bounds", map);
-
-    // const infowindow = new google.maps.InfoWindow();
-    // const marker = new google.maps.Marker({
-    //   map,
-    //   anchorPoint: new google.maps.Point(0, -29),
-    // });
-
-    // autocomplete.addListener("place_changed", () => {
-    //   infowindow.close();
-    //   marker.setVisible(false);
-
-    //   const place = autocomplete.getPlace();
-    //   if (!place.geometry) {
-    //     // User entered the name of a Place that was not suggested and
-    //     // pressed the Enter key, or the Place Details request failed.
-    //     window.alert("No details available for input: '" + place.name + "'");
-    //     return;
-    //   }
-
-    //   // If the place has a geometry, then present it on a map.
-    //   if (place.geometry.viewport) {
-    //     map.fitBounds(place.geometry.viewport);
-    //   } else {
-    //     map.setCenter(place.geometry.location);
-    //     map.setZoom(17);
-    //   }
-    //   marker.setIcon(({
-    //       url: place.icon,
-    //       size: new google.maps.Size(71,71),
-    //       origin: new google.maps.Point(0,0),
-    //       anchor: new google.maps.Point(17,34),
-    //       scaledSize: new google.maps.Size(35,35)
-    //   }));
-    //   marker.setPosition(place.geometry.location)
-    //   marker.setVisible(true);
-    // })
 
     findRestaurantNearMeButton.addEventListener("click", () => {
         // infoWindow2 = new google.maps.InfoWindow({
@@ -369,3 +328,28 @@ function clearRoute() {
     directionsDisplay.setDirections({ routes: [] });
 
 }
+
+function handleYelpRequest() {
+    const request = {
+        method: "GET",
+    }
+    fetch(`/posts/getYelp`, request)
+        .then(resp =>
+            resp.json()
+        )
+}
+handleYelpRequest()
+
+// const getYelpRestaurants = async () => {
+//     let url = new URL`https://api.yelp.com/v3/businesses/search?latitude=49.282359695758885&longitude=-123.1168886758965&radius=100`
+
+// console.log(url)
+
+// let header = new Headers({
+//     'x-api-key': 'I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx',
+// })
+// let response = await fetch(url, { headers: header })
+// let data = await response.json()
+//     console.log("dataaa",data)
+// };
+// getYelpRestaurants()
