@@ -140,6 +140,13 @@ router.get("/location", async (req, res) => {
     res.render("location");
 })
 
+router.get("/food", async (req, res) => {
+    res.render("food")
+})
+router.post("/food/restaurant/https://api.yelp.com/v3/businesses/search?term=chicken&latitude=49.2827&longitude=-123.1207", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+})
+
 router.use((err, req, res, next) => {
     if (res.headersSent) {
         return next(err);
