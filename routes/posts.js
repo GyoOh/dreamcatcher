@@ -17,11 +17,14 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({ storage: storage })
+const bodyParser = require("body-parser")
+router.use(bodyParser.urlencoded({ extended: false }));
 
 router.use((req, res, next) => {
     res.header({ "Access-Control-Allow-Origin": "*" });
     next();
 })
+
 
 router.post("/create", upload.single("image"), async (req, res) => {
     const connection = await database.getConnection()
@@ -34,8 +37,8 @@ router.post("/create", upload.single("image"), async (req, res) => {
     res.redirect("/posts")
     connection.release()
 })
-
-router.get("/create", async (req, res) => {
+const url_api = `https://api.yelp.com/v3/businesses/search?term=chicken&latitude=49.2827&longitude=-123.1207`
+router.get(`/create/`, async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     if (!user) {
