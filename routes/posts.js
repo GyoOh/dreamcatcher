@@ -19,54 +19,17 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({ storage: storage })
-const bodyParser = require("body-parser")
-
-require('dotenv').config()
-const fetch = require('node-fetch')
 
 router.use((req, res, next) => {
     res.header({ "Access-Control-Allow-Origin": "*" });
     next();
 })
 
+const fetch = require('node-fetch')
 
 router.post("/create", upload.single("image"), async (req, res) => {
     const connection = await database.getConnection()
     const user = await dbModel.getUser(req.session.whoami)
-    const term = req.body.term
-    let url_api = `https://api.yelp.com/v3/businesses/search?term=${term}&latitude=49.2827&longitude=-123.1207`
-    let header = {
-        "method": "POST",
-        "Authorization": `Bearer ROF0HVCZJhK3MOwM_BdaB_bIodzpNbWdhHMDsXZxF7bRg35xwwQRscs_ZJQdV7HKKonIdb5iyHpfY-sabDbugiUfBkDDg4tVymAhpAx7Rs8ratmrpPnMW3hqMtSJYnYx`,
-    }
-    const request = {
-        headers: header
-    }
-    fetch(url_api, request)
-        .then(res => res.json())
-        .then(data => {
-            console.log("data", data)
-            let [business] = data.businesses
-            let name = business.name
-            // // let address = business.location
-            // // console.log("address", address)
-            // // let display_address = address.display_address
-            // // display_address.forEach(address => {
-            // //     console.log(address)
-            // });
-            if (business == null) {
-                res.render("newpost", {
-                    address: null
-                })
-            } else {
-                let [business] = data.businesses
-                let name = business.name
-                let address = business.location
-                let display_address = address.display_address
-
-                res.render("newpost", { name, user, display_address })
-            }
-        })
     const { filename, path } = req.file
     const description = req.body.description
     const url = await s3.uploadFile(req.file)
@@ -75,16 +38,16 @@ router.post("/create", upload.single("image"), async (req, res) => {
     res.redirect("/posts")
     connection.release()
 })
-router.get(`/create`, async (req, res) => {
+
+router.get("/create", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     if (!user) {
         return res.redirect("/authentication/403");
     }
     const posts = await dbModel.getPosts()
-    res.render("newpost", { posts, user, users, address: null, name: null, display_address: null });
+    res.render("newpost", { posts, user, users });
 })
-
 
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
@@ -174,30 +137,31 @@ router.post("/deletePost", async (req, res) => {
     }
 })
 
-router.get("/location", async (req, res) => {
-    res.render("location");
-})
+// router.get("/location", async (req, res) => {
+//     res.render("location");
+// })
 
-router.get("/getYelp", async (req, res) => {
+router.get("/location", async (req, res) => {
+    let url = 'https://api.yelp.com/v3/businesses/search?latitude=49.282359695758885&longitude=-123.1168886758965&radius=100'
     let options = {
         'method': 'GET',
-        'url': 'https://api.yelp.com/v3/businesses/search?latitude=49.282359695758885&longitude=-123.1168886758965&radius=100',
         'headers': {
             'x-api-key': 'I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx',
             'Authorization': 'Bearer I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx'
         }
     };
-    let resp 
-    request(options, function (error, response) {
-        if (error) throw new Error(error);
-        // res.send(response.body)
-        console.log(response.body)
-       resp = response.body
-    //    let data =  resp.json()
-       businesses = resp.businesses
-       console.log(businesses)
-       res.render("location", {resp})
-    });
+    fetch(url, options)
+        .then(a => a.json())
+        .then(data => {
+            let [firstRestaurant] = data.businesses
+            let name = firstRestaurant.name
+            console.log("name", name)
+            let address = firstRestaurant.location.display_address
+            address.forEach(first => {
+                console.log(first)
+            });
+            res.render("location", { name, address })
+        })
 });
 
 router.get("/food", async (req, res) => {

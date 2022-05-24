@@ -56,11 +56,15 @@
                             <!-- destination  -->
                             <div class="row">
                                 <div class="location-label">
-                                    <label>Destination: <%=resp%> </label>
+                                    <label>Destination:  </label>
+                                    <%=name%> 
+                                    <% address.forEach(first => {%>
+                                        <%=first%>
+                                     <% })  %>      
                                 </div>
                                 <div class="location-input">
                                     <input type="text" id="destination" name="destination" required=""
-                                        placeholder="Enter a last location...">
+                                    placeholder="Enter a last location...">
                                 </div>
                             </div>
                            

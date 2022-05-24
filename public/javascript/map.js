@@ -333,23 +333,9 @@ function handleYelpRequest() {
     const request = {
         method: "GET",
     }
-    fetch(`/posts/getYelp`, request)
+    fetch(`/location`, request)
         .then(resp =>
             resp.json()
         )
 }
 handleYelpRequest()
-
-// const getYelpRestaurants = async () => {
-//     let url = new URL`https://api.yelp.com/v3/businesses/search?latitude=49.282359695758885&longitude=-123.1168886758965&radius=100`
-
-// console.log(url)
-
-// let header = new Headers({
-//     'x-api-key': 'I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx',
-// })
-// let response = await fetch(url, { headers: header })
-// let data = await response.json()
-//     console.log("dataaa",data)
-// };
-// getYelpRestaurants()
