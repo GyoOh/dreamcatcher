@@ -11,8 +11,15 @@ const profile = require("./routes/profile")
 const database = require("./databaseConnection");
 const dbModel = require("./databaseAccessLayer")
 const bcrypt = require("bcrypt")
-const cors = require('cors')
+const cors = require("cors")
 
+app.use(
+  cors({
+    origin: "*",
+    credentials: true
+    
+  })
+)
 app.set('view engine', 'ejs');
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }));
