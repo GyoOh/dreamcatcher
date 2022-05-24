@@ -36,3 +36,36 @@
 .custom-map-control-button{
  cursor: pointer;
 }
+
+.list {
+    text-align: center;
+    margin-top: 10px;
+    width: 50em;
+    height: 53px;
+    /* border-radius: 10px; */
+    border: 1px solid transparent;
+    background-color: #00BFB2;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.open {
+    background-color: #9FDBE3;
+    position: relative;
+    width: 50em;
+    height: 100vh;
+    top: 0;
+    overflow: hidden;
+    transition: all 1s;
+}
+
+.open.close {
+    height: 0;
+    top: 100%;
+}
+
+.slider-container {
+    position: relative;
+}

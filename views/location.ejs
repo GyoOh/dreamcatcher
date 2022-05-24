@@ -40,7 +40,7 @@
             <div class="posts-container">
                 <div class="contents flex-column card">
                     <!-- <header class="top"> -->
-                        <!-- <input id="searchInput" class="controls" type="text" placeholder="Enter a location" -->
+                    <!-- <input id="searchInput" class="controls" type="text" placeholder="Enter a location" -->
                     <div class="col-md-6 d-flex">
                         <form id="distance_form">
                             <!-- my location -->
@@ -67,11 +67,13 @@
                                     placeholder="Enter a last location...">
                                 </div>
                             </div>
-                           
+
                             <!-- submit/cancel btn -->
                             <div class="row">
-                                <button id="clear_btn"class="button" type="button" onclick="clearRoute();">Clear</button>
-                                <button id="submit_btn"class="button" type="button" onclick="handleSubmit();">Submit</button>
+                                <button id="clear_btn" class="button" type="button"
+                                    onclick="clearRoute();">Clear</button>
+                                <button id="submit_btn" class="button" type="button"
+                                    onclick="handleSubmit();">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -79,7 +81,7 @@
                     <div id="result">
                         <ul class="list-group">
                             <li id="distance_output" class="">Distance is Kilo:</li>
-                            <li id="time_output"class="">IN MINUTES:</li>
+                            <li id="time_output" class="">IN MINUTES:</li>
                         </ul>
                     </div>
                 </div>
@@ -149,6 +151,12 @@
                     }  
                 </script> -->
                 <!-- </header> -->
+                <!-- <form class="login-form" action="/authentication/logout" method="POST">    -->
+                <button class="list" type="submit"><img src="/icons/arrow.svg"></button>
+                <div class="slider-container">
+                    <div class="open close"></div>
+                </div>
+                <!-- </form> -->
             </div>
             </div>
             <nav class="bottom-nav">
@@ -174,6 +182,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        const list = document.querySelector(".list");
+        const listbox = document.querySelector(".open");
+        $('.list, .open').click(function () {
+            $('.open').toggleClass('close');
+        });
+    </script>
 </body>
 
 </html>
