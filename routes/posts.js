@@ -141,10 +141,14 @@ router.get("/location", async (req, res) => {
 })
 
 router.get("/food", async (req, res) => {
-    res.render("food")
-})
-router.post("/food/restaurant/https://api.yelp.com/v3/businesses/search?term=chicken&latitude=49.2827&longitude=-123.1207", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
+    const thisUser = await dbModel.getPostByUserId(user.user_id)
+    res.render("food", { user, thisUser })
+})
+router.post("/food", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    let urlApi = `/https://api.yelp.com/v3/businesses/search?term=chicken&latitude=49.2827&longitude=-123.1207`
+
 })
 
 router.use((err, req, res, next) => {

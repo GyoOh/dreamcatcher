@@ -17,7 +17,7 @@ const add = async () => {
         method: "POST",
         headers: header
     }
-    fetch(`/food/restaurant/${url}`, request)
+    fetch(`/posts/food`, request)
         .then(resp =>
             resp.json()
         )
