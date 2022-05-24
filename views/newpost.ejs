@@ -143,9 +143,23 @@
 
                             </form>
                             </article>
-                            <!--  -->
-                            <!-- 
- -->
+                            <form action="/posts/create" method="POST">
+                            <input type="text" name="term" class="restaurant-input" placeholder="Enter a restaurant">
+                            </form>
+
+                            <div class="result">
+                                <h1 class="term"> </h1>
+                                <% if(name !== null) {%> 
+                                <div class="location"><%=name%> </div>
+                                <% }%>
+                                <% if(display_address !== null) { %>
+                                <div class="coordinates"> 
+                                <% display_address.forEach(address => { %>
+                                 <%=address%> 
+                                <% })%>
+                                <% } %> 
+                            </div>
+                            </div>
  <nav class="bottom-nav">
 
     <a class="nav-btn" href="/posts">
