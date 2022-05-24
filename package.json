@@ -23,7 +23,8 @@
     "moment": "^2.29.3",
     "multer": "^1.4.4",
     "mysql2": "^2.3.3",
-    "socket.io": "^4.5.0"
+    "socket.io": "^4.5.0",
+    "yelp-api": "^1.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

@@ -7,6 +7,8 @@ const s3 = require("../s3")
 const path = require('path');
 const { CodeBuild } = require("aws-sdk");
 const { Console } = require("console");
+const request = require('request');
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images')
@@ -136,6 +138,28 @@ router.post("/deletePost", async (req, res) => {
 router.get("/location", async (req, res) => {
     res.render("location");
 })
+
+router.get("/getYelp", async (req, res) => {
+    let options = {
+        'method': 'GET',
+        'url': 'https://api.yelp.com/v3/businesses/search?latitude=49.282359695758885&longitude=-123.1168886758965&radius=100',
+        'headers': {
+            'x-api-key': 'I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx',
+            'Authorization': 'Bearer I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx'
+        }
+    };
+    let resp 
+    request(options, function (error, response) {
+        if (error) throw new Error(error);
+        // res.send(response.body)
+        console.log(response.body)
+       resp = response.body
+    //    let data =  resp.json()
+       businesses = resp.businesses
+       console.log(businesses)
+       res.render("location", {resp})
+    });
+});
 
 router.use((err, req, res, next) => {
     if (res.headersSent) {
