@@ -30,11 +30,13 @@ app.use(cookieSession({
   keys: ['key1', 'key2'],
   maxAge: 24 * 60 * 60 * 1000 //24hrs
 }))
+app.use(cors())
 
 app.use("/authentication", authentication);
 app.use("/posts", posts);
 app.use("/chat", chat);
 app.use("/profile", profile)
+
 
 app.get("/", async (req, res) => {
   const email = req.session.whoami

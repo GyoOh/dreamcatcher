@@ -19,11 +19,14 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({ storage: storage })
+const bodyParser = require("body-parser")
+router.use(bodyParser.urlencoded({ extended: false }));
 
 router.use((req, res, next) => {
     res.header({ "Access-Control-Allow-Origin": "*" });
     next();
 })
+
 
 router.post("/create", upload.single("image"), async (req, res) => {
     const connection = await database.getConnection()
@@ -36,8 +39,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
     res.redirect("/posts")
     connection.release()
 })
-
-router.get("/create", async (req, res) => {
+router.get(`/create`, async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     if (!user) {
@@ -46,6 +48,7 @@ router.get("/create", async (req, res) => {
     const posts = await dbModel.getPosts()
     res.render("newpost", { posts, user, users });
 })
+
 
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
@@ -160,6 +163,17 @@ router.get("/getYelp", async (req, res) => {
        res.render("location", {resp})
     });
 });
+
+router.get("/food", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const thisUser = await dbModel.getPostByUserId(user.user_id)
+    res.render("food", { user, thisUser })
+})
+
+router.post("/food", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    let urlApi = `/https://api.yelp.com/v3/businesses/search?term=chicken&latitude=49.2827&longitude=-123.1207`
+})
 
 router.use((err, req, res, next) => {
     if (res.headersSent) {

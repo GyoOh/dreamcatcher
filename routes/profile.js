@@ -30,6 +30,8 @@ router.get("/:user_id", async (req, res) => {
     let thisUser
     let totalFollower
     let isFollowing
+    let getFollowerByUserId = await dbModel.getfollowerByUserId(user_id)
+    let getfollowingByUserId = await dbModel.getfollowingByUserId(user_id)
     if (user) {
         thisUser = await dbModel.getPostByUserId(user_id)
         userPosts = await dbModel.getUserPosts(user.user_id)
@@ -37,7 +39,6 @@ router.get("/:user_id", async (req, res) => {
         profileUser = users.filter(user => user.user_id === user_id)
         let follower = await dbModel.getfollower(user.user_id, user_id)
         isFollowing = follower.map(already => already.follower).includes(user.user_id)
-        console.log(profileUser)
     }
     const commentId = await dbModel.getComments()
     if (!user) {
@@ -92,8 +93,6 @@ router.get("/edit/:user_id", async (req, res) => {
     let thisUser
     let totalFollower
     let isFollowing
-    // let getFollowerByUserId = await dbModel.getfollowerByUserId(user_id)
-    // console.log("getUserFollow", getfollowerByUserId)
     if (user) {
         thisUser = await dbModel.getPostByUserId(user_id)
         userPosts = await dbModel.getUserPosts(user.user_id)

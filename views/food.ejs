@@ -6,11 +6,10 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>FoodieShare</title>
-    <link rel="stylesheet" href="/reset.css">
-    <link rel="stylesheet" href="/common.css">
-    <link rel="stylesheet" href="/style.css">
+ 
     <link rel="stylesheet" href="/new_post.css">
     <link rel="stylesheet" href="/posts.css">
+    <link rel="stylesheet" href="/food.css">
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
@@ -80,72 +79,28 @@
             </div>
             <% } %>
 
-                <% if(user) {%>
+            <div class="back-div">
+            <a class="back-atag" href="/posts">
+                <img class="backbtn" src="/icons/back button.svg"></a>
+            </div>
 
+<h4 class="first-h4">DreamCatchers Cafe<img class="nav-icon" src="/icons/map icon.svg"></h4> 
+<div class="restaurant-posts">
+    <% for (let i=0; i < thisUser.length; i++) { %>
+    <img class="userPost" src=<%=thisUser[i].image_url%>> 
+    <% } %> 
+</div>
 
-                    <section id="main_container">
-                        <div class="inner">
-                            <div class="contents_box">
-                                <article class="contents">
+<h6 class="star">4.5 <img class="nav-icon" src="/icons/star fill.svg"><img class="nav-icon" src="/icons/star fill.svg"><img class="nav-icon" src="/icons/star fill.svg"><img class="nav-icon" src="/icons/star fill.svg"><img class="nav-icon" src="/icons/half star.svg"> (137)</h6>
+<div class="paragraph">
+<li class="restaurant-info"><h7>Hours:</h7><strong>Mon – Sat</strong> 8:30 AM – 10:00 PM</li>
+<li class="restaurant-info"><h7>Address:</h7>1206 White Ave <br> Burnaby, BC, V5G 3H2</li>
+<li class="restaurant-info"><h7>Website:</h7>www.dreamcatcherscafe.com</li>
+<li class="restaurant-info"><h7>Phone:</h7>(604) 154 – 1274</li>
+<li class="restaurant-info"><h7>Order Now</h7></li>
+<p class="icon-paragraph"><img class="nav-icon" src="/icons/skip the dishes logo.svg"><img class="nav-icon" src="/icons/doordash logo.svg"><img class="nav-icon" src="/icons/uber eats logo.svg"></p>
+</div>
 
-                                    <form method="POST" action="/posts/create" enctype="multipart/form-data"
-                                        id="imageForm" class="post_form">
-                                        <div class="title">
-                                            <a href="/posts">
-                                                <img class="backbtn" src="/icons/back button.svg"></a>
-                                            <p class="newpost previewpost">Preview Post</p>
-                                        </div>
-                                        <header class="top">
-                                            <div class="user_container">
-                                                <div class="profile_img">
-                                                    <img class="user" src="/icons/smantha.svg">
-                                                </div>
-                                                <div class="user_name">
-
-                                                    <div class="nick_name">
-                                                        <%=user.first_name%>
-                                                            <%=user.last_name %>
-                                                    </div>
-                                                    <div class="place">@DreamCatchers Cafe </div>
-                                                </div>
-
-                                            </div>
-                                        </header>
-
-                                        <div class="preview">
-                                            <div class="upload">
-                                                <div class="post_btn">
-                                                    <!-- <div class="plus_icon"> -->
-                                                    <input type="file" name="image" placeholder="image" id="id_photo"
-                                                        accept="image/*" required>
-                                                    <!-- </div> -->
-                                                    <canvas id="imageCanvas"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <% } %>
-
-
-                                            <div class="comment_container">
-                                                <div class="comment" id="comment-list-ajax-post37">
-                                                    <div class="comment-detail">
-                                                    </div>
-                                                    <textarea class="description" name="description" type="text"
-                                                        placeholder="description..." rows="8" maxlength="200"
-                                                        required></textarea>
-
-                                                </div>
-                                            </div>
-                            </div>
-                            <div class="input_div">
-                                <input class="submit_btn" type="submit" value="Post" size="20">
-                            </div>
-
-                            </form>
-                            </article>
-                            <!--  -->
-                            <!-- 
- -->
  <nav class="bottom-nav">
 
     <a class="nav-btn" href="/posts">

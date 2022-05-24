@@ -71,9 +71,9 @@ span .new.follow {
   position: relative;
 }
 span .new.follow.following {
-  background: #00bfb2;
+  background: #fff;
   border-color: #00bfb2;
-  color: #fff;
+  color: #00bfb2;
   border-radius: 8px;
   border-style: solid;
   font-size: 14px;
