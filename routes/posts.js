@@ -37,8 +37,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
     res.redirect("/posts")
     connection.release()
 })
-const url_api = `https://api.yelp.com/v3/businesses/search?term=chicken&latitude=49.2827&longitude=-123.1207`
-router.get(`/create/`, async (req, res) => {
+router.get(`/create`, async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const users = await dbModel.getUsers()
     if (!user) {
@@ -47,6 +46,7 @@ router.get(`/create/`, async (req, res) => {
     const posts = await dbModel.getPosts()
     res.render("newpost", { posts, user, users });
 })
+
 
 router.get("/", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
