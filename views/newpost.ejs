@@ -143,22 +143,19 @@
 
                             </form>
                             </article>
-                            <form action="/posts/create" method="POST">
-                            <input type="text" name="term" class="restaurant-input" placeholder="Enter a restaurant">
+                            <form id="restaurantNameForm" action="/posts/create" method="POST">
+                            <input id="restaurantNameFormInput" type="text" name="term" class="restaurant-input" placeholder="Enter a restaurant">
                             </form>
 
                             <div class="result">
-                                <h1 class="term"> </h1>
-                                <% if(name !== null) {%> 
-                                <div class="location"><%=name%> </div>
-                                <% }%>
-                                <% if(display_address !== null) { %>
-                                <div class="coordinates"> 
+                                
+                                <% if(name !== null && display_address !== null) {%> 
+                                <%=name%> <br>
                                 <% display_address.forEach(address => { %>
                                  <%=address%> 
                                 <% })%>
                                 <% } %> 
-                            </div>
+                          
                             </div>
  <nav class="bottom-nav">
 
@@ -188,6 +185,13 @@
 
                     </section>
                     <script>
+
+                        document.querySelector("#restaurantNameForm").addEventListener("submit", event => {
+                            event.preventDefault()
+                            const value = document.querySelector("#restaurantNameFormInput").value
+                            
+                            console.log("submit the form", value)
+                        })
                         // const contents = document.querySelector('div.contents_box')
                         // contents.addEventListener('click', (event) => {
                         //     if (event.target.classList.contains("favorite")) {

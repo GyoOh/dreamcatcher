@@ -143,7 +143,7 @@ width: 100; */
   background-color: firebrick;
 }
 
-.bottom-nav {
+nav.bottom-nav {
   display: flex;
   position: sticky;
   bottom: 0px;
@@ -275,6 +275,7 @@ div.result {
   top: -5px;
   right: 7rem;
 }
+
 .result .coordinates {
   display: flex;
   align-items: center;
