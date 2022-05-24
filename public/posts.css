@@ -260,6 +260,7 @@ form input.restaurant-input {
 }
 
 div.result {
+  width: 100%;
   text-align: center;
 }
 
