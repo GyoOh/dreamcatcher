@@ -69,3 +69,14 @@
 .slider-container {
     position: relative;
 }
+
+input.pac-target-input {
+    z-index: 0;
+    position: absolute;
+    top: 11px !important;
+    left: 315px;
+    width: 15em;
+    height: 2.7em;
+    text-indent: 1em;
+    font-size: 14px;
+}
