@@ -20,7 +20,9 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 const bodyParser = require("body-parser")
-router.use(bodyParser.urlencoded({ extended: false }));
+
+require('dotenv').config()
+const fetch = require('node-fetch')
 
 router.use((req, res, next) => {
     res.header({ "Access-Control-Allow-Origin": "*" });
@@ -31,6 +33,40 @@ router.use((req, res, next) => {
 router.post("/create", upload.single("image"), async (req, res) => {
     const connection = await database.getConnection()
     const user = await dbModel.getUser(req.session.whoami)
+    const term = req.body.term
+    let url_api = `https://api.yelp.com/v3/businesses/search?term=${term}&latitude=49.2827&longitude=-123.1207`
+    let header = {
+        "method": "POST",
+        "Authorization": `Bearer ROF0HVCZJhK3MOwM_BdaB_bIodzpNbWdhHMDsXZxF7bRg35xwwQRscs_ZJQdV7HKKonIdb5iyHpfY-sabDbugiUfBkDDg4tVymAhpAx7Rs8ratmrpPnMW3hqMtSJYnYx`,
+    }
+    const request = {
+        headers: header
+    }
+    fetch(url_api, request)
+        .then(res => res.json())
+        .then(data => {
+            console.log("data", data)
+            let [business] = data.businesses
+            let name = business.name
+            // // let address = business.location
+            // // console.log("address", address)
+            // // let display_address = address.display_address
+            // // display_address.forEach(address => {
+            // //     console.log(address)
+            // });
+            if (business == null) {
+                res.render("newpost", {
+                    address: null
+                })
+            } else {
+                let [business] = data.businesses
+                let name = business.name
+                let address = business.location
+                let display_address = address.display_address
+
+                res.render("newpost", { name, user, display_address })
+            }
+        })
     const { filename, path } = req.file
     const description = req.body.description
     const url = await s3.uploadFile(req.file)
@@ -46,7 +82,7 @@ router.get(`/create`, async (req, res) => {
         return res.redirect("/authentication/403");
     }
     const posts = await dbModel.getPosts()
-    res.render("newpost", { posts, user, users });
+    res.render("newpost", { posts, user, users, address: null, name: null, display_address: null });
 })
 
 
@@ -168,11 +204,6 @@ router.get("/food", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const thisUser = await dbModel.getPostByUserId(user.user_id)
     res.render("food", { user, thisUser })
-})
-
-router.post("/food", async (req, res) => {
-    const user = await dbModel.getUser(req.session.whoami)
-    let urlApi = `/https://api.yelp.com/v3/businesses/search?term=chicken&latitude=49.2827&longitude=-123.1207`
 })
 
 router.use((err, req, res, next) => {
