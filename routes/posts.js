@@ -7,7 +7,6 @@ const s3 = require("../s3")
 const path = require('path');
 const { CodeBuild } = require("aws-sdk");
 const { Console } = require("console");
-const request = require('request');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -30,6 +29,39 @@ const fetch = require('node-fetch')
 router.post("/create", upload.single("image"), async (req, res) => {
     const connection = await database.getConnection()
     const user = await dbModel.getUser(req.session.whoami)
+    const term = req.body.term
+    let url_api = `https://api.yelp.com/v3/businesses/search?term=${term}&latitude=49.2827&longitude=-123.1207`
+    let header = {
+        "method": "POST",
+        "Authorization": `Bearer ROF0HVCZJhK3MOwM_BdaB_bIodzpNbWdhHMDsXZxF7bRg35xwwQRscs_ZJQdV7HKKonIdb5iyHpfY-sabDbugiUfBkDDg4tVymAhpAx7Rs8ratmrpPnMW3hqMtSJYnYx`,
+    }
+    const request = {
+        headers: header
+    }
+    fetch(url_api, request)
+        .then(res => res.json())
+        .then(data => {
+            console.log("data", data)
+            let [business] = data.businesses
+            let name = business.name
+            // // let address = business.location
+            // // console.log("address", address)
+            // // let display_address = address.display_address
+            // // display_address.forEach(address => {
+            // //     console.log(address)
+            // });
+            if (business == null) {
+                res.render("newpost", {
+                    address: null
+                })
+            } else {
+                let [business] = data.businesses
+                let name = business.name
+                let address = business.location
+                let display_address = address.display_address
+                res.render("newpost", { name, user, display_address })
+            }
+        })
     const { filename, path } = req.file
     const description = req.body.description
     const url = await s3.uploadFile(req.file)
@@ -46,7 +78,7 @@ router.get("/create", async (req, res) => {
         return res.redirect("/authentication/403");
     }
     const posts = await dbModel.getPosts()
-    res.render("newpost", { posts, user, users });
+    res.render("newpost", { posts, user, users, name: null });
 })
 
 router.get("/", async (req, res) => {
@@ -153,6 +185,7 @@ router.get("/location", async (req, res) => {
     fetch(url, options)
         .then(a => a.json())
         .then(data => {
+
             let [firstRestaurant] = data.businesses
             let name = firstRestaurant.name
             console.log("name", name)
@@ -161,6 +194,7 @@ router.get("/location", async (req, res) => {
                 console.log(first)
             });
             res.render("location", { name, address })
+
         })
 });
 
