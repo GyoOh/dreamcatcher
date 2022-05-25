@@ -137,7 +137,7 @@ async function initMap() {
                 infoWindow.open(map, marker)
             });
         } else {
-            infoWindow.remove(map, marker)
+            // infoWindow.remove(map, marker)
         }
     }
 
