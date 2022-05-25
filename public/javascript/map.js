@@ -1,4 +1,4 @@
-function initMap() {
+async function initMap() {
     const options = {
         zoom: 13,
         center: { lat: 49.282359695758885, lng: -123.1168886758965 },
@@ -8,7 +8,6 @@ function initMap() {
         google.maps.Map(document.getElementById('map'), options);
 
     const findRestaurantNearMeButton = document.getElementsByClassName("custom-map-control-button")[0]
-
     // const findRestaurantNearMeButton = document.createElement("button");
     // findRestaurantNearMeButton.textContent = 'Find me';
     // findRestaurantNearMeButton.classList.add("custom-map-control-button");
@@ -19,175 +18,101 @@ function initMap() {
         addMarker({ coords: event.latLng });
     })
 
-    
-    const markers = [
-        {
-            coords: { lat: 49.28635375404073, lng: -123.12737595976482 },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            content: `<h1 class="restaurantName">Chico Chicken</h1>
-            <p class="info">1234 Robson St, Vancouver, BC V6E 1C1</p>
-            <b><div class="phone">phone number</div></b>
-            <p>+12364552533</p>
-            <b><div class="hours">hours</div></b> 
-            <div>Sunday, 11:00am~ 10:00pm</div>
-            <div>Monday, 11:00am~ 10:00pm</div>
-            <div>Tuesday, 11:00am~ 10:00pm</div>
-            <div>Wednesday, 11:00am~ 10:00pm</div>
-            <div>Thursday, 11:00am~ 10:00pm</div>
-            <div>Friday, 11:00am~ 10:00pm</div>
-            <div>Saturday, 11:00am~ 10:00pm</div>
-            <img src="/images/chicken.jpeg"`,
-            iconImage: {
-                url: "/icons/logo_burger.svg",
-                scaledSize: new google.maps.Size(43, 36)
-            }
-        },
-        {
-            coords: { lat: 49.281267558806924, lng: -123.1206081438685 },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            content: `<h1 class="restaurantName">Jollibee</h1>
-            <p class="info">833 Granville St, Vancouver, BC V5M 2C9</p>
-            <b><div class="phone">phone number</div></b>
-            <p>+16042657353</p>
-            <b><div class="hours">hours</div></b> 
-            <div>Sunday, 9:00am~ 10:00pm</div>
-            <div>Monday, 9:00am~ 10:00pm</div>
-            <div>Tuesday, 9:00am~ 10:00pm</div>
-            <div>Wednesday, 9:00am~ 10:00pm</div>
-            <div>Thursday, 9:00am~ 10:00pm</div>
-            <div>Friday, 9:00am~ 10:00pm</div>
-            <div>Saturday, 9:00am~ 10:00pm</div>
-            <img src="/images/chicken.jpeg"`,
-            iconImage: {
-                url: "/icons/logo_burger.svg",
-                scaledSize: new google.maps.Size(43, 36)
-            }
-        },
-        {
-            coords: { lat: 49.28967972730247, lng: -123.1310727569609 },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            content: `<h1 class="restaurantName">bbq chicken</h1>
-            <p class="info">1517 Robson St, Vancouver, BC V6G 1C3</p>
-            <b><div class="phone">phone number</div></b>
-            <p>+16044551129</p>
-            <b><div class="hours">hours</div></b> 
-            <div>Sunday, 4:00pm~ 12:00am</div>
-            <div>Monday, 4:00pm~ 12:00am</div>
-            <div>Tuesday, 4:00pm~ 12:00am</div>
-            <div>Wednesday, 4:00pm~ 12:00am</div>
-            <div>Thursday, 4:00pm~ 12:00am</div>
-            <div>Friday, 4:00pm~ 12:00am</div>
-            <div>Saturday, 4:00pm~ 12:00am</div>
-            <img src="/images/chicken.jpeg"`,
-            iconImage: {
-                url: "/icons/logo_burger.svg",
-                scaledSize: new google.maps.Size(43, 36)
-            }
-        },
-        {
-            coords: { lat: 49.28730022745002, lng: -123.12807801782375 },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            content: `<h1 class="restaurantName">Ole chicken</h1>
-            <p class="info">1256 Robson St, Vancouver, BC V6E 1C1</p>
-            <b><div class="phone">phone number</div></b>
-            <p>+16044283909</p>
-            <b><div class="hours">hours</div></b> 
-            <div>Sunday, 5:00pm~ 12:00am</div>
-            <div>Monday, 5:00pm~ 12:00am</div>
-            <div>Tuesday, 5:00pm~ 12:00am</div>
-            <div>Wednesday, 5:00pm~ 12:00am</div>
-            <div>Thursday, 5:00pm~ 12:00am</div>
-            <div>Friday, 5:00pm~ 12:00am</div>
-            <div>Saturday, 5:00pm~ 12:00am</div>
-            <img src="/images/chicken.jpeg"`,
-            iconImage: {
-                url: "/icons/logo_burger.svg",
-                scaledSize: new google.maps.Size(43, 36)
-            }
-        },
-        {
-            coords: { lat: 49.28800125737821, lng: -123.14115778468913 },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            content: `<h1 class="restaurantName">Chicken World</h1>
-            <p class="info">1181 Denman St, Vancouver, BC V6G 2N1</p>
-            <b><div class="phone">phone number</div></b>
-            <p>+16046810007</p>
-            <b><div class="hours">hours</div></b> 
-            <div>Sunday, 11:00am~ 11:00pm</div>
-            <div>Monday,11:00am~ 11:00pm</div>
-            <div>Tuesday, 11:00am~ 11:00pm</div>
-            <div>Wednesday, 11:00am~ 11:00pm</div>
-            <div>Thursday, 11:00am~ 11:00pm</div>
-            <div>Friday, 11:00am~ 12:00pm</div>
-            <div>Saturday, 11:00am~ 12:00pm</div>
-            <img src="/images/chicken.jpeg"`,
-            iconImage: {
-                url: "/icons/logo_burger.svg",
-                scaledSize: new google.maps.Size(43, 36)
-            }
-        },
-        {
-            coords: { lat: 49.282628563811485, lng: -123.13360696468155 },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            content: `<h1 class="restaurantName">Nene Chicken</h1>
-            <p class="info">1231 Davie St, Vancouver, BC V6E 1N4</p>
-            <b><div class="phone">phone number</div></b>
-            <p>+16043362779</p>
-            <b><div class="hours">hours</div></b> 
-            <div>Sunday, 12:00pm~ 10:00pm</div>
-            <div>Monday, 12:00pm~ 10:00pmm</div>
-            <div>Tuesday, 12:00pm~ 10:00pm</div>
-            <div>Wednesday, 12:00pm~ 10:00pm</div>
-            <div>Thursday, 12:00pm~ 10:00pm</div>
-            <div>Friday, 12:00pm~ 10:00pm</div>
-            <div>Saturday, 12:00pm~ 10:00pm</div>
-            <img src="/images/chicken.jpeg"`,
-            iconImage: {
-                url: "/icons/logo_burger.svg",
-                scaledSize: new google.maps.Size(43, 36)
-            }
-        },
-        {
-            coords: { lat: 49.278242317612566, lng: -123.12699305164796 },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            content: `<h1 class="restaurantName">Nando's PERi-PERi</h1>
-            <p class="info">828 Davie St, Vancouver, BC V6Z 2S2</p>
-            <b><div class="phone">phone number</div></b>
-            <p>+16046781217</p>
-            <b><div class="hours">hours</div></b> 
-            <div>Sunday, 11:00am~ 11:00pm</div>
-            <div>Monday,11:00am~ 11:00pm</div>
-            <div>Tuesday, 11:00am~ 11:00pm</div>
-            <div>Wednesday, 11:00am~ 11:00pm</div>
-            <div>Thursday, 11:00am~ 11:00pm</div>
-            <div>Friday, 11:00am~ 12:00pm</div>
-            <div>Saturday, 11:00am~ 12:00pm</div>
-            <img src="/images/chicken.jpeg"`,
-            iconImage: {
-                url: "/icons/logo_burger.svg",
-                scaledSize: new google.maps.Size(43, 36)
+    await handleYelpRequest(49.282359695758885, -123.1168886758965).then(
+        res => {
+            const businesses = res.businesses
+            for (let i = 0; i < businesses.length; i++) {
+                const restaurant = businesses[i]
+                const marker = {
+                    coords: { lat: restaurant.coordinates.latitude, lng: restaurant.coordinates.longitude },
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    content: `<h1 class="restaurantName">Chico Chicken</h1>
+                    <p class="info">1234 Robson St, Vancouver, BC V6E 1C1</p>
+                    <b><div class="phone">phone number</div></b>
+                    <p>+12364552533</p>
+                    <b><div class="hours">hours</div></b> 
+                    <div>Sunday, 11:00am~ 10:00pm</div>
+                    <div>Monday, 11:00am~ 10:00pm</div>
+                    <div>Tuesday, 11:00am~ 10:00pm</div>
+                    <div>Wednesday, 11:00am~ 10:00pm</div>
+                    <div>Thursday, 11:00am~ 10:00pm</div>
+                    <div>Friday, 11:00am~ 10:00pm</div>
+                    <div>Saturday, 11:00am~ 10:00pm</div>
+                    <img src="/images/chicken.jpeg"`,
+                    iconImage: {
+                        url: "/icons/logo_burger.svg",
+                        scaledSize: new google.maps.Size(43, 36)
+                    }
+                }
+                addMarker(marker);
             }
         }
-        
-    ];
+    )
 
-    const searchInput = document.createElement('input');
-    const searchBox = new google.maps.places.SearchBox(searchInput);
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchInput);
-    searchInput.placeholder = "Enter a place";
+    await handleYelpRequest(49.246445, -122.994560).then(
+        res => {
+            const businesses = res.businesses
+            for (let i = 0; i < businesses.length; i++) {
+                const restaurant = businesses[i]
+                const marker = {
+                    coords: { lat: restaurant.coordinates.latitude, lng: restaurant.coordinates.longitude },
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    content: `<h1 class="restaurantName">Chico Chicken</h1>
+                    <p class="info">1234 Robson St, Vancouver, BC V6E 1C1</p>
+                    <b><div class="phone">phone number</div></b>
+                    <p>+12364552533</p>
+                    <b><div class="hours">hours</div></b> 
+                    <div>Sunday, 11:00am~ 10:00pm</div>
+                    <div>Monday, 11:00am~ 10:00pm</div>
+                    <div>Tuesday, 11:00am~ 10:00pm</div>
+                    <div>Wednesday, 11:00am~ 10:00pm</div>
+                    <div>Thursday, 11:00am~ 10:00pm</div>
+                    <div>Friday, 11:00am~ 10:00pm</div>
+                    <div>Saturday, 11:00am~ 10:00pm</div>
+                    <img src="/images/chicken.jpeg"`,
+                    iconImage: {
+                        url: "/icons/logo_burger.svg",
+                        scaledSize: new google.maps.Size(43, 36)
+                    }
+                }
+                addMarker(marker);
+            }
+        }
+    )
 
-    for (let i = 0; i < markers.length; i++) {
-        console.log('test', i)
-        addMarker(markers[i]);
-    }
-
+    await handleYelpRequest(49.166592,  -123.133568).then(
+        res => {
+            const businesses = res.businesses
+            for (let i = 0; i < businesses.length; i++) {
+                const restaurant = businesses[i]
+                const marker = {
+                    coords: { lat: restaurant.coordinates.latitude, lng: restaurant.coordinates.longitude },
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    content: `<h1 class="restaurantName">Chico Chicken</h1>
+                    <p class="info">1234 Robson St, Vancouver, BC V6E 1C1</p>
+                    <b><div class="phone">phone number</div></b>
+                    <p>+12364552533</p>
+                    <b><div class="hours">hours</div></b> 
+                    <div>Sunday, 11:00am~ 10:00pm</div>
+                    <div>Monday, 11:00am~ 10:00pm</div>
+                    <div>Tuesday, 11:00am~ 10:00pm</div>
+                    <div>Wednesday, 11:00am~ 10:00pm</div>
+                    <div>Thursday, 11:00am~ 10:00pm</div>
+                    <div>Friday, 11:00am~ 10:00pm</div>
+                    <div>Saturday, 11:00am~ 10:00pm</div>
+                    <img src="/images/chicken.jpeg"`,
+                    iconImage: {
+                        url: "/icons/logo_burger.svg",
+                        scaledSize: new google.maps.Size(43, 36)
+                    }
+                }
+                addMarker(marker);
+            }
+        }
+    )
     //add marker 
     function addMarker(props) {
         const marker = new google.maps.Marker({
@@ -211,7 +136,6 @@ function initMap() {
             marker.addListener("click", () => {
                 infoWindow.open(map, marker)
             });
-
         } else {
             // infoWindow.remove(map, marker)
         }
@@ -333,13 +257,12 @@ function clearRoute() {
 
 }
 
-function handleYelpRequest() {
+async function handleYelpRequest(lat, lng) {
     const request = {
-        method: "GET",
+        method: "POST",
     }
-    fetch(`/location`, request)
-        .then(resp =>
-            resp.json()
-        )
+    const data = await fetch(`/posts/yelp?latitude=${lat}&longitude=${lng}`, request)
+    const dataJSON = await data.json();
+    return dataJSON;
 }
-handleYelpRequest()
+
