@@ -42,15 +42,8 @@ router.post("/create", upload.single("image"), async (req, res) => {
     fetch(url_api, request)
         .then(res => res.json())
         .then(data => {
-            console.log("data", data)
             let [business] = data.businesses
             let name = business.name
-            // // let address = business.location
-            // // console.log("address", address)
-            // // let display_address = address.display_address
-            // // display_address.forEach(address => {
-            // //     console.log(address)
-            // });
             if (business == null) {
                 res.render("newpost", {
                     address: null
@@ -70,6 +63,35 @@ router.post("/create", upload.single("image"), async (req, res) => {
     await dbModel.addPost(user.user_id, description, image_url)
     res.redirect("/posts")
     connection.release()
+})
+router.post("/create/restaurant", upload.single("image"), async (req, res) => {
+    const connection = await database.getConnection()
+    const user = await dbModel.getUser(req.session.whoami)
+    const term = req.body.term
+    let url_api = `https://api.yelp.com/v3/businesses/search?term=${term}&latitude=49.2827&longitude=-123.1207`
+    let header = {
+        "method": "POST",
+        "Authorization": `Bearer ROF0HVCZJhK3MOwM_BdaB_bIodzpNbWdhHMDsXZxF7bRg35xwwQRscs_ZJQdV7HKKonIdb5iyHpfY-sabDbugiUfBkDDg4tVymAhpAx7Rs8ratmrpPnMW3hqMtSJYnYx`,
+    }
+    const request = {
+        headers: header
+    }
+    fetch(url_api, request)
+        .then(res => res.json())
+        .then(data => {
+            let [business] = data.businesses
+            if (business == null) {
+                res.render("newpost", {
+                    address: null
+                })
+            } else {
+                let [business] = data.businesses
+                let name = business.name
+                let address = business.location
+                let display_address = address.display_address
+                res.json({ name, user, display_address })
+            }
+        })
 })
 
 router.get("/create", async (req, res) => {
@@ -189,8 +211,11 @@ router.post("/yelp", async (req, res) => {
         .then(data => {
             console.log(data)
             res.send(data)
-            });
-        })
+
+
+        });
+})
+
 
 router.get("/food", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
