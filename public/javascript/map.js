@@ -18,6 +18,11 @@ async function initMap() {
         addMarker({ coords: event.latLng });
     })
 
+    const searchInput = document.createElement('input');
+    const searchBox = new google.maps.places.SearchBox(searchInput);
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchInput);
+    searchInput.placeholder = "Enter a place";
+
     await handleYelpRequest(49.282359695758885, -123.1168886758965).then(
         res => {
             const businesses = res.businesses
@@ -80,7 +85,7 @@ async function initMap() {
         }
     )
 
-    await handleYelpRequest(49.166592,  -123.133568).then(
+    await handleYelpRequest(49.166592, -123.133568).then(
         res => {
             const businesses = res.businesses
             for (let i = 0; i < businesses.length; i++) {
