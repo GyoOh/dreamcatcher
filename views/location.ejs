@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/location.css">
     <script src="/javascript/map.js"></script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPQ_N7ChJoLvCfIRXrQbqKBqF2ogWazSE&map_ids=d2716697ffbc4fa6&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPQ_N7ChJoLvCfIRXrQbqKBqF2ogWazSE&map_ids=d2716697ffbc4fa6&libraries=places&callback=initMap"></script>
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
@@ -57,17 +57,12 @@
                             <div class="row">
                                 <div class="location-label">
                                     <label>Destination:  </label>
-                                    <%=name%> 
-                                    <% address.forEach(first => {%>
-                                        <%=first%>
-                                     <% })  %>      
                                 </div>
                                 <div class="location-input">
                                     <input type="text" id="destination" name="destination" required=""
                                     placeholder="Enter a last location...">
                                 </div>
                             </div>
-
                             <!-- submit/cancel btn -->
                             <div class="row">
                                 <button id="clear_btn" class="button" type="button"
@@ -77,7 +72,6 @@
                             </div>
                         </form>
                     </div>
-
                     <div id="result">
                         <ul class="list-group">
                             <li id="distance_output" class="">Distance is Kilo:</li>
@@ -85,72 +79,9 @@
                         </ul>
                     </div>
                 </div>
-                <div id="map"></div>
-
-                <!-- <script type="text/javascript">
-                    var map;
-                    var service;
-                    var infowindow;
-            
-                    document.addEventListener("DOMContentLoaded", function(){
-                        // Handler when the DOM is fully loaded
-                        initialize();
-                    });
-            
-                    function initialize() {
-                        // var vancouver = new google.maps.LatLng(37.5734272, 127.0079488);
-                        var vancouver = new google.maps.LatLng(49.282359695758885, -123.1168886758965);
-            
-                        map = new google.maps.Map(document.getElementById('map'), {
-                            center: vancouver,
-                            zoom: 15
-                        });
-            
-                        var request = {
-                            location: vancouver,
-                            radius: '500',
-                            type: ['restaurant', 'cafe']
-                        };
-            
-                        infowindow = new google.maps.InfoWindow();
-                        var service = new google.maps.places.PlacesService(map);
-                        
-                        service.nearbySearch({
-                            location: vancouver,
-                            radius: '35000',
-                            name: 'chico chicken'
-                            // type: ['restaurant', 'cafe']
-                        }, callback);
-            
-                        // service = new google.maps.places.PlacesService(map);
-                        // service.nearbySearch(request, callback);
-                    }
-            
-                    function callback(results, status) {
-                        if (status == google.maps.places.PlacesServiceStatus.OK) {
-                            console.log(results.length);
-                            for (var i = 0; i < results.length; i++) {
-                                var place = results[i];
-                                createMarker(results[i]);
-                                console.log('place ',place);
-                            }
-                        }
-                    }
-            
-                    function createMarker(place) {
-                        var placeLoc = place.geometry.location;
-                        var marker = new google.maps.Marker({
-                            map: map,
-                            position: place.geometry.location
-                        });
-            
-                        google.maps.event.addListener(marker, 'click', function() {
-                            infowindow.setContent(place.name);
-                            infowindow.open(map, this);
-                        });
-                    }  
-                </script> -->
+                <div id="map"></div> 
                 <!-- </header> -->
+
                 <!-- <form class="login-form" action="/authentication/logout" method="POST">    -->
                 <button class="list" type="submit"><img src="/icons/arrow.svg"></button>
                 <div class="slider-container">

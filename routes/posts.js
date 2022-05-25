@@ -190,9 +190,10 @@ router.post("/yelp", async (req, res) => {
         .then(data => {
             console.log(data)
             res.send(data)
-        });
-})
 
+            });
+        })
+   
 router.get("/food", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const thisUser = await dbModel.getPostByUserId(user.user_id)
