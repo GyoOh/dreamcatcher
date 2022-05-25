@@ -282,3 +282,15 @@ div.result {
   align-items: center;
   justify-content: center;
 }
+img.plus-icon {
+  width: 15px;
+  height: 15px;
+  float: right;
+  cursor: pointer;
+  margin-right: 20px;
+}
+textarea.description {
+}
+div.placeDiv {
+  vertical-align: middle;
+}

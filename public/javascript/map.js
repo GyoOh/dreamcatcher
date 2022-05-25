@@ -82,7 +82,7 @@ async function initMap() {
         }
     )
 
-    await handleYelpRequest(49.166592,  -123.133568).then(
+    await handleYelpRequest(49.166592, -123.133568).then(
         res => {
             const businesses = res.businesses
             for (let i = 0; i < businesses.length; i++) {

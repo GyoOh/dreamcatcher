@@ -124,8 +124,7 @@
                                             </div>
                                         </div>
                                         <% } %>
-
-
+                                       
                                             <div class="comment_container">
                                                 <div class="comment" id="comment-list-ajax-post37">
                                                     <div class="comment-detail">
@@ -133,30 +132,25 @@
                                                     <textarea class="description" name="description" type="text"
                                                         placeholder="description..." rows="8" maxlength="200"
                                                         required></textarea>
-
                                                 </div>
                                             </div>
+                                            
                             </div>
+                            <form id="restaurantNameForm" method="POST">
+                           <li> <input id="restaurantNameFormInput" type="text" name="term" class="restaurant-input" placeholder="Add a restaurant"><img class="plus-icon" src="/icons/+.svg"></li>
+                           <div class="result"></div>
+                                
+                                </form>
                             <div class="input_div">
                                 <input class="submit_btn" type="submit" value="Post" size="20">
                             </div>
 
                             </form>
+                            
+    
+                               
                             </article>
-                            <form id="restaurantNameForm" action="/posts/create" method="POST">
-                            <input id="restaurantNameFormInput" type="text" name="term" class="restaurant-input" placeholder="Enter a restaurant">
-                            </form>
-
-                            <div class="result">
-                                
-                                <% if(name !== null && display_address !== null) {%> 
-                                <%=name%> <br>
-                                <% display_address.forEach(address => { %>
-                                 <%=address%> 
-                                <% })%>
-                                <% } %> 
-                          
-                            </div>
+                           
  <nav class="bottom-nav">
 
     <a class="nav-btn" href="/posts">
