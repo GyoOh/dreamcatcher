@@ -199,7 +199,6 @@ router.get("/location", async (req, res) => {
 router.post("/yelp", async (req, res) => {
     let latitude = req.query.latitude
     let longitude = req.query.longitude
-    console.log("LAt and long " + latitude)
     let url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&radius=40000`
     let options = {
         'headers': {
@@ -213,8 +212,10 @@ router.post("/yelp", async (req, res) => {
             console.log(data)
             res.send(data)
 
+
         });
 })
+
 
 router.get("/food", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)

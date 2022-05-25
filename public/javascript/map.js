@@ -18,6 +18,11 @@ async function initMap() {
         addMarker({ coords: event.latLng });
     })
 
+    const searchInput = document.createElement('input');
+    const searchBox = new google.maps.places.SearchBox(searchInput);
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchInput);
+    searchInput.placeholder = "Enter a place";
+
     await handleYelpRequest(49.282359695758885, -123.1168886758965).then(
         res => {
             const businesses = res.businesses
@@ -27,10 +32,9 @@ async function initMap() {
                     coords: { lat: restaurant.coordinates.latitude, lng: restaurant.coordinates.longitude },
                     map: map,
                     animation: google.maps.Animation.DROP,
-                    content: `<h1 class="restaurantName">Chico Chicken</h1>
-                    <p class="info">1234 Robson St, Vancouver, BC V6E 1C1</p>
-                    <b><div class="phone">phone number</div></b>
-                    <p>+12364552533</p>
+                    content: `<h1 class="restaurantName">${restaurant.name}</h1>
+                    <p class="info">${restaurant.location.address1}</p>
+                    <b><p class="phone">${restaurant.display_phone}</p></b>
                     <b><div class="hours">hours</div></b> 
                     <div>Sunday, 11:00am~ 10:00pm</div>
                     <div>Monday, 11:00am~ 10:00pm</div>
@@ -39,7 +43,7 @@ async function initMap() {
                     <div>Thursday, 11:00am~ 10:00pm</div>
                     <div>Friday, 11:00am~ 10:00pm</div>
                     <div>Saturday, 11:00am~ 10:00pm</div>
-                    <img src="/images/chicken.jpeg"`,
+                    <img src="${restaurant.image_url}"`,
                     iconImage: {
                         url: "/icons/logo_burger.svg",
                         scaledSize: new google.maps.Size(43, 36)
@@ -59,10 +63,9 @@ async function initMap() {
                     coords: { lat: restaurant.coordinates.latitude, lng: restaurant.coordinates.longitude },
                     map: map,
                     animation: google.maps.Animation.DROP,
-                    content: `<h1 class="restaurantName">Chico Chicken</h1>
-                    <p class="info">1234 Robson St, Vancouver, BC V6E 1C1</p>
-                    <b><div class="phone">phone number</div></b>
-                    <p>+12364552533</p>
+                    content: `<h1 class="restaurantName">${restaurant.name}</h1>
+                    <p class="info">${restaurant.location.address1}</p>
+                    <b><p class="phone">${restaurant.display_phone}</p></b>
                     <b><div class="hours">hours</div></b> 
                     <div>Sunday, 11:00am~ 10:00pm</div>
                     <div>Monday, 11:00am~ 10:00pm</div>
@@ -71,7 +74,7 @@ async function initMap() {
                     <div>Thursday, 11:00am~ 10:00pm</div>
                     <div>Friday, 11:00am~ 10:00pm</div>
                     <div>Saturday, 11:00am~ 10:00pm</div>
-                    <img src="/images/chicken.jpeg"`,
+                    <img src="${restaurant.image_url}"`,
                     iconImage: {
                         url: "/icons/logo_burger.svg",
                         scaledSize: new google.maps.Size(43, 36)
@@ -91,10 +94,9 @@ async function initMap() {
                     coords: { lat: restaurant.coordinates.latitude, lng: restaurant.coordinates.longitude },
                     map: map,
                     animation: google.maps.Animation.DROP,
-                    content: `<h1 class="restaurantName">Chico Chicken</h1>
-                    <p class="info">1234 Robson St, Vancouver, BC V6E 1C1</p>
-                    <b><div class="phone">phone number</div></b>
-                    <p>+12364552533</p>
+                    content: `<h1 class="restaurantName">${restaurant.name}</h1>
+                    <p class="info">${restaurant.location.address1}</p>
+                    <b><p class="phone">${restaurant.display_phone}</p></b>
                     <b><div class="hours">hours</div></b> 
                     <div>Sunday, 11:00am~ 10:00pm</div>
                     <div>Monday, 11:00am~ 10:00pm</div>
@@ -103,7 +105,7 @@ async function initMap() {
                     <div>Thursday, 11:00am~ 10:00pm</div>
                     <div>Friday, 11:00am~ 10:00pm</div>
                     <div>Saturday, 11:00am~ 10:00pm</div>
-                    <img src="/images/chicken.jpeg"`,
+                    <img src="${restaurant.image_url}"`,
                     iconImage: {
                         url: "/icons/logo_burger.svg",
                         scaledSize: new google.maps.Size(43, 36)
@@ -254,7 +256,6 @@ function clearRoute() {
     document.getElementById("destination").value = "";
     // document.getElementById("list-group").value = "";
     directionsDisplay.setDirections({ routes: [] });
-
 }
 
 async function handleYelpRequest(lat, lng) {
