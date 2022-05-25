@@ -24,7 +24,8 @@ router.use((req, res, next) => {
     next();
 })
 
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
+const { resolveSoa } = require("dns");
 
 router.post("/create", upload.single("image"), async (req, res) => {
     const connection = await database.getConnection()
@@ -169,35 +170,29 @@ router.post("/deletePost", async (req, res) => {
     }
 })
 
-// router.get("/location", async (req, res) => {
-//     res.render("location");
-// })
-
 router.get("/location", async (req, res) => {
-    let url = 'https://api.yelp.com/v3/businesses/search?latitude=49.282359695758885&longitude=-123.1168886758965&radius=100'
+    res.render("location");
+})
+
+router.post("/yelp", async (req, res) => {
+    let latitude = req.query.latitude
+    let longitude = req.query.longitude
+    console.log("LAt and long " + latitude)
+    let url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&radius=40000`
     let options = {
-        'method': 'GET',
         'headers': {
             'x-api-key': 'I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx',
             'Authorization': 'Bearer I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx'
         }
     };
-    fetch(url, options)
+    await fetch(url, options)
         .then(a => a.json())
         .then(data => {
-
-            let [firstRestaurant] = data.businesses
-            let name = firstRestaurant.name
-            console.log("name", name)
-            let address = firstRestaurant.location.display_address
-            address.forEach(first => {
-                console.log(first)
+            console.log(data)
+            res.send(data)
             });
-            res.render("location", { name, address })
-
         })
-});
-
+   
 router.get("/food", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const thisUser = await dbModel.getPostByUserId(user.user_id)
