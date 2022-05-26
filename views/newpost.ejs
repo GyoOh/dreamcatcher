@@ -128,25 +128,27 @@
                                                         required></textarea>
                                                 </div>
                                             </div>
-                                            <form id="restaurantNameForm" method="POST">
-                                                <li> <input type="text"
-                                                        class="restaurant-input" placeholder="Add a restaurant" hidden>
-                                                    </li>
-                                                    <div class="yelp-search">
-                                                        <input id="restaurantNameFormInput" class="yelp-search-input newpost-input" type="text" name="term"
-                                                       placeholder="Add a restaurant">
-                                                        <div class="yelp-suggestions newpost-suggestions">
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <img class="plus-icon" src="/icons/+.svg">
-                                                    <div class="result" hidden></div>
-                                                </div>
-                            </form>
                             <div class="input_div">
                                 <input class="submit_btn" type="submit" value="Post" size="20">
                             </div>
+                            <input type="text" class="result" name="restaurant_name" hidden>
+                            <input type="text" class="result2" name="latitude" hidden>
+                            <input type="text" class="result3" name="longitude" hidden>
                             </form>
+                            <form id="restaurantNameForm" method="POST">
+                                <li> <input type="text"
+                                        class="restaurant-input" placeholder="Add a restaurant" hidden>
+                                    </li>
+                                    <div class="yelp-search">
+                                        <input id="restaurantNameFormInput" class="yelp-search-input newpost-input" type="text" name="term"
+                                       placeholder="Add a restaurant">
+                                        <div class="yelp-suggestions newpost-suggestions">
+                                            
+                                        </div>
+                                    </div>
+                                    <img class="plus-icon" src="/icons/+.svg">
+                                </div>
+            </form>
                             </article>
                             <nav class="bottom-nav">
                                 <a class="nav-btn" href="/posts">
