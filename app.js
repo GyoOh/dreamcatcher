@@ -30,7 +30,7 @@ app.use(cookieSession({
   keys: ['key1', 'key2'],
   maxAge: 24 * 60 * 60 * 1000 //24hrs
 }))
-app.use(cors())
+// app.use(cors()) 
 
 app.use("/authentication", authentication);
 app.use("/posts", posts);

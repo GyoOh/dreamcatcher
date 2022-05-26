@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/new_post.css">
     <link rel="stylesheet" href="/posts.css">
+    <link rel="stylesheet" href="/yelpAutocomplete.css">
+    <script src="/javascript/yelpAutocomplete.js" defer></script>
+
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
@@ -25,7 +28,7 @@
             <section class="h_inner">
 
                 <h1 class="logo">
-                   <a href="/posts"> <img class="logoImg" src='https://ifh.cc/g/9qtKfn.png' border='0'></a>
+                    <a href="/posts"> <img class="logoImg" src='https://ifh.cc/g/9qtKfn.png' border='0'></a>
                 </h1>
 
             </section>
@@ -116,6 +119,7 @@
                                             <div class="upload">
                                                 <div class="post_btn">
                                                     <!-- <div class="plus_icon"> -->
+                                                    <!-- <span> Change image </span> -->
                                                     <input type="file" name="image" placeholder="image" id="id_photo"
                                                         accept="image/*" required>
                                                     <!-- </div> -->
@@ -124,7 +128,7 @@
                                             </div>
                                         </div>
                                         <% } %>
-                                       
+
                                             <div class="comment_container">
                                                 <div class="comment" id="comment-list-ajax-post37">
                                                     <div class="comment-detail">
@@ -134,48 +138,58 @@
                                                         required></textarea>
                                                 </div>
                                             </div>
-                                            
-                            </div>
-                            <form id="restaurantNameForm" method="POST">
-                           <li> <input id="restaurantNameFormInput" type="text" name="term" class="restaurant-input" placeholder="Add a restaurant"><img class="plus-icon" src="/icons/+.svg"></li>
-                           <div class="result"></div>
-                                
-                                </form>
+
+                                            <form id="restaurantNameForm" method="POST">
+                                                <li> <input type="text"
+                                                        class="restaurant-input" placeholder="Add a restaurant" hidden>
+                                                    </li>
+                                                    <div class="yelp-search">
+                                                        <input id="restaurantNameFormInput" class="yelp-search-input newpost-input" type="text" name="term"
+                                                       placeholder="Add a restaurant">
+                                                        <div class="yelp-suggestions newpost-suggestions">
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <img class="plus-icon" src="/icons/+.svg">
+                                                    <div class="result" hidden></div>
+                                                </div>
+
+                            </form>
                             <div class="input_div">
                                 <input class="submit_btn" type="submit" value="Post" size="20">
                             </div>
 
                             </form>
-                            
-    
-                               
+
+
+
                             </article>
-                           
- <nav class="bottom-nav">
 
-    <a class="nav-btn" href="/posts">
-        <img class="nav-icon" src="/icons/home.svg">
-    </a>
+                            <nav class="bottom-nav">
 
-    <a class="nav-btn" href="/location">
-        <img class="nav-icon" src="/icons/locationicon.svg">
-    </a>
+                                <a class="nav-btn" href="/posts">
+                                    <img class="nav-icon" src="/icons/home.svg">
+                                </a>
 
-    <a class="nav-btn" href="/posts/create">
-        <img class="nav-icon" src="/icons/post-new.svg">
-    </a>
+                                <a class="nav-btn" href="/location">
+                                    <img class="nav-icon" src="/icons/locationicon.svg">
+                                </a>
 
-    <a class="nav-btn" href="/chat">
-        <img class="nav-icon" src="/icons/txt.svg">
-    </a>
+                                <a class="nav-btn" href="/posts/create">
+                                    <img class="nav-icon" src="/icons/post-new.svg">
+                                </a>
 
-    <a class="nav-btn" href="/profile/<%=user.user_id%>">
-        <img class="nav-icon" src="/icons/profile.svg">
-    </a>
+                                <a class="nav-btn" href="/chat">
+                                    <img class="nav-icon" src="/icons/txt.svg">
+                                </a>
 
-    <div class="horizontal-underline"></div>
+                                <a class="nav-btn" href="/profile/<%=user.user_id%>">
+                                    <img class="nav-icon" src="/icons/profile.svg">
+                                </a>
 
-</nav>
+                                <div class="horizontal-underline"></div>
+
+                            </nav>
 
                     </section>
                     <script>

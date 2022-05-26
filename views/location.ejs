@@ -9,7 +9,9 @@
     <!-- <link rel="stylesheet" href="/style.css"> -->
     <link rel="stylesheet" href="/posts.css">
     <link rel="stylesheet" href="/location.css">
+    <link rel="stylesheet" href="/yelpAutocomplete.css">
     <script src="/javascript/map.js"></script>
+    <script src="/javascript/yelpAutocomplete.js" defer></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPQ_N7ChJoLvCfIRXrQbqKBqF2ogWazSE&map_ids=d2716697ffbc4fa6&libraries=places&callback=initMap"></script>
     <link
@@ -79,7 +81,14 @@
                         </ul>
                     </div>
                 </div>
+                <div class="yelp-search">
+                    <input class="yelp-search-input">
+                    <div class="yelp-suggestions">
+                        
+                    </div>
+                </div>
                 <div id="map"></div> 
+                <input class="map-search-input">
                 <!-- </header> -->
 
                 <!-- <form class="login-form" action="/authentication/logout" method="POST">    -->
