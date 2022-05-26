@@ -40,7 +40,7 @@
 .list {
     text-align: center;
     margin-top: 10px;
-    width: 50em;
+    width: 30em;
     height: 53px;
     /* border-radius: 10px; */
     border: 1px solid transparent;
@@ -54,7 +54,7 @@
 .open {
     background-color: #9FDBE3;
     position: relative;
-    width: 50em;
+    width: 30em;
     height: 100vh;
     top: 0;
     overflow: hidden;
