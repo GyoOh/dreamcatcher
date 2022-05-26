@@ -224,11 +224,28 @@ router.post("/yelp", async (req, res) => {
         .then(data => {
             console.log(data)
             res.send(data)
-
-
         });
 })
 
+
+router.get("/autocomplete", async (req, res) => {
+    let input = req.query.input;
+    let latitude = req.query.latitude;
+    let longitude = req.query.longitude;
+    let url = `https://api.yelp.com/v3/autocomplete?text=${input}&latitude=${latitude}&longitude=${longitude}&radius=40000`
+    let options = {
+        'headers': {
+            'x-api-key': 'I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx',
+            'Authorization': 'Bearer I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx'
+        }
+    };
+    await fetch(url, options)
+        .then(a => a.json())
+        .then(data => {
+            console.log(data)
+            res.send(data)
+        });
+})
 
 router.get("/food", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
