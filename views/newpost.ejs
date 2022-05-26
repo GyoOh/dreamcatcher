@@ -87,7 +87,6 @@
                         <div class="inner">
                             <div class="contents_box">
                                 <article class="contents">
-
                                     <form method="POST" action="/posts/create" enctype="multipart/form-data"
                                         id="imageForm" class="post_form">
                                         <div class="title">
@@ -101,7 +100,6 @@
                                                     <img class="user" src="/icons/smantha.svg">
                                                 </div>
                                                 <div class="user_name">
-
                                                     <div class="nick_name">
                                                         <%=user.first_name%>
                                                             <%=user.last_name %>
@@ -124,7 +122,6 @@
                                             </div>
                                         </div>
                                         <% } %>
-                                       
                                             <div class="comment_container">
                                                 <div class="comment" id="comment-list-ajax-post37">
                                                     <div class="comment-detail">
@@ -134,19 +131,18 @@
                                                         required></textarea>
                                                 </div>
                                             </div>
-                                            
                             </div>
-                            <form id="restaurantNameForm" method="POST">
-                           <li> <input id="restaurantNameFormInput" type="text" name="term" class="restaurant-input" placeholder="Add a restaurant"><img class="plus-icon" src="/icons/+.svg"></li>
-                           <div class="result"></div>
-                                
-                                </form>
+               
                             <div class="input_div">
                                 <input class="submit_btn" type="submit" value="Post" size="20">
                             </div>
 
                             </form>
-                            
+                            <form id="restaurantNameForm" method="POST">
+                                <li> <input id="restaurantNameFormInput" type="text" name="term" class="restaurant-input" placeholder="Add a restaurant"><img class="plus-icon" src="/icons/+.svg"></li>
+                                <div class="result"></div>
+                                     
+                                     </form>
     
                                
                             </article>

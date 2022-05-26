@@ -292,3 +292,8 @@ img.plus-icon {
 div.placeDiv {
   vertical-align: middle;
 }
+div.iconDiv {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
