@@ -18,7 +18,7 @@ async function initMap() {
         addMarker({ coords: event.latLng });
     })
 
-    const searchInput = document.createElement('input');
+    const searchInput = document.querySelector(".map-search-input");
     const searchBox = new google.maps.places.SearchBox(searchInput);
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchInput);
     searchInput.placeholder = "Enter a place";

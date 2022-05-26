@@ -1,0 +1,16 @@
+.yelp-search-input {
+    width: 20em;
+    height: 2.5em;
+    padding: 0.5em;
+}
+
+.suggestion {
+    padding: 0.5em 1em 0.5em 1em;
+    border: 1px solid lightgrey;
+    font: 14px 'Nunito', sans-serif; 
+    cursor: pointer; 
+}
+
+/* .yelp-suggestions {
+    overflow-y: scroll;
+} */
