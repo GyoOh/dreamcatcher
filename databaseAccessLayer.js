@@ -93,6 +93,31 @@ async function addPost(user_id, description, image_url) {
     const [result] = await database.query(query, params)
     return result
 }
+async function addPostWithRestaurant(user_id, description, image_url, restaurant_name, latitude, longitude) {
+    let query = "INSERT INTO posts (user_id, description, image_url, restaurant_name, latitude, longitude) VALUES(?, ?, ?, ?, ?, ?)"
+    const params = [user_id, description, image_url, restaurant_name, latitude, longitude]
+    const [result] = await database.query(query, params)
+    return result
+}
+async function getPostsWithRestaurant() {
+    let query = `
+    select post_id, user_id, image_url, description, restaurant_name, latitude, longitude ,date_format(timestamp, '%M %e, %Y')as timestamp, 
+    total_likes, total_comments from posts
+    order by post_id desc;
+    `
+    const [posts] = await database.query(query);
+    return posts;
+}
+async function getPostsWithRestaurantByPostId(post_id) {
+    let query = `
+    select post_id, user_id, image_url, description, restaurant_name, latitude, longitude ,date_format(timestamp, '%M %e, %Y')as timestamp, 
+    total_likes, total_comments from posts where post_id = :post_id
+    order by post_id desc;
+    `
+    let params = { post_id: post_id }
+    const [posts] = await database.query(query, params);
+    return posts;
+}
 async function deletePost(post_id) {
     let query = "DELETE FROM posts WHERE post_id = :post_id";
     let params = { post_id: post_id }
@@ -279,7 +304,7 @@ async function deleteRestaurant(restaurant_id) {
 
 module.exports = {
     getUsers, getUser, getfollowingByUserId, getfollowerByUserId, getpostLikesByuser, getLikes, getPostByUserId, addUser, deletePost, deleteFollow, deleteRestaurant, deletePostLikes,
-    addPost, getUserPosts, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getpostComments, getfollower,
-    addfollower, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName,
+    addPost, getUserPosts, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getpostComments, getfollower, addPostWithRestaurant,
+    addfollower, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName, getPostsWithRestaurant, getPostsWithRestaurantByPostId,
     getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, updatePost, getPostByPostId, getTotalFollower, updateUser
 }

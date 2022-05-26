@@ -61,6 +61,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
     const url = await s3.uploadFile(req.file)
     const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
     await dbModel.addPost(user.user_id, description, image_url)
+    // await dbModel.addPostWithRestaurant(user.user_id, description, image_url, restaurant_name, latitude, longitude)
     res.redirect("/posts")
     connection.release()
 })
@@ -87,9 +88,13 @@ router.post("/create/restaurant", upload.single("image"), async (req, res) => {
             } else {
                 let [business] = data.businesses
                 let name = business.name
+                let coordinates = business.coordinates
+                let latitude = business.coordinates.latitude
+                let longitude = business.coordinates.longitude
+                console.log(coordinates)
                 let address = business.location
                 let display_address = address.display_address
-                res.json({ name, user, display_address })
+                res.json({ name, user, display_address, coordinates, latitude, longitude })
             }
         })
 })
@@ -117,6 +122,14 @@ router.get("/", async (req, res) => {
     }
     const commentId = await dbModel.getComments()
     res.render("post", { user, users, posts, userPosts, commentId });
+})
+
+router.get("/location/:post_id", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const post_id = +req.params.post_id
+    const getPostsWithRestaurant = await dbModel.getPostsWithRestaurantByPostId(post_id)
+    console.log(getPostsWithRestaurant)
+    res.render("locationByRestaurant");
 })
 
 router.post("/:post_id/comment", async (req, res) => {

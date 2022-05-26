@@ -112,10 +112,12 @@
                                         </div>     
                                     </section>
                             </header>
+                            
                             <div class="img_section">
                                 <div class="trans_inner">
                                     <div>
                                         <img src=<%=posts[i].image_url%>>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -146,8 +148,10 @@
                                     </div>
                                 </div>
                                 <div class="right_icon">
-                                    <div class="sprite_bookmark_outline" data-name="bookmark">
-                                        <img src="/icons/save.svg" class="bookmark">
+                                    <div class="sprite_bookmark_outline">
+                                        
+                                            <a class="name-profile" href="/posts/location/<%=posts[i].post_id%>""><img class="user des_photo" src="/icons/map.svg"></a>
+                                    </form>
                                     </div>
                                 </div>
                             </div>
