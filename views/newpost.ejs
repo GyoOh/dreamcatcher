@@ -47,13 +47,11 @@
                 <button class="login-button" type="submit">Log In</button>
             </form>
             New Here?
-
             <div class="separator">
                 <div class="line"></div>
                 <p>OR</p>
                 <div class="line"></div>
             </div>
-
             <div class="box">
                 <a href="/authentication/signup">Sign Up</a>
                 <a href="">Forgot Password?</a>
@@ -82,15 +80,11 @@
             </div>
             </div>
             <% } %>
-
                 <% if(user) {%>
-
-
                     <section id="main_container">
                         <div class="inner">
                             <div class="contents_box">
                                 <article class="contents">
-
                                     <form method="POST" action="/posts/create" enctype="multipart/form-data"
                                         id="imageForm" class="post_form">
                                         <div class="title">
@@ -104,17 +98,14 @@
                                                     <img class="user" src="/icons/smantha.svg">
                                                 </div>
                                                 <div class="user_name">
-
                                                     <div class="nick_name">
                                                         <%=user.first_name%>
                                                             <%=user.last_name %>
                                                     </div>
                                                     <div class="place">@DreamCatchers Cafe </div>
                                                 </div>
-
                                             </div>
                                         </header>
-
                                         <div class="preview">
                                             <div class="upload">
                                                 <div class="post_btn">
@@ -128,7 +119,6 @@
                                             </div>
                                         </div>
                                         <% } %>
-
                                             <div class="comment_container">
                                                 <div class="comment" id="comment-list-ajax-post37">
                                                     <div class="comment-detail">
@@ -139,61 +129,48 @@
                                                 </div>
                                             </div>
 
-                                            <form id="restaurantNameForm" method="POST">
-                                                <li> <input type="text"
-                                                        class="restaurant-input" placeholder="Add a restaurant" hidden>
-                                                    </li>
-                                                </div>
-                                                
-                                            </form>
-                                            <div class="yelp-search">
-                                                <input id="restaurantNameFormInput" class="yelp-search-input newpost-input" type="text" name="term"
-                                                placeholder="Add a restaurant">
-                                                <div class="yelp-suggestions newpost-suggestions">
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="result" hidden></div>
-                                            <img class="plus-icon" src="/icons/+.svg">
                             <div class="input_div">
                                 <input class="submit_btn" type="submit" value="Post" size="20">
                             </div>
-
+                            <input type="text" class="result" name="restaurant_name" hidden>
+                            <input type="text" class="result2" name="latitude" hidden>
+                            <input type="text" class="result3" name="longitude" hidden>
                             </form>
-
-
-
+                            <form id="restaurantNameForm" method="POST">
+                                <li> <input type="text"
+                                        class="restaurant-input" placeholder="Add a restaurant" hidden>
+                                    </li>
+                                    <div class="yelp-search">
+                                        <input id="restaurantNameFormInput" class="yelp-search-input newpost-input" type="text" name="term"
+                                       placeholder="Add a restaurant">
+                                        <div class="yelp-suggestions newpost-suggestions">
+                                            
+                                        </div>
+                                    </div>
+                                    <img class="plus-icon" src="/icons/+.svg">
+                                </div>
+            </form>
                             </article>
-
                             <nav class="bottom-nav">
-
                                 <a class="nav-btn" href="/posts">
                                     <img class="nav-icon" src="/icons/home.svg">
                                 </a>
-
                                 <a class="nav-btn" href="/location">
                                     <img class="nav-icon" src="/icons/locationicon.svg">
                                 </a>
-
                                 <a class="nav-btn" href="/posts/create">
                                     <img class="nav-icon" src="/icons/post-new.svg">
                                 </a>
-
                                 <a class="nav-btn" href="/chat">
                                     <img class="nav-icon" src="/icons/txt.svg">
                                 </a>
-
                                 <a class="nav-btn" href="/profile/<%=user.user_id%>">
                                     <img class="nav-icon" src="/icons/profile.svg">
                                 </a>
-
                                 <div class="horizontal-underline"></div>
-
                             </nav>
-
                     </section>
                     <script>
-
                         // document.querySelector("#restaurantNameForm").addEventListener("submit", event => {
                         //     event.preventDefault()
                         //     const value = document.querySelector("#restaurantNameFormInput").value
@@ -205,13 +182,11 @@
                         //         if (event.target.classList.contains("liked")) {
                         //             event.target.classList.remove('liked');
                         //             event.target.src = "/icons/heart.svg"
-
                         //         } else {
                         //             event.target.classList.add('liked')
                         //             event.target.src = "/icons/like.svg"
                         //         }
                         //     }
-
                         //     if (event.target.classList.contains("bookmark")) {
                         //         if (event.target.classList.contains("saved")) {
                         //             event.target.classList.remove('saved');
@@ -221,10 +196,7 @@
                         //             event.target.src = "/icons/saved.svg"
                         //         }
                         //     }
-
                         // })
-
-
                         let fileInput = document.querySelector("#id_photo"),
                             button = document.querySelector(".input-file-trigger"),
                             the_return = document.querySelector(".file-return");
@@ -241,7 +213,6 @@
                                     canvas.width = 377;
                                     canvas.height = 377;
                                     ctx.drawImage(img, -10, 0, 377, 377);
-
                                 };
                                 img.src = event.target.result;
                                 // img.width = img.width*0.5
@@ -255,5 +226,4 @@
                         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
                         crossorigin="anonymous"></script>
 </body>
-
 </html>
