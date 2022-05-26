@@ -141,6 +141,7 @@
 textarea.description {
     max-width: 20em;
     max-height: 8em;
+    min-height: 8em;
 }
 
 
@@ -235,3 +236,5 @@ div.placeDiv {
 .newpost-suggestions {
     width: 15em;
 }
+
+

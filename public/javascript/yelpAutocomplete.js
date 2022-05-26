@@ -24,6 +24,7 @@ async function populateYelpSuggestions(input) {
 yelpSuggestions.addEventListener('click', (event) => {
     console.log(event.target.textContent)
     yelpSearchInput.value = event.target.textContent;
+    yelpSuggestions.innerHTML = '';
 })
 
 
