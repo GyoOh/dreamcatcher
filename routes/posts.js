@@ -44,23 +44,30 @@ router.post("/create", upload.single("image"), async (req, res) => {
         .then(data => {
             let [business] = data.businesses
             let name = business.name
-            if (business == null) {
-                res.render("newpost", {
-                    address: null
-                })
-            } else {
-                let [business] = data.businesses
-                let name = business.name
-                let address = business.location
-                let display_address = address.display_address
-                res.render("newpost", { name, user, display_address })
-            }
+            // if (business == null) {
+            //     res.render("newpost", {
+            //         address: null
+            //     })
+            // } else {
+            //     let [business] = data.businesses
+            //     let name = business.name
+            //     let address = business.location
+            //     let coordinates = business.coordinates
+            //     let latitude = business.coordinates.latitude
+            //     let longitude = business.coordinates.longitude
+            //     let display_address = address.display_address
+            //     res.render("newpost", { name, user, display_address, latitude, longitude })
+            // }
         })
     const { filename, path } = req.file
     const description = req.body.description
+    const restaurant_name = req.body.restaurant_name
+    const latitude = req.body.latitude
+    const longitude = req.body.longitude
     const url = await s3.uploadFile(req.file)
     const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
-    await dbModel.addPost(user.user_id, description, image_url)
+    // await dbModel.addPost(user.user_id, description, image_url)
+    await dbModel.addPostWithRestaurant(user.user_id, description, image_url, restaurant_name, latitude, longitude)
     res.redirect("/posts")
     connection.release()
 })
@@ -87,9 +94,12 @@ router.post("/create/restaurant", upload.single("image"), async (req, res) => {
             } else {
                 let [business] = data.businesses
                 let name = business.name
+                let coordinates = business.coordinates
+                let latitude = business.coordinates.latitude
+                let longitude = business.coordinates.longitude
                 let address = business.location
                 let display_address = address.display_address
-                res.json({ name, user, display_address })
+                res.json({ name, user, display_address, coordinates, latitude, longitude })
             }
         })
 })
@@ -117,6 +127,17 @@ router.get("/", async (req, res) => {
     }
     const commentId = await dbModel.getComments()
     res.render("post", { user, users, posts, userPosts, commentId });
+})
+
+router.get("/location/:post_id", async (req, res) => {
+    const user = await dbModel.getUser(req.session.whoami)
+    const post_id = +req.params.post_id
+    const getPostsWithRestaurant = await dbModel.getPostsWithRestaurantByPostId(post_id)
+    const latitude = getPostsWithRestaurant[0].latitude
+    const longitude = getPostsWithRestaurant[0].longitude
+    const restaurant_name = getPostsWithRestaurant[0].restaurant_name
+    console.log("getPostWith", getPostsWithRestaurant)
+    res.render("locationByRestaurant", { latitude, longitude, restaurant_name });
 })
 
 router.post("/:post_id/comment", async (req, res) => {
@@ -209,7 +230,24 @@ router.post("/yelp", async (req, res) => {
     await fetch(url, options)
         .then(a => a.json())
         .then(data => {
-            console.log(data)
+            res.send(data)
+        });
+})
+
+router.get("/autocomplete", async (req, res) => {
+    let input = req.query.input;
+    let latitude = req.query.latitude;
+    let longitude = req.query.longitude;
+    let url = `https://api.yelp.com/v3/autocomplete?text=${input}&latitude=${latitude}&longitude=${longitude}&radius=40000`
+    let options = {
+        'headers': {
+            'x-api-key': 'I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx',
+            'Authorization': 'Bearer I4VPC2nHPKjXgSkG2406XTkcgKtB42TNNBa_WF38qTdb9lERIdrZeqkkYsdwNgfooicoEbw_BMg6EtISWqQ2ogJdjQmp4sITejk6FRz8vYSQd79hep_YC9Fj68SJYnYx'
+        }
+    };
+    await fetch(url, options)
+        .then(a => a.json())
+        .then(data => {
             res.send(data)
         });
 })

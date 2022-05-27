@@ -249,6 +249,7 @@ li {
 #user {
   cursor: pointer;
 }
+
 form input.restaurant-input {
   width: 100%;
   height: 2.5rem;
@@ -285,10 +286,16 @@ div.result {
 img.plus-icon {
   width: 15px;
   height: 15px;
-  float: right;
+  /* float: right; */
   cursor: pointer;
   margin-right: 20px;
 }
 div.placeDiv {
   vertical-align: middle;
 }
+div.iconDiv {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
