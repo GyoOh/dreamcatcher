@@ -21,11 +21,23 @@ async function getUserbyUserId(user_id) {
 
 async function getPosts() {
     let query = `
-    select post_id, user_id, image_url, description, date_format(timestamp, '%M %e, %Y')as timestamp, 
+    select post_id, user_id, image_url, description, restaurant_name, latitude, longitude, address, display_phone, restaurant_url, rating, review_count, id, address2, categories, date_format(timestamp, '%M %e, %Y')as timestamp, 
     total_likes, total_comments from posts
     order by post_id desc;
     `
     const [posts] = await database.query(query);
+    return posts;
+}
+async function getFollower(user_id) {
+    let query = `
+    select foodie_user.*
+    from foodie_user
+    left join relationship on relationship.user_id = foodie_user.user_id
+    left join posts on relationship.user_id = :user_id
+    where foodie_user.user_id = :user_id;
+    `
+    let params = { user_id: user_id }
+    const [posts] = await database.query(query, params);
     return posts;
 }
 
@@ -93,9 +105,9 @@ async function addPost(user_id, description, image_url) {
     const [result] = await database.query(query, params)
     return result
 }
-async function addPostWithRestaurant(user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url) {
-    let query = "INSERT INTO posts (user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    const params = [user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url]
+async function addPostWithRestaurant(user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url, rating, review_count, id, address2, categories) {
+    let query = "INSERT INTO posts (user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url, rating, review_count, id, address2, categories) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    const params = [user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url, rating, review_count, id, address2, categories]
     const [result] = await database.query(query, params)
     return result
 }
@@ -110,7 +122,7 @@ async function getPostsWithRestaurant() {
 }
 async function getPostsWithRestaurantByPostId(post_id) {
     let query = `
-    select post_id, user_id, image_url, description, restaurant_name, latitude, longitude, address, display_phone, restaurant_url, date_format(timestamp, '%M %e, %Y')as timestamp, 
+    select post_id, user_id, image_url, description, restaurant_name, latitude, longitude, address, display_phone, restaurant_url, rating, review_count, id, address2, categories, date_format(timestamp, '%M %e, %Y')as timestamp, 
     total_likes, total_comments from posts where post_id = :post_id
     order by post_id desc;
     `
@@ -303,7 +315,7 @@ async function deleteRestaurant(restaurant_id) {
 }
 
 module.exports = {
-    getUsers, getUser, getfollowingByUserId, getfollowerByUserId, getpostLikesByuser, getLikes, getPostByUserId, addUser, deletePost, deleteFollow, deleteRestaurant, deletePostLikes,
+    getUsers, getUser, getfollowingByUserId, getFollower, getfollowerByUserId, getpostLikesByuser, getLikes, getPostByUserId, addUser, deletePost, deleteFollow, deleteRestaurant, deletePostLikes,
     addPost, getUserPosts, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getpostComments, getfollower, addPostWithRestaurant,
     addfollower, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName, getPostsWithRestaurant, getPostsWithRestaurantByPostId,
     getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, updatePost, getPostByPostId, getTotalFollower, updateUser

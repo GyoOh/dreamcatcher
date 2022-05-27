@@ -7,7 +7,7 @@ async function handleYelpRequest(lat, lng) {
     return dataJSON;
 }
 
-const restaurantsList = document.querySelector(".open")
+const restaurantsList = document.querySelector(".RestInfoDiv")
 
 const restaurant_name = document.querySelector("div.resultOfPlace3").innerHTML
 const address = document.querySelector("div.resultOfPlace4").innerHTML
@@ -22,12 +22,12 @@ const address2 = document.querySelector("div.resultOfPlace10").innerHTML
 const categories = document.querySelector("div.resultOfPlace11").innerHTML
 
 // let rating = restaurant.rating
-function addNewRestaurant() {
+function addNewRestaurant(restaurant) {
     let ratingStars = document.createElement('div')
-    let star = `<img class="nav-icon" src="/icons/white star fill.svg">`
-    let half = `<img class="nav-icon" src="/icons/white half star.svg">`
-    let empty = `<img class="nav-icon" src="/icons/white star no fill.svg">`
-    function showStar() {
+    let star = `<img class="nav-icon" src="/icons/star fill.svg">`
+    let half = `<img class="nav-icon" src="/icons/half star.svg">`
+    let empty = `<img class="nav-icon" src="/icons/star no fill.svg">`
+    function showStar(rating) {
         if (rating == 0) {
             return ratingStars.innerHTML = empty + empty + empty + empty + empty
         } else if (rating == 1) {
@@ -52,13 +52,15 @@ function addNewRestaurant() {
     }
     let newRestaurant = document.createElement('div');
     newRestaurant.classList.add("RestInfoDiv")
-    // let ratingStar = document.createElement('div')
-    // ratingStar.classList.add("RatingDiv")
     newRestaurant.innerHTML = `
-    <a href="/posts/food/${post_id}" <p class="resName"> ${restaurant_name}</p></a>
-    <p class="rating"> ${rating} &nbsp${showStar(rating)}&nbsp(${review_count})</p>
-    <img class="img-img"src=${restaurant_url}>
+    <p class="first-h4"> ${restaurant_name}</p>
+    <img class="userPost"src=${restaurant_url}>
+    <p class="nav-icon"> ${rating} &nbsp${showStar(rating)}&nbsp(${review_count})</p>
+    <p class="phoneNumber">Category:&nbsp&nbsp&nbsp${categories}</p>
+    <p class="info">Address:&nbsp&nbsp&nbsp${address}&nbsp&nbsp${address2}</p>
+    <p class="phoneNumber">Phone:&nbsp&nbsp&nbsp${display_phone}</p>
     `;
     restaurantsList.appendChild(newRestaurant);
+
 }
 addNewRestaurant()

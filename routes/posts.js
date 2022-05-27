@@ -60,6 +60,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
             // }
         })
     const { filename, path } = req.file
+    const id = req.body.id
     const description = req.body.description
     const restaurant_name = req.body.restaurant_name
     const latitude = req.body.latitude
@@ -67,10 +68,14 @@ router.post("/create", upload.single("image"), async (req, res) => {
     const address = req.body.address
     const display_phone = req.body.display_phone
     const restaurant_url = req.body.url
+    const review_count = req.body.review_count
+    const rating = req.body.rating
+    const address2 = req.body.address2
+    const categories = req.body.categories
     const url = await s3.uploadFile(req.file)
     const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
     // await dbModel.addPost(user.user_id, description, image_url)
-    await dbModel.addPostWithRestaurant(user.user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url)
+    await dbModel.addPostWithRestaurant(user.user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url, rating, review_count, id, address2, categories)
     res.redirect("/posts")
     connection.release()
 })
@@ -96,16 +101,22 @@ router.post("/create/restaurant", upload.single("image"), async (req, res) => {
                 })
             } else {
                 let [business] = data.businesses
+                console.log(business)
                 let name = business.name
                 let coordinates = business.coordinates
                 let latitude = business.coordinates.latitude
                 let longitude = business.coordinates.longitude
                 let address = business.location
-                let url = business.url
+                let url = business.image_url
+                let id = business.id
+                let categories = business.categories[0].alias
                 let display_address = address.display_address
                 let fullAddress = display_address[0]
+                let address2 = display_address[1]
                 let display_phone = business.display_phone
-                res.json({ name, user, display_address, coordinates, latitude, longitude, fullAddress, display_phone, url })
+                let rating = business.rating
+                let review_count = business.review_count
+                res.json({ name, address2, categories, display_address, coordinates, latitude, longitude, fullAddress, display_phone, url, rating, review_count, id })
             }
         })
 })
@@ -139,14 +150,19 @@ router.get("/location/:post_id", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const post_id = +req.params.post_id
     const getPostsWithRestaurant = await dbModel.getPostsWithRestaurantByPostId(post_id)
+    console.log(getPostsWithRestaurant)
     const latitude = getPostsWithRestaurant[0].latitude
     const longitude = getPostsWithRestaurant[0].longitude
     const restaurant_name = getPostsWithRestaurant[0].restaurant_name
     const address = getPostsWithRestaurant[0].address
+    const id = getPostsWithRestaurant[0].id
     const display_phone = getPostsWithRestaurant[0].display_phone
     const restaurant_url = getPostsWithRestaurant[0].restaurant_url
-    console.log("getPostWith", getPostsWithRestaurant)
-    res.render("locationByRestaurant", { latitude, longitude, restaurant_name, address, display_phone, restaurant_url });
+    const rating = getPostsWithRestaurant[0].rating
+    const review_count = getPostsWithRestaurant[0].review_count
+    const address2 = getPostsWithRestaurant[0].address2
+    const categories = getPostsWithRestaurant[0].categories
+    res.render("locationByRestaurant", { latitude, address2, categories, longitude, restaurant_name, address, display_phone, restaurant_url, rating, review_count, id, post_id });
 })
 
 router.post("/:post_id/comment", async (req, res) => {
@@ -265,7 +281,25 @@ router.get("/:id", async (req, res) => {
     const id = req.params.id
     const user = await dbModel.getUser(req.session.whoami)
     const thisUser = await dbModel.getPostByUserId(user.user_id)
-        res.render("food", { user, thisUser, id })
+    res.render("food", { user, thisUser, id })
+})
+router.get("/food/:post_id", async (req, res) => {
+    const post_id = +req.params.post_id
+    const user = await dbModel.getUser(req.session.whoami)
+    const getPostsWithRestaurant = await dbModel.getPostsWithRestaurantByPostId(post_id)
+    const thisUser = await dbModel.getPostByUserId(user.user_id)
+    const latitude = getPostsWithRestaurant[0].latitude
+    const longitude = getPostsWithRestaurant[0].longitude
+    const restaurant_name = getPostsWithRestaurant[0].restaurant_name
+    const address = getPostsWithRestaurant[0].address
+    const id = getPostsWithRestaurant[0].id
+    const display_phone = getPostsWithRestaurant[0].display_phone
+    const restaurant_url = getPostsWithRestaurant[0].restaurant_url
+    const rating = getPostsWithRestaurant[0].rating
+    const review_count = getPostsWithRestaurant[0].review_count
+    const address2 = getPostsWithRestaurant[0].address2
+    const categories = getPostsWithRestaurant[0].categories
+    res.render("newFood", { user, address2, categories, thisUser, latitude, longitude, restaurant_name, address, display_phone, restaurant_url, rating, review_count, post_id, address2, categories })
 })
 
 router.use((err, req, res, next) => {

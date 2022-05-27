@@ -124,7 +124,7 @@
         <div class="each-posts">
             <% if(thisUser) {%> 
             <% for (let i=0; i < thisUser.length; i++) { %>
-            <img class="userPost" src=<%=thisUser[i].image_url%>> 
+           <a href="/posts/location/<%=thisUser[i].post_id%>"> <img class="userPost" src=<%=thisUser[i].image_url%>> </a>
             <% } %> 
            <% } %> 
                 <% } %> 
