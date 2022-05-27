@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/posts.css">
     <link rel="stylesheet" href="/location.css">
     <link rel="stylesheet" href="/yelpAutocomplete.css">
-    <script src="/javascript/newpost.js" defer></script>
     <script src="/javascript/map.js"></script>
     <script src="/javascript/yelpAutocomplete.js" defer></script>
     <script async defer
@@ -83,19 +82,13 @@
                     </div> -->
                 </div>
                 
-                <input type="text" class="result" name="restaurant_name" hidden>
-                <input type="text" class="result2" name="latitude" hidden>
-                <input type="text" class="result3" name="longitude" hidden>
-                <input type="text" class="result4" name="address" hidden>
-                <input type="text" class="result5" name="display_phone" hidden>
-                <input type="text" class="result6" name="url" hidden>
 
                 <form id="restaurantNameForm" method="POST">
                     <li> <input type="text" class="restaurant-input" placeholder="Add a restaurant" hidden>
                     </li>
                     <div class="yelp-search">
                         <input id="restaurantNameFormInput" class="yelp-search-input" type="text" name="term" placeholder="Search a restaurant">
-                        <img class="plus-icon plusIcon" src="/icons/+.svg">
+                        <img class="plus-icon plusIcon find-restaurant-button" src="/icons/+.svg">
                         <div class="yelp-suggestions suggestions">
 
                         </div>
