@@ -41,3 +41,6 @@ document.querySelector("img.plus-icon").addEventListener("click", event => {
         .catch(err => console.log(err))
 })
 
+document.querySelector(".preview").addEventListener("click", (event) => {
+    document.querySelector("#id_photo").click();
+})

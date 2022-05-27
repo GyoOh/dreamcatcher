@@ -107,6 +107,7 @@
                                             </div>
                                         </header>
                                         <div class="preview">
+                                            <span class="preview_span"> Add an image here</span>
                                             <div class="upload">
                                                 <div class="post_btn">
                                                     <!-- <div class="plus_icon"> -->
@@ -124,38 +125,39 @@
                                                     <div class="comment-detail">
                                                     </div>
                                                     <textarea class="description" name="description" type="text"
-                                                        placeholder="description..." rows="8" maxlength="200"
+                                                        placeholder="Description..." rows="8" maxlength="200"
                                                         required></textarea>
                                                 </div>
                                             </div>
 
-                            <div class="input_div">
-                                <input class="submit_btn post_submit_btn" type="submit" value="Post" size="20">
-                            </div>
-                            <!-- <input type="text" class="result" name="restaurant_name" hidden>
+                                            <div class="input_div">
+                                                <input class="submit_btn post_submit_btn" type="submit" value="Post"
+                                                    size="20">
+                                            </div>
+                                            <!-- <input type="text" class="result" name="restaurant_name" hidden>
                             <input type="text" class="result2" name="latitude" hidden>
                             <input type="text" class="result3" name="longitude" hidden> -->
-                            <input type="text" class="result" name="restaurant_name" hidden>
-                            <input type="text" class="result2" name="latitude" hidden>
-                            <input type="text" class="result3" name="longitude" hidden>
-                            <input type="text" class="result4" name="address" hidden>
-                            <input type="text" class="result5" name="display_phone" hidden>
-                            <input type="text" class="result6" name="url" hidden>
+                                            <input type="text" class="result" name="restaurant_name" hidden>
+                                            <input type="text" class="result2" name="latitude" hidden>
+                                            <input type="text" class="result3" name="longitude" hidden>
+                                            <input type="text" class="result4" name="address" hidden>
+                                            <input type="text" class="result5" name="display_phone" hidden>
+                                            <input type="text" class="result6" name="url" hidden>
+                                    </form>
+                                    <form id="restaurantNameForm" method="POST">
+                                        <li> <input type="text" class="restaurant-input" placeholder="Add a restaurant"
+                                                hidden>
+                                        </li>
+                                        <div class="yelp-search">
+                                            <input id="restaurantNameFormInput" class="yelp-search-input newpost-input"
+                                                type="text" name="term" placeholder="Add a restaurant">
+                                            <img class="plus-icon" src="/icons/+.svg">
+                                            <div class="yelp-suggestions newpost-suggestions">
+
+                                            </div>
+                                        </div>
+                            </div>
                             </form>
-                            <form id="restaurantNameForm" method="POST">
-                                <li> <input type="text"
-                                        class="restaurant-input" placeholder="Add a restaurant" hidden>
-                                    </li>
-                                    <div class="yelp-search">
-                                        <input id="restaurantNameFormInput" class="yelp-search-input newpost-input" type="text" name="term"
-                                       placeholder="Add a restaurant">
-                                       <img class="plus-icon" src="/icons/+.svg">
-                                       <div class="yelp-suggestions newpost-suggestions">
-                                           
-                                    </div>
-                                </div>
-                                </div>
-            </form>
                             </article>
                             <nav class="bottom-nav">
                                 <a class="nav-btn" href="/posts">
@@ -232,4 +234,5 @@
                         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
                         crossorigin="anonymous"></script>
 </body>
+
 </html>
