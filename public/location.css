@@ -40,7 +40,7 @@
 .list {
     text-align: center;
     margin-top: 10px;
-    width: 50em;
+    width: 25em;
     height: 53px;
     /* border-radius: 10px; */
     border: 1px solid transparent;
@@ -54,11 +54,12 @@
 .open {
     background-color: #9FDBE3;
     position: relative;
-    width: 50em;
-    height: 100vh;
+    width: 25em;
+    height: 150vh;
     top: 0;
     overflow: hidden;
     transition: all 1s;
+    overflow-y: scroll;
 }
 
 .open.close {
@@ -79,4 +80,52 @@ input.pac-target-input {
     height: 2.7em;
     text-indent: 1em;
     font-size: 14px;
+}
+
+.res_img{
+    width: 30px;
+    height: 30px;
+}
+.RestInfoDiv{
+    text-align: center;
+    padding: 8px;
+    margin: 8px;
+    
+}
+.img-img{
+    width: 300px;
+    height: 200px;
+    margin: 7px;
+    justify-content: center;
+}
+
+.resName{
+    color: #1A5E63;
+    font: Nunito Sans;
+    font-size: 12pt;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.rating{
+    color: #1A5E63;
+    font: Nunito Sans;
+    font-weight: 500;
+    /* display: flex;
+    justify-content: center; */
+    padding: 0px;
+    margin: 0px;
+}
+
+/* .stars{
+    display: flex;
+    flex-direction: row;
+
+} */
+
+.review_count{
+    font: Nunito Sans;
 }
