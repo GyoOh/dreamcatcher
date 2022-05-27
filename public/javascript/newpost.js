@@ -9,6 +9,11 @@ document.querySelector("img.plus-icon").addEventListener("click", event => {
     const result4 = document.querySelector("input.result4")
     const result5 = document.querySelector("input.result5")
     const result6 = document.querySelector("input.result6")
+    const result7 = document.querySelector("input.result7")
+    const result8 = document.querySelector("input.result8")
+    const result9 = document.querySelector("input.result9")
+    const result10 = document.querySelector("input.result10")
+    const result11 = document.querySelector("input.result11")
 
     const header = {
         Accept: "application/json",
@@ -33,6 +38,11 @@ document.querySelector("img.plus-icon").addEventListener("click", event => {
             result4.value = data.fullAddress
             result5.value = data.display_phone
             result6.value = data.url
+            result7.value = data.rating
+            result8.value = data.review_count
+            result9.value = data.id
+            result10.value = data.address2
+            result11.value = data.categories
             console.log(data.name)
             console.log(data.latitude)
             console.log(data.longitude)
