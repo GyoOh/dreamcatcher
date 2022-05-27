@@ -39,6 +39,8 @@ router.get("/:user_id", async (req, res) => {
         profileUser = users.filter(user => user.user_id === user_id)
         let follower = await dbModel.getfollower(user.user_id, user_id)
         isFollowing = follower.map(already => already.follower).includes(user.user_id)
+        let getfollower = await dbModel.getFollower(user_id)
+        console.log("follower", getfollower)
     }
     const commentId = await dbModel.getComments()
     if (!user) {
