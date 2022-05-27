@@ -40,7 +40,7 @@
     text-align: center;
     display: flex;
     align-items: center;
-    gap: 23%;
+    gap: 20%;
 }
 
 .description {
@@ -142,6 +142,9 @@ textarea.description {
     max-width: 20em;
     max-height: 8em;
     min-height: 8em;
+    display: flex;
+    position: relative;
+    left: 5.3em;
 }
 
 
@@ -235,6 +238,28 @@ div.placeDiv {
 
 .newpost-suggestions {
     width: 15em;
+    display: block;
+    position: relative;
+    /* overflow-y: scroll; */
+    right: 18em;
+    top: 2.5em;
+    /* background: white; */
 }
 
+.yelp-search {
+    display: flex;
+    position: relative;
+    bottom: 5em;
+    left: 8.5em;
+}
 
+.post_submit_btn {
+    display: flex;
+    position: relative;
+    top: 5em;
+    justify-content: center;
+}
+
+.suggestion {
+    background-color: white;
+}
