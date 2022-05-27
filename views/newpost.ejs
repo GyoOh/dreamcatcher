@@ -125,35 +125,13 @@
                                                     <div class="comment-detail">
                                                     </div>
                                                     <textarea class="description" name="description" type="text"
-                                                        placeholder="Description..." rows="8" maxlength="200"
+                                                        placeholder="description..." rows="8" maxlength="200"
                                                         required></textarea>
                                                 </div>
                                             </div>
-
-
-                                            <div class="input_div">
-                                                <input class="submit_btn post_submit_btn" type="submit" value="Post"
-                                                    size="20">
-                                            </div>
-                                            
-                                    </form>
-                                    <form id="restaurantNameForm" method="POST">
-                                        <li> <input type="text" class="restaurant-input" placeholder="Add a restaurant"
-                                                hidden>
-                                        </li>
-                                        <div class="yelp-search">
-                                            <input id="restaurantNameFormInput" class="yelp-search-input newpost-input"
-                                                type="text" name="term" placeholder="Add a restaurant">
-                                            <img class="plus-icon" src="/icons/+.svg">
-                                            <div class="yelp-suggestions newpost-suggestions">
-
-                                            </div>
-                                        </div>
-                            </div>
-
-                            <!-- <div class="input_div">
+                            <div class="input_div">
                                 <input class="submit_btn post_submit_btn" type="submit" value="Post" size="20">
-                            </div> -->
+                            </div>
                             <input type="text" class="result" name="restaurant_name" hidden>
                             <input type="text" class="result2" name="latitude" hidden>
                             <input type="text" class="result3" name="longitude" hidden>
@@ -165,9 +143,21 @@
                             <input type="text" class="result9" name="id" hidden>
                             <input type="text" class="result10" name="address2" hidden>
                             <input type="text" class="result11" name="categories" hidden>
-
-
                             </form>
+                            <form id="restaurantNameForm" method="POST">
+                                <li> <input type="text"
+                                        class="restaurant-input" placeholder="Add a restaurant" hidden>
+                                    </li>
+                                    <div class="yelp-search">
+                                        <input id="restaurantNameFormInput" class="yelp-search-input newpost-input" type="text" name="term"
+                                       placeholder="Add a restaurant">
+                                       <img class="plus-icon" src="/icons/+.svg">
+                                       <div class="yelp-suggestions newpost-suggestions">
+                                           
+                                    </div>
+                                </div>
+                                </div>
+            </form>
                             </article>
                             <nav class="bottom-nav">
                                 <a class="nav-btn" href="/posts">
@@ -244,5 +234,4 @@
                         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
                         crossorigin="anonymous"></script>
 </body>
-
 </html>
