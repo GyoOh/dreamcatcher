@@ -51,6 +51,7 @@ function addMarker(props) {
         marker.addListener("click", () => {
             infoWindow.open(map, marker)
         });
+      
     } else {
         // infoWindow.remove(map, marker)
     }
@@ -86,7 +87,18 @@ if (findRestaurantButton) {
                     coords: { lat: data.coordinates.latitude, lng: data.coordinates.longitude },
                     map,
                     animation: google.maps.Animation.DROP,
-                    content: ``,
+                    content: `<h1 class="restaurantName">${data.name}</h1>
+                    <p class="info">${data.display_address[0]}</p>
+                    <b><p class="phone">${data.display_phone}</p></b>
+                    <b><div class="hours">hours</div></b> 
+                    <div>Sunday, 11:00am~ 10:00pm</div>
+                    <div>Monday, 11:00am~ 10:00pm</div>
+                    <div>Tuesday, 11:00am~ 10:00pm</div>
+                    <div>Wednesday, 11:00am~ 10:00pm</div>
+                    <div>Thursday, 11:00am~ 10:00pm</div>
+                    <div>Friday, 11:00am~ 10:00pm</div>
+                    <div>Saturday, 11:00am~ 10:00pm</div>
+                    <div class"res_img"style="background: url(${data.url}) center/cover no-repeat;"></div>`,
                     iconImage: {
                         url: "/icons/locationicon.svg",
                         scaledSize: new google.maps.Size(43, 36)
