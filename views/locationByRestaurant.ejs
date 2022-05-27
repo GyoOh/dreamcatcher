@@ -41,37 +41,7 @@
                 <div class="contents flex-column card">
                     <!-- <header class="top"> -->
                     <!-- <input id="searchInput" class="controls" type="text" placeholder="Enter a location" -->
-                    <div class="col-md-6 d-flex">
-                        <form id="distance_form">
-                            <!-- my location -->
-                            <div class="row">
-                                <div class="location-label">
-                                    <label>Origin: </label>
-                                </div>
-                                <div class="location-input">
-                                    <input type="text" id="startLocation" name="origin" required=""
-                                        placeholder="Enter a start location...">
-                                </div>
-                            </div>
-                            <!-- destination  -->
-                            <div class="row">
-                                <div class="location-label">
-                                    <label>Destination:  </label>
-                                </div>
-                                <div class="location-input">
-                                    <input type="text" id="destination" name="destination" required=""
-                                    placeholder="Enter a last location...">
-                                </div>
-                            </div>
-                            <!-- submit/cancel btn -->
-                            <div class="row">
-                                <button id="clear_btn" class="button" type="button"
-                                    onclick="clearRoute();">Clear</button>
-                                <button id="submit_btn" class="button" type="button"
-                                    onclick="handleSubmit();">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                   
                     <div id="result">
                         <div class="resultOfPlace1" hidden><%=latitude%> </div>
                         <div class="resultOfPlace2" hidden><%=longitude%> </div>
@@ -84,10 +54,7 @@
                         <div class="resultOfPlace9" hidden><%=post_id%></div>
                         <div class="resultOfPlace10" hidden><%=address2%></div>
                         <div class="resultOfPlace11" hidden><%=categories%></div>
-                        <ul class="list-group">
-                            <li id="distance_output" class="">Distance is Kilo:</li>
-                            <li id="time_output" class="">IN MINUTES:</li>
-                        </ul>
+                        
                     </div>
                 </div>
                 <div id="map"></div> 
@@ -96,7 +63,10 @@
                 <!-- <form class="login-form" action="/authentication/logout" method="POST">    -->
                 <button class="list" type="submit"><img src="/icons/arrow.svg"></button>
                 <div class="slider-container">
-                    <div class="open close"></div>
+                    <div class="open close">
+
+                        
+                    </div>
                 </div>
                 <!-- </form> -->
             </div>

@@ -150,6 +150,7 @@ router.get("/location/:post_id", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const post_id = +req.params.post_id
     const getPostsWithRestaurant = await dbModel.getPostsWithRestaurantByPostId(post_id)
+    console.log(getPostsWithRestaurant)
     const latitude = getPostsWithRestaurant[0].latitude
     const longitude = getPostsWithRestaurant[0].longitude
     const restaurant_name = getPostsWithRestaurant[0].restaurant_name
