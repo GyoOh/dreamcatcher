@@ -64,10 +64,13 @@ router.post("/create", upload.single("image"), async (req, res) => {
     const restaurant_name = req.body.restaurant_name
     const latitude = req.body.latitude
     const longitude = req.body.longitude
+    const address = req.body.address
+    const display_phone = req.body.display_phone
+    const restaurant_url = req.body.url
     const url = await s3.uploadFile(req.file)
     const image_url = `https://direct-upload-s3-bucket-idsp.s3.us-west-2.amazonaws.com/${url.Key}`
     // await dbModel.addPost(user.user_id, description, image_url)
-    await dbModel.addPostWithRestaurant(user.user_id, description, image_url, restaurant_name, latitude, longitude)
+    await dbModel.addPostWithRestaurant(user.user_id, description, image_url, restaurant_name, latitude, longitude, address, display_phone, restaurant_url)
     res.redirect("/posts")
     connection.release()
 })
@@ -98,8 +101,11 @@ router.post("/create/restaurant", upload.single("image"), async (req, res) => {
                 let latitude = business.coordinates.latitude
                 let longitude = business.coordinates.longitude
                 let address = business.location
+                let url = business.url
                 let display_address = address.display_address
-                res.json({ name, user, display_address, coordinates, latitude, longitude })
+                let fullAddress = display_address[0]
+                let display_phone = business.display_phone
+                res.json({ name, user, display_address, coordinates, latitude, longitude, fullAddress, display_phone, url })
             }
         })
 })
@@ -136,8 +142,11 @@ router.get("/location/:post_id", async (req, res) => {
     const latitude = getPostsWithRestaurant[0].latitude
     const longitude = getPostsWithRestaurant[0].longitude
     const restaurant_name = getPostsWithRestaurant[0].restaurant_name
+    const address = getPostsWithRestaurant[0].address
+    const display_phone = getPostsWithRestaurant[0].display_phone
+    const restaurant_url = getPostsWithRestaurant[0].restaurant_url
     console.log("getPostWith", getPostsWithRestaurant)
-    res.render("locationByRestaurant", { latitude, longitude, restaurant_name });
+    res.render("locationByRestaurant", { latitude, longitude, restaurant_name, address, display_phone, restaurant_url });
 })
 
 router.post("/:post_id/comment", async (req, res) => {
