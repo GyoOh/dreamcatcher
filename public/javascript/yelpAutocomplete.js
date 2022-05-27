@@ -28,12 +28,6 @@ yelpSuggestions.addEventListener('click', (event) => {
 })
 
 
-// const restaurantInput = document.querySelector('.restaurant-input');
-// restaurantInput.addEventListener('input', (event) => {
-//     if (event.target.value.length > 0) {
-//         populateYelpSuggestions(event.target.value);
-//     }
-// })
 
 
 
