@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+#id_photo {
+    height: 25em;
+}
+
+
+.user-top {
+    margin-right: 10px;
+}
+
+.profile-top {
+    position: relative;
+    left: 5em;
+}
 
 #imageCanvas {
     position: absolute;
@@ -41,6 +54,8 @@
     display: flex;
     align-items: center;
     gap: 20%;
+    position: relative;
+    left: 2.5em;
 }
 
 .description {
