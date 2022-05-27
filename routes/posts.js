@@ -66,6 +66,7 @@ router.post("/create", upload.single("image"), async (req, res) => {
     const latitude = req.body.latitude
     const longitude = req.body.longitude
     const address = req.body.address
+    console.log(address)
     const display_phone = req.body.display_phone
     const restaurant_url = req.body.url
     const review_count = req.body.review_count

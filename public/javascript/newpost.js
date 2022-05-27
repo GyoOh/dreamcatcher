@@ -32,6 +32,7 @@ document.querySelector("img.plus-icon").addEventListener("click", event => {
             resp.json()
         )
         .then(data => {
+            console.log(data)
             place.innerHTML = `@${term}`
             result.value = data.name
             result2.value = data.latitude
