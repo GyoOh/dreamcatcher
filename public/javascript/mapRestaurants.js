@@ -9,7 +9,6 @@ async function handleYelpRequest(lat, lng) {
 
 const restaurantsList = document.querySelector(".restaurants-list")
 
-// let rating = restaurant.rating
 function addNewRestaurant(restaurant) {
     let ratingStars = document.createElement('div')
     let star = `<img class="nav-icon" src="/icons/white star fill.svg">`
@@ -41,25 +40,24 @@ function addNewRestaurant(restaurant) {
     }
     let newRestaurant = document.createElement('div');
     newRestaurant.classList.add("RestInfoDiv")
-    // let ratingStar = document.createElement('div')
-    // ratingStar.classList.add("RatingDiv")
+    const id = restaurant.id
     newRestaurant.innerHTML = `
-    <a href="${restaurant.url}" <p class="resName"> ${restaurant.name}</p></a>
+    <a href="/posts/${id}" <p class="resName"> ${restaurant.name}</p></a>
     <p class="rating"> ${restaurant.rating} &nbsp${showStar(restaurant.rating)}&nbsp(${restaurant.review_count})</p>
     <img class="img-img"src=${restaurant.image_url}>
     `;
     restaurantsList.appendChild(newRestaurant);
 }
 
-handleYelpRequest(49.282359695758885, -123.1168886758965).then(
-    res => {
-        const businesses = res.businesses
-        for (let i = 0; i < businesses.length; i++) {
-            const restaurant = businesses[i];
-            addNewRestaurant(restaurant);
-        }
-    }
-)
+// handleYelpRequest(49.282359695758885, -123.1168886758965).then(
+//     res => {
+//         const businesses = res.businesses
+//         for (let i = 0; i < businesses.length; i++) {
+//             const restaurant = businesses[i];
+//             addNewRestaurant(restaurant);
+//         }
+//     }
+// )
 
 handleYelpRequest(49.246445, -122.994560).then(
     res => {
