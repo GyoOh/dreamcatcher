@@ -234,7 +234,6 @@ router.post("/yelp", async (req, res) => {
         });
 })
 
-
 router.get("/autocomplete", async (req, res) => {
     let input = req.query.input;
     let latitude = req.query.latitude;
