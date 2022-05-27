@@ -211,6 +211,7 @@ async function handleYelpRequest(lat, lng) {
     }
     const data = await fetch(`/posts/yelp?latitude=${lat}&longitude=${lng}`, request)
     const dataJSON = await data.json();
+    console.log(dataJSON)
     return dataJSON;
 }
 
