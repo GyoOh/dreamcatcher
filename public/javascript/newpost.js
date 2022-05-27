@@ -14,7 +14,7 @@ document.querySelector("img.plus-icon").addEventListener("click", event => {
     const result9 = document.querySelector("input.result9")
     const result10 = document.querySelector("input.result10")
     const result11 = document.querySelector("input.result11")
-
+    const place = document.querySelector("div.place")
     const header = {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -32,6 +32,7 @@ document.querySelector("img.plus-icon").addEventListener("click", event => {
             resp.json()
         )
         .then(data => {
+            place.innerHTML = `@${term}`
             result.value = data.name
             result2.value = data.latitude
             result3.value = data.longitude
