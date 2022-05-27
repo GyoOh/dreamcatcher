@@ -25,6 +25,9 @@ async function initMap() {
     const latitude = document.querySelector("div.resultOfPlace1").innerHTML
     const longitude = document.querySelector("div.resultOfPlace2").innerHTML
     const restaurant_name = document.querySelector("div.resultOfPlace3").innerHTML
+    const address = document.querySelector("div.resultOfPlace4").innerHTML
+    const display_phone = document.querySelector("div.resultOfPlace5").innerHTML
+    const restaurant_url = document.querySelector("div.resultOfPlace6").innerHTML
     await handleYelpRequest(49.282359695758885, -123.1168886758965).then(
         res => {
             const businesses = res.businesses
@@ -35,8 +38,8 @@ async function initMap() {
                     map: map,
                     animation: google.maps.Animation.DROP,
                     content: `<h1 class="restaurantName">${restaurant_name}</h1>
-                    <p class="info">${restaurant.location.address1}</p>
-                    <b><p class="phone">${restaurant.display_phone}</p></b>
+                    <p class="info">${address}</p>
+                    <b><p class="phone">${display_phone}</p></b>
                     <b><div class="hours">hours</div></b> 
                     <div>Sunday, 11:00am~ 10:00pm</div>
                     <div>Monday, 11:00am~ 10:00pm</div>
@@ -45,7 +48,7 @@ async function initMap() {
                     <div>Thursday, 11:00am~ 10:00pm</div>
                     <div>Friday, 11:00am~ 10:00pm</div>
                     <div>Saturday, 11:00am~ 10:00pm</div>
-                    <img src="${restaurant.image_url}"`,
+                    <img src="${restaurant_url}"`,
                     iconImage: {
                         url: "/icons/logo_burger.svg",
                         scaledSize: new google.maps.Size(43, 36)
