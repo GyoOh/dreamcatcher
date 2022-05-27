@@ -14,3 +14,21 @@
 /* .yelp-suggestions {
     overflow-y: scroll;
 } */
+
+.yelp-search {
+    max-height: 3.3em;
+}
+
+.suggestions {
+    position: relative;
+    z-index: 6;
+    background: white;
+    top: -2.9em;
+}
+
+.big-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

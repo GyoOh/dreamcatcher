@@ -4,7 +4,7 @@ async function initMap() {
         center: { lat: 49.282359695758885, lng: -123.1168886758965 },
         mapId: 'd2716697ffbc4fa6'
     }
-    const map = new
+    window.map = new
         google.maps.Map(document.getElementById('map'), options);
 
     const findRestaurantNearMeButton = document.getElementsByClassName("custom-map-control-button")[0]
@@ -269,3 +269,4 @@ async function handleYelpRequest(lat, lng) {
     const dataJSON = await data.json();
     return dataJSON;
 }
+

@@ -58,11 +58,11 @@
                             <!-- destination  -->
                             <!-- <div class="row">
                                 <div class="location-label">
-                                    <label>Destination:  </label>
+                                    <label>Destination: </label>
                                 </div>
                                 <div class="location-input">
                                     <input type="text" id="destination" name="destination" required=""
-                                    placeholder="Enter a last location...">
+                                        placeholder="Enter a last location...">
                                 </div>
                             </div> -->
                             <!-- submit/cancel btn -->
@@ -81,22 +81,42 @@
                         </ul>
                     </div> -->
                 </div>
-                <div class="yelp-search">
+                
+
+                <form id="restaurantNameForm" method="POST">
+                    <li> <input type="text" class="restaurant-input" placeholder="Add a restaurant" hidden>
+                    </li>
+                    <div class="yelp-search">
+                        <input id="restaurantNameFormInput" class="yelp-search-input" type="text" name="term" placeholder="Search a restaurant">
+                        <img class="plus-icon plusIcon find-restaurant-button" src="/icons/+.svg">
+                        <div class="yelp-suggestions suggestions">
+
+                        </div>
+                    </div>
+            </div>
+            </form>
+
+
+            <!-- <div class="yelp-search">
                     <input class="yelp-search-input">
-                    <div class="yelp-suggestions">
+                    <img class="plus-icon plusIcon" src="/icons/+.svg">
+                    <div class="yelp-suggestions suggestions">
                         
                     </div>
-                </div>
-                <div id="map"></div> 
-                <input class="map-search-input">
-                <!-- </header> -->
 
-                <!-- <form class="login-form" action="/authentication/logout" method="POST">    -->
+                </div> -->
+            <div id="map"></div>
+            <input class="map-search-input" hidden>
+            <!-- </header> -->
+
+            <!-- <form class="login-form" action="/authentication/logout" method="POST">    -->
+            <div class="big-container">
                 <button class="list" type="submit"><img src="/icons/arrow.svg"></button>
-                <div class="slider-container">
-                    <div class="open close restaurants-list"></div> 
-                </div>
-                <!-- </form> -->
+            <div class="slider-container">
+                <div class="open close restaurants-list"></div>
+            </div>
+        </div>
+            <!-- </form> -->
             </div>
             </div>
             <nav class="bottom-nav">
