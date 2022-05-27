@@ -1,5 +1,6 @@
 document.querySelector("img.plus-icon").addEventListener("click", event => {
     // event.preventDefault()
+    console.log('working')
     const term = document.querySelector("#restaurantNameFormInput").value
     console.log("submit the form", term)
     const result = document.querySelector("input.result")

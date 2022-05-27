@@ -286,7 +286,7 @@ div.result {
 img.plus-icon {
   width: 15px;
   height: 15px;
-  float: right;
+  /* float: right; */
   cursor: pointer;
   margin-right: 20px;
 }
