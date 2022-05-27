@@ -252,10 +252,11 @@ router.get("/autocomplete", async (req, res) => {
         });
 })
 
-router.get("/food", async (req, res) => {
+router.get("/:id", async (req, res) => {
+    const id = req.params.id
     const user = await dbModel.getUser(req.session.whoami)
     const thisUser = await dbModel.getPostByUserId(user.user_id)
-    res.render("food", { user, thisUser })
+        res.render("food", { user, thisUser, id })
 })
 
 router.use((err, req, res, next) => {
