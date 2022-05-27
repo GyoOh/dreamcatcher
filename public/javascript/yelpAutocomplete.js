@@ -10,7 +10,6 @@ async function populateYelpSuggestions(input) {
     const request = {
         method: "GET",
     }
-    // const data = await fetch(`/posts/businesses/search?input=${input}&latitude=49.282359695758885&longitude=-123.1168886758965`, request)
     const data = await fetch(`/posts/autocomplete?input=${input}&latitude=49.282359695758885&longitude=-123.1168886758965`, request)
     const dataJSON = await data.json();
     const businesses = dataJSON.businesses;
@@ -19,7 +18,6 @@ async function populateYelpSuggestions(input) {
         yelpSuggestions.innerHTML += `<div class="suggestion">${business.name}</div>`
     }
 }
-// https://api.yelp.com/v3/autocomplete?text=${input}&locale=en_CA
 
 yelpSuggestions.addEventListener('click', (event) => {
     console.log(event.target.textContent)
@@ -97,10 +95,9 @@ if (findRestaurantButton) {
                     <div>Wednesday, 11:00am~ 10:00pm</div>
                     <div>Thursday, 11:00am~ 10:00pm</div>
                     <div>Friday, 11:00am~ 10:00pm</div>
-                    <div>Saturday, 11:00am~ 10:00pm</div>
-                    <div class"res_img"style="background: url(${data.url}) center/cover no-repeat;"></div>`,
+                    <div>Saturday, 11:00am~ 10:00pm</div>`,
                     iconImage: {
-                        url: "/icons/locationicon.svg",
+                        url: "/icons/logo_burger.svg",
                         scaledSize: new google.maps.Size(43, 36)
                     }
                 }
