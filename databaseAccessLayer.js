@@ -28,6 +28,18 @@ async function getPosts() {
     const [posts] = await database.query(query);
     return posts;
 }
+async function getFollower(user_id) {
+    let query = `
+    select foodie_user.*
+    from foodie_user
+    left join relationship on relationship.user_id = foodie_user.user_id
+    left join posts on relationship.user_id = :user_id
+    where foodie_user.user_id = :user_id;
+    `
+    let params = { user_id: user_id }
+    const [posts] = await database.query(query, params);
+    return posts;
+}
 
 async function getUserPosts(user_id) {
     let query = `
@@ -303,7 +315,7 @@ async function deleteRestaurant(restaurant_id) {
 }
 
 module.exports = {
-    getUsers, getUser, getfollowingByUserId, getfollowerByUserId, getpostLikesByuser, getLikes, getPostByUserId, addUser, deletePost, deleteFollow, deleteRestaurant, deletePostLikes,
+    getUsers, getUser, getfollowingByUserId, getFollower, getfollowerByUserId, getpostLikesByuser, getLikes, getPostByUserId, addUser, deletePost, deleteFollow, deleteRestaurant, deletePostLikes,
     addPost, getUserPosts, getPosts, addcomment, getCommentByUser, addPostLikes, addCommentsLikes, getpostComments, getfollower, addPostWithRestaurant,
     addfollower, getLikesComments, addRestaurant, getRestaurant, getCommentsFromComment, getCommentsLikes, getRestaurantsName, getPostsWithRestaurant, getPostsWithRestaurantByPostId,
     getLikesComments, getCommentLikesUsers, getUserbyUserId, getComments, getCommentsByPost, updatePost, getPostByPostId, getTotalFollower, updateUser
