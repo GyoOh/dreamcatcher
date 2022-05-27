@@ -97,7 +97,6 @@ router.post("/create/restaurant", upload.single("image"), async (req, res) => {
                 let coordinates = business.coordinates
                 let latitude = business.coordinates.latitude
                 let longitude = business.coordinates.longitude
-                console.log(coordinates)
                 let address = business.location
                 let display_address = address.display_address
                 res.json({ name, user, display_address, coordinates, latitude, longitude })
@@ -134,8 +133,11 @@ router.get("/location/:post_id", async (req, res) => {
     const user = await dbModel.getUser(req.session.whoami)
     const post_id = +req.params.post_id
     const getPostsWithRestaurant = await dbModel.getPostsWithRestaurantByPostId(post_id)
-    console.log(getPostsWithRestaurant)
-    res.render("locationByRestaurant");
+    const latitude = getPostsWithRestaurant[0].latitude
+    const longitude = getPostsWithRestaurant[0].longitude
+    const restaurant_name = getPostsWithRestaurant[0].restaurant_name
+    console.log("getPostWith", getPostsWithRestaurant)
+    res.render("locationByRestaurant", { latitude, longitude, restaurant_name });
 })
 
 router.post("/:post_id/comment", async (req, res) => {
@@ -228,7 +230,6 @@ router.post("/yelp", async (req, res) => {
     await fetch(url, options)
         .then(a => a.json())
         .then(data => {
-            console.log(data)
             res.send(data)
         });
 })
@@ -248,7 +249,6 @@ router.get("/autocomplete", async (req, res) => {
     await fetch(url, options)
         .then(a => a.json())
         .then(data => {
-            console.log(data)
             res.send(data)
         });
 })
