@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 #id_photo {
-    height: 25em;
+    display: none;
 }
 
 
@@ -79,7 +79,7 @@
 }
 
 .post_form .preview {
-    max-width: 377px;
+    max-width: 370px;
     height: 377px;
     border: 1px solid #e6e6e6;
     margin: auto;
@@ -277,4 +277,9 @@ div.placeDiv {
 
 .suggestion {
     background-color: white;
+}
+
+.preview_span {
+    font: bold 24px "Nunito", sans-serif;
+    color: #00BFB2;
 }
